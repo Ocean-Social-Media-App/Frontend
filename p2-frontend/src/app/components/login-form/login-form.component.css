@@ -1,0 +1,43 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  border-radius: 1.6rem;
+  padding: 3.2rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+label {
+  color: #6e7191;
+}
+
+p {
+  margin-top: 1.6rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.text-field {
+  width: 384px;
+  height: 64px;
+  background-color: #eff0f6;
+  border-radius: 16px;
+  border: 2px solid transparent;
+  outline: none;
+  font-family: "Poppins";
+  font-size: 1.6rem;
+  padding: 0 2.4rem;
+}
+
+.text-field:hover {
+  border: 2px solid #037ade;
+}
+
+.text-field:focus {
+  border: 2px solid #037ade;
+  background-color: white;
+}

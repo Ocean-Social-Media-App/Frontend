@@ -1,0 +1,23 @@
+<form [formGroup]="loginForm">
+  <div class="form-row">
+    <label for="username">Username:</label>
+    <input
+      id="username"
+      class="text-field"
+      type="text"
+      formControlName="username"
+    />
+  </div>
+  <div class="form-row">
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      class="text-field"
+      type="password"
+      formControlName="password"
+    />
+  </div>
+</form>
+
+<p>Form Status: {{ loginForm.status }}</p>
+<p>Username Value: {{ loginForm.value | json }}</p>
