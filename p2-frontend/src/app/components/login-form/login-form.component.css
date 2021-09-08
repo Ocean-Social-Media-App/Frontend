@@ -41,3 +41,55 @@ p {
   border: 2px solid #037ade;
   background-color: white;
 }
+
+.loginPgBtns{
+  display: flex;
+  justify-content: space-evenly;
+}
+.loginPgBtn{
+  display: flex;
+  justify-content: space-evenly;
+}
+#signupBtn ::ng-deep .btn{
+    border: none;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      border-radius: 8px;
+    background-color: #1D3557;
+    color: white;
+    border-radius: 8px;
+  
+}
+#signupBtn:hover ::ng-deep .btn{
+  background-color: white; 
+  color: #1D3557; 
+  border: 2px solid #1D3557;
+}
+/* #signupBtn.btn{
+  border: none;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+  background-color: #1D3557;
+  color: white;
+  border-radius: 8px;
+}
+.btn#signupBtn:hover{
+  background-color: white; 
+  color: #1D3557; 
+  border: 2px solid #1D3557;
+} */

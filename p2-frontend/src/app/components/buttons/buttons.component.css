@@ -1,7 +1,6 @@
 /* Some of these things can be changed pased on how we want button to look but be similar */
 .btn {
     border: none;
-    color: white;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -25,4 +24,3 @@
     background-color: #1D3557;
     color: white;
 }
-  

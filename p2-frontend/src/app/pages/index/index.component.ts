@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class IndexComponent implements OnInit {
 
   /* label for button this is the var that goes in quotation in html */
-  label: string = "button label";
-  testString : string = "you pushed the button!"
+/*   label: string = "button label";
+  testString : string = "you pushed the button!" */
   
   constructor() { }
 
@@ -17,9 +17,9 @@ export class IndexComponent implements OnInit {
   }
 
   /* example on calling function in parent component function can be called anything */
-  functionCall(event: any){
+  /* functionCall(event: any){
     console.log('functionCall', event)
     alert(this.testString)
-  }
+  } */
 
 }

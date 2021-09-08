@@ -17,7 +17,13 @@
       formControlName="password"
     />
   </div>
+
+  <div class="loginPgBtns">
+    <app-buttons class="loginPgBtn" id="signupBtn" (onClick)="signUp($event)" [label]="signUpLabel"></app-buttons>
+    <app-buttons class="loginPgBtn" id="loginBtn" (onClick)="logIn($event)" [label]="logInLabel"></app-buttons>
+  </div>
+  
 </form>
 
-<p>Form Status: {{ loginForm.status }}</p>
-<p>Username Value: {{ loginForm.value | json }}</p>
+<!-- <p>Form Status: {{ loginForm.status }}</p>
+<p>Username Value: {{ loginForm.value | json }}</p> -->
