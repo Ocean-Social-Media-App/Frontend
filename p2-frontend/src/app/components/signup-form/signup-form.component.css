@@ -31,8 +31,12 @@ p {
 }
 
 .left {
-  background-color: #06bcfb;
-  background-image: linear-gradient(315deg, #06bcfb 0%, #4884ee 74%);
+  background-color: rgb(80, 221, 195);
+  background-image: linear-gradient(
+    315deg,
+    rgb(80, 221, 195),
+    rgb(98, 74, 242)
+  );
   border-radius: 1.6rem 0 0 1.6rem;
   justify-content: center;
   gap: 6.4rem;
@@ -88,10 +92,10 @@ p {
 }
 
 .text-field:hover {
-  border: 2px solid #037ade;
+  border: 2px solid #5f2eea;
 }
 
 .text-field:focus {
-  border: 2px solid #037ade;
+  border: 2px solid #5f2eea;
   background-color: white;
 }
