@@ -6,6 +6,10 @@ import { IndexComponent } from './pages/index/index.component';
 import { ProfileCreateComponent } from './pages/profile-create/profile-create.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
+import { ProfilePicComponent } from './components/profile-pic/profile-pic.component';
+import { UserFeedComponent } from './pages/user-feed/user-feed.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -13,11 +17,15 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     IndexComponent,
     ProfileCreateComponent,
     ButtonsComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    ViewProfileComponent,
+    ProfilePicComponent,
+    UserFeedComponent
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
