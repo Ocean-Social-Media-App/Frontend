@@ -10,6 +10,7 @@ import { ViewProfileComponent } from './components/view-profile/view-profile.com
 import { ProfilePicComponent } from './components/profile-pic/profile-pic.component';
 import { UserFeedComponent } from './pages/user-feed/user-feed.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SignupFormComponent } from './components/signup-form/signup-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
     LoginFormComponent,
     ViewProfileComponent,
     ProfilePicComponent,
-    UserFeedComponent
+    UserFeedComponent,
+    SignupFormComponent
   ],
   imports: [
     BrowserModule,

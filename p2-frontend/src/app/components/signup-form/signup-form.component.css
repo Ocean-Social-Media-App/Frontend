@@ -1,0 +1,101 @@
+.signup-container {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  border-radius: 1.6rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+label {
+  color: #6e7191;
+}
+
+p {
+  margin-top: 1.6rem;
+}
+
+.left,
+.right {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 3.2rem;
+}
+
+.left {
+  background-color: rgb(80, 221, 195);
+  background-image: linear-gradient(
+    315deg,
+    rgb(80, 221, 195),
+    rgb(98, 74, 242)
+  );
+  border-radius: 1.6rem 0 0 1.6rem;
+  justify-content: center;
+  gap: 6.4rem;
+  text-align: center;
+  width: 384px;
+  color: white;
+}
+
+.headline {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.headline p {
+  font-size: 2.4rem;
+  line-height: 2.4rem;
+}
+
+.signin {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+#signup {
+  font-family: "Caveat", cursive;
+  font-size: 6.4rem;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.full-name {
+  display: flex;
+  gap: 2.4rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.text-field {
+  width: 384px;
+  height: 64px;
+  background-color: #eff0f6;
+  border-radius: 16px;
+  border: 2px solid transparent;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+  padding: 0 2.4rem;
+}
+
+.text-field:hover {
+  border: 2px solid #5f2eea;
+}
+
+.text-field:focus {
+  border: 2px solid #5f2eea;
+  background-color: white;
+}
