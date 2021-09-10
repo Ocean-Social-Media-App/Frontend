@@ -1,0 +1,80 @@
+<div class="signup-container">
+  <div class="left">
+    <div class="headline">
+      <h2 id="signup">Sign Up</h2>
+      <p>And make waves with all the other fish in the sea.</p>
+    </div>
+    <div class="signin">
+      <p>Already have an account?</p>
+      <app-buttons
+        class="signInBtn"
+        id="signInBtn"
+        (onClick)="signUp($event)"
+        [label]="signInLabel"
+      ></app-buttons>
+    </div>
+  </div>
+  <div class="right">
+    <form [formGroup]="signupForm">
+      <div class="full-name">
+        <div class="form-row">
+          <label for="firstName">First Name:</label>
+          <input
+            id="first-name"
+            class="text-field"
+            [style.width.px]="180"
+            type="text"
+            formControlName="firstName"
+          />
+        </div>
+        <div class="form-row">
+          <label for="lastName">Last Name:</label>
+          <input
+            id="last-name"
+            class="text-field"
+            [style.width.px]="180"
+            type="text"
+            formControlName="lastName"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="email">Email:</label>
+        <input
+          id="email"
+          class="text-field"
+          type="text"
+          formControlName="email"
+        />
+      </div>
+      <div class="form-row">
+        <label for="username">Username:</label>
+        <input
+          id="username"
+          class="text-field"
+          type="text"
+          formControlName="username"
+        />
+      </div>
+      <div class="form-row">
+        <label for="password">Password:</label>
+        <input
+          id="last-name"
+          class="text-field"
+          type="password"
+          formControlName="password"
+        />
+      </div>
+      <app-buttons
+        class="loginPgBtn"
+        id="signupBtn"
+        (onClick)="signUp($event)"
+        [label]="signUpLabel"
+      ></app-buttons>
+    </form>
+  </div>
+</div>
+
+<!-- <p>Form Status: {{ signupForm.status }}</p>
+<p>Username Value: {{ signupForm.value | json }}</p> -->

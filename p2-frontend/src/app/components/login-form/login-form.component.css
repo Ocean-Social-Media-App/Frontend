@@ -28,7 +28,7 @@ p {
   border-radius: 16px;
   border: 2px solid transparent;
   outline: none;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-size: 1.6rem;
   padding: 0 2.4rem;
 }
@@ -42,35 +42,34 @@ p {
   background-color: white;
 }
 
-.loginPgBtns{
+.loginPgBtns {
   display: flex;
   justify-content: space-evenly;
 }
-.loginPgBtn{
+.loginPgBtn {
   display: flex;
   justify-content: space-evenly;
 }
-#signupBtn ::ng-deep .btn{
-    border: none;
-      padding: 16px 32px;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      transition-duration: 0.4s;
-      cursor: pointer;
-      border-radius: 8px;
-    background-color: #1D3557;
-    color: white;
-    border-radius: 8px;
-  
+#signupBtn ::ng-deep .btn {
+  border: none;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #1d3557;
+  color: white;
+  border-radius: 8px;
 }
-#signupBtn:hover ::ng-deep .btn{
-  background-color: white; 
-  color: #1D3557; 
-  border: 2px solid #1D3557;
+#signupBtn:hover ::ng-deep .btn {
+  background-color: white;
+  color: #1d3557;
+  border: 2px solid #1d3557;
 }
 /* #signupBtn.btn{
   border: none;
@@ -89,7 +88,7 @@ p {
   border-radius: 8px;
 }
 .btn#signupBtn:hover{
-  background-color: white; 
-  color: #1D3557; 
+  background-color: white;
+  color: #1D3557;
   border: 2px solid #1D3557;
 } */

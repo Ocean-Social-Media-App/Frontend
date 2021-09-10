@@ -6,6 +6,7 @@ import { IndexComponent } from './pages/index/index.component';
 import { ProfileCreateComponent } from './pages/profile-create/profile-create.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { SignupFormComponent } from './components/signup-form/signup-form.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     IndexComponent,
     ProfileCreateComponent,
     ButtonsComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    SignupFormComponent
   ],
   imports: [
     BrowserModule,
