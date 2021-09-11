@@ -11,6 +11,14 @@ import { ProfilePicComponent } from './components/profile-pic/profile-pic.compon
 import { UserFeedComponent } from './pages/user-feed/user-feed.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import { FeedComponent } from './components/feed/feed.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +30,20 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
     ViewProfileComponent,
     ProfilePicComponent,
     UserFeedComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    NavBarComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
