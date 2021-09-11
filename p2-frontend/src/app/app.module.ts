@@ -11,6 +11,8 @@ import { ProfilePicComponent } from './components/profile-pic/profile-pic.compon
 import { UserFeedComponent } from './pages/user-feed/user-feed.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
+import { NewPostFormComponent } from './components/new-post-form/new-post-form.component';
+import { NewCommentFormComponent } from './components/new-comment-form/new-comment-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
     ViewProfileComponent,
     ProfilePicComponent,
     UserFeedComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    NewPostFormComponent,
+    NewCommentFormComponent
   ],
   imports: [
     BrowserModule,
