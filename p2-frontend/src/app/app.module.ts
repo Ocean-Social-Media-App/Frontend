@@ -19,6 +19,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import { FeedComponent } from './components/feed/feed.component';
+import { NewPostFormComponent } from './components/new-post-form/new-post-form.component';
+import { NewCommentFormComponent } from './components/new-comment-form/new-comment-form.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { FeedComponent } from './components/feed/feed.component';
     UserFeedComponent,
     SignupFormComponent,
     NavBarComponent,
-    FeedComponent
+    FeedComponent,
+    NewPostFormComponent,
+    NewCommentFormComponent
   ],
   imports: [
     BrowserModule,

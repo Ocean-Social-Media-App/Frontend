@@ -1,0 +1,21 @@
+<div class="form-container">
+  <h2>Add Comment</h2>
+  <form action="submit">
+    <div class="form-row">
+      <label for="commText">Comment:</label>
+      <textarea
+        name="commText"
+        id=""
+        placeholder="Share a reply"
+        cols="30"
+        rows="10"
+      ></textarea>
+    </div>
+
+    <app-buttons
+      class="submitBtn"
+      id="submitBtn"
+      [label]="submitLabel"
+    ></app-buttons>
+  </form>
+</div>
