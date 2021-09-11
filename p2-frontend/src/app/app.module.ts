@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './pages/index/index.component';
 import { ProfileCreateComponent } from './pages/profile-create/profile-create.component';
@@ -31,7 +32,8 @@ import { NewCommentFormComponent } from './components/new-comment-form/new-comme
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
