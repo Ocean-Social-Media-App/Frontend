@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './pages/index/index.component';
 import { ProfileCreateComponent } from './pages/profile-create/profile-create.component';
@@ -22,6 +23,7 @@ import { FeedComponent } from './components/feed/feed.component';
 import { NewPostFormComponent } from './components/new-post-form/new-post-form.component';
 import { NewCommentFormComponent } from './components/new-comment-form/new-comment-form.component';
 import { ProfilePicSmComponent } from './components/profile-pic-sm/profile-pic-sm.component';
+import { NewProfileFormComponent } from './components/new-profile-form/new-profile-form.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { ProfilePicSmComponent } from './components/profile-pic-sm/profile-pic-s
     FeedComponent,
     NewPostFormComponent,
     NewCommentFormComponent,
-    ProfilePicSmComponent
+    ProfilePicSmComponent,
+    NewProfileFormComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { ProfilePicSmComponent } from './components/profile-pic-sm/profile-pic-s
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

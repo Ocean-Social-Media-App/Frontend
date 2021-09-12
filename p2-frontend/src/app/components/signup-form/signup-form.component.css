@@ -32,11 +32,15 @@ p {
 
 .left {
   background-color: rgb(80, 221, 195);
-  background-image: linear-gradient(
+  background: url("../../../assets/ocean.jpg");
+  background-position: center;
+  background-size: cover;
+  box-shadow: inset 0 0 0 2000px rgba(0, 150, 183, 0.3);
+  /* linear-gradient(
     315deg,
     rgb(80, 221, 195),
     rgb(98, 74, 242)
-  );
+  ); */
   border-radius: 1.6rem 0 0 1.6rem;
   justify-content: center;
   gap: 6.4rem;
@@ -51,9 +55,18 @@ p {
   gap: 2.4rem;
 }
 
+.headline h2 {
+  font-family: "Caveat", cursive;
+  font-size: 6.4rem;
+  text-shadow: 4px 6px 4px rgba(0, 0, 0, 0.3);
+}
+
 .headline p {
   font-size: 2.4rem;
   line-height: 2.4rem;
+  font-weight: normal;
+  margin: 0;
+  text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.3);
 }
 
 .signin {
@@ -62,10 +75,10 @@ p {
   gap: 1.6rem;
 }
 
-#signup {
-  font-family: "Caveat", cursive;
-  font-size: 6.4rem;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+.login a {
+  color: white;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .full-name {

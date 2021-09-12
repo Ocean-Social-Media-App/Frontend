@@ -1,6 +1,14 @@
 <div class="container">
-  <!-- <app-login-form></app-login-form> -->
-  <app-signup-form></app-signup-form>
+  <div [ngSwitch]="current">
+    <app-login-form
+      *ngSwitchCase="'login'"
+      (toggle)="toggle($event)"
+    ></app-login-form>
+    <app-signup-form
+      *ngSwitchCase="'signup'"
+      (toggle)="toggle($event)"
+    ></app-signup-form>
+  </div>
 </div>
 <!-- <svg
   id="wave"

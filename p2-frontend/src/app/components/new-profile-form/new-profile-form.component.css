@@ -1,35 +1,21 @@
-
-.form-container {
-  background-color: rgb(255, 255, 255, 0.5);
-  height: fit-content;
-  width:fit-content;
+.profile-form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   gap: 1.6rem;
   border-radius: 1.6rem;
-  padding: 1.8rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  display: block;
+  padding: 3.2rem;
 }
 
-.input-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-  align-items: center;
+p {
+  color: #00ba88;
 }
- .block2{
-  justify-content: space-around;
-  align-items: center;
-  
-} 
 
-.form-row {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  justify-content: center;
+h2 {
+  font-weight: bold;
+  color: #14142b;
 }
 
 form {
@@ -37,15 +23,13 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2.4rem;
+  gap: 1.6rem;
 }
 
-h2 {
-  font-weight: bold;
-  font-style: italic;
-  color: #14142b;
-  font-family:"Poppins", sans-serif;
-  margin-bottom: 0;
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 label {
@@ -53,7 +37,7 @@ label {
 }
 
 textarea {
-  width: 300px;
+  width: 325px;
   background-color: #eff0f7;
   border: 2px solid transparent;
   border-radius: 1.6rem;
@@ -69,15 +53,15 @@ textarea:hover {
 }
 
 .text-field {
-  width: 300px;
-  height: 50px;
+  width: 325px;
+  height: 64px;
   background-color: #eff0f6;
   border-radius: 16px;
   border: 2px solid transparent;
   outline: none;
   font-family: "Poppins", sans-serif;
   font-size: 1.6rem;
-  padding: 0 2rem;
+  padding: 0 2.4rem;
 }
 
 .text-field:hover {
@@ -88,19 +72,15 @@ textarea:hover {
   border: 2px solid #5f2eea;
   background-color: white;
 }
-span{
-  font-size: 16px;
-}
 
 #uploadBtn {
-  height: 4rem;
-  width: 100%;
+  width: 325px;
+  height: 6.4rem;
   background-color: white;
   border: 2px solid #5f2eea;
   border-radius: 1.6rem;
   color: #5f2eea;
   font-weight: bold;
-  padding: 10px;
 }
 
 #uploadBtn:hover {

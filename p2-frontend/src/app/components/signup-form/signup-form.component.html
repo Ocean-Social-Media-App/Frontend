@@ -1,17 +1,12 @@
 <div class="signup-container">
   <div class="left">
     <div class="headline">
-      <h2 id="signup">Sign Up</h2>
+      <h2>Sign Up</h2>
       <p>And make waves with all the other fish in the sea.</p>
     </div>
-    <div class="signin">
+    <div class="login">
       <p>Already have an account?</p>
-      <app-buttons
-        class="signInBtn"
-        id="signInBtn"
-        (onClick)="signUp($event)"
-        [label]="signInLabel"
-      ></app-buttons>
+      <a (click)="toggleForm()">login here</a>
     </div>
   </div>
   <div class="right">
@@ -60,7 +55,7 @@
       <div class="form-row">
         <label for="password">Password:</label>
         <input
-          id="last-name"
+          id="password"
           class="text-field"
           type="password"
           formControlName="password"

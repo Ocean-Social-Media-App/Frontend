@@ -1,49 +1,51 @@
-<div class="container">
 <div class="form-container">
-  <h2>New Post</h2>
-  <form action="submit">
+  <h2>Create Post</h2>
+  <form [formGroup]="newPostForm">
     <div class="input-container">
-      <div class="block1">
-        <div class="form-row">
-          <label for="postText">Post:</label>
-          <textarea
-            name="postText"
-            id=""
-            placeholder="Add a post"
-            cols="20"
-            rows="5"
-          ></textarea>
-        </div>
+      <div class="form-row">
+        <label for="postText">Post:</label>
+        <textarea
+          name="postText"
+          id="postText"
+          placeholder="Add a post"
+          formControlName="postText"
+          cols="30"
+          rows="10"
+        ></textarea>
       </div>
-      <div class="block2">
-        <div class="form-row">
-          <label for="postVideoUrl">Add a video to your post:</label>
+      <div class="form-row">
+        <label for="postVideoUrl">Add a video to your post:</label>
+        <input
+          type="text"
+          id="postVideoUrl"
+          class="text-field"
+          placeholder="Add YouTube URL here..."
+          formControlName="postYouUrl"
+        />
+      </div>
+      <div class="form-row">
+        <button id="uploadBtn" type="button" (click)="fileInput.click()">
+          <span>Add image to post</span>
           <input
-            type="text"
-            class="text-field"
-            placeholder="Add YouTube URL here..."
+            #fileInput
+            id="postImage"
+            type="file"
+            (change)="onFileInput($event)"
+            style="display: none"
+            formControlName="postPicUrl"
           />
-        </div>
-        <div class="form-row">
-          <button id="uploadBtn" type="button" (click)="fileInput.click()">
-            <span>Add image to post</span>
-            <input
-              #fileInput
-              type="file"
-              (change)="onFileInput($event)"
-              style="display: none"
-            />
-          </button>
-        </div>
-        <app-buttons
-      class="submitBtn"
-      id="submitBtn"
-      [label]="submitLabel"
-    ></app-buttons>
+        </button>
       </div>
     </div>
 
-    
+    <app-buttons
+      class="submitBtn"
+      id="submitBtn"
+      (onClick)="createPost($event)"
+      [label]="submitLabel"
+    ></app-buttons>
   </form>
 </div>
-</div>
+
+<!-- <p>Form Status: {{ newPostForm.status }}</p>
+<p>Username Value: {{ newPostForm.value | json }}</p> -->

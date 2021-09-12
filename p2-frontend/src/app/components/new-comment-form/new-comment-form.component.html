@@ -1,12 +1,13 @@
 <div class="form-container">
-  <!-- <h2>Add Comment</h2> -->
-  <form action="submit">
+  <h2>Add Comment</h2>
+  <form [formGroup]="newCommentForm">
     <div class="form-row">
       <label for="commText">Comment:</label>
       <textarea
         name="commText"
         id=""
         placeholder="Share a reply"
+        formControlName="commText"
         cols="30"
         rows="4"
       ></textarea>
@@ -15,6 +16,7 @@
     <app-buttons
       class="submitBtn"
       id="submitBtn"
+      (click)="onClick($event)"
       [label]="submitLabel"
     ></app-buttons>
   </form>

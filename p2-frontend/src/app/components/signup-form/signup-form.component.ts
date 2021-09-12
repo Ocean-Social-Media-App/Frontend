@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { UserService } from 'src/app/services/user/user.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-signup-form',
@@ -7,8 +10,10 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./signup-form.component.css']
 })
 export class SignupFormComponent {
+  @Output() toggle: EventEmitter<any> = new EventEmitter();
   signUpLabel: string = "Sign Up";
   signInLabel: string = "Sign In";
+
   signupForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
@@ -19,11 +24,30 @@ export class SignupFormComponent {
     password: ['', Validators.required]
   })
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
 
   signUp(event: any) {
-    console.log('signup', event);
-    alert("Signup button clicked");
+    if (this.signupForm.invalid) {
+      return;
+    }
+
+    this.userService.register(this.signupForm.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log('Registration successful');
+          console.log(data);
+          this.router.navigateByUrl('createProfile');
+        },
+        error => {
+          console.log('Registration failed');
+          console.log(error);
+        }
+      );
+  }
+
+  toggleForm(): void {
+    this.toggle.emit("login");
   }
 
 }

@@ -7,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
+  current: string = 'login';
+
   /* label for button this is the var that goes in quotation in html */
 /*   label: string = "button label";
   testString : string = "you pushed the button!" */
-  
+
   constructor() { }
 
   ngOnInit(): void {
@@ -21,5 +23,9 @@ export class IndexComponent implements OnInit {
     console.log('functionCall', event)
     alert(this.testString)
   } */
+
+  toggle(data: string) {
+    this.current = data;
+  }
 
 }
