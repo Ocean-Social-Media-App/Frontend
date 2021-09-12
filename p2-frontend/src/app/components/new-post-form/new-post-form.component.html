@@ -23,19 +23,21 @@
           formControlName="postYouUrl"
         />
       </div>
-      <div class="form-row">
-        <button id="uploadBtn" type="button" (click)="fileInput.click()">
-          <span>Add image to post</span>
-          <input
-            #fileInput
-            id="postImage"
-            type="file"
-            (change)="onFileInput($event)"
-            style="display: none"
-            formControlName="postPicUrl"
-          />
-        </button>
-      </div>
+      <form [formGroup]="imageForm">
+        <div class="form-row">
+          <button id="uploadBtn" type="button" (click)="fileInput.click()">
+            <span>Add image to post</span>
+            <input
+              #fileInput
+              id="postImage"
+              type="file"
+              (change)="onFileInput($event)"
+              style="display: none"
+              formControlName="imageFile"
+            />
+          </button>
+        </div>
+      </form>
     </div>
 
     <app-buttons
@@ -49,3 +51,4 @@
 
 <p>Form Status: {{ newPostForm.status }}</p>
 <p>Username Value: {{ newPostForm.value | json }}</p>
+<p>Username Value: {{ imageForm.value | json }}</p>
