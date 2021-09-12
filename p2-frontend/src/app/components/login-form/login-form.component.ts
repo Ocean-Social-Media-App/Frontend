@@ -40,7 +40,7 @@ export class LoginFormComponent {
         data => {
           console.log("Login successful");
           console.log(data);
-          this.router.navigateByUrl('createProfile');
+          this.router.navigateByUrl('userFeed');
         },
         error => {
           console.log('Login failed');
