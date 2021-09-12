@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
 import { first } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./signup-form.component.css']
 })
 export class SignupFormComponent {
+  @Output() toggle: EventEmitter<any> = new EventEmitter();
   signUpLabel: string = "Sign Up";
   signInLabel: string = "Sign In";
 
@@ -41,6 +42,10 @@ export class SignupFormComponent {
           console.log(error);
         }
       );
+  }
+
+  toggleForm(): void {
+    this.toggle.emit("login");
   }
 
 }

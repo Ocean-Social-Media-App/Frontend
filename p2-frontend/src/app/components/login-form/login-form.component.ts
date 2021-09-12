@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { Router, RouterLink } from '@angular/router';
 export class LoginFormComponent {
   [x: string]: any;
 
+  @Output() toggle: EventEmitter<any> = new EventEmitter();
   signUpLabel: string = "Sign Up";
   logInLabel: string = "Log In"
   testString1 : string = "You trying to Sign Up!";
@@ -29,12 +30,16 @@ export class LoginFormComponent {
     /* alert(this.testString2) */
 
     /* this.router.navigateByUrl('/userFeed'); */
-    
+
   }
 
   signUp(event: any){
     console.log('signup', event)
     alert(this.testString1)
+  }
+
+  toggleForm(): void {
+    this.toggle.emit("signup");
   }
 
 }

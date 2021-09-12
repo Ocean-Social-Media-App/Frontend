@@ -1,29 +1,47 @@
-<form [formGroup]="loginForm">
-  <div class="form-row">
-    <label for="username">Username:</label>
-    <input
-      id="username"
-      class="text-field"
-      type="text"
-      formControlName="username"
-    />
+<div class="login-container">
+  <div class="left">
+    <div class="headline">
+      <h2>Ocean</h2>
+      <p>make waves</p>
+    </div>
+    <div class="signup">
+      <p>Don't have an account?</p>
+      <a (click)="toggleForm()">register here</a>
+    </div>
   </div>
-  <div class="form-row">
-    <label for="password">Password:</label>
-    <input
-      id="password"
-      class="text-field"
-      type="password"
-      formControlName="password"
-    />
-  </div>
+  <div class="right">
+    <form [formGroup]="loginForm">
+      <div class="form-row">
+        <label for="username">Username:</label>
+        <input
+          id="username"
+          class="text-field"
+          type="text"
+          formControlName="username"
+        />
+      </div>
+      <div class="form-row">
+        <label for="password">Password:</label>
+        <input
+          id="password"
+          class="text-field"
+          type="password"
+          formControlName="password"
+        />
+      </div>
 
-  <div class="loginPgBtns">
-    <app-buttons class="loginPgBtn" id="signupBtn" (onClick)="signUp($event)" [label]="signUpLabel"></app-buttons>
-    <app-buttons class="loginPgBtn" id="loginBtn" (onClick)="logIn($event)" [routerLink]="'userFeed'" [label]="logInLabel"></app-buttons>
+      <div class="loginPgBtns">
+        <app-buttons
+          class="loginPgBtn"
+          id="loginBtn"
+          (onClick)="logIn($event)"
+          [routerLink]="userFeed"
+          [label]="logInLabel"
+        ></app-buttons>
+      </div>
+    </form>
   </div>
-  
-</form>
+</div>
 
 <!-- <p>Form Status: {{ loginForm.status }}</p>
 <p>Username Value: {{ loginForm.value | json }}</p> -->
