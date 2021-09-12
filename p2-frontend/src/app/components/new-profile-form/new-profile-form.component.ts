@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-profile-form',
@@ -16,11 +17,13 @@ export class NewProfileFormComponent {
     aboutMe: ['', Validators.required]
   })
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   onFileInput(event: any) {
 
   }
 
-  createProfile(event: any) {}
+  createProfile(event: any) {
+    this.router.navigateByUrl('userFeed');
+  }
 }
