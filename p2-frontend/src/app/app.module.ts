@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { NewPostFormComponent } from './components/new-post-form/new-post-form.component';
 import { NewCommentFormComponent } from './components/new-comment-form/new-comment-form.component';
+import { NewProfileFormComponent } from './components/new-profile-form/new-profile-form.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NewCommentFormComponent } from './components/new-comment-form/new-comme
     UserFeedComponent,
     SignupFormComponent,
     NewPostFormComponent,
-    NewCommentFormComponent
+    NewCommentFormComponent,
+    NewProfileFormComponent
   ],
   imports: [
     BrowserModule,
