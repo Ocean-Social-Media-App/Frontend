@@ -16,7 +16,8 @@ export class NewPostFormComponent {
   newPostForm = this.fb.group({
     postPicUrl: [null],
     postText: ['', Validators.required],
-    postYouUrl: ['']
+    postYouUrl: [''],
+    user: [{userId: 1}]
   })
 
   constructor(private fb: FormBuilder, private postService: PostService) { }

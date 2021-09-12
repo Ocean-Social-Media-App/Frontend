@@ -11,6 +11,6 @@ export class PostService {
 
   createPost(post: Post) {
     // userId is hard coded for now, needs to be replaced with userId from sessionStorage
-    return this.httpCli.post(`http://localhost:9000/api/post/1`, post)
+    return this.httpCli.post(`http://localhost:9000/api/post`, post)
   }
 }
