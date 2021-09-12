@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { first } from 'rxjs/operators';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-login-form',
@@ -18,6 +19,7 @@ export class LoginFormComponent {
   testString1 : string = "You trying to Sign Up!";
   testString2 : string = "You trying to Login!";
   isSignUpBtn: boolean = true;
+  user : User|undefined;
 
   loginForm = this.fb.group({
     username: ['', Validators.required],
@@ -37,7 +39,6 @@ export class LoginFormComponent {
       .subscribe(
         data => {
           console.log("Login successful");
-          console.log(data);
         },
         error => {
           console.log('Login failed');

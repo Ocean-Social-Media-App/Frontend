@@ -1,13 +1,14 @@
 <div class="form-container">
   <h2>Create Post</h2>
-  <form action="submit">
+  <form [formGroup]="newPostForm">
     <div class="input-container">
       <div class="form-row">
         <label for="postText">Post:</label>
         <textarea
           name="postText"
-          id=""
+          id="postText"
           placeholder="Add a post"
+          formControlName="postText"
           cols="30"
           rows="10"
         ></textarea>
@@ -16,8 +17,10 @@
         <label for="postVideoUrl">Add a video to your post:</label>
         <input
           type="text"
+          id="postVideoUrl"
           class="text-field"
           placeholder="Add YouTube URL here..."
+          formControlName="postYouUrl"
         />
       </div>
       <div class="form-row">
@@ -25,9 +28,11 @@
           <span>Add image to post</span>
           <input
             #fileInput
+            id="postImage"
             type="file"
             (change)="onFileInput($event)"
             style="display: none"
+            formControlName="postPicUrl"
           />
         </button>
       </div>
@@ -36,7 +41,11 @@
     <app-buttons
       class="submitBtn"
       id="submitBtn"
+      (onClick)="createPost($event)"
       [label]="submitLabel"
     ></app-buttons>
   </form>
 </div>
+
+<p>Form Status: {{ newPostForm.status }}</p>
+<p>Username Value: {{ newPostForm.value | json }}</p>
