@@ -39,6 +39,8 @@ export class LoginFormComponent {
       .subscribe(
         data => {
           console.log("Login successful");
+          console.log(data);
+          this.router.navigateByUrl('createProfile');
         },
         error => {
           console.log('Login failed');
