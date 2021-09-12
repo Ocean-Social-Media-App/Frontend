@@ -1,6 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { UserService } from 'src/app/services/user/user.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-form',
@@ -22,12 +24,26 @@ export class LoginFormComponent {
     password: ['', Validators.required]
   })
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
 
   /* example on calling function in parent component function can be called anything */
   logIn(event: any){
-    console.log('login', event)
-    /* alert(this.testString2) */
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.userService.login(this.loginForm.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log("Login successful");
+          console.log(data);
+        },
+        error => {
+          console.log('Login failed');
+          console.log(error);
+        }
+      )
 
     /* this.router.navigateByUrl('/userFeed'); */
 

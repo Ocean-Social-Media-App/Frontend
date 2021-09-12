@@ -12,4 +12,8 @@ export class UserService {
   register(user: User) {
     return this.httpCli.post(`http://localhost:9000/api/user`, user);
   }
+
+  login(user: User) {
+    return this.httpCli.post(`http://localhost:9000/api/login`, user);
+  }
 }
