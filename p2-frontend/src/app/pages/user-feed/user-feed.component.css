@@ -1,34 +1,40 @@
-mat-toolbar {
-    background: #004a9f;
-    color: white;
-}
-
-mat-sidenav {
-    margin: 16px;
-    width: 200px;
-    border-right: none;
-    background: #002b5c;
-    color: white;
-    border-radius: 10px;
-    padding: 16px;
-    text-align: center;
-    visibility: visible;
-}
-
-.content {
-    height: calc(100vh - 98px);
-    border-radius: 10px;
-    margin: 16px;
-    margin-left: 32px;
-
+.container{
     display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 2rem;
-    color: lightgray;
+    justify-content: space-evenly;
+    right:0;
 }
+.nav-container{
+    position: absolute;
+    position: sticky;
+    }
+.post-feed{
+    display: block;
+    display: flex;
+    position: sticky;
 
-mat-sidenav-container {
-    height: calc(100vh - 65px);
+   /*  position:sticky; */
+}
+.feed-container{
+    position:relative;
+    border-radius: 10px;
+    /* border: black 2px solid ; */
+    margin: 5px;
+    margin-left: 300px;
+    margin-top: 20px;
+    padding-left: 10px;
+   /*  display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    align-items: center;
+    font-size: 1.3rem;
+    height:max-content;
+    overflow: auto;
+   width:705px;
+}
+.post-form{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 10px;
+    position: sticky;
 }

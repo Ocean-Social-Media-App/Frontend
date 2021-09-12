@@ -21,6 +21,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { FeedComponent } from './components/feed/feed.component';
 import { NewPostFormComponent } from './components/new-post-form/new-post-form.component';
 import { NewCommentFormComponent } from './components/new-comment-form/new-comment-form.component';
+import { ProfilePicSmComponent } from './components/profile-pic-sm/profile-pic-sm.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NewCommentFormComponent } from './components/new-comment-form/new-comme
     NavBarComponent,
     FeedComponent,
     NewPostFormComponent,
-    NewCommentFormComponent
+    NewCommentFormComponent,
+    ProfilePicSmComponent
   ],
   imports: [
     BrowserModule,

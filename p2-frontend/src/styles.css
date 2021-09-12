@@ -13,8 +13,8 @@ html {
 
 body {
   position: relative;
-  max-width: 100vw;
-  height: 100vh;
+  /* max-width: 100%;
+  height: 100%; */
   display: flex;
   margin: 0;
   flex-direction: column;
@@ -27,10 +27,10 @@ body {
   font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
-  line-height: 1.5rem;
+  /* line-height: 1.5rem; */
   letter-spacing: -0.25px;
   color: #14142b;
 }
 
-html, body { height: 100%; }
+/* html, body { height: 100%; } */
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

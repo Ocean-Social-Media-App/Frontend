@@ -1,14 +1,14 @@
-<mat-toolbar >
-    Responsive side navigation
-</mat-toolbar>
-
-<mat-sidenav-container>
-    <mat-sidenav class="mat-elevation-z8">
-        ...
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <div class="content mat-elevation-z8">
-            Main content here!
+<div class="container">
+    <div class="nav-container">
+        <app-nav-bar></app-nav-bar>
+    </div>
+    <div class="post-feed">
+        <div class="feed-container">
+            <app-feed></app-feed>
         </div>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+        <div class="post-form">   
+            <app-new-post-form></app-new-post-form>
+        </div>
+        
+    </div>
+</div>
