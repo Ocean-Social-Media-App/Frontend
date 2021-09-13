@@ -26,7 +26,7 @@ export class LoginFormComponent {
     password: ['', Validators.required]
   })
 
-  @Input()
+ /*  @Input() */
   aUser: User = {
     userId: 0,
     username: "",

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 
 @Injectable({
@@ -17,7 +18,7 @@ export class UserService {
     return this.httpCli.post(`http://localhost:9000/api/login`, user, {withCredentials: true});
   }
 
-  getUserById(id: number) {
-    return this.httpCli.get(`http://localhost:9000/api/user/${id}`, {withCredentials: true})
+  getUserById(id: number): Observable<User> {
+    return this.httpCli.get<User>(`http://localhost:9000/api/user/${id}`, {withCredentials: true})
   }
 }
