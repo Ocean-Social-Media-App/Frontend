@@ -1,36 +1,55 @@
 <div class="profile-form-container">
-  <p>Account created successfully! One more step...</p>
-  <h2>Profile Details</h2>
-  <form [formGroup]="newProfileForm">
-    <div class="form-row">
-      <button id="uploadBtn" type="button" (click)="fileInput.click()">
-        <span>Add image to post</span>
-        <input
-          #fileInput
-          id="profileImage"
-          type="file"
-          (change)="onFileInput($event)"
-          style="display: none"
-          formControlName="profilePic"
-        />
-      </button>
-    </div>
-    <div class="form-row">
-      <label for="birthday">
-        Enter your date of birth: <span>(MM-DD-YYYY)</span>
-      </label>
-      <input type="text" name="birthday" class="text-field" />
-    </div>
-    <div class="form-row">
-      <label for="aboutMe">Tells us about yourself:</label>
-      <textarea name="aboutMe" id="aboutMe" cols="30" rows="10"></textarea>
+  <p>Account created successfully!</p>
+
+  <div [ngSwitch]="current">
+    <div id="profile-image-form" *ngSwitchCase="'image'">
+      <h2>Upload a profile image:</h2>
+      <form [formGroup]="imageForm">
+        <div class="form-row">
+          <button id="uploadBtn" type="button" (click)="fileInput.click()">
+            <span>Add image</span>
+            <input
+              #fileInput
+              id="profileImage"
+              type="file"
+              (change)="onFileInput($event)"
+              style="display: none"
+              formControlName="image"
+            />
+          </button>
+        </div>
+
+        <app-buttons
+          class="submitBtn"
+          id="submitImgBtn"
+          (onClick)="uploadImage($event)"
+          [label]="uploadLabel"
+        >
+        </app-buttons>
+      </form>
     </div>
 
-    <app-buttons
-      class="submitBtn"
-      id="submitBtn"
-      (onClick)="createProfile($event)"
-      [label]="submitLabel"
-    ></app-buttons>
-  </form>
+    <div id="profile-details-form" *ngSwitchCase="'details'">
+      <h2>Profile Details</h2>
+      <form [formGroup]="newProfileForm">
+        <div class="form-row">
+          <label for="birthday">
+            Enter your date of birth: <span>(MM-DD-YYYY)</span>
+          </label>
+          <input type="text" name="birthday" class="text-field" />
+        </div>
+        <div class="form-row">
+          <label for="aboutMe">Tells us about yourself:</label>
+          <textarea name="aboutMe" id="aboutMe" cols="30" rows="10"></textarea>
+        </div>
+
+        <app-buttons
+          class="submitBtn"
+          id="submitBtn"
+          (onClick)="createProfile($event)"
+          [label]="submitLabel"
+        ></app-buttons>
+      </form>
+    </div>
+  </div>
 </div>

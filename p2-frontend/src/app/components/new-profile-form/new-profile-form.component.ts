@@ -10,9 +10,14 @@ import { Router } from '@angular/router';
 export class NewProfileFormComponent {
 
   submitLabel: string = 'Submit';
+  uploadLabel: string = 'Upload';
+  current: string = 'image';
+
+  imageForm = this.fb.group({
+    image: [null]
+  })
 
   newProfileForm = this.fb.group({
-    profilePic: [null, Validators.required],
     birthday: ['', Validators.required],
     aboutMe: ['', Validators.required]
   })
@@ -25,5 +30,9 @@ export class NewProfileFormComponent {
 
   createProfile(event: any) {
     this.router.navigateByUrl('userFeed');
+  }
+
+  uploadImage(event: any) {
+    this.current = "details";
   }
 }
