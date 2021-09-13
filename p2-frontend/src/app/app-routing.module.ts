@@ -8,7 +8,7 @@ import { UserFeedComponent } from './pages/user-feed/user-feed.component';
 const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'createProfile', component: ProfileCreateComponent},
-  {path: 'userFeed/:userId', component: UserFeedComponent}
+  {path: 'userFeed', component: UserFeedComponent}
 ]
 
 

@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UserFeedComponent implements OnInit {
 
-  userOne: User = {
+  /* userOne: User = {
     userId: 0,
     username: "",
     password: "",
@@ -21,20 +21,20 @@ export class UserFeedComponent implements OnInit {
     aboutMe: "",
     bday: undefined,
     pro_pic_url: ""
-  }
+  } */
   
   observer: Subscription = new Subscription;
 
   constructor(private route: ActivatedRoute, private userServ: UserService) { }
 
   ngOnInit(): void {
-    let userId: number = this.route.snapshot.params["userId"];
+    /* let userId: number = sessionStorage.getItem('key');;
     console.log(userId);
 
     this.observer = this.userServ.getUserById(userId).subscribe(user => {
       this.userOne = user;
       console.log(user)
-    })
+    }) */
   }
 
 }

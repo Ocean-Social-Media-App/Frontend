@@ -13,4 +13,9 @@ export class PostService {
     // userId is hard coded for now, needs to be replaced with userId from sessionStorage
     return this.httpCli.post(`http://localhost:9000/api/post`, post, {withCredentials: true})
   }
+
+  getAllPosts() {
+    return this.httpCli.get<any>(`http://localhost:9000/api/feed`,  {withCredentials: true} )
+  }
+
 }

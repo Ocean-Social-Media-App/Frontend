@@ -24,6 +24,7 @@ import { NewPostFormComponent } from './components/new-post-form/new-post-form.c
 import { NewCommentFormComponent } from './components/new-comment-form/new-comment-form.component';
 import { ProfilePicSmComponent } from './components/profile-pic-sm/profile-pic-sm.component';
 import { NewProfileFormComponent } from './components/new-profile-form/new-profile-form.component';
+import { PostComponent } from './components/post/post.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { NewProfileFormComponent } from './components/new-profile-form/new-profi
     NewPostFormComponent,
     NewCommentFormComponent,
     ProfilePicSmComponent,
-    NewProfileFormComponent
+    NewProfileFormComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
