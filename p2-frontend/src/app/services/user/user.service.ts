@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class UserService {
     return this.httpCli.post(`http://localhost:9000/api/user`, user);
   }
 
-  login(user: User) {
+  login(user: User): Observable<any> {
     return this.httpCli.post(`http://localhost:9000/api/login`, user);
   }
 }

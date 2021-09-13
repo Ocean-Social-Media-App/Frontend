@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserFeedComponent implements OnInit {
 
+  userId: string|null = "";
+  username: string|null = "";
+  proPicUrl: string|null = "";
+
   constructor() { }
 
   ngOnInit(): void {
+    this.userId = sessionStorage.getItem('userId');
+    this.username = sessionStorage.getItem('username');
+    this.proPicUrl = sessionStorage.getItem('proPicUrl');
   }
 
 }
