@@ -36,7 +36,9 @@ export class SignupFormComponent {
       .subscribe(
         data => {
           console.log('Registration successful');
-          console.log(data);
+          let user = data.data;
+          sessionStorage.setItem('userId', user.userId);
+          sessionStorage.setItem('username', user.username);
           this.router.navigateByUrl('createProfile');
         },
         error => {

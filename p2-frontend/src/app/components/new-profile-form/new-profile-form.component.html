@@ -4,7 +4,7 @@
   <div [ngSwitch]="current">
     <div id="profile-image-form" *ngSwitchCase="'image'">
       <h2>Upload a profile image:</h2>
-      <form [formGroup]="imageForm">
+      <form [formGroup]="imageForm" enctype="multipart/form-data">
         <div class="form-row">
           <button id="uploadBtn" type="button" (click)="fileInput.click()">
             <span>Add image</span>
@@ -15,6 +15,7 @@
               (change)="onFileInput($event)"
               style="display: none"
               formControlName="image"
+              accept="image/png, image/jpeg"
             />
           </button>
         </div>

@@ -10,11 +10,19 @@ export class UserService {
 
   constructor(private httpCli: HttpClient) { }
 
-  register(user: User) {
+  register(user: User): Observable<any> {
     return this.httpCli.post(`http://localhost:9000/api/user`, user);
+  }
+
+  createProfile(user: User): Observable<any> {
+    return this.httpCli.post(`http://localhost:9000/api/createProfile`, user);
   }
 
   login(user: User): Observable<any> {
     return this.httpCli.post(`http://localhost:9000/api/login`, user);
+  }
+
+  addProfileImage(formData: FormData): Observable<any> {
+    return this.httpCli.post(`http://localhost:9000/api/profile`, formData);
   }
 }
