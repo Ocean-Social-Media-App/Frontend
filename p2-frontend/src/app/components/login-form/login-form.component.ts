@@ -53,7 +53,7 @@ export class LoginFormComponent {
         data => {
           console.log("Login successful");
           console.log(data);
-          this.router.navigate([`userFeed/${this.aUser.userId}`]);
+          this.router.navigateByUrl('userFeed');
         },
         error => {
           console.log('Login failed');

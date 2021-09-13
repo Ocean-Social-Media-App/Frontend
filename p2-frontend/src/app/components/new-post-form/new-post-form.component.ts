@@ -12,9 +12,14 @@ import { PostService } from 'src/app/services/post/post.service';
 export class NewPostFormComponent {
 
   submitLabel: string = "Submit";
+  imageUrl: string = "";
+
+  imageForm = this.fb.group({
+    imageFile: [null]
+  })
 
   newPostForm = this.fb.group({
-    postPicUrl: [null],
+    postPicUrl: [this.imageUrl],
     postText: ['', Validators.required],
     postYouUrl: [''],
     user: [{userId: 1}]
@@ -23,7 +28,8 @@ export class NewPostFormComponent {
   constructor(private fb: FormBuilder, private postService: PostService) { }
 
   onFileInput(event: any) {
-
+    let test = this.newPostForm.get("postPicUrl")
+    console.log(test?.get("value"));
   }
 
   createPost(event: any) {
