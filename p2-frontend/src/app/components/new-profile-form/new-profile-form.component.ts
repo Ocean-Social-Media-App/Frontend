@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -9,27 +10,37 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './new-profile-form.component.html',
   styleUrls: ['./new-profile-form.component.css']
 })
-export class NewProfileFormComponent {
+export class NewProfileFormComponent implements OnInit {
 
   submitLabel: string = 'Submit';
   uploadLabel: string = 'Upload';
   current: string = 'image';
   imageUrl: string = '';
-  userId: number = -1;
-  proPicUrl: string|null = '';
+
+  // variables to be set from session storage
+  userObj: any = {};
 
   imageForm = this.fb.group({
     image: [null]
   })
 
   newProfileForm = this.fb.group({
-    userId: [this.userId],
-    proPicUrl: [this.proPicUrl],
-    birthday: ['', Validators.required],
+    username: [''],
+    email: [''],
+    firstName: [''],
+    lastName: [''],
+    password: [''],
+    proPicUrl: [''],
+    bday: ['', Validators.required],
     aboutMe: ['', Validators.required]
   })
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
+
+  ngOnInit() {
+    this.userObj = JSON.parse(sessionStorage.getItem('userObj')!);
+    console.log(this.userObj);
+  }
 
   onFileInput(event: any) {
     if (event.currentTarget.files.length > 0) {
@@ -40,24 +51,31 @@ export class NewProfileFormComponent {
   }
 
   createProfile(event: any) {
-    this.userId = Number(sessionStorage.getItem('userId'));
-    this.proPicUrl = sessionStorage.getItem('proPicUrl');
-    try {
-      this.userService.createProfile(this.newProfileForm.value)
+    //this.userId = Number(sessionStorage.getItem('userId'));
+    this.newProfileForm.patchValue({
+      username: this.userObj.username,
+      email: this.userObj.email,
+      firstname: this.userObj.firstName,
+      lastname: this.userObj.lastName,
+      password: this.userObj.password,
+      proPicUrl: sessionStorage.getItem('proPicUrl'),
+    })
+
+    console.log(this.newProfileForm.value);
+
+      this.userService.register(this.newProfileForm.value)
       .pipe(first())
       .subscribe(
         data => {
           console.log("Profile created");
           console.log(data);
+          this.router.navigateByUrl('userFeed');
         },
         error => {
           console.log("Unable to create profile");
           console.log(error);
         }
       )
-    } finally {
-      this.router.navigateByUrl('userFeed');
-    }
   }
 
   uploadImage(event: any) {

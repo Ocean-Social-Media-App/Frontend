@@ -31,21 +31,8 @@ export class SignupFormComponent {
       return;
     }
 
-    this.userService.register(this.signupForm.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log('Registration successful');
-          let user = data.data;
-          sessionStorage.setItem('userId', user.userId);
-          sessionStorage.setItem('username', user.username);
-          this.router.navigateByUrl('createProfile');
-        },
-        error => {
-          console.log('Registration failed');
-          console.log(error);
-        }
-      );
+    sessionStorage.setItem('userObj', JSON.stringify(this.signupForm.value));
+    this.router.navigateByUrl('createProfile');
   }
 
   toggleForm(): void {

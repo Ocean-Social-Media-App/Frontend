@@ -1,6 +1,4 @@
 <div class="profile-form-container">
-  <p>Account created successfully!</p>
-
   <div [ngSwitch]="current">
     <div id="profile-image-form" *ngSwitchCase="'image'">
       <h2>Upload a profile image:</h2>
@@ -37,11 +35,22 @@
           <label for="birthday">
             Enter your date of birth: <span>(MM-DD-YYYY)</span>
           </label>
-          <input type="text" name="birthday" class="text-field" />
+          <input
+            type="text"
+            name="birthday"
+            class="text-field"
+            formControlName="bday"
+          />
         </div>
         <div class="form-row">
           <label for="aboutMe">Tells us about yourself:</label>
-          <textarea name="aboutMe" id="aboutMe" cols="30" rows="10"></textarea>
+          <textarea
+            name="aboutMe"
+            id="aboutMe"
+            cols="30"
+            rows="10"
+            formControlName="aboutMe"
+          ></textarea>
         </div>
 
         <app-buttons
