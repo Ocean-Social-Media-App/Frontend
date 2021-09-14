@@ -16,27 +16,27 @@
   margin-top: 15px;
   padding-bottom: 20px;
 }
-  
+
 .content-container {
   padding-top: 20px;
 }
-  
+
 .sidebar-logo {
   padding: 10px 15px 10px 30px;
   font-size: 20px;
   background-color: transparent;
 }
-  
+
 .sidebar-navigation {
   padding: 0;
   margin: 0;
   list-style-type: none;
   position: relative;
   overflow: hidden;
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-.view-profile{
+.view-profile {
   display: flex;
   justify-content: space-around;
 }
@@ -44,7 +44,7 @@
 .view-profile ::ng-deep a {
   padding: 0;
 }
-  
+
 .sidebar-navigation li {
   background-color: transparent;
   position: relative;
@@ -54,92 +54,93 @@
   font-size: x-large;
   font-style: italic;
 }
-  
+
 .sidebar-navigation li a {
   padding: 10px 15px 10px 30px;
   display: block;
   color: #1a1a1a;
+  cursor: pointer;
 }
-  
+
 .sidebar-navigation li .fa {
   margin-right: 10px;
 }
-  
-  .sidebar-navigation li a:active,
-  .sidebar-navigation li a:hover,
-  .sidebar-navigation li a:focus {
-    text-decoration: none;
-    outline: none;
-  }
-  
-  .sidebar-navigation li::before {
-    background-color: #5f2eea;
-    position: absolute;
-    content: '';
-    height: 100%;
-    left: 0;
-    top: 0;
-    -webkit-transition: width 0.2s ease-in;
-    transition: width 0.2s ease-in;
-    width: 3px;
-    z-index: -1;
-  }
-  
-  .sidebar-navigation li:hover::before {
-    width: 100%;
-  }
-  
-  .sidebar-navigation .header {
-    font-size: 12px;
-    text-transform: uppercase;
-    background-color: none;
-    padding: 10px 15px 10px 30px;
-  }
-  
-  .sidebar-navigation .header::before {
-    background-color: transparent;
-  }
-  
+
+.sidebar-navigation li a:active,
+.sidebar-navigation li a:hover,
+.sidebar-navigation li a:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+.sidebar-navigation li::before {
+  background-color: #5f2eea;
+  position: absolute;
+  content: "";
+  height: 100%;
+  left: 0;
+  top: 0;
+  -webkit-transition: width 0.2s ease-in;
+  transition: width 0.2s ease-in;
+  width: 3px;
+  z-index: -1;
+}
+
+.sidebar-navigation li:hover::before {
+  width: 100%;
+}
+
+.sidebar-navigation .header {
+  font-size: 12px;
+  text-transform: uppercase;
+  background-color: none;
+  padding: 10px 15px 10px 30px;
+}
+
+.sidebar-navigation .header::before {
+  background-color: transparent;
+}
+
 .sidebar-logo {
-    font-family: "Caveat", cursive;
-    font-size: 6.4rem;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-    color: #1637f3;
-    padding-top:25px;
-    padding-bottom: 25px;
-    padding-right: 40px;
-    text-align: center;
-  }
-.searchBar{
+  font-family: "Caveat", cursive;
+  font-size: 6.4rem;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  color: #1637f3;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-right: 40px;
+  text-align: center;
+}
+.searchBar {
   display: flex;
   flex-direction: column;
 }
-input.bar{
+input.bar {
   margin: 5px;
 }
-  .searchBtn{
-      color: #1a1a1a;
-      font-size: 15px;
-      background: none;
-      margin: 2px;
-      padding: 2px;
-      text-align: center;
-  }
+.searchBtn {
+  color: #1a1a1a;
+  font-size: 15px;
+  background: none;
+  margin: 2px;
+  padding: 2px;
+  text-align: center;
+}
 
-  /* Style the search box inside the navigation bar */
-.sidebar-navigation input[type=text] {
-    float: none;
-    padding: 6px;
-    border: none;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
-    font-size: 17px;
-  }
-  
-  /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
- /*  @media screen and (max-width: 600px) {
+/* Style the search box inside the navigation bar */
+.sidebar-navigation input[type="text"] {
+  float: none;
+  padding: 6px;
+  border: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 17px;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+/*  @media screen and (max-width: 600px) {
     .sidebar-navigation a, .sidebar-navigation input[type=text] {
       float: none;
       display: block;
@@ -153,19 +154,23 @@ input.bar{
     }
   } */
 
-  @media screen and (max-width: 700px) {
-    .sidebar-navigation {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-    .sidebar-navigation a {float: left;}
-    div.content {margin-left: 0;}
+@media screen and (max-width: 700px) {
+  .sidebar-navigation {
+    width: 100%;
+    height: auto;
+    position: relative;
   }
-  
-  @media screen and (max-width: 400px) {
-    .sidebar-navigation a {
-      text-align: center;
-      float: none;
-    }
+  .sidebar-navigation a {
+    float: left;
   }
+  div.content {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar-navigation a {
+    text-align: center;
+    float: none;
+  }
+}

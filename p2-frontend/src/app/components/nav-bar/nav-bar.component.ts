@@ -12,6 +12,7 @@ export class NavBarComponent implements OnInit {
 
   _isInNav : boolean = true;
   logOutLabel: string = 'Logout';
+  profilePosition: string = "-64rem";
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -31,6 +32,14 @@ export class NavBarComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  toggleProfile(event: any) {
+    if (this.profilePosition == "-64rem") {
+      this.profilePosition = "0";
+    } else {
+      this.profilePosition = "-64rem";
+    }
   }
 
 }
