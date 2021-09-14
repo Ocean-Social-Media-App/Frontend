@@ -22,6 +22,10 @@ export class UserService {
     return this.httpCli.post(`http://localhost:9000/api/login`, user);
   }
 
+  logout() {
+    return this.httpCli.get(`http://localhost:9000/api/logout`);
+  }
+
   addProfileImage(formData: FormData): Observable<any> {
     return this.httpCli.post(`http://localhost:9000/api/profile`, formData);
   }
