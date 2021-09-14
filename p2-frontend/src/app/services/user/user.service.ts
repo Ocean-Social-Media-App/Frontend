@@ -25,4 +25,8 @@ export class UserService {
   addProfileImage(formData: FormData): Observable<any> {
     return this.httpCli.post(`http://localhost:9000/api/profile`, formData);
   }
+
+  addPostImage(formData: FormData): Observable<any> {
+    return this.httpCli.post(`http://localhost:9000/api/image`, formData);
+  }
 }

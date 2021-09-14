@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { User } from 'src/app/models/User';
 import { PostService } from 'src/app/services/post/post.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-new-post-form',
@@ -13,29 +14,41 @@ export class NewPostFormComponent {
 
   submitLabel: string = "Submit";
   imageUrl: string = "";
+  userId: number = -1;
 
   imageForm = this.fb.group({
     imageFile: [null]
   })
 
   newPostForm = this.fb.group({
-    postPicUrl: [this.imageUrl],
+    postPicUrl: [''],
     postText: ['', Validators.required],
     postYouUrl: [''],
-    user: [{userId: 1}]
+    user: [{}]
   })
-
-  constructor(private fb: FormBuilder, private postService: PostService) { }
+  // link for testing purposes
+  // https://www.youtube.com/watch?v=gc4pxTjii9c
+  constructor(private fb: FormBuilder, private userService: UserService, private postService: PostService) { }
 
   onFileInput(event: any) {
-    let test = this.newPostForm.get("postPicUrl")
-    console.log(test?.get("value"));
+    if (event.currentTarget.files.length > 0) {
+      const file = event.currentTarget.files[0];
+      this.imageForm.get('imageFile')?.setValue(file, {emitModelToViewChange: false});
+      console.log(file);
+    }
   }
 
-  createPost(event: any) {
+  createPost() {
     if (this.newPostForm.invalid) {
       return;
     }
+
+    this.newPostForm.patchValue({
+      postPicUrl: this.imageUrl,
+      user: {
+        userId: sessionStorage.getItem('userId')
+      }
+    })
 
     this.postService.createPost(this.newPostForm.value)
       .pipe(first())
@@ -51,4 +64,27 @@ export class NewPostFormComponent {
       )
   }
 
+  // when you call this method check to see if imageForm has non null value first
+  uploadImageAndCreatePost(event: any) {
+    if (this.imageForm.get('imageFile')?.value != null) {
+      const formData = new FormData();
+      formData.append('file', this.imageForm.get('imageFile')!.value);
+
+      this.userService.addPostImage(formData)
+        .pipe(first())
+        .subscribe(
+          data => {
+            console.log("Successfully uploaded image");
+            this.imageUrl = data.data;
+            this.createPost();
+          },
+          error => {
+            console.log("upload failed");
+            console.log(error);
+          }
+        )
+    } else {
+      this.createPost();
+    }
+  }
 }

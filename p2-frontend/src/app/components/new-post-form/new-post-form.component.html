@@ -23,7 +23,7 @@
           formControlName="postYouUrl"
         />
       </div>
-      <form [formGroup]="imageForm">
+      <form [formGroup]="imageForm" enctype="multipart/form-data">
         <div class="form-row">
           <button id="uploadBtn" type="button" (click)="fileInput.click()">
             <span>Add image to post</span>
@@ -34,6 +34,7 @@
               (change)="onFileInput($event)"
               style="display: none"
               formControlName="imageFile"
+              accept="image/png, image/jpeg"
             />
           </button>
         </div>
@@ -43,7 +44,7 @@
     <app-buttons
       class="submitBtn"
       id="submitBtn"
-      (onClick)="createPost($event)"
+      (onClick)="uploadImageAndCreatePost($event)"
       [label]="submitLabel"
     ></app-buttons>
   </form>

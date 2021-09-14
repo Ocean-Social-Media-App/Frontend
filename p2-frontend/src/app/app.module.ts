@@ -15,6 +15,7 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
 import { NewPostFormComponent } from './components/new-post-form/new-post-form.component';
 import { NewCommentFormComponent } from './components/new-comment-form/new-comment-form.component';
 import { NewProfileFormComponent } from './components/new-profile-form/new-profile-form.component';
+import { TestPageComponent } from './pages/test-page/test-page.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NewProfileFormComponent } from './components/new-profile-form/new-profi
     SignupFormComponent,
     NewPostFormComponent,
     NewCommentFormComponent,
-    NewProfileFormComponent
+    NewProfileFormComponent,
+    TestPageComponent
   ],
   imports: [
     BrowserModule,
