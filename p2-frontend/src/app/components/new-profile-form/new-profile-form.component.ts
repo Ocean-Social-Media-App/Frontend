@@ -55,8 +55,8 @@ export class NewProfileFormComponent implements OnInit {
     this.newProfileForm.patchValue({
       username: this.userObj.username,
       email: this.userObj.email,
-      firstname: this.userObj.firstName,
-      lastname: this.userObj.lastName,
+      firstName: this.userObj.firstName,
+      lastName: this.userObj.lastName,
       password: this.userObj.password,
       proPicUrl: sessionStorage.getItem('proPicUrl'),
     })

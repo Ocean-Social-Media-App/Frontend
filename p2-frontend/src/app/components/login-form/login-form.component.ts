@@ -64,7 +64,7 @@ export class LoginFormComponent {
         }
       )
 
-    /* this.router.navigateByUrl('/userFeed'); */
+    this.router.navigateByUrl('/userFeed');
 
   }
 
