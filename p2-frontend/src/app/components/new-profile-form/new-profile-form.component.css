@@ -9,6 +9,13 @@
   padding: 3.2rem;
 }
 
+#profile-image-form,
+#profile-details-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
 p {
   color: #00ba88;
 }

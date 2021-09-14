@@ -11,30 +11,16 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UserFeedComponent implements OnInit {
 
-  /* userOne: User = {
-    userId: 0,
-    username: "",
-    password: "",
-    email: "",
-    firstname: "",
-    lastname: "",
-    aboutMe: "",
-    bday: undefined,
-    pro_pic_url: ""
-  } */
-  
-  observer: Subscription = new Subscription;
+  userId: string|null = "";
+  username: string|null = "";
+  proPicUrl: string|null = "";
 
-  constructor(private route: ActivatedRoute, private userServ: UserService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    /* let userId: number = sessionStorage.getItem('key');;
-    console.log(userId);
-
-    this.observer = this.userServ.getUserById(userId).subscribe(user => {
-      this.userOne = user;
-      console.log(user)
-    }) */
+    this.userId = sessionStorage.getItem('userId');
+    this.username = sessionStorage.getItem('username');
+    this.proPicUrl = sessionStorage.getItem('proPicUrl');
   }
 
 }

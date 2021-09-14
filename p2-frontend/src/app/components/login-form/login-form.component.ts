@@ -52,7 +52,10 @@ export class LoginFormComponent {
       .subscribe(
         data => {
           console.log("Login successful");
-          console.log(data);
+          let user = data.data;
+          sessionStorage.setItem('userId', user.userId);
+          sessionStorage.setItem('username', user.username);
+          sessionStorage.setItem('proPicUrl', user.proPicUrl);
           this.router.navigateByUrl('userFeed');
         },
         error => {
