@@ -13,8 +13,8 @@ export class ProfilePicSmComponent implements OnInit {
     username: "",
     password: "",
     email: "",
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     aboutMe: "",
     bday: undefined,
     pro_pic_url: ""

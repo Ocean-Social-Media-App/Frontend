@@ -32,8 +32,8 @@ export class LoginFormComponent {
     username: "",
     password: "",
     email: "",
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     aboutMe: "",
     bday: undefined,
     pro_pic_url: ""

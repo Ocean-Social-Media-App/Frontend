@@ -10,10 +10,16 @@ export class ViewProfileComponent implements OnInit {
   updateLabel: string = "Update Profile"
   testString1 : string = "You trying to update this Profile!";
  
+  userId: string|null = "";
+  proPicUrl: string|null = "";
+  
   constructor() { }
 
   ngOnInit(): void {
-    //get data
+    this.userId = sessionStorage.getItem('userId')
+    this.proPicUrl = sessionStorage.getItem('proPicUrl')
+    console.log(this.userId)
+    console.log(this.proPicUrl)
   }
 
   updateProfile(event: any){

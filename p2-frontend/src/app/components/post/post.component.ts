@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
@@ -22,20 +22,33 @@ export class PostComponent implements OnInit {
     postPicUrl: "",
     postText: "",
     postYouUrl: "",
-    user: 0,
+    user: {
+      userId: undefined,
+      username: undefined,
+      password: undefined,
+      email: undefined,
+      firstName: undefined,
+      lastName: undefined,
+      aboutMe: undefined,
+      bday: undefined,
+      pro_pic_url: undefined
+    }
   }
 
   user: User = {
     userId: 0,
-    firstname: "",
+    firstName: "",
     username: "",
     pro_pic_url: "",
     password: "",
     email: "",
-    lastname: "",
+    lastName: "",
     aboutMe: "",
     bday: undefined
   }
+
+  @Output()
+  profilePic = this.user.pro_pic_url;
 
   constructor(private postServ: PostService) { }
 

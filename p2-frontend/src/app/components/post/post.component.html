@@ -1,9 +1,9 @@
 <button class="button button4">
     <div class="row1">
-        <app-profile-pic-sm ></app-profile-pic-sm>
+        <app-profile-pic-sm [ngStyle]="{'background-image':'url('+ post.user.pro_pic_url+')'}"></app-profile-pic-sm>
         <div class="user">
-            <h4 class="name">{{user.firstname}}</h4>
-            <a class="username">{{user.username}}</a>
+            <h4 class="name">{{post.user.firstName}}</h4>
+            <a class="username">{{post.user.username}}</a>
             <!-- <h4 class="date">Sep 10</h4> -->
         </div>
     </div>
