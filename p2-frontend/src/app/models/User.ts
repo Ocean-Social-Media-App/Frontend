@@ -9,5 +9,5 @@ export interface User {
   lastName: string|undefined;
   aboutMe: string| undefined;
   bday: Date| undefined;
-  pro_pic_url: string|undefined;
+  proPicUrl: string|undefined;
 }

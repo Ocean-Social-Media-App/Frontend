@@ -36,7 +36,7 @@ export class LoginFormComponent {
     lastName: "",
     aboutMe: "",
     bday: undefined,
-    pro_pic_url: ""
+    proPicUrl: ""
   }
 
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }

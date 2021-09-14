@@ -17,7 +17,7 @@ export class ProfilePicSmComponent implements OnInit {
     lastName: "",
     aboutMe: "",
     bday: undefined,
-    pro_pic_url: ""
+    proPicUrl: ""
   }
   constructor() { }
 

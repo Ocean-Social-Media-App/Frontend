@@ -14,6 +14,6 @@ export class Post {
     lastName: undefined,
     aboutMe: undefined,
     bday: undefined,
-    pro_pic_url: undefined
+    proPicUrl: undefined
   }
 }
