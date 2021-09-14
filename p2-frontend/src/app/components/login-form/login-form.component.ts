@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
@@ -25,6 +25,19 @@ export class LoginFormComponent {
     username: ['', Validators.required],
     password: ['', Validators.required]
   })
+
+ /*  @Input() */
+  aUser: User = {
+    userId: 0,
+    username: "",
+    password: "",
+    email: "",
+    firstname: "",
+    lastname: "",
+    aboutMe: "",
+    bday: undefined,
+    pro_pic_url: ""
+  }
 
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
 
