@@ -62,7 +62,7 @@ export class NewProfileFormComponent implements OnInit {
       firstName: this.userObj.firstName,
       lastName: this.userObj.lastName,
       password: this.userObj.password,
-      proPicUrl: sessionStorage.getItem('proPicUrl'),
+      proPicUrl: this.imageUrl,
     })
 
     this.userObj["bday"] = this.newProfileForm.get('bday')?.value;
@@ -98,6 +98,8 @@ export class NewProfileFormComponent implements OnInit {
           data => {
             console.log("Successfully uploaded image");
             this.userObj["proPicUrl"] = data.data;
+            console.log(this.userObj);
+
             this.imageUrl = data.data;
             this.createProfile();
           },
