@@ -1,41 +1,37 @@
-<div class="container">
-  <div class="sidebar-container">
-    <div class="sidebar-logo">Ocean</div>
-    <ul class="sidebar-navigation">
-      <!-- <li class="header">Search</li> -->
-      <li class="searchBar">
-        <input type="text" class="bar" placeholder="Search.." />
-        <button type="submit" class="btn searchBtn">
-          <i class="fa fa-search"></i>
-        </button>
-      </li>
-      <li>
-        <a href="#"> <i class="fa fa-home" aria-hidden="true"></i> Home </a>
-      </li>
-      <!--<li class="header">Navigation</li>-->
-      <li>
-        <a href="#">
-          <i class="fa fa-hashtag" aria-hidden="true"></i> Explore
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-bell-o" aria-hidden="true"></i> Notifications
-        </a>
-      </li>
-      <li>
-        <a class="view-profile" (click)="toggleProfile($event)">View Profile</a>
-      </li>
-    </ul>
-    <app-buttons
-      class="logoutBtn"
-      id="logoutbtn"
-      (onClick)="logout($event)"
-      [label]="logOutLabel"
-    ></app-buttons>
-  </div>
-  <app-view-profile
-    [style.left]="profilePosition"
-    (hide)="profilePosition = '-64rem'"
-  ></app-view-profile>
+<div class="sidebar-container">
+  <div class="sidebar-logo">Ocean</div>
+  <ul class="sidebar-navigation">
+    <!-- <li class="header">Search</li> -->
+    <li class="searchBar">
+      <input type="text" class="bar" placeholder="Search.." />
+      <button type="submit" class="btn searchBtn">
+        <i class="fa fa-search"></i>
+      </button>
+    </li>
+    <li>
+      <a href="#"> <i class="fa fa-home" aria-hidden="true"></i> Home </a>
+    </li>
+    <!--<li class="header">Navigation</li>-->
+    <li>
+      <a href="#"> <i class="fa fa-hashtag" aria-hidden="true"></i> Explore </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="fa fa-bell-o" aria-hidden="true"></i> Notifications
+      </a>
+    </li>
+    <li>
+      <a class="view-profile" (click)="toggleProfile($event)">View Profile</a>
+    </li>
+  </ul>
+  <app-buttons
+    class="logoutBtn"
+    id="logoutbtn"
+    (onClick)="logout($event)"
+    [label]="logOutLabel"
+  ></app-buttons>
 </div>
+<app-view-profile
+  [style.left]="profilePosition"
+  (hide)="profilePosition = '-64rem'"
+></app-view-profile>
