@@ -14,14 +14,20 @@ export class ViewProfileComponent implements OnInit {
   lastName: string = '';
   username: string = '';
   bday: string = '';
+  aboutMe: string = '';
+
+  // variables to be set from session storage
+  userObj: any = {};
 
   constructor() { }
 
   ngOnInit(): void {
-    this.firstName = sessionStorage.getItem('firstName')!;
-    this.lastName = sessionStorage.getItem('lastName')!;
-    this.username = sessionStorage.getItem('username')!;
-    this.bday = sessionStorage.getItem('bday')!;
+    this.userObj = JSON.parse(sessionStorage.getItem('userObj')!);
+    this.firstName = this.userObj.firstName;
+    this.lastName = this.userObj.lastName;
+    this.username = this.userObj.username;
+    this.bday = this.userObj.bday;
+    this.aboutMe = this.userObj.aboutMe;
   }
 
   updateProfile(event: any){

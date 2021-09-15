@@ -1,16 +1,13 @@
 .user {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: #E63946 2px solid;
-  
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
 
-  }
-  
-  .one {
-    background-image: url('https://teamwaterbucket.s3.us-east-2.amazonaws.com/Dinosaurs.jpg');
-  }
+img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}

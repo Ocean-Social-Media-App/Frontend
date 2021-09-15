@@ -61,6 +61,11 @@ export class NewProfileFormComponent implements OnInit {
       proPicUrl: sessionStorage.getItem('proPicUrl'),
     })
 
+    this.userObj["bday"] = this.newProfileForm.get('bday')?.value;
+    this.userObj["aboutMe"] = this.newProfileForm.get('aboutMe')?.value;
+
+    sessionStorage.setItem('userObj', this.userObj);
+
     console.log(this.newProfileForm.value);
 
       this.userService.register(this.newProfileForm.value)
@@ -87,7 +92,7 @@ export class NewProfileFormComponent implements OnInit {
       .subscribe(
         data => {
           console.log("Successfully uploaded image");
-          sessionStorage.setItem('proPicUrl', data.data)
+          this.userObj["proPicUrl"] = data.data;
           this.imageUrl = data.data;
         },
         error => {

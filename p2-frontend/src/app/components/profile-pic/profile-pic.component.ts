@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -8,13 +8,14 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class ProfilePicComponent implements OnInit {
 
-  fileToUpload: any;;
-  profilePic: any;
+  fileToUpload: any;
+  profilePic: string = '';
 
   constructor(private userServ: UserService) { }
 
   ngOnInit(): void {
     //this.getUserData()
+    this.profilePic = JSON.parse(sessionStorage.getItem('userObj')!).proPicUrl;
   }
 
   /* getUserData(){
@@ -27,7 +28,7 @@ export class ProfilePicComponent implements OnInit {
             this.profilePic = '../../images/profile-pictures/' + data.obj.profilePicture.name;
           }
       })
-    } 
+    }
   } */
 
 }

@@ -16,29 +16,30 @@
   padding-top: 60px;
 }
 
-.view-profile-link {
+#profile-container {
   display: flex;
-  align-items: center;
-  gap: 1.6rem;
-  cursor: pointer;
+  flex-direction: column;
+  gap: 3.2rem;
 }
 
 .view-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: white;
   height: 100%;
-  display: flex;
-  justify-content: center;
   padding: 3.2rem;
-  border-radius: 0 1.6rem 1.6rem 0;
   font-family: "Poppins", sans-serif;
 }
 
-.profile-pic {
+.profile-body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  gap: 1.6rem;
 }
 
-.profile-body {
+.profile-pic {
   display: flex;
   justify-content: center;
 }

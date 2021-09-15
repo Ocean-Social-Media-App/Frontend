@@ -1,45 +1,35 @@
 <div id="profile-container">
-  <div>
-    <div class="view-profile">
-      <div>
-        <button
-          type="button"
-          class="btn-close"
-          (click)="toggleProfile()"
-        ></button>
+  <div class="view-profile">
+    <div>
+      <button
+        type="button"
+        class="btn-close"
+        (click)="toggleProfile()"
+      ></button>
+    </div>
+    <div class="profile-body">
+      <div class="profile-pic">
+        <app-profile-pic></app-profile-pic>
       </div>
-      <div class="profile-body">
-        <div>
-          <div class="profile-pic">
-            <app-profile-pic></app-profile-pic>
-          </div>
-          <div class="user-name">
-            <h2>{{ firstName }} {{ lastName }}</h2>
-            <h4>@{{ username }}</h4>
-          </div>
-          <div class="user-birthday">
-            <p>Birthday: {{ bday }}</p>
-          </div>
-          <div class="user-about-me">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              lacinia nisi quis arcu euismod suscipit. Maecenas rutrum
-              ullamcorper arcu, at vestibulum diam. Donec in vestibulum lacus.
-              Phasellus efficitur ante at vulputate vestibulum. Integer sodales
-              laoreet euismod. Duis nec consequat velit. Duis ac leo eu lectus
-              efficitur feugiat. Integer congue quam non blandit facilisis.
-              Vivamus tincidunt sit amet eros at porta.
-            </p>
-          </div>
-          <div class="updateProfileBtn">
-            <app-buttons
-              class="updateBtn"
-              id="updateBtn"
-              (onClick)="updateProfile($event)"
-              [label]="updateLabel"
-            ></app-buttons>
-          </div>
-        </div>
+      <div class="user-name">
+        <h2>{{ firstName }} {{ lastName }}</h2>
+        <h4>@{{ username }}</h4>
+      </div>
+      <div class="user-birthday">
+        <p>Birthday: {{ bday }}</p>
+      </div>
+      <div class="user-about-me">
+        <p>
+          {{ aboutMe }}
+        </p>
+      </div>
+      <div class="updateProfileBtn">
+        <app-buttons
+          class="updateBtn"
+          id="updateBtn"
+          (onClick)="updateProfile($event)"
+          [label]="updateLabel"
+        ></app-buttons>
       </div>
     </div>
   </div>
