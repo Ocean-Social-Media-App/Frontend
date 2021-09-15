@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-view-profile',
@@ -9,17 +9,28 @@ export class ViewProfileComponent implements OnInit {
 
   updateLabel: string = "Update Profile"
   testString1 : string = "You trying to update this Profile!";
- 
-  userId: string|null = "";
-  proPicUrl: string|null = "";
-  
+
+  firstName: string = '';
+  lastName: string = '';
+  username: string = '';
+  bday: string = '';
+  aboutMe: string = '';
+
+  // variables to be set from session storage
+  userObj: any = {};
+
   constructor() { }
 
   ngOnInit(): void {
-    this.userId = sessionStorage.getItem('userId')
-    this.proPicUrl = sessionStorage.getItem('proPicUrl')
-    console.log(this.userId)
-    console.log(this.proPicUrl)
+    this.userObj = JSON.parse(sessionStorage.getItem('userObj')!);
+    console.log("PROFILE DATA FROM LOGIN");
+    console.log(this.userObj);
+
+    this.firstName = this.userObj.firstName;
+    this.lastName = this.userObj.lastName;
+    this.username = this.userObj.username;
+    this.bday = this.userObj.bday;
+    this.aboutMe = this.userObj.aboutMe;
   }
 
   updateProfile(event: any){
@@ -27,4 +38,8 @@ export class ViewProfileComponent implements OnInit {
     alert(this.testString1)
   }
 
+  @Output() public hide: EventEmitter<void> = new EventEmitter();
+  toggleProfile() {
+    this.hide.emit();
+  }
 }

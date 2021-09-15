@@ -1,37 +1,36 @@
-
-<a data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-        <app-profile-pic-sm></app-profile-pic-sm> 
-    View Profile
-</a>
-
-<div class="container">
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-        <div class="view-profile">
-            <div class="offcanvas-header">
-                <h5></h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="profile-body">
-                <div class="offcanvas-body">
-                    <div class="profile-pic">
-                        <app-profile-pic [ngStyle]="{'background-image':'url('+proPicUrl+')'}"></app-profile-pic>
-                    </div>
-                    <div class="user-name">
-                        <h2>Angel Walker</h2>
-                        <h4>@awalker123</h4>
-                    </div>
-                    <div class="user-birthday">
-                        <p>Born June 01 1998</p>
-                    </div>
-                    <div class="user-aboutMe">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacinia nisi quis arcu euismod suscipit. Maecenas rutrum ullamcorper arcu, at vestibulum diam. Donec in vestibulum lacus. Phasellus efficitur ante at vulputate vestibulum. Integer sodales laoreet euismod. Duis nec consequat velit. Duis ac leo eu lectus efficitur feugiat. Integer congue quam non blandit facilisis. Vivamus tincidunt sit amet eros at porta.</p>
-                    </div>
-                    <div class="updateProfileBtn">
-                        <app-buttons class="updateBtn" id="updateBtn" (onClick)="updateProfile($event)" [label]="updateLabel"></app-buttons>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
+<div id="profile-container">
+  <div class="view-profile">
+    <div>
+      <button
+        type="button"
+        class="btn-close"
+        (click)="toggleProfile()"
+      ></button>
     </div>
+    <div class="profile-body">
+      <div class="profile-pic">
+        <app-profile-pic></app-profile-pic>
+      </div>
+      <div class="user-name">
+        <h2>{{ firstName }} {{ lastName }}</h2>
+        <h4>@{{ username }}</h4>
+      </div>
+      <div class="user-birthday">
+        <p>Birthday: {{ bday }}</p>
+      </div>
+      <div class="user-about-me">
+        <p>
+          {{ aboutMe }}
+        </p>
+      </div>
+      <div class="updateProfileBtn">
+        <app-buttons
+          class="updateBtn"
+          id="updateBtn"
+          (onClick)="updateProfile($event)"
+          [label]="updateLabel"
+        ></app-buttons>
+      </div>
+    </div>
+  </div>
 </div>

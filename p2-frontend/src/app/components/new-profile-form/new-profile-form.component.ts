@@ -55,11 +55,16 @@ export class NewProfileFormComponent implements OnInit {
     this.newProfileForm.patchValue({
       username: this.userObj.username,
       email: this.userObj.email,
-      firstname: this.userObj.firstName,
-      lastname: this.userObj.lastName,
+      firstName: this.userObj.firstName,
+      lastName: this.userObj.lastName,
       password: this.userObj.password,
       proPicUrl: sessionStorage.getItem('proPicUrl'),
     })
+
+    this.userObj["bday"] = this.newProfileForm.get('bday')?.value;
+    this.userObj["aboutMe"] = this.newProfileForm.get('aboutMe')?.value;
+
+    sessionStorage.setItem('userObj', this.userObj);
 
     console.log(this.newProfileForm.value);
 
@@ -87,7 +92,7 @@ export class NewProfileFormComponent implements OnInit {
       .subscribe(
         data => {
           console.log("Successfully uploaded image");
-          sessionStorage.setItem('proPicUrl', data.data)
+          this.userObj["proPicUrl"] = data.data;
           this.imageUrl = data.data;
         },
         error => {

@@ -19,7 +19,10 @@ export class LoginFormComponent {
   testString1 : string = "You trying to Sign Up!";
   testString2 : string = "You trying to Login!";
   isSignUpBtn: boolean = true;
-  user : User|undefined;
+  /* user : User|undefined; */
+
+  // variables to be set from session storage
+  userObj: any = {};
 
   loginForm = this.fb.group({
     username: ['', Validators.required],
@@ -52,10 +55,19 @@ export class LoginFormComponent {
       .subscribe(
         data => {
           console.log("Login successful");
+          console.log(data);
+
           let user = data.data;
-          sessionStorage.setItem('userId', user.userId);
-          sessionStorage.setItem('username', user.username);
-          sessionStorage.setItem('proPicUrl', user.proPicUrl);
+          console.log(user);
+
+          sessionStorage.setItem('userObj', JSON.stringify(user));
+          /* sessionStorage.setItem('username', user.username);
+          sessionStorage.setItem('firstName', user.firstName);
+          sessionStorage.setItem('lastName', user.lastName);
+          sessionStorage.setItem('email', user.email);
+          sessionStorage.setItem('bday', user.bday);
+          sessionStorage.setItem('aboutMe', user.aboutMe);
+          sessionStorage.setItem('proPicUrl', user.proPicUrl); */
           this.router.navigateByUrl('userFeed');
         },
         error => {
@@ -68,10 +80,10 @@ export class LoginFormComponent {
 
   }
 
-  signUp(event: any){
+  /* signUp(event: any){
     console.log('signup', event)
     alert(this.testString1)
-  }
+  } */
 
   toggleForm(): void {
     this.toggle.emit("signup");
