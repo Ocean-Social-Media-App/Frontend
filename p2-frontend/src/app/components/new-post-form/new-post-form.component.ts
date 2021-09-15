@@ -46,7 +46,7 @@ export class NewPostFormComponent {
     this.newPostForm.patchValue({
       postPicUrl: this.imageUrl,
       user: {
-        userId: sessionStorage.getItem('userId')
+        userId: JSON.parse(sessionStorage.getItem('userObj')!).userId
       }
     })
 

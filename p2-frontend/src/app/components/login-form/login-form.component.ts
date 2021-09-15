@@ -61,13 +61,7 @@ export class LoginFormComponent {
           console.log(user);
 
           sessionStorage.setItem('userObj', JSON.stringify(user));
-          /* sessionStorage.setItem('username', user.username);
-          sessionStorage.setItem('firstName', user.firstName);
-          sessionStorage.setItem('lastName', user.lastName);
-          sessionStorage.setItem('email', user.email);
-          sessionStorage.setItem('bday', user.bday);
-          sessionStorage.setItem('aboutMe', user.aboutMe);
-          sessionStorage.setItem('proPicUrl', user.proPicUrl); */
+
           this.router.navigateByUrl('userFeed');
         },
         error => {
@@ -75,15 +69,7 @@ export class LoginFormComponent {
           console.log(error);
         }
       )
-
-    /* this.router.navigateByUrl('/userFeed'); */
-
   }
-
-  /* signUp(event: any){
-    console.log('signup', event)
-    alert(this.testString1)
-  } */
 
   toggleForm(): void {
     this.toggle.emit("signup");

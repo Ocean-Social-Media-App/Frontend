@@ -50,7 +50,11 @@ export class NewProfileFormComponent implements OnInit {
     }
   }
 
-  createProfile(event: any) {
+  switchForm(event: any) {
+    this.current = "details";
+  }
+
+  createProfile() {
     //this.userId = Number(sessionStorage.getItem('userId'));
     this.newProfileForm.patchValue({
       username: this.userObj.username,
@@ -64,44 +68,47 @@ export class NewProfileFormComponent implements OnInit {
     this.userObj["bday"] = this.newProfileForm.get('bday')?.value;
     this.userObj["aboutMe"] = this.newProfileForm.get('aboutMe')?.value;
 
-    sessionStorage.setItem('userObj', this.userObj);
+    sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
 
     console.log(this.newProfileForm.value);
 
-      this.userService.register(this.newProfileForm.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log("Profile created");
-          console.log(data);
-          this.router.navigateByUrl('userFeed');
-        },
-        error => {
-          console.log("Unable to create profile");
-          console.log(error);
-        }
-      )
+    this.userService.register(this.newProfileForm.value)
+    .pipe(first())
+    .subscribe(
+      data => {
+        console.log("Profile created");
+        console.log(data);
+        this.router.navigateByUrl('userFeed');
+      },
+      error => {
+        console.log("Unable to create profile");
+        console.log(error);
+      }
+    )
   }
 
-  uploadImage(event: any) {
-    const formData = new FormData();
-    formData.append('file', this.imageForm.get('image')!.value);
-    try {
-      this.userService.addProfileImage(formData)
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log("Successfully uploaded image");
-          this.userObj["proPicUrl"] = data.data;
-          this.imageUrl = data.data;
-        },
-        error => {
-          console.log("upload failed");
-          console.log(error);
-        }
-      )
-    } finally {
-      this.current = "details";
+  uploadImageAndCreateProfile(event: any) {
+    if (this.imageForm.get('image')?.value != null) {
+      const formData = new FormData();
+      formData.append('file', this.imageForm.get('image')!.value);
+
+        this.userService.addProfileImage(formData)
+        .pipe(first())
+        .subscribe(
+          data => {
+            console.log("Successfully uploaded image");
+            this.userObj["proPicUrl"] = data.data;
+            this.imageUrl = data.data;
+            this.createProfile();
+          },
+          error => {
+            console.log("upload failed");
+            console.log(error);
+          }
+        )
+    } else {
+      this.createProfile();
     }
+
   }
 }
