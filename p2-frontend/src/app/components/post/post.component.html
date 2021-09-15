@@ -1,9 +1,9 @@
 <button class="button button4">
     <div class="row1">
-        <app-profile-pic-sm ></app-profile-pic-sm>
+        <app-profile-pic-sm [ngStyle]="{'background-image':'url('+post.user.proPicUrl+')'}"></app-profile-pic-sm>
         <div class="user">
-            <h4 class="name">{{user.firstname}}</h4>
-            <a class="username">{{user.username}}</a>
+            <h4 class="name">{{post.user.firstName}}</h4>
+            <a class="username">{{post.user.username}}</a>
             <!-- <h4 class="date">Sep 10</h4> -->
         </div>
     </div>
@@ -11,7 +11,20 @@
         <div class="post">{{post.postText}}</div>
     </div>
     <div class="row3">
-        <button class="btn comment"><i class="fa fa-comment-o fa-2x" aria-hidden="true"></i></button>
-        <button class="btn like"><i class="fa fa-heart fa-2x" aria-hidden="true"></i></button>
+        <button class="btn comment" (click)= "displayModal()"><i class="fa fa-comment-o fa-2x" aria-hidden="true"></i></button>
+        <button class="btn like" (click)="like(post.postId)"><i class="fa fa-heart fa-2x" aria-hidden="true"></i></button>
     </div>
 </button>
+
+<!-- The Modal -->
+<div id="myModal" class = "modal" *ngIf= "display" [style.display]="display ? 'block' : 'none'" >
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" (click)="exit()">&times;</span>
+      <app-new-comment-form [post]= "post.postId"></app-new-comment-form>
+    </div>
+  
+</div>
+  
+  

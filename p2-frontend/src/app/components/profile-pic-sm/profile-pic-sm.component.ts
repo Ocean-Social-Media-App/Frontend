@@ -8,20 +8,13 @@ import { User } from 'src/app/models/User';
 })
 export class ProfilePicSmComponent implements OnInit {
 
-  user: User = {
-    userId: 0,
-    username: "",
-    password: "",
-    email: "",
-    firstname: "",
-    lastname: "",
-    aboutMe: "",
-    bday: undefined,
-    pro_pic_url: ""
-  }
+  profilePic: string = '';
+  
   constructor() { }
 
   ngOnInit(): void {
+    this.profilePic = JSON.parse(sessionStorage.getItem('userObj')!).proPicUrl;
+ 
   }
 
 }

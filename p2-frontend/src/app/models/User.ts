@@ -5,9 +5,9 @@ export interface User {
   username: string|undefined;
   password: string|undefined;
   email: string|undefined;
-  firstname: string|undefined;
-  lastname: string|undefined;
+  firstName: string|undefined;
+  lastName: string|undefined;
   aboutMe: string| undefined;
   bday: Date| undefined;
-  pro_pic_url: string|undefined;
+  proPicUrl: string|undefined;
 }

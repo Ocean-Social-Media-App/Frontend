@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { CommentService } from 'src/app/services/comment/comment.service';
@@ -8,25 +8,40 @@ import { CommentService } from 'src/app/services/comment/comment.service';
   templateUrl: './new-comment-form.component.html',
   styleUrls: ['./new-comment-form.component.css']
 })
-export class NewCommentFormComponent {
+export class NewCommentFormComponent implements OnInit {
 
   submitLabel: string = "Submit";
+  
+  user:number = 0 ;
+  
+  @Input()
+  post:number|undefined = 0;
 
   newCommentForm = this.fb.group({
     commText: ['', Validators.required],
-    post: [{ postId: 1 }],
-    user: [{ userId: 1 }]
+    post: [{postId : this.post}],
+    user: [{userId : this.user}]
+    
   })
 
   constructor(private fb: FormBuilder, private commentService: CommentService) { }
+  ngOnInit() {
+    this.user = JSON.parse(sessionStorage.getItem('userId')!)
+  }
 
-  onClick(event: any) {
+ onClick(event: any) {
     if (this.newCommentForm.invalid) {
       console.log("invalid");
       return;
     }
 
     console.log("adding comment");
+
+   this.newCommentForm.patchValue({
+    post: {postId: this.post},
+    user: {userId: this.user}
+  })
+  console.log(this.newCommentForm.value)
 
     this.commentService.createComment(this.newCommentForm.value)
       .pipe(first())

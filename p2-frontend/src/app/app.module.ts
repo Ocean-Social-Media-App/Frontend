@@ -28,6 +28,7 @@ import { TestPageComponent } from './pages/test-page/test-page.component';
 import { PostComponent } from './components/post/post.component';
 import { UpdatePostFormComponent } from './components/update-profile-form/update-profile-form.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,11 +44,12 @@ import { UpdatePostFormComponent } from './components/update-profile-form/update
     FeedComponent,
     NewPostFormComponent,
     NewCommentFormComponent,
-    NewProfileFormComponent,
-    TestPageComponent,
     ProfilePicSmComponent,
     PostComponent,
-    UpdatePostFormComponent
+    UpdatePostFormComponent,
+    PostComponent,
+    NewProfileFormComponent,
+    TestPageComponent
   ],
   imports: [
     BrowserModule,
