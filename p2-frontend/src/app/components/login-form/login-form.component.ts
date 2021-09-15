@@ -76,14 +76,14 @@ export class LoginFormComponent {
         }
       )
 
-    this.router.navigateByUrl('/userFeed');
+    /* this.router.navigateByUrl('/userFeed'); */
 
   }
 
-  signUp(event: any){
+  /* signUp(event: any){
     console.log('signup', event)
     alert(this.testString1)
-  }
+  } */
 
   toggleForm(): void {
     this.toggle.emit("signup");

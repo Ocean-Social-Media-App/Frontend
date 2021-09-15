@@ -23,6 +23,9 @@ export class ViewProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userObj = JSON.parse(sessionStorage.getItem('userObj')!);
+    console.log("PROFILE DATA FROM LOGIN");
+    console.log(this.userObj);
+
     this.firstName = this.userObj.firstName;
     this.lastName = this.userObj.lastName;
     this.username = this.userObj.username;
