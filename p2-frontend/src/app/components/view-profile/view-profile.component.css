@@ -92,13 +92,13 @@ h2 {
   align-items: center;
 }
 
-.updateProfileBtn {
-  position: fixed;
-  bottom: 0;
+.updateBtn {
+  position: absolute;
+  bottom: 3.2rem;
+  left: 3.2rem;
 }
 
-#updateBtn ::ng-deep .btn {
-  border: none;
+#updateBtn .btn {
   padding: 16px 32px;
   text-align: center;
   text-decoration: none;
@@ -109,15 +109,16 @@ h2 {
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 8px;
-  background-color: #1d3557;
-  color: white;
+  background-color: white;
+  color: #5f2eea;
   border-radius: 8px;
+  border: 2px solid #5f2eea;
 }
 
-#updateBtn:hover ::ng-deep .btn {
-  background-color: white;
-  color: #1d3557;
-  border: 2px solid #1d3557;
+#updateBtn:hover .btn {
+  background-color: #5f2eea;
+  color: white;
+  border: 2px solid #5f2eea;
 }
 
 a {
