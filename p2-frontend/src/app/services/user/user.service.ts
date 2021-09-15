@@ -18,6 +18,10 @@ export class UserService {
     return this.httpCli.post(`http://localhost:9000/api/createProfile`, user);
   }
 
+  updateProfile(user: User): Observable<any> {
+    return this.httpCli.put(`http://localhost:9000/api/updateUser`, user);
+  }
+
   login(user: User): Observable<any> {
     return this.httpCli.post(`http://localhost:9000/api/login`, user);
   }

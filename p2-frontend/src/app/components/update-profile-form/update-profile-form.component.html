@@ -8,7 +8,9 @@
           #fileInput
           id="profileImage"
           type="file"
+          (change)="onFileInput($event)"
           style="display: none"
+          formControlName="image"
           accept="image/png, image/jpeg"
         />
       </button>
@@ -89,4 +91,11 @@
       />
     </div>
   </form>
+  <app-buttons
+    class="submitBtn"
+    id="submitBtn"
+    (onClick)="uploadImageAndUpdateProfile($event)"
+    label="Submit"
+  >
+  </app-buttons>
 </div>
