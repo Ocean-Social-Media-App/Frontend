@@ -27,6 +27,7 @@ import { NewProfileFormComponent } from './components/new-profile-form/new-profi
 import { TestPageComponent } from './pages/test-page/test-page.component';
 import { PostComponent } from './components/post/post.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

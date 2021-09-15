@@ -21,7 +21,7 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     this.postServ.getAllPosts().subscribe(posts => {
       //console.log(posts)
-      this.postList = posts.data;
+      this.postList = posts.data.sort().reverse();
       console.log(this.postList)
     })
   }

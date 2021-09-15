@@ -1,7 +1,11 @@
+import { parseHostBindings } from '@angular/compiler';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { Like } from 'src/app/models/Like';
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
+import { LikeService } from 'src/app/services/like/like.service';
 import { PostService } from 'src/app/services/post/post.service';
 
 @Component({
@@ -11,12 +15,18 @@ import { PostService } from 'src/app/services/post/post.service';
 })
 export class PostComponent implements OnInit {
   
+  userLike: number = 0;
+  postLike: number = 0;
 
   /* postList: Array<Post> = [];
   listTemp: Array<Post> = [];
   observer: Subscription = new Subscription;
   stringInput: string = ""; */
-
+  likeObj = {
+    post: {postId: this.postLike},
+    user: {userId: this.userLike}
+  }
+    
 
   @Input()
   post: Post = {
@@ -54,13 +64,15 @@ export class PostComponent implements OnInit {
 
   
   display: boolean = false;
-  modal: any;
+  
   
 
-  constructor(private postServ: PostService) { }
+  constructor(private postServ: PostService, private likeService: LikeService) { }
 
   ngOnInit(): void {
     console.log(this.profilePic)
+
+    this.userLike = JSON.parse(sessionStorage.getItem('userObj')!).userId
     /* this.postServ.getAllPosts().subscribe(posts => {
       this.postList = posts.results;
     }) */
@@ -85,8 +97,25 @@ export class PostComponent implements OnInit {
     console.log("clicked")
   }
 
-  like(){
-     
+  like(postId:number){
+     console.log(postId)
+    this.likeObj.user.userId =  this.userLike
+     this.likeObj.post.postId = postId
+     /* this.likeObj.patchValue({
+
+     }) */
+     console.log(this.likeObj)
+     this.likeService.likePost(this.likeObj)
+      .pipe(first()).subscribe(
+        data => {
+          console.log("Successfully liked")
+          console.log(data)
+        },
+        error => {
+          console.log("Failed to like post")
+          console.log(error);
+        }
+      ) 
   }
 
 }
