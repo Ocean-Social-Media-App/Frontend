@@ -11,15 +11,9 @@ import { User } from 'src/app/models/User';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
-  [x: string]: any;
 
-  @Output() toggle: EventEmitter<any> = new EventEmitter();
   signUpLabel: string = "Sign Up";
   logInLabel: string = "Log In"
-  testString1 : string = "You trying to Sign Up!";
-  testString2 : string = "You trying to Login!";
-  isSignUpBtn: boolean = true;
-  /* user : User|undefined; */
 
   // variables to be set from session storage
   userObj: any = {};
@@ -28,19 +22,6 @@ export class LoginFormComponent {
     username: ['', Validators.required],
     password: ['', Validators.required]
   })
-
- /*  @Input() */
-  aUser: User = {
-    userId: 0,
-    username: "",
-    password: "",
-    email: "",
-    firstname: "",
-    lastname: "",
-    aboutMe: "",
-    bday: undefined,
-    pro_pic_url: ""
-  }
 
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
 
@@ -71,6 +52,7 @@ export class LoginFormComponent {
       )
   }
 
+  @Output() toggle: EventEmitter<any> = new EventEmitter();
   toggleForm(): void {
     this.toggle.emit("signup");
   }
