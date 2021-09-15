@@ -85,4 +85,8 @@ export class PostComponent implements OnInit {
     console.log("clicked")
   }
 
+  like(){
+     
+  }
+
 }

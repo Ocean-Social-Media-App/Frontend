@@ -15,5 +15,5 @@ export class Post {
     aboutMe: undefined,
     bday: undefined,
     proPicUrl: undefined
-  }
+  };
 }

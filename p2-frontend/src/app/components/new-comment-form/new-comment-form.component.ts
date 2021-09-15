@@ -11,33 +11,37 @@ import { CommentService } from 'src/app/services/comment/comment.service';
 export class NewCommentFormComponent implements OnInit {
 
   submitLabel: string = "Submit";
-  user = "";
+  
+  user:number = 0 ;
   
   @Input()
-  post: number | undefined = 0;
+  post:number|undefined = 0;
 
   newCommentForm = this.fb.group({
     commText: ['', Validators.required],
-    post: [{ postId : this.post}],
-    user: [{userId : Number(this.user)}]
+    post: [{postId : this.post}],
+    user: [{userId : this.user}]
+    
   })
 
   constructor(private fb: FormBuilder, private commentService: CommentService) { }
-  ngOnInit(): void {
-    this.user = sessionStorage.getItem('userId')!
+  ngOnInit() {
+    this.user = JSON.parse(sessionStorage.getItem('userId')!)
   }
 
-  onClick(event: any) {
+ onClick(event: any) {
     if (this.newCommentForm.invalid) {
       console.log("invalid");
       return;
     }
 
     console.log("adding comment");
-    console.log(this.post)
-    console.log(this.user)
 
-    this.newCommentForm.patchValue({postId: this.post})
+   this.newCommentForm.patchValue({
+    post: {postId: this.post},
+    user: {userId: this.user}
+  })
+  console.log(this.newCommentForm.value)
 
     this.commentService.createComment(this.newCommentForm.value)
       .pipe(first())

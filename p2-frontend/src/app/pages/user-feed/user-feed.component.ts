@@ -11,14 +11,14 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UserFeedComponent implements OnInit {
 
-  userId: string = "";
+  userId: string|null = "";
   username: string|null = "";
   proPicUrl: string|null = "";
 
   constructor() { }
 
   ngOnInit(): void {
-    this.userId = JSON.parse(sessionStorage.getItem('userId') || '{}');
+    this.userId = sessionStorage.getItem('userId');
     this.username = sessionStorage.getItem('username');
     this.proPicUrl = sessionStorage.getItem('proPicUrl');
   }
