@@ -36,9 +36,7 @@ export class ViewProfileComponent implements OnInit {
   }
 
   @Output() public hide: EventEmitter<void> = new EventEmitter();
-
   toggleProfile() {
     this.hide.emit();
   }
-
 }
