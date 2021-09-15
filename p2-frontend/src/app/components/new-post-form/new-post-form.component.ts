@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { User } from 'src/app/models/User';
@@ -15,6 +15,7 @@ export class NewPostFormComponent {
   submitLabel: string = "Submit";
   imageUrl: string = "";
   userId: number = -1;
+  @Input() userObj = {};
 
   imageForm = this.fb.group({
     imageFile: [null]
@@ -46,7 +47,7 @@ export class NewPostFormComponent {
     this.newPostForm.patchValue({
       postPicUrl: this.imageUrl,
       user: {
-        userId: sessionStorage.getItem('userId')
+        userId: JSON.parse(sessionStorage.getItem('userObj')!).userId
       }
     })
 

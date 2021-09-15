@@ -22,7 +22,7 @@ export class ViewProfileComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.userObj = JSON.parse(sessionStorage.getItem('userObj')!);
+    this.userObj = JSON.parse(sessionStorage.userObj);
     console.log("PROFILE DATA FROM LOGIN");
     console.log(this.userObj);
 
@@ -39,7 +39,7 @@ export class ViewProfileComponent implements OnInit {
   }
 
   @Output() public hide: EventEmitter<void> = new EventEmitter();
-  toggleProfile() {
+  toggleProfile(event: any) {
     this.hide.emit();
   }
 }

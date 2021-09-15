@@ -11,15 +11,9 @@ import { User } from 'src/app/models/User';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
-  [x: string]: any;
 
-  @Output() toggle: EventEmitter<any> = new EventEmitter();
   signUpLabel: string = "Sign Up";
   logInLabel: string = "Log In"
-  testString1 : string = "You trying to Sign Up!";
-  testString2 : string = "You trying to Login!";
-  isSignUpBtn: boolean = true;
-  /* user : User|undefined; */
 
   // variables to be set from session storage
   userObj: any = {};
@@ -28,19 +22,6 @@ export class LoginFormComponent {
     username: ['', Validators.required],
     password: ['', Validators.required]
   })
-
- /*  @Input() */
-  aUser: User = {
-    userId: 0,
-    username: "",
-    password: "",
-    email: "",
-    firstName: "",
-    lastName: "",
-    aboutMe: "",
-    bday: undefined,
-    proPicUrl: ""
-  }
 
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
 
@@ -61,13 +42,7 @@ export class LoginFormComponent {
           console.log(user);
 
           sessionStorage.setItem('userObj', JSON.stringify(user));
-          /* sessionStorage.setItem('username', user.username);
-          sessionStorage.setItem('firstName', user.firstName);
-          sessionStorage.setItem('lastName', user.lastName);
-          sessionStorage.setItem('email', user.email);
-          sessionStorage.setItem('bday', user.bday);
-          sessionStorage.setItem('aboutMe', user.aboutMe);
-          sessionStorage.setItem('proPicUrl', user.proPicUrl); */
+
           this.router.navigateByUrl('userFeed');
         },
         error => {
@@ -75,16 +50,9 @@ export class LoginFormComponent {
           console.log(error);
         }
       )
-
-    /* this.router.navigateByUrl('/userFeed'); */
-
   }
 
-  /* signUp(event: any){
-    console.log('signup', event)
-    alert(this.testString1)
-  } */
-
+  @Output() toggle: EventEmitter<any> = new EventEmitter();
   toggleForm(): void {
     this.toggle.emit("signup");
   }

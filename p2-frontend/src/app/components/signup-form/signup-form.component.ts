@@ -31,8 +31,6 @@ export class SignupFormComponent {
       return;
     }
 
-    console.log(this.signupForm.get('firstName')?.value);
-
     sessionStorage.setItem('userObj', JSON.stringify(this.signupForm.value));
     this.router.navigateByUrl('createProfile');
   }

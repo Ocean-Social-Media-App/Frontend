@@ -21,7 +21,7 @@
         <app-buttons
           class="submitBtn"
           id="submitImgBtn"
-          (onClick)="uploadImage($event)"
+          (onClick)="switchForm($event)"
           [label]="uploadLabel"
         >
         </app-buttons>
@@ -56,7 +56,7 @@
         <app-buttons
           class="submitBtn"
           id="submitBtn"
-          (onClick)="createProfile($event)"
+          (onClick)="uploadImageAndCreateProfile($event)"
           [label]="submitLabel"
         ></app-buttons>
       </form>
