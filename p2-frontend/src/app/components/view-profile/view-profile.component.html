@@ -1,7 +1,7 @@
 <div class="close-profile" (click)="toggleProfile($event)">X</div>
 <div id="profile-container">
   <!-- use ngIf to swap between view profile and update profile -->
-  <div [ngSwitch]="viewOrUpdate">
+  <div class="view-update-container" [ngSwitch]="viewOrUpdate">
     <!-- VIEW PROFILE -->
     <div class="view-profile" *ngSwitchCase="'view'">
       <div class="profile-body">
@@ -23,7 +23,9 @@
       </div>
     </div>
     <!-- UPDATE PROFILE -->
-    <div *ngSwitchCase="'update'">UPDATE BUTTON WORKS!</div>
+    <div class="update-container" *ngSwitchCase="'update'">
+      <app-update-profile-form></app-update-profile-form>
+    </div>
   </div>
   <app-buttons
     class="updateBtn"

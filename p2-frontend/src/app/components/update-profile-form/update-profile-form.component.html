@@ -1,0 +1,92 @@
+<div class="update-profile-container">
+  <form enctype="multipart/form-data">
+    <div class="form-row">
+      <button id="uploadBtn" type="button" (click)="fileInput.click()">
+        <span>Upload New Profile Image</span>
+        <input
+          #fileInput
+          id="profileImage"
+          type="file"
+          style="display: none"
+          accept="image/png, image/jpeg"
+        />
+      </button>
+    </div>
+  </form>
+
+  <form>
+    <!-- FULL NAME FIELDS -->
+    <div class="full-name">
+      <div class="form-row">
+        <label for="firstName">First Name:</label>
+        <input
+          id="first-name"
+          class="text-field"
+          [style.max-width.px]="180"
+          type="text"
+          formControlName="firstName"
+        />
+      </div>
+      <div class="form-row">
+        <label for="lastName">Last Name:</label>
+        <input
+          id="last-name"
+          class="text-field"
+          [style.max-width.px]="180"
+          type="text"
+          formControlName="lastName"
+        />
+      </div>
+    </div>
+
+    <div class="full-name">
+      <!-- EMAIL FIELD -->
+      <div class="form-row">
+        <label for="email">Email:</label>
+        <input
+          id="email"
+          class="text-field"
+          [style.width.px]="180"
+          type="text"
+          formControlName="email"
+        />
+      </div>
+      <!-- USERNAME FIELD -->
+      <div class="form-row">
+        <label for="username">Username:</label>
+        <input
+          id="username"
+          class="text-field"
+          [style.width.px]="180"
+          type="text"
+          formControlName="username"
+        />
+      </div>
+    </div>
+    <!-- ABOUT ME FIELD -->
+    <div class="form-row">
+      <label for="aboutMe">Tells us about yourself:</label>
+      <textarea
+        name="aboutMe"
+        id="aboutMe"
+        cols="30"
+        rows="5"
+        formControlName="aboutMe"
+      ></textarea>
+    </div>
+    <!-- BIRTHDAY FIELD -->
+    <div class="form-row">
+      <label for="birthday">
+        Enter your date of birth: <span>(MM-DD-YYYY)</span>
+      </label>
+      <input
+        type="text"
+        name="birthday"
+        class="text-field"
+        [style.width.px]="180"
+        formControlName="bday"
+      />
+    </div>
+    <!-- PROFILE IMAGE FIELD -->
+  </form>
+</div>
