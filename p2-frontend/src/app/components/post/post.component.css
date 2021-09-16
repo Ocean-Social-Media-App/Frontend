@@ -5,6 +5,20 @@
     overflow: auto;
 }
  */
+ .postPicture {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .button {
     width: 670px;
     background-color: #4CAF50; /* Green */
@@ -57,7 +71,9 @@
   .like{
       margin-top: 15px;
       margin-left: 100px;
-      color: red;
+  }
+  .btnColor{
+    color:red;
   }
 
 

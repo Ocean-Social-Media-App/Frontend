@@ -18,6 +18,10 @@ export class PostComponent implements OnInit {
   userLike: number = 0;
   postLike: number = 0;
 
+  postPic: string = '';
+  hasPic: boolean = false;
+  isLiked:boolean = false;
+
   /* postList: Array<Post> = [];
   listTemp: Array<Post> = [];
   observer: Subscription = new Subscription;
@@ -73,6 +77,18 @@ export class PostComponent implements OnInit {
     console.log(this.profilePic)
 
     this.userLike = JSON.parse(sessionStorage.getItem('userObj')!).userId
+    
+    this.likeService.checkLike(this.post.postId, this.userLike)
+      .pipe(first())
+      .subscribe(
+        data =>{
+          console.log(data);
+          if(data.data == true){
+            this.isLiked=true;
+          }
+        }
+      )
+    
     /* this.postServ.getAllPosts().subscribe(posts => {
       this.postList = posts.results;
     }) */
@@ -80,11 +96,10 @@ export class PostComponent implements OnInit {
 
  /*  ngOnDestroy(): void{
     this.observer.unsubscribe();
-  }
+  }*/
 
-  ngDoCheck(): void{
-    this.listTemp = this.postList.filter(post => post.postText?.startsWith(this.stringInput))
-  } */
+/*   ngDoCheck(): void{
+  }  */
 
   exit(){
     this.display = false;
@@ -99,7 +114,16 @@ export class PostComponent implements OnInit {
 
   like(postId:number){
      console.log(postId)
-    this.likeObj.user.userId =  this.userLike
+     
+     this.likeService.checkLike(postId, this.userLike)
+      .pipe(first())
+      .subscribe(
+        data =>{
+          console.log(data);
+          if(data.data == true){
+            console.log("already liked")
+          }else{
+            this.likeObj.user.userId =  this.userLike
      this.likeObj.post.postId = postId
      /* this.likeObj.patchValue({
 
@@ -108,6 +132,7 @@ export class PostComponent implements OnInit {
      this.likeService.likePost(this.likeObj)
       .pipe(first()).subscribe(
         data => {
+          this.isLiked = true;
           console.log("Successfully liked")
           console.log(data)
         },
@@ -116,6 +141,10 @@ export class PostComponent implements OnInit {
           console.log(error);
         }
       ) 
+          }
+        }
+      )
+    
   }
 
 }
