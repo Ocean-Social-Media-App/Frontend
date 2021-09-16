@@ -7,7 +7,7 @@ export class Post {
   postYouUrl: string|undefined;
   user: User  = {
     userId: undefined,
-    username: undefined,
+    username: "",
     password: undefined,
     email: undefined,
     firstName: undefined,

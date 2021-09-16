@@ -8,10 +8,12 @@ import { User } from 'src/app/models/User';
 })
 export class UserService {
 
+  searchOption=[]
+  public userData: User[] | undefined
   constructor(private httpCli: HttpClient) { }
 
-  getAllUsers() {
-    // implement get all users here
+  getAllUsers():Observable<User[]> {
+    return this.httpCli.get<any>(`http:localhost:9000/api/user`, {withCredentials: true})
   }
 
   getUserById(id: number): Observable<any> {

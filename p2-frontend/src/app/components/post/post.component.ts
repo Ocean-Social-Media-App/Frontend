@@ -41,7 +41,7 @@ export class PostComponent implements OnInit {
     postYouUrl: "",
     user: {
       userId: undefined,
-      username: undefined,
+      username: " ",
       password: undefined,
       email: undefined,
       firstName: undefined,

@@ -6,7 +6,10 @@
       <button type="submit" class="btn searchBtn">
         <i class="fa fa-search"></i>
       </button>
-      <input type="text" class="bar" placeholder="Search..." />
+      <input type="text" class="bar" placeholder="Search..." [(ngModel)]="searchInput"/>
+     <!--  <div *ngFor="let user of userList">
+        <p>{{username}}</p>
+      </div> -->
     </li>
     <li>
       <a> <i class="fa fa-home" aria-hidden="true"></i> Home </a>

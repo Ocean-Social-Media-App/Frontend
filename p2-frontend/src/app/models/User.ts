@@ -2,7 +2,7 @@
 // Created file so folder is tracked in git
 export interface User {
   userId: number|undefined;
-  username: string|undefined;
+  username: string ;
   password: string|undefined;
   email: string|undefined;
   firstName: string|undefined;
