@@ -10,6 +10,9 @@ export class UserService {
 
   constructor(private httpCli: HttpClient) { }
 
+  getAllUsers() {
+    // implement get all users here
+  }
 
   getUserById(id: number): Observable<User> {
     return this.httpCli.get<User>(`http://localhost:9000/api/user/${id}`, {withCredentials: true})

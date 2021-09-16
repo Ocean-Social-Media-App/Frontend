@@ -17,6 +17,4 @@ export class PostService {
   getAllPosts() {
     return this.httpCli.get<any>(`http://localhost:9000/api/feed/0`,  {withCredentials: true} )
   }
-
-
 }

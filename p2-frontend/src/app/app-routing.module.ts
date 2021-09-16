@@ -9,13 +9,12 @@ import { TestPageComponent } from './pages/test-page/test-page.component';
 const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'createProfile', component: ProfileCreateComponent},
-  {path: 'userFeed', component: UserFeedComponent},
-  {path: 'testPage', component: TestPageComponent}
+  {path: 'userFeed', component: UserFeedComponent, runGuardsAndResolvers: 'always'},
+  {path: 'testPage', component: TestPageComponent},
 ]
 
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
