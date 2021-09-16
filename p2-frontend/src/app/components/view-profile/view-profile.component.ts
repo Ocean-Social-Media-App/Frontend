@@ -8,7 +8,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class ViewProfileComponent implements OnInit {
 
   updateLabel: string = "Update Profile"
-  testString1 : string = "You trying to update this Profile!";
+  viewOrUpdate: string = 'view';
 
   firstName: string = '';
   lastName: string = '';
@@ -33,9 +33,16 @@ export class ViewProfileComponent implements OnInit {
     this.aboutMe = this.userObj.aboutMe;
   }
 
-  updateProfile(event: any){
-    console.log('updateProfile', event)
-    alert(this.testString1)
+  updateProfile(){
+    console.log("UPDATE PROFILE CLICKED");
+    if (this.viewOrUpdate == 'view') {
+      this.viewOrUpdate = 'update';
+      this.updateLabel = 'View Profile';
+    } else {
+      this.viewOrUpdate = 'view';
+      this.updateLabel = 'Update Profile';
+    }
+    console.log(this.viewOrUpdate);
   }
 
   @Output() public hide: EventEmitter<void> = new EventEmitter();

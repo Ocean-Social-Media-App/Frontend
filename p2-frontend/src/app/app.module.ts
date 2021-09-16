@@ -26,7 +26,11 @@ import { ProfilePicSmComponent } from './components/profile-pic-sm/profile-pic-s
 import { NewProfileFormComponent } from './components/new-profile-form/new-profile-form.component';
 import { TestPageComponent } from './pages/test-page/test-page.component';
 import { PostComponent } from './components/post/post.component';
+<<<<<<< HEAD
 import { ProfileFeedComponent } from './pages/profile-feed/profile-feed.component';
+=======
+import { UpdatePostFormComponent } from './components/update-profile-form/update-profile-form.component';
+>>>>>>> development
 
 
 @NgModule({
@@ -45,7 +49,8 @@ import { ProfileFeedComponent } from './pages/profile-feed/profile-feed.componen
     NewPostFormComponent,
     NewCommentFormComponent,
     ProfilePicSmComponent,
-    NewProfileFormComponent,
+    PostComponent,
+    UpdatePostFormComponent,
     PostComponent,
     NewProfileFormComponent,
     TestPageComponent,

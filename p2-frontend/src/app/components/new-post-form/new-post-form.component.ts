@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { User } from 'src/app/models/User';
 import { PostService } from 'src/app/services/post/post.service';
@@ -29,7 +30,7 @@ export class NewPostFormComponent implements OnInit{
   })
   // link for testing purposes
   // https://www.youtube.com/watch?v=gc4pxTjii9c
-  constructor(private fb: FormBuilder, private userService: UserService, private postService: PostService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private postService: PostService, private router: Router) { }
   ngOnInit(): void {
     this.userId =  JSON.parse(sessionStorage.getItem('userObj')!).userId
   }
@@ -60,7 +61,7 @@ export class NewPostFormComponent implements OnInit{
         data => {
           console.log("Successfully created post");
           console.log(data);
-          window.location.reload();
+          this.router.navigateByUrl('userFeed');
         },
         error => {
           console.log("Failed to create post");

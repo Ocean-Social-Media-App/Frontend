@@ -10,6 +10,9 @@ export class UserService {
 
   constructor(private httpCli: HttpClient) { }
 
+  getAllUsers() {
+    // implement get all users here
+  }
 
   getUserById(id: number): Observable<User> {
     return this.httpCli.get<User>(`http://localhost:9000/api/user/${id}`, {withCredentials: true})
@@ -21,6 +24,10 @@ export class UserService {
 
   createProfile(user: User): Observable<any> {
     return this.httpCli.post(`http://localhost:9000/api/createProfile`, user, {withCredentials: true});
+  }
+
+  updateProfile(user: User): Observable<any> {
+    return this.httpCli.put(`http://localhost:9000/api/updateUser`, user);
   }
 
   login(user: User): Observable<any> {

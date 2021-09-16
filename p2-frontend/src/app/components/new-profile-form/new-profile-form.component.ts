@@ -77,7 +77,9 @@ export class NewProfileFormComponent implements OnInit {
     .subscribe(
       data => {
         console.log("Profile created");
-        console.log(data);
+        this.userObj["userId"] = data.data.userId;
+
+        sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
         this.router.navigateByUrl('userFeed');
       },
       error => {
@@ -98,6 +100,7 @@ export class NewProfileFormComponent implements OnInit {
           data => {
             console.log("Successfully uploaded image");
             this.userObj["proPicUrl"] = data.data;
+
             console.log(this.userObj);
 
             this.imageUrl = data.data;
