@@ -14,7 +14,7 @@ import { PostService } from 'src/app/services/post/post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  
+
   userLike: number = 0;
   postLike: number = 0;
 
@@ -31,7 +31,7 @@ export class PostComponent implements OnInit {
     post: {postId: this.postLike},
     user: {userId: this.userLike}
   }
-    
+
 
   @Input()
   post: Post = {
@@ -67,10 +67,10 @@ export class PostComponent implements OnInit {
   @Output()
   profilePic = this.user.proPicUrl;
 
-  
+
   display: boolean = false;
-  
-  
+
+
 
   constructor(private postServ: PostService, private likeService: LikeService) { }
 
@@ -78,11 +78,11 @@ export class PostComponent implements OnInit {
     console.log(this.profilePic)
 
     this.userLike = JSON.parse(sessionStorage.getItem('userObj')!).userId
-    
+
     if(this.post.postPicUrl != null){
       this.hasPic = true;
     }
-    
+
     if(this.post.postYouUrl != null){
       this.hasLink = true;
     }
@@ -91,13 +91,13 @@ export class PostComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data =>{
-          console.log(data);
+          /* console.log(data); */
           if(data.data == true){
             this.isLiked=true;
           }
         }
       )
-    
+
     /* this.postServ.getAllPosts().subscribe(posts => {
       this.postList = posts.results;
     }) */
@@ -123,7 +123,7 @@ export class PostComponent implements OnInit {
 
   like(postId:number){
      console.log(postId)
-     
+
      this.likeService.checkLike(postId, this.userLike)
       .pipe(first())
       .subscribe(
@@ -149,11 +149,11 @@ export class PostComponent implements OnInit {
           console.log("Failed to like post")
           console.log(error);
         }
-      ) 
+      )
           }
         }
       )
-    
+
   }
 
 }

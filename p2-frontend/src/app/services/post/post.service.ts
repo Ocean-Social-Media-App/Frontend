@@ -25,4 +25,8 @@ export class PostService {
   getAllPostsForOneUser(id: number) {
     return this.httpCli.get<any>(`http://localhost:9000/api/post/userId/${id}`, {withCredentials: true})
   }
+
+  getNextPageOfPosts(pageCount: number) {
+    return this.httpCli.get<any>(`http://localhost:9000/api/feed/${pageCount}`, {withCredentials: true})
+  }
 }
