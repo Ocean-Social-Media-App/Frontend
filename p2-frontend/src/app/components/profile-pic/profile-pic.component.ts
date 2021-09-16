@@ -11,6 +11,9 @@ export class ProfilePicComponent implements OnInit {
   fileToUpload: any;
   profilePic: string = '';
 
+  @Input()
+  imgSrc: string|undefined = "";
+
   constructor(private userServ: UserService) { }
 
   ngOnInit(): void {

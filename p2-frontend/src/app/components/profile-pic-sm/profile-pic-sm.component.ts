@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/User';
 
 @Component({
@@ -9,6 +9,9 @@ import { User } from 'src/app/models/User';
 export class ProfilePicSmComponent implements OnInit {
 
   profilePic: string = '';
+
+  @Input()
+  imgSrc: string|undefined = "";
   
   constructor() { }
 

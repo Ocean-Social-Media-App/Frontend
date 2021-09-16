@@ -1,20 +1,29 @@
 <button class="button button4">
     <div class="row1">
-        <app-profile-pic-sm [ngStyle]="{'background-image':'url('+post.user.proPicUrl+')'}"></app-profile-pic-sm>
+        <app-profile-pic-sm [imgSrc]="post.user.proPicUrl"></app-profile-pic-sm>
         <div class="user">
             <h4 class="name">{{post.user.firstName}}</h4>
-            <a class="username">{{post.user.username}}</a>
+            <a class="username" [routerLink] = "['/profile-feed', post.user.userId]">@{{post.user.username}}</a>
             <!-- <h4 class="date">Sep 10</h4> -->
         </div>
     </div>
     <div class="row2">
         <div class="post">{{post.postText}}</div>
+        <div *ngIf="hasPic">
+            <img class="postPicture" [src]="post.postPicUrl"/>
+        </div>
+        <div *ngIf="hasLink">
+            <img class="postYoutube" [src]="post.postYouUrl"/>
+        </div>
     </div>
     <div class="row3">
         <button class="btn comment" (click)= "displayModal()"><i class="fa fa-comment-o fa-2x" aria-hidden="true"></i></button>
-        <button class="btn like" (click)="like(post.postId)"><i class="fa fa-heart fa-2x" aria-hidden="true"></i></button>
+        <button class="btn like" (click)="like(post.postId)" [class.btnColor]="isLiked"><i class="fa fa-heart fa-2x" aria-hidden="true"></i></button>
     </div>
 </button>
+<div class="comment-thread">
+    <app-comment-thread [postId]="post.postId"></app-comment-thread>
+</div>
 
 <!-- The Modal -->
 <div id="myModal" class = "modal" *ngIf= "display" [style.display]="display ? 'block' : 'none'" >

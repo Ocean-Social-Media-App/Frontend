@@ -14,8 +14,8 @@ export class UserService {
     // implement get all users here
   }
 
-  getUserById(id: number): Observable<User> {
-    return this.httpCli.get<User>(`http://localhost:9000/api/user/${id}`, {withCredentials: true})
+  getUserById(id: number): Observable<any> {
+    return this.httpCli.get<any>(`http://localhost:9000/api/user/${id}`, {withCredentials: true})
   }
 
   register(user: User): Observable<any> {
@@ -31,11 +31,11 @@ export class UserService {
   }
 
   login(user: User): Observable<any> {
-    return this.httpCli.post(`http://localhost:9000/api/login`, user);
+    return this.httpCli.post(`http://localhost:9000/api/login`, user, {withCredentials: true});
   }
 
   logout() {
-    return this.httpCli.get(`http://localhost:9000/api/logout`);
+    return this.httpCli.get(`http://localhost:9000/api/logout`, {withCredentials: true});
   }
 
   addProfileImage(formData: FormData): Observable<any> {

@@ -18,6 +18,10 @@ export class PostService {
     return this.httpCli.get<any>(`http://localhost:9000/api/feed/0`,  {withCredentials: true} )
   }
 
+  getPostsByUserId(userId: number){
+    return this.httpCli.get<any>(`http://localhost:9000/api/post/userId/${userId}`, {withCredentials: true})
+  }
+
   getAllPostsForOneUser(id: number) {
     return this.httpCli.get<any>(`http://localhost:9000/api/post/userId/${id}`, {withCredentials: true})
   }

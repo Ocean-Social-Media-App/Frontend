@@ -12,4 +12,8 @@ export class LikeService {
   likePost(like: Like){
     return this.httpCli.post(`http://localhost:9000/api/like`, like, {withCredentials: true});
   }
+
+  checkLike(postId : number, userId : number){
+    return this.httpCli.get<any>(`http://localhost:9000/api/like/${postId}/${userId}`, {withCredentials: true})
+  }
 }

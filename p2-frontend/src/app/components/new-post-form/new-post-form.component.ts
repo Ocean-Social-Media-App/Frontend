@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -11,11 +11,11 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './new-post-form.component.html',
   styleUrls: ['./new-post-form.component.css']
 })
-export class NewPostFormComponent {
+export class NewPostFormComponent implements OnInit{
 
   submitLabel: string = "Submit";
   imageUrl: string = "";
-  userId: number = -1;
+  userId: number = 0;
   @Input() userObj = {};
 
   imageForm = this.fb.group({
@@ -26,11 +26,14 @@ export class NewPostFormComponent {
     postPicUrl: [''],
     postText: ['', Validators.required],
     postYouUrl: [''],
-    user: [{}]
+    user: [{userId:this.userId}]
   })
   // link for testing purposes
   // https://www.youtube.com/watch?v=gc4pxTjii9c
   constructor(private fb: FormBuilder, private userService: UserService, private postService: PostService, private router: Router) { }
+  ngOnInit(): void {
+    this.userId =  JSON.parse(sessionStorage.getItem('userObj')!).userId
+  }
 
   onFileInput(event: any) {
     if (event.currentTarget.files.length > 0) {
@@ -48,7 +51,7 @@ export class NewPostFormComponent {
     this.newPostForm.patchValue({
       postPicUrl: this.imageUrl,
       user: {
-        userId: JSON.parse(sessionStorage.getItem('userObj')!).userId
+        userId: this.userId
       }
     })
 
@@ -79,7 +82,9 @@ export class NewPostFormComponent {
           data => {
             console.log("Successfully uploaded image");
             this.imageUrl = data.data;
+            
             this.createPost();
+            console.log(this.newPostForm.value)
           },
           error => {
             console.log("upload failed");
