@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user/user.service';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,6 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class NavBarComponent implements OnInit {
 
+  userId!: number;
   _isInNav : boolean = true;
   logOutLabel: string = 'Logout';
   profilePosition: string = "-64rem";
@@ -17,6 +19,7 @@ export class NavBarComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.userId = JSON.parse(sessionStorage.getItem('userObj')!).userId;
   }
 
   logout(event: any) {
@@ -40,6 +43,10 @@ export class NavBarComponent implements OnInit {
     } else {
       this.profilePosition = "-64rem";
     }
+  }
+
+  onViewById() {
+    this.router.navigateByUrl(`/userFeed?userId=${this.userId}`)
   }
 
 }

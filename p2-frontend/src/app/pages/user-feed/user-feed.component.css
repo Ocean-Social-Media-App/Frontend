@@ -1,44 +1,17 @@
 :host {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
+  padding: 1.6rem;
 }
 
-.user-feed-container {
-  display: flex;
-  justify-content: space-evenly;
-  right: 0;
-}
-.nav-container {
-  position: absolute;
-  position: sticky;
-}
 .post-feed {
-  display: block;
   display: flex;
-  position: sticky;
-
-  /*  position:sticky; */
-}
-.feed-container {
-  position: sticky;
-  border-radius: 10px;
-  /* border: black 2px solid ; */
-  margin: 5px;
-  margin-left: 280px;
-  margin-top: 20px;
-  padding-left: 10px;
-  /*  display: flex;
-    flex-direction: column;
-    justify-content: center; */
   align-items: center;
-  font-size: 1.3rem;
-  height: max-content;
-  overflow: auto;
-  width: 710px;
+  margin: 0 auto;
 }
+
 .post-form {
   position: fixed;
-  right: 0;
-  bottom: 0;
-  margin: 10px;
-  position: static;
+  right: 1.6rem;
 }
