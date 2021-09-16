@@ -14,8 +14,8 @@ export class UserService {
     // implement get all users here
   }
 
-  getUserById(id: number): Observable<User> {
-    return this.httpCli.get<User>(`http://localhost:9000/api/user/${id}`, {withCredentials: true})
+  getUserById(id: number): Observable<any> {
+    return this.httpCli.get<any>(`http://localhost:9000/api/user/${id}`, {withCredentials: true})
   }
 
   register(user: User): Observable<any> {

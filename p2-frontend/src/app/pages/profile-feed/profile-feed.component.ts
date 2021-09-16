@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { PostService } from 'src/app/services/post/post.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-profile-feed',
@@ -7,10 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileFeedComponent implements OnInit {
 
-  userClick=0;
-  constructor() { }
+  observer: Subscription = new Subscription();
+
+  constructor(private route: ActivatedRoute, private postService: PostService) { }
 
   ngOnInit(): void {
+
+ 
   }
 
 }

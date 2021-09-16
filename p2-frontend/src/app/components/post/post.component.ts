@@ -20,6 +20,7 @@ export class PostComponent implements OnInit {
 
   postPic: string = '';
   hasPic: boolean = false;
+  hasLink: boolean = false;
   isLiked:boolean = false;
 
   /* postList: Array<Post> = [];
@@ -78,6 +79,14 @@ export class PostComponent implements OnInit {
 
     this.userLike = JSON.parse(sessionStorage.getItem('userObj')!).userId
     
+    if(this.post.postPicUrl != null){
+      this.hasPic = true;
+    }
+    
+    if(this.post.postYouUrl != null){
+      this.hasLink = true;
+    }
+
     this.likeService.checkLike(this.post.postId, this.userLike)
       .pipe(first())
       .subscribe(

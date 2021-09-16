@@ -26,7 +26,8 @@ export class NewCommentFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private commentService: CommentService) { }
   ngOnInit() {
-    this.user = JSON.parse(sessionStorage.getItem('userId')!)
+    this.user =  JSON.parse(sessionStorage.getItem('userObj')!).userId
+ 
   }
 
  onClick(event: any) {
@@ -49,6 +50,8 @@ export class NewCommentFormComponent implements OnInit {
         data => {
           console.log("Successfully created comment");
           console.log(data);
+          window.location.reload();
+
         },
         error => {
           console.log("Failed to create comment");

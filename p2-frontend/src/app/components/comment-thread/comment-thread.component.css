@@ -1,0 +1,6 @@
+.container{
+    display: block;
+    width: 600px;
+    justify-content: space-evenly;
+    overflow: auto;
+}

@@ -26,11 +26,12 @@ import { ProfilePicSmComponent } from './components/profile-pic-sm/profile-pic-s
 import { NewProfileFormComponent } from './components/new-profile-form/new-profile-form.component';
 import { TestPageComponent } from './pages/test-page/test-page.component';
 import { PostComponent } from './components/post/post.component';
-<<<<<<< HEAD
-import { ProfileFeedComponent } from './pages/profile-feed/profile-feed.component';
-=======
 import { UpdatePostFormComponent } from './components/update-profile-form/update-profile-form.component';
->>>>>>> development
+import { ProfileFeedComponent } from './pages/profile-feed/profile-feed.component';
+import { FeedByUserComponent } from './components/feed-by-user/feed-by-user.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { CommentThreadComponent } from './components/comment-thread/comment-thread.component';
 
 
 @NgModule({
@@ -54,7 +55,11 @@ import { UpdatePostFormComponent } from './components/update-profile-form/update
     PostComponent,
     NewProfileFormComponent,
     TestPageComponent,
-    ProfileFeedComponent
+    ProfileFeedComponent,
+    FeedByUserComponent,
+    UserInfoComponent,
+    CommentComponent,
+    CommentThreadComponent
   ],
   imports: [
     BrowserModule,

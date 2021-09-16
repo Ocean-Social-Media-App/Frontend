@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    right: 0;
+    width: auto;
+  }
+.profile-container{
+    position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+  position: static;
+  margin-right: 15px;
+}

@@ -82,6 +82,7 @@ export class NewPostFormComponent implements OnInit{
           data => {
             console.log("Successfully uploaded image");
             this.imageUrl = data.data;
+            
             this.createPost();
             console.log(this.newPostForm.value)
           },
