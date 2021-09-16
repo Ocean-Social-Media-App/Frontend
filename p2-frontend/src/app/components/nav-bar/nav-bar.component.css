@@ -1,23 +1,59 @@
 .sidebar-container {
-  position: fixed;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
   width: 265px;
   height: max-content;
-  left: 0;
-  top: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  background: #fff;
-  border-radius: 12px;
-  color: #1a1a1a;
-  border: 1px lightgray solid;
-  box-shadow: darkgray 0px 0px 2px;
+  border-radius: 1.6rem;
+  color: #14142b;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-left: 15px;
   margin-top: 15px;
-  padding-bottom: 20px;
+  padding: 1.6rem;
 }
 
-.content-container {
+.logo {
+  padding: 0.8rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 4rem;
+  font-weight: bold;
+  background: #624af2;
+  background: -webkit-linear-gradient(to right, #624af2 0%, #50ddc3 100%);
+  background: -moz-linear-gradient(to right, #624af2 0%, #50ddc3 100%);
+  background: linear-gradient(to right, #624af2 0%, #50ddc3 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.2rem;
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 0.8rem;
+}
+
+li:hover {
+  color: #5f2eea;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 2.4rem;
+  color: #14142b;
+}
+
+/* .content-container {
   padding-top: 20px;
 }
 
@@ -34,11 +70,10 @@
   position: relative;
   overflow: hidden;
   font-family: Georgia, "Times New Roman", Times, serif;
-}
+} */
 
 .view-profile {
   display: flex;
-  justify-content: space-around;
 }
 
 .view-profile ::ng-deep a {
@@ -113,11 +148,26 @@
 }
 .searchBar {
   display: flex;
-  flex-direction: column;
 }
 input.bar {
-  margin: 5px;
+  background-color: #eff0f6;
+  border-radius: 16px;
+  border: 2px solid transparent;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+  padding: 0.8rem;
 }
+
+.bar:hover {
+  border: 2px solid #5f2eea;
+}
+
+.bar:focus {
+  border: 2px solid #5f2eea;
+  background-color: white;
+}
+
 .searchBtn {
   color: #1a1a1a;
   font-size: 15px;
