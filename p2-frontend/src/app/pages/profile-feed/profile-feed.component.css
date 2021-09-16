@@ -1,14 +1,19 @@
+
+
+:host {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.6rem;
+}
+
 .container {
-    display: flex;
-    justify-content: space-evenly;
-    right: 0;
-    width: auto;
-  }
-.profile-container{
-    position: fixed;
-  right: 0;
-  bottom: 0;
-  margin: 10px;
-  position: static;
-  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.profile-container {
+  position: fixed;
+  right: 1.6rem;
 }
