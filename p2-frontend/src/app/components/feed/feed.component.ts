@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/Post';
 import { PostService } from 'src/app/services/post/post.service';
@@ -11,6 +11,7 @@ import { PostService } from 'src/app/services/post/post.service';
 })
 export class FeedComponent implements OnInit {
 
+  userId: number = 0;
   postList: Array<Post> = [];
   listTemp: Array<Post> = [];
   observer: Subscription = new Subscription;
@@ -18,21 +19,29 @@ export class FeedComponent implements OnInit {
   navigationSubscription: any;
   // put object for all users here
 
-  constructor(private postServ: PostService, private router: Router) {
+  constructor(private postServ: PostService, private router: Router, private route: ActivatedRoute) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) this.ngOnInit();
     })
   }
 
   ngOnInit(): void {
-
     // Call the userService getAllUsers endpoint here
 
-    this.postServ.getAllPosts().subscribe(posts => {
-      //console.log(posts)
-      this.postList = posts.data.content;
-      console.log(this.postList)
-    })
+    // if query parameter userId > 0 load all posts for userId, else load all posts
+    this.route.queryParams
+      .subscribe(params => {
+        if (Number(params.userId) > 0) {
+          this.postServ.getAllPostsForOneUser(Number(params.userId))
+        .subscribe(posts => {
+          this.postList = posts.data;
+        })
+        } else {
+          this.postServ.getAllPosts().subscribe(posts => {
+            this.postList = posts.data.content;
+          })
+        }
+      })
   }
 
   ngOnDestroy(): void{

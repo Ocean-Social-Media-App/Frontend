@@ -5,11 +5,13 @@
   padding: 1.6rem;
 }
 
-.user-feed-container {
-  display: flex;
-  justify-content: space-between;
-}
-
 .post-feed {
   display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.post-form {
+  position: fixed;
+  right: 1.6rem;
 }
