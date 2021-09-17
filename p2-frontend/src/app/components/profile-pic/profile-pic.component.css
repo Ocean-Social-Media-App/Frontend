@@ -8,6 +8,6 @@
 img {
   width: 150px;
   height: 150px;
-  border-radius: 50%;
+  border-radius: 1.6rem;
   object-fit: cover;
 }

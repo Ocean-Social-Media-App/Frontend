@@ -19,6 +19,8 @@ export class ProfilePicComponent implements OnInit {
   ngOnInit(): void {
     //this.getUserData()
     this.profilePic = JSON.parse(sessionStorage.getItem('userObj')!).proPicUrl;
+    console.log(this.profilePic);
+
   }
 
   /* getUserData(){

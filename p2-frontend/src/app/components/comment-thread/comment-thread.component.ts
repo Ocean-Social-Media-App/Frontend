@@ -10,7 +10,7 @@ import { CommentService } from 'src/app/services/comment/comment.service';
 })
 export class CommentThreadComponent implements OnInit {
 
-  commentThread: Array<Comment> = [];
+  commentThread: Array<any> = [];
   observer: Subscription = new Subscription;
 
   @Input()
@@ -21,7 +21,6 @@ export class CommentThreadComponent implements OnInit {
   ngOnInit(): void {
     this.commentService.getCommentsByPostId(this.postId).subscribe(comments => {
       this.commentThread = comments.data;
-      /* console.log(this.commentThread) */
     })
   }
 

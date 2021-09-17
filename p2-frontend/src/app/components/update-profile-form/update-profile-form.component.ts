@@ -59,7 +59,6 @@ export class UpdatePostFormComponent implements OnInit {
       console.log(this.imageForm.value);
 
       this.userService.addProfileImage(formData)
-        .pipe(first())
         .subscribe(
           data => {
             console.log("Successfully uploaded image");
@@ -80,11 +79,12 @@ export class UpdatePostFormComponent implements OnInit {
 
   updateProfile() {
     this.userService.updateProfile(this.updateProfileForm.value)
-      .pipe(first())
       .subscribe(
-        data => {
+        user => {
           console.log("Profile created");
-          console.log(data);
+          console.log(user);
+          this.userObj = user.data;
+          sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
         },
         error => {
           console.log("Unable to update profile");
