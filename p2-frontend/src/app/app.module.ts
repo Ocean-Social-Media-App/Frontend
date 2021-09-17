@@ -27,6 +27,7 @@ import { FeedByUserComponent } from './components/feed-by-user/feed-by-user.comp
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentThreadComponent } from './components/comment-thread/comment-thread.component';
+import { UserLinkComponent } from './components/user-link/user-link.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { CommentThreadComponent } from './components/comment-thread/comment-thre
     FeedByUserComponent,
     UserInfoComponent,
     CommentComponent,
-    CommentThreadComponent
+    CommentThreadComponent,
+    UserLinkComponent
   ],
   imports: [
     BrowserModule,

@@ -12,8 +12,8 @@ export class UserService {
   public userData: User[] | undefined
   constructor(private httpCli: HttpClient) { }
 
-  getAllUsers():Observable<User[]> {
-    return this.httpCli.get<any>(`http:localhost:9000/api/user`, {withCredentials: true})
+  getAllUsers():Observable<any> {
+    return this.httpCli.get<any>(`http://localhost:9000/api/user`, {withCredentials: true})
   }
 
   getUserById(id: number): Observable<any> {
