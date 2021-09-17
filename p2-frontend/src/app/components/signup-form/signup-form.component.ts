@@ -21,7 +21,7 @@ export class SignupFormComponent {
       validators: [Validators.required, Validators.email]
     }],
     username: ['', Validators.required],
-    password: ['', Validators.required, Validators.minLength(8)]
+    password: ['', [Validators.required, Validators.minLength(8)]]
   })
 
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }

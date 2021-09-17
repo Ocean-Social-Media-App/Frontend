@@ -59,7 +59,7 @@ textarea:hover {
   border: 2px solid #5f2eea;
 }
 
-.text-field {
+/* .text-field {
   width: 325px;
   height: 64px;
   background-color: #eff0f6;
@@ -78,7 +78,7 @@ textarea:hover {
 .text-field:focus {
   border: 2px solid #5f2eea;
   background-color: white;
-}
+} */
 
 #uploadBtn {
   width: 325px;

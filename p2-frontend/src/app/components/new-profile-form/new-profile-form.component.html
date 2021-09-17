@@ -40,7 +40,26 @@
             name="birthday"
             class="text-field"
             formControlName="bday"
+            date
           />
+          <div class="warn">
+            <ng-container>
+              <div
+                class="invalid"
+                *ngIf="
+                  bday.hasError('required') && (bday.dirty || bday.touched)
+                "
+              >
+                Must enter a birthday
+              </div>
+              <div
+                class="invalid"
+                *ngIf="bday.hasError('usDate') && (bday.dirty || bday.touched)"
+              >
+                Birthday must be MM-DD-YYYY
+              </div>
+            </ng-container>
+          </div>
         </div>
         <div class="form-row">
           <label for="aboutMe">Tells us about yourself:</label>
@@ -51,6 +70,19 @@
             rows="10"
             formControlName="aboutMe"
           ></textarea>
+          <div class="warn">
+            <ng-container>
+              <div
+                class="invalid"
+                *ngIf="
+                  aboutMe.hasError('required') &&
+                  (aboutMe.dirty || aboutMe.touched)
+                "
+              >
+                This field must not be empty
+              </div>
+            </ng-container>
+          </div>
         </div>
 
         <app-buttons

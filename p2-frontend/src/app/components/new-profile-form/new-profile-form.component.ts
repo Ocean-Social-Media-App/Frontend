@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user/user.service';
+import { DateValidator } from 'src/app/validators/date-validator';
 
 @Component({
   selector: 'app-new-profile-form',
@@ -21,7 +22,7 @@ export class NewProfileFormComponent implements OnInit {
   userObj: any = {};
 
   imageForm = this.fb.group({
-    image: [null]
+    image: [null, Validators.required]
   })
 
   newProfileForm = this.fb.group({
@@ -31,7 +32,7 @@ export class NewProfileFormComponent implements OnInit {
     lastName: [''],
     password: [''],
     proPicUrl: [''],
-    bday: ['', Validators.required],
+    bday: ['', [Validators.required, DateValidator.usDate]],
     aboutMe: ['', Validators.required]
   })
 
@@ -114,6 +115,8 @@ export class NewProfileFormComponent implements OnInit {
     } else {
       this.createProfile();
     }
-
   }
+
+  get bday() { return this.newProfileForm.get('bday') }
+  get aboutMe() { return this.newProfileForm.get('aboutMe') }
 }
