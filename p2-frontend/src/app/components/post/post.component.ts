@@ -43,7 +43,7 @@ export class PostComponent implements OnInit {
     postYouUrl: "",
     user: {
       userId: undefined,
-      username: undefined,
+      username: " ",
       password: undefined,
       email: undefined,
       firstName: undefined,
@@ -73,7 +73,6 @@ export class PostComponent implements OnInit {
   constructor(private postServ: PostService, private likeService: LikeService) { }
 
   ngOnInit(): void {
-    console.log(this.profilePic)
 
     this.userLike = JSON.parse(sessionStorage.getItem('userObj')!).userId
 
@@ -100,13 +99,7 @@ export class PostComponent implements OnInit {
       this.postList = posts.results;
     }) */
   }
-
- /*  ngOnDestroy(): void{
-    this.observer.unsubscribe();
-  }*/
-
-/*   ngDoCheck(): void{
-  }  */
+  
 
   toggleComments() {
     if (this.toggleCommentsText == 'view comments') {
@@ -126,8 +119,7 @@ export class PostComponent implements OnInit {
 
   displayModal(){
     this.display = true;
-    /* this.modal.style.display = 'block'; */
-    console.log("clicked")
+    
   }
 
   like(postId:number){
@@ -137,7 +129,6 @@ export class PostComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data =>{
-          console.log(data);
           if(data.data == true){
             console.log("already liked")
           }else{

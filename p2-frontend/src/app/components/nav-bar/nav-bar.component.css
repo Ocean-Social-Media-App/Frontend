@@ -17,6 +17,7 @@
   margin-left: 15px;
   margin-top: 15px;
   padding: 1.6rem;
+  z-index: 1;
 }
 
 .logo {
@@ -76,6 +77,10 @@ a {
   font-family: Georgia, "Times New Roman", Times, serif;
 } */
 
+.searchList{
+  position: absolute;
+  z-index: 9999;
+}
 .view-profile {
   display: flex;
 }

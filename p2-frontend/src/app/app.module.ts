@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './pages/index/index.component';
@@ -14,11 +14,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
 import { FeedComponent } from './components/feed/feed.component';
 import { NewPostFormComponent } from './components/new-post-form/new-post-form.component';
 import { NewCommentFormComponent } from './components/new-comment-form/new-comment-form.component';
@@ -32,6 +27,7 @@ import { FeedByUserComponent } from './components/feed-by-user/feed-by-user.comp
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentThreadComponent } from './components/comment-thread/comment-thread.component';
+import { UserLinkComponent } from './components/user-link/user-link.component';
 
 
 @NgModule({
@@ -59,19 +55,17 @@ import { CommentThreadComponent } from './components/comment-thread/comment-thre
     FeedByUserComponent,
     UserInfoComponent,
     CommentComponent,
-    CommentThreadComponent
+    CommentThreadComponent,
+    UserLinkComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDividerModule,
-    HttpClientModule
+    
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
