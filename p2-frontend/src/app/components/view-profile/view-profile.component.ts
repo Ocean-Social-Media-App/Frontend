@@ -15,6 +15,7 @@ export class ViewProfileComponent implements OnInit {
   username: string = '';
   bday: string = '';
   aboutMe: string = '';
+  proPicUrl = '';
 
   // variables to be set from session storage
   userObj: any = {};
@@ -31,6 +32,7 @@ export class ViewProfileComponent implements OnInit {
     this.username = this.userObj.username;
     this.bday = this.userObj.bday;
     this.aboutMe = this.userObj.aboutMe;
+    this.proPicUrl = this.userObj.proPicUrl;
   }
 
   updateProfile(){

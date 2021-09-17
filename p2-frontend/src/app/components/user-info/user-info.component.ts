@@ -41,6 +41,7 @@ export class UserInfoComponent implements OnInit {
       this.lastName = this.userObj.lastName;
       this.bday = this.userObj.bday;
       this.proPicUrl = this.userObj.proPicUrl;
+      console.log(this.proPicUrl)
       this.aboutMe = this.userObj.aboutMe;
     })
 

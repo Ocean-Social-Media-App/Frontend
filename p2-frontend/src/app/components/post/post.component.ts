@@ -69,6 +69,7 @@ export class PostComponent implements OnInit {
   @Output()
   profilePic = this.user.proPicUrl;
   display: boolean = false;
+  likeId!: 0;
 
   constructor(private postServ: PostService, private likeService: LikeService) { }
 
@@ -89,8 +90,10 @@ export class PostComponent implements OnInit {
       .subscribe(
         data =>{
           /* console.log(data); */
-          if(data.data == true){
+          if(data.success == true){
             this.isLiked=true;
+          }else{
+            this.isLiked=false;
           }
         }
       )
@@ -129,27 +132,40 @@ export class PostComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data =>{
-          if(data.data == true){
-            console.log("already liked")
+          if(data.success == true){
+            //already liked
+            this.likeId = data.data
+            this.likeService.unLikePost(this.likeId)
+            .pipe(first()).subscribe(
+              data => {
+                this.isLiked = false;
+                console.log("Successfully unliked post")
+                console.log(data)
+              },
+              error => {
+                console.log("Failed to unlike post")
+                console.log(error);
+              }
+          )
           }else{
             this.likeObj.user.userId =  this.userLike
-     this.likeObj.post.postId = postId
-     /* this.likeObj.patchValue({
+            this.likeObj.post.postId = postId
+            /* this.likeObj.patchValue({
 
-     }) */
-     console.log(this.likeObj)
-     this.likeService.likePost(this.likeObj)
-      .pipe(first()).subscribe(
-        data => {
-          this.isLiked = true;
-          console.log("Successfully liked")
-          console.log(data)
-        },
-        error => {
-          console.log("Failed to like post")
-          console.log(error);
-        }
-      )
+            }) */
+            console.log(this.likeObj)
+            this.likeService.likePost(this.likeObj)
+              .pipe(first()).subscribe(
+                data => {
+                  this.isLiked = true;
+                  console.log("Successfully liked")
+                  console.log(data)
+                },
+                error => {
+                  console.log("Failed to like post")
+                  console.log(error);
+                }
+            )
           }
         }
       )
