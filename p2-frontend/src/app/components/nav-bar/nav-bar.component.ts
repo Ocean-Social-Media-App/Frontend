@@ -1,6 +1,6 @@
 import { Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { empty, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user/user.service';
@@ -27,7 +27,7 @@ export class NavBarComponent implements OnInit, DoCheck, OnChanges {
 
   constructor(private userService: UserService, private router: Router) { }
   ngDoCheck(): void {
-    if(this.searchInput != ""){
+    if(this.searchInput != "" ){
       this.listTemp = this.userList.filter(user => user.username.startsWith(this.searchInput))
       console.log(this.listTemp)
     }
