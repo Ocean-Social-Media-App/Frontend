@@ -22,6 +22,8 @@ export class PostComponent implements OnInit {
   hasPic: boolean = false;
   hasLink: boolean = false;
   isLiked:boolean = false;
+  toggleCommentsText: string = 'view comments';
+  showComments: boolean = false;
 
   /* postList: Array<Post> = [];
   listTemp: Array<Post> = [];
@@ -66,11 +68,7 @@ export class PostComponent implements OnInit {
 
   @Output()
   profilePic = this.user.proPicUrl;
-
-
   display: boolean = false;
-
-
 
   constructor(private postServ: PostService, private likeService: LikeService) { }
 
@@ -109,6 +107,17 @@ export class PostComponent implements OnInit {
 
 /*   ngDoCheck(): void{
   }  */
+
+  toggleComments() {
+    if (this.toggleCommentsText == 'view comments') {
+      this.toggleCommentsText = 'hide comments';
+
+    } else {
+      this.toggleCommentsText = 'view comments';
+    }
+
+    this.showComments = !this.showComments;
+  }
 
   exit(){
     this.display = false;

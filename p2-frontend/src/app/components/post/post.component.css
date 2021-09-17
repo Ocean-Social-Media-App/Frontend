@@ -58,7 +58,23 @@
 .comment-like {
   display: flex;
   gap: 3.2rem;
-  align-self: flex-end;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.comment-like a {
+  color: #1cc8ee;
+}
+
+.comment-like-icons {
+  display: flex;
+  gap: 1.6rem;
+  align-items: flex-end;
+}
+
+a {
+  cursor: pointer;
 }
 
 img {
