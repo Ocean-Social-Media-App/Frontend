@@ -1,13 +1,15 @@
-<button class="button button4">
-    <div class="row1">
-        <app-profile-pic-sm [imgSrc]="proPicUrl"></app-profile-pic-sm>
-        <div class="user">
-            <h4 class="name">{{firstName}}</h4>
-            <a class="username" [routerLink] = "['/profile-feed', userId]">{{username}}</a>
-            <!-- <h4 class="date">Sep 10</h4> -->
-        </div>
+<div class="comment-container">
+  <div class="row1">
+    <app-profile-pic-sm [imgSrc]="proPicUrl"></app-profile-pic-sm>
+    <div class="user">
+      <h4 class="name">{{ firstName }}</h4>
+      <a class="username" [routerLink]="['/profile-feed', userId]">{{
+        username
+      }}</a>
+      <!-- <h4 class="date">Sep 10</h4> -->
     </div>
-    <div class="row2">
-        <div class="comment">{{comment.commText}}</div>
-    </div>
-</button>
+  </div>
+  <div class="row2">
+    <div class="comment">{{ comment.commText }}</div>
+  </div>
+</div>

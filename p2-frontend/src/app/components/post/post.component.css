@@ -1,117 +1,147 @@
-/* .container{
-    display: block;
-    width: 625px;
-    justify-content: space-evenly;
-    overflow: auto;
+.post-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  border-radius: 1.6rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
- */
- .postPicture {
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding: 2.4rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 1.6rem;
+}
+
+.post-media {
   display: inline-block;
-  width: 500px;
+  min-width: 350px;
+}
+
+.post-image {
+  width: 600px;
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 1.6rem;
+}
+
+.name {
+  margin: 0;
+  font-weight: bold;
+  font-size: 2.4rem;
+  color: #14142b;
+}
+
+.username {
+  color: #1cc8ee;
+  text-decoration: none;
+  font-size: 1.6rem;
+}
+
+.post-text {
+  display: flex;
+  font-size: 1.6rem;
+  font-weight: medium;
+}
+
+.comment-like {
+  display: flex;
+  gap: 3.2rem;
+  align-self: flex-end;
 }
 
 img {
-  width: 500px;
-  border-radius: 5%;
-  object-fit: cover;
+  width: 100%;
+  border-radius: 1.6rem 1.6rem 0 0;
+  /* object-fit: cover; */
 }
 
-.button {
-    width: 670px;
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-  }
-  .button4 {
-    background-color: white;
-    color: black;
-    border: 2px solid #e7e7e7;
-  }
-  
-  .button4:hover {background-color: #e7e7e7;}  
+/* .button {
+  width: 670px;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+} */
+.button4 {
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+}
 
-  .row1{
-      display: flex;
-      flex-direction: row;
-      
-  }
-  .user{
-      display: flex;
-      flex-direction: row;
-      justify-content:space-evenly;
-  }
-  .name{
-      margin: 10px;
-  }
-  .username{
-      margin: 10px;
-  }
-  .date{
-      right: 0;
-      position: absolute;
-      margin: 10px;
-      margin-right: 20px;
-  }
-  .comment{
-      margin-top: 15px;
-      margin-right: 100px;
-      
-  }
-  .like{
-      margin-top: 15px;
-      margin-left: 100px;
-  }
-  .btnColor{
-    color:red;
-  }
+.button4:hover {
+  background-color: #e7e7e7;
+}
 
+.date {
+  right: 0;
+  position: absolute;
+  margin: 10px;
+  margin-right: 20px;
+}
 
+.comment,
+.like {
+  cursor: pointer;
+}
 
+.btnColor {
+  color: #ed2e7e;
+}
 
-
-  /* The Modal (background) */
+/* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 999; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content */
-  .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: max-content;
-  }
-  
-  /* The Close Button */
-  .close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 999; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: max-content;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
