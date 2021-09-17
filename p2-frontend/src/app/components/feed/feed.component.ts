@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/Post';
@@ -11,6 +11,7 @@ import { PostService } from 'src/app/services/post/post.service';
 })
 export class FeedComponent implements OnInit {
 
+  @Input() pageCount: number = 0;
   userId: number = 0;
   postList: Array<Post> = [];
   listTemp: Array<Post> = [];
@@ -27,6 +28,7 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     // Call the userService getAllUsers endpoint here
+    console.log(this.pageCount);
 
     // if query parameter userId > 0 load all posts for userId, else load all posts
     this.route.queryParams
@@ -41,6 +43,17 @@ export class FeedComponent implements OnInit {
             this.postList = posts.data.content;
           })
         }
+      })
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes.pageCount.currentValue);
+    this.postServ.getNextPageOfPosts(changes.pageCount.currentValue)
+      .subscribe(posts => {
+        console.log(posts);
+        posts.data.content.forEach((post: any) => {
+          this.postList.push(post);
+        });
       })
   }
 

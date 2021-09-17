@@ -15,13 +15,13 @@ export class CommentThreadComponent implements OnInit {
 
   @Input()
   postId: number = 0;
-  
+
   constructor(private router: Router, private commentService: CommentService) { }
 
   ngOnInit(): void {
     this.commentService.getCommentsByPostId(this.postId).subscribe(comments => {
       this.commentThread = comments.data;
-      console.log(this.commentThread)
+      /* console.log(this.commentThread) */
     })
   }
 
