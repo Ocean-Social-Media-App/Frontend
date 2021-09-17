@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -12,6 +13,8 @@ export class UpdatePostFormComponent implements OnInit {
 
   // variables to be set from session storage
   userObj: any = {};
+  @Output() outputFromChild: EventEmitter<string> = new EventEmitter();
+  outputText: string = 'view';
 
   imageForm = this.fb.group({
     image: [null]
@@ -27,7 +30,7 @@ export class UpdatePostFormComponent implements OnInit {
     aboutMe: ['']
   })
 
-  constructor(private userService: UserService, private fb: FormBuilder) { }
+  constructor(private userService: UserService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.userObj = JSON.parse(sessionStorage.getItem('userObj')!);
@@ -69,11 +72,15 @@ export class UpdatePostFormComponent implements OnInit {
             })
 
             this.updateProfile();
+            this.outputFromChild.emit(this.outputText);
+            this.router.navigateByUrl('userFeed');
           }
         )
     } else {
       console.log('inside ELSE');
       this.updateProfile();
+      this.outputFromChild.emit(this.outputText);
+      this.router.navigateByUrl('userFeed');
     }
   }
 
@@ -81,7 +88,7 @@ export class UpdatePostFormComponent implements OnInit {
     this.userService.updateProfile(this.updateProfileForm.value)
       .subscribe(
         user => {
-          console.log("Profile created");
+          console.log("Profile upadted");
           console.log(user);
           this.userObj = user.data;
           sessionStorage.setItem('userObj', JSON.stringify(this.userObj));

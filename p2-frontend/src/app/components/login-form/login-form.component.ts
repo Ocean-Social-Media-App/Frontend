@@ -14,6 +14,7 @@ export class LoginFormComponent {
 
   signUpLabel: string = "Sign Up";
   logInLabel: string = "Log In"
+  isValid: boolean|null = null;
 
   // variables to be set from session storage
   userObj: any = {};
@@ -28,6 +29,10 @@ export class LoginFormComponent {
   /* example on calling function in parent component function can be called anything */
   logIn(event: any){
     if (this.loginForm.invalid) {
+      let username =  this.loginForm.get('username');
+      username!.hasError('required') && username!.touched ? this.isValid = false : this.isValid = true;
+      console.log(this.isValid);
+
       return;
     }
 

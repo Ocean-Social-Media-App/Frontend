@@ -74,6 +74,14 @@ p {
   gap: 0.8rem;
 }
 
+.success {
+  background-color: green;
+}
+
+.danger {
+  background-color: red;
+}
+
 .text-field {
   width: 384px;
   height: 64px;

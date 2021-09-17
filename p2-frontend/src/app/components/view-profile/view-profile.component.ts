@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-view-profile',
@@ -48,5 +48,9 @@ export class ViewProfileComponent implements OnInit {
   @Output() public hide: EventEmitter<void> = new EventEmitter();
   toggleProfile(event: any) {
     this.hide.emit();
+  }
+
+  receiveChildData(data: string) {
+    this.viewOrUpdate = data;
   }
 }

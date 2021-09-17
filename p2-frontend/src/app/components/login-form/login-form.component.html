@@ -16,6 +16,7 @@
         <input
           id="username"
           class="text-field"
+          [ngClass]="isValid ? 'success' : 'danger'"
           type="text"
           formControlName="username"
         />
