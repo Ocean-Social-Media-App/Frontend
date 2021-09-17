@@ -64,6 +64,10 @@ export class NavBarComponent implements OnInit, DoCheck, OnChanges {
       );
   }
 
+  goHome(){
+    this.router.navigate([`/userFeed`])
+  }
+
   toggleProfile(event: any) {
     if (this.profilePosition == "-64rem") {
       this.profilePosition = "0";
