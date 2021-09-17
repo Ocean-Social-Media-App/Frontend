@@ -1,5 +1,5 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import url( 'https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons');
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons");
 
 /* You can add global styles to this file, and also import other style files */
 *,
@@ -36,4 +36,34 @@ body {
 }
 
 /* html, body { height: 100%; } */
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+input {
+  width: 384px;
+  height: 48px;
+  background-color: #eff0f6;
+  border-radius: 16px;
+  border: 2px solid transparent;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+  padding: 0 2.4rem;
+}
+
+input:hover {
+  border: 2px solid #5f2eea;
+}
+
+input:focus {
+  border: 2px solid #5f2eea;
+  background-color: white;
+}
+
+.warn {
+  padding-left: 1.6rem;
+  color: #ed2e7e;
+  height: 1.6rem;
+}

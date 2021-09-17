@@ -13,6 +13,7 @@
   <div class="right">
     <form [formGroup]="signupForm">
       <div class="full-name">
+        <!-- FIRST NAME -->
         <div class="form-row">
           <label for="firstName">First Name:</label>
           <input
@@ -22,7 +23,21 @@
             type="text"
             formControlName="firstName"
           />
+          <div class="warn">
+            <ng-container>
+              <div
+                class="invalid"
+                *ngIf="
+                  firstName.hasError('required') &&
+                  (firstName.dirty || firstName.touched)
+                "
+              >
+                Must enter first name
+              </div>
+            </ng-container>
+          </div>
         </div>
+        <!-- LAST NAME -->
         <div class="form-row">
           <label for="lastName">Last Name:</label>
           <input
@@ -32,9 +47,22 @@
             type="text"
             formControlName="lastName"
           />
+          <div class="warn">
+            <ng-container>
+              <div
+                class="invalid"
+                *ngIf="
+                  lastName.hasError('required') &&
+                  (lastName.dirty || lastName.touched)
+                "
+              >
+                Must enter last name
+              </div>
+            </ng-container>
+          </div>
         </div>
       </div>
-
+      <!-- EMAIL ADDRESS -->
       <div class="form-row">
         <label for="email">Email:</label>
         <input
@@ -43,7 +71,25 @@
           type="text"
           formControlName="email"
         />
+        <div class="warn">
+          <ng-container>
+            <div
+              class="invalid"
+              *ngIf="
+                email.hasError('required') && (email.dirty || email.touched)
+              "
+            >
+              Must enter an email address
+            </div>
+            <div
+              *ngIf="email.hasError('email') && (email.dirty || email.touched)"
+            >
+              Email address must be valid
+            </div>
+          </ng-container>
+        </div>
       </div>
+      <!-- USERNAME -->
       <div class="form-row">
         <label for="username">Username:</label>
         <input
@@ -52,7 +98,21 @@
           type="text"
           formControlName="username"
         />
+        <div class="warn">
+          <ng-container>
+            <div
+              class="invalid"
+              *ngIf="
+                username.hasError('required') &&
+                (username.dirty || username.touched)
+              "
+            >
+              Must enter a username
+            </div>
+          </ng-container>
+        </div>
       </div>
+      <!-- PASSWORD -->
       <div class="form-row">
         <label for="password">Password:</label>
         <input
@@ -60,7 +120,29 @@
           class="text-field"
           type="password"
           formControlName="password"
+          minlength="4"
         />
+        <div class="warn">
+          <ng-container>
+            <div
+              class="invalid"
+              *ngIf="
+                password.hasError('required') &&
+                (password.dirty || password.touched)
+              "
+            >
+              Must enter a password
+            </div>
+            <div
+              *ngIf="
+                password.hasError('minlength') &&
+                (password.dirty || password.touched)
+              "
+            >
+              Password must be 8 or more characters
+            </div>
+          </ng-container>
+        </div>
       </div>
       <app-buttons
         class="loginPgBtn"

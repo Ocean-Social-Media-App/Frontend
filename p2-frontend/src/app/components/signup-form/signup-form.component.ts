@@ -21,7 +21,7 @@ export class SignupFormComponent {
       validators: [Validators.required, Validators.email]
     }],
     username: ['', Validators.required],
-    password: ['', Validators.required]
+    password: ['', Validators.required, Validators.minLength(8)]
   })
 
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
@@ -38,5 +38,11 @@ export class SignupFormComponent {
   toggleForm(): void {
     this.toggle.emit("login");
   }
+
+  get firstName() { return this.signupForm.get('firstName') }
+  get lastName() { return this.signupForm.get('lastName') }
+  get email() { return this.signupForm.get('email') }
+  get username() { return this.signupForm.get('username') }
+  get password() { return this.signupForm.get('password') }
 
 }

@@ -20,8 +20,8 @@ export class LoginFormComponent {
   userObj: any = {};
 
   loginForm = this.fb.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required]
+    username: [null, Validators.required],
+    password: [null, Validators.required]
   })
 
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
@@ -29,8 +29,6 @@ export class LoginFormComponent {
   /* example on calling function in parent component function can be called anything */
   logIn(event: any){
     if (this.loginForm.invalid) {
-      let username =  this.loginForm.get('username');
-      username!.hasError('required') && username!.touched ? this.isValid = false : this.isValid = true;
       console.log(this.isValid);
 
       return;
@@ -61,6 +59,9 @@ export class LoginFormComponent {
   toggleForm(): void {
     this.toggle.emit("signup");
   }
+
+  get username() { return this.loginForm.get('username') }
+  get password() { return this.loginForm.get('password') }
 
 }
 

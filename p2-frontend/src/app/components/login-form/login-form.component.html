@@ -16,10 +16,22 @@
         <input
           id="username"
           class="text-field"
-          [ngClass]="isValid ? 'success' : 'danger'"
           type="text"
           formControlName="username"
         />
+        <div class="warn">
+          <ng-container>
+            <div
+              class="invalid"
+              *ngIf="
+                username.hasError('required') &&
+                (username.dirty || username.touched)
+              "
+            >
+              Username cannot be empty
+            </div>
+          </ng-container>
+        </div>
       </div>
       <div class="form-row">
         <label for="password">Password:</label>
@@ -29,6 +41,18 @@
           type="password"
           formControlName="password"
         />
+        <div class="warn">
+          <ng-container>
+            <div
+              *ngIf="
+                password.hasError('required') &&
+                (password.dirty || password.touched)
+              "
+            >
+              Password cannot be empty
+            </div>
+          </ng-container>
+        </div>
       </div>
 
       <div class="loginPgBtns">

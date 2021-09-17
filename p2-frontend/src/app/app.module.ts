@@ -28,6 +28,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentThreadComponent } from './components/comment-thread/comment-thread.component';
 import { UserLinkComponent } from './components/user-link/user-link.component';
+import { ControlMessagesComponent } from './components/control-messages/control-messages.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { UserLinkComponent } from './components/user-link/user-link.component';
     UserInfoComponent,
     CommentComponent,
     CommentThreadComponent,
-    UserLinkComponent
+    UserLinkComponent,
+    ControlMessagesComponent
   ],
   imports: [
     BrowserModule,
