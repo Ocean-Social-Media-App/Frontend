@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 import { User } from 'src/app/models/User';
 import { PostService } from 'src/app/services/post/post.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { YouTubeValidator } from 'src/app/validators/youtube-validator';
 
 @Component({
   selector: 'app-new-post-form',
@@ -23,8 +24,8 @@ export class NewPostFormComponent implements OnInit{
   })
 
   newPostForm = this.fb.group({
-    postPicUrl: [''],
-    postText: ['', Validators.required],
+    postPicUrl: ['', YouTubeValidator.youtubeUrl],
+    postText: ['', [Validators.required, Validators.maxLength(250)]],
     postYouUrl: [''],
     user: [{userId:this.userId}]
   })
@@ -82,7 +83,7 @@ export class NewPostFormComponent implements OnInit{
           data => {
             console.log("Successfully uploaded image");
             this.imageUrl = data.data;
-            
+
             this.createPost();
             console.log(this.newPostForm.value)
           },
@@ -95,4 +96,7 @@ export class NewPostFormComponent implements OnInit{
       this.createPost();
     }
   }
+
+  get postText() { return this.newPostForm.get('postText') }
+  get postYouUrl() { return this.newPostForm.get('postYouUrl') }
 }

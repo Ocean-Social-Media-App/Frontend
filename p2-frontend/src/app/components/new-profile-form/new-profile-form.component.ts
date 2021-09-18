@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user/user.service';
 import { DateValidator } from 'src/app/validators/date-validator';
 
