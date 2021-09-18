@@ -11,23 +11,23 @@ import { CommentService } from 'src/app/services/comment/comment.service';
 export class NewCommentFormComponent implements OnInit {
 
   submitLabel: string = "Submit";
-  
+
   user:number = 0 ;
-  
+
   @Input()
   post:number|undefined = 0;
 
   newCommentForm = this.fb.group({
-    commText: ['', Validators.required],
+    commText: ['', [Validators.required, Validators.maxLength(150)]],
     post: [{postId : this.post}],
     user: [{userId : this.user}]
-    
+
   })
 
   constructor(private fb: FormBuilder, private commentService: CommentService) { }
   ngOnInit() {
     this.user =  JSON.parse(sessionStorage.getItem('userObj')!).userId
- 
+
   }
 
  onClick(event: any) {
@@ -59,4 +59,6 @@ export class NewCommentFormComponent implements OnInit {
         }
       )
   }
+
+  get commText() { return this.newCommentForm.get('commText') }
 }

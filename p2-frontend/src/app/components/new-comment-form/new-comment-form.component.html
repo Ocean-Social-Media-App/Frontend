@@ -11,6 +11,27 @@
         cols="30"
         rows="4"
       ></textarea>
+      <div class="warn">
+        <ng-container>
+          <div
+            class="invalid"
+            *ngIf="
+              commText.hasError('required') &&
+              (commText.dirty || commText.touched)
+            "
+          >
+            This field must not be empty
+          </div>
+          <div
+            *ngIf="
+              commText.hasError('maxlength') &&
+              (commText.dirty || commText.touched)
+            "
+          >
+            Post must be 150 characters or less
+          </div>
+        </ng-container>
+      </div>
     </div>
 
     <app-buttons
