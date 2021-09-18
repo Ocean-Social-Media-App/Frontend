@@ -13,7 +13,7 @@ export class UpdatePostFormComponent implements OnInit {
 
   // variables to be set from session storage
   userObj: any = {};
-  @Output() outputFromChild: EventEmitter<string> = new EventEmitter();
+  @Output() sendOutputText: EventEmitter<string> = new EventEmitter();
   outputText: string = 'view';
 
   imageForm = this.fb.group({
@@ -72,15 +72,13 @@ export class UpdatePostFormComponent implements OnInit {
             })
 
             this.updateProfile();
-            this.outputFromChild.emit(this.outputText);
-            this.router.navigateByUrl('userFeed');
+            this.sendOutputText.emit(this.outputText);
+
           }
         )
     } else {
-      console.log('inside ELSE');
       this.updateProfile();
-      this.outputFromChild.emit(this.outputText);
-      this.router.navigateByUrl('userFeed');
+      this.sendOutputText.emit(this.outputText);
     }
   }
 
@@ -92,6 +90,7 @@ export class UpdatePostFormComponent implements OnInit {
           console.log(user);
           this.userObj = user.data;
           sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
+          this.router.navigateByUrl('userFeed');
         },
         error => {
           console.log("Unable to update profile");
@@ -99,5 +98,4 @@ export class UpdatePostFormComponent implements OnInit {
         }
       )
   }
-
 }

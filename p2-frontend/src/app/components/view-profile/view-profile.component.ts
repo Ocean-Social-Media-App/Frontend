@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-profile',
@@ -16,17 +17,21 @@ export class ViewProfileComponent implements OnInit {
   bday: string = '';
   aboutMe: string = '';
   proPicUrl = '';
+  navigationSubscription: any;
 
   // variables to be set from session storage
   userObj: any = {};
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) this.ngOnInit();
+    })
+   }
 
   ngOnInit(): void {
-    this.userObj = JSON.parse(sessionStorage.userObj);
-    console.log("PROFILE DATA FROM LOGIN");
-    console.log(this.userObj);
+    console.log('ON INIT CALLED IN VIEW PROFILE');
 
+    this.userObj = JSON.parse(sessionStorage.userObj);
     this.firstName = this.userObj.firstName;
     this.lastName = this.userObj.lastName;
     this.username = this.userObj.username;
@@ -36,7 +41,6 @@ export class ViewProfileComponent implements OnInit {
   }
 
   updateProfile(){
-    console.log("UPDATE PROFILE CLICKED");
     if (this.viewOrUpdate == 'view') {
       this.viewOrUpdate = 'update';
       this.updateLabel = 'View Profile';
@@ -44,7 +48,6 @@ export class ViewProfileComponent implements OnInit {
       this.viewOrUpdate = 'view';
       this.updateLabel = 'Update Profile';
     }
-    console.log(this.viewOrUpdate);
   }
 
   @Output() public hide: EventEmitter<void> = new EventEmitter();
@@ -52,7 +55,9 @@ export class ViewProfileComponent implements OnInit {
     this.hide.emit();
   }
 
-  receiveChildData(data: string) {
-    this.viewOrUpdate = data;
+  receiveOutputText(text: string) {
+    console.log('received output from update form');
+
+    this.viewOrUpdate = text;
   }
 }

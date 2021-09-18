@@ -25,7 +25,7 @@
     <!-- UPDATE PROFILE -->
     <div class="update-container" *ngSwitchCase="'update'">
       <app-update-profile-form
-        (outputFromChild)="receiveChildData($event)"
+        (sendOutputText)="receiveOutputText($event)"
       ></app-update-profile-form>
     </div>
   </div>
