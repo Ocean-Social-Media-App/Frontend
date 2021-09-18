@@ -72,13 +72,12 @@ export class UpdatePostFormComponent implements OnInit {
             })
 
             this.updateProfile();
-            this.sendOutputText.emit(this.outputText);
-
+            this.sendOutputText.emit('update');
           }
         )
     } else {
       this.updateProfile();
-      this.sendOutputText.emit(this.outputText);
+      this.sendOutputText.emit('update');
     }
   }
 

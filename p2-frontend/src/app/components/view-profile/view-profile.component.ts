@@ -22,15 +22,13 @@ export class ViewProfileComponent implements OnInit {
   // variables to be set from session storage
   userObj: any = {};
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) this.ngOnInit();
     })
-   }
+  }
 
   ngOnInit(): void {
-    console.log('ON INIT CALLED IN VIEW PROFILE');
-
     this.userObj = JSON.parse(sessionStorage.userObj);
     this.firstName = this.userObj.firstName;
     this.lastName = this.userObj.lastName;
@@ -56,8 +54,7 @@ export class ViewProfileComponent implements OnInit {
   }
 
   receiveOutputText(text: string) {
-    console.log('received output from update form');
-
     this.viewOrUpdate = text;
+    this.updateProfile();
   }
 }
