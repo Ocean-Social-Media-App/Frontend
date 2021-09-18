@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CommentService } from 'src/app/services/comment/comment.service';
@@ -13,6 +13,7 @@ export class CommentThreadComponent implements OnInit {
   commentThread: Array<any> = [];
   observer: Subscription = new Subscription;
 
+  @Output() commentCount: EventEmitter<number> = new EventEmitter<number>();
   @Input()
   postId: number = 0;
 
@@ -21,7 +22,9 @@ export class CommentThreadComponent implements OnInit {
   ngOnInit(): void {
     this.commentService.getCommentsByPostId(this.postId).subscribe(comments => {
       this.commentThread = comments.data;
+      console.log(this.commentThread.length);
+
+      this.commentCount.emit(this.commentThread.length);
     })
   }
-
 }

@@ -27,7 +27,9 @@
 
     <!-- COMMENT & LIKE -->
     <div class="comment-like">
-      <a (click)="toggleComments()">{{ toggleCommentsText }}</a>
+      <a (click)="toggleComments()"
+        >{{ toggleCommentsText }} {{ commentCount }} comments</a
+      >
       <div class="comment-like-icons">
         <i
           class="fa fa-comment-o fa-2x comment"
@@ -47,7 +49,8 @@
   <!-- COMMENT COMPONENT -->
   <app-comment-thread
     [postId]="post.postId"
-    *ngIf="showComments"
+    [style.display]="showComments ? 'block' : 'none'"
+    (commentCount)="receiveCommentCount($event)"
   ></app-comment-thread>
 </div>
 

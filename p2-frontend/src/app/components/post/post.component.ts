@@ -17,12 +17,12 @@ export class PostComponent implements OnInit {
 
   userLike: number = 0;
   postLike: number = 0;
-
+  commentCount: number = 0;
   postPic: string = '';
   hasPic: boolean = false;
   hasLink: boolean = false;
   isLiked:boolean = false;
-  toggleCommentsText: string = 'view comments';
+  toggleCommentsText: string = 'view';
   showComments: boolean = false;
 
   /* postList: Array<Post> = [];
@@ -102,14 +102,14 @@ export class PostComponent implements OnInit {
       this.postList = posts.results;
     }) */
   }
-  
+
 
   toggleComments() {
-    if (this.toggleCommentsText == 'view comments') {
-      this.toggleCommentsText = 'hide comments';
+    if (this.toggleCommentsText == 'view') {
+      this.toggleCommentsText = 'hide';
 
     } else {
-      this.toggleCommentsText = 'view comments';
+      this.toggleCommentsText = 'view';
     }
 
     this.showComments = !this.showComments;
@@ -122,7 +122,7 @@ export class PostComponent implements OnInit {
 
   displayModal(){
     this.display = true;
-    
+
   }
 
   like(postId:number){
@@ -169,7 +169,9 @@ export class PostComponent implements OnInit {
           }
         }
       )
-
   }
 
+  receiveCommentCount(count: number) {
+    this.commentCount = count;
+  }
 }
