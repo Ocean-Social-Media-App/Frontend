@@ -24,7 +24,7 @@ export class NewPostFormComponent implements OnInit{
   })
 
   newPostForm = this.fb.group({
-    postPicUrl: ['', YouTubeValidator.youtubeUrl],
+    postPicUrl: [''],
     postText: ['', [Validators.required, Validators.maxLength(250)]],
     postYouUrl: [''],
     user: [{userId:this.userId}]

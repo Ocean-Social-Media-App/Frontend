@@ -1,4 +1,6 @@
 <!-- this should remain the same for buttons to work -->
 <div id="button">
-    <button class="btn" (click)="onClickBtn($event)">{{label | titlecase}}</button>
+  <button type="button" class="btn" (click)="onClickBtn($event)">
+    {{ label | titlecase }}
+  </button>
 </div>

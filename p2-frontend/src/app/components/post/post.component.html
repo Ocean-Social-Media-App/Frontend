@@ -25,6 +25,18 @@
     </div>
     <div class="post-text">{{ post.postText }}</div>
 
+    <!-- VIDEO -->
+    <div>
+      <youtube-player
+        *ngIf="hasLink"
+        [videoId]="videoId"
+        suggestedQuality="highres"
+        [height]="240"
+        [width]="320"
+      >
+      </youtube-player>
+    </div>
+
     <!-- COMMENT & LIKE -->
     <div class="comment-like">
       <a (click)="toggleComments()"

@@ -29,6 +29,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { CommentThreadComponent } from './components/comment-thread/comment-thread.component';
 import { UserLinkComponent } from './components/user-link/user-link.component';
 import { ControlMessagesComponent } from './components/control-messages/control-messages.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 
 @NgModule({
@@ -65,7 +66,7 @@ import { ControlMessagesComponent } from './components/control-messages/control-
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    
+    YouTubePlayerModule,
     HttpClientModule,
     FormsModule
   ],

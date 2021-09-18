@@ -1,5 +1,6 @@
 import { parseHostBindings } from '@angular/compiler';
 import { Component, Input, OnInit, Output } from '@angular/core';
+import getVideoId from 'get-video-id';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Like } from 'src/app/models/Like';
@@ -24,6 +25,8 @@ export class PostComponent implements OnInit {
   isLiked:boolean = false;
   toggleCommentsText: string = 'view';
   showComments: boolean = false;
+  videoId: string = '';
+  apiLoaded = false;
 
   /* postList: Array<Post> = [];
   listTemp: Array<Post> = [];
@@ -33,7 +36,6 @@ export class PostComponent implements OnInit {
     post: {postId: this.postLike},
     user: {userId: this.userLike}
   }
-
 
   @Input()
   post: Post = {
@@ -81,8 +83,19 @@ export class PostComponent implements OnInit {
       this.hasPic = true;
     }
 
-    if(this.post.postYouUrl != null){
+    if (!this.apiLoaded) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.body.appendChild(tag);
+      this.apiLoaded = true;
+    }
+
+    if(this.post.postYouUrl !== ''){
       this.hasLink = true;
+      console.log(this.post.postYouUrl);
+      this.videoId = getVideoId(this.post.postYouUrl).id;
+      console.log(this.videoId);
+
     }
 
     this.likeService.checkLike(this.post.postId, this.userLike)
