@@ -10,7 +10,7 @@ export class CommentService {
 
   constructor(private httpCli: HttpClient) { }
 
-  createComment(comment: Comment) {
+  createComment(comment: any) {
     return this.httpCli.post(`http://localhost:9000/api/comment`, comment, {withCredentials: true});
   }
 

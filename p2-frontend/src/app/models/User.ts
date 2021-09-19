@@ -2,7 +2,7 @@
 // Created file so folder is tracked in git
 export class User {
   userId: number|undefined;
-  username!: string;
+  username!: string|undefined;
   password: string|undefined;
   email: string|undefined;
   firstName: string|undefined;
