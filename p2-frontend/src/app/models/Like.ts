@@ -5,7 +5,7 @@ import { Post } from "./Post";
 import { User } from "./User";
 
 export class Like {
-  likeId: number|undefined;
+  likeId?: number|undefined;
   post: { postId: number | undefined; } | undefined;
   user: { userId: number | undefined; } | undefined;
 }
