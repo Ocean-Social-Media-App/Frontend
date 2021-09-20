@@ -11,10 +11,10 @@ export class CommentService {
   constructor(private httpCli: HttpClient) { }
 
   createComment(comment: any) {
-    return this.httpCli.post(`http://localhost:9000/api/comment`, comment, {withCredentials: true});
+    return this.httpCli.post(`ec2-54-167-107-251.compute-1.amazonaws.com/api/comment`, comment, {withCredentials: true});
   }
 
   getCommentsByPostId(postId:number): Observable<any>{
-    return this.httpCli.get(`http://localhost:9000/api/comment/post/${postId}`, {withCredentials: true})
+    return this.httpCli.get(`ec2-54-167-107-251.compute-1.amazonaws.com/api/comment/post/${postId}`, {withCredentials: true})
   }
 }
