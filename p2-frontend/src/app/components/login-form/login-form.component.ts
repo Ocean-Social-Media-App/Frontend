@@ -35,18 +35,21 @@ export class LoginFormComponent {
     }
 
     this.userService.login(this.loginForm.value)
-      .pipe(first())
       .subscribe(
         data => {
           console.log("Login successful");
           console.log(data);
 
-          let user = data.data;
-          console.log(user);
+          if (data.success) {
+            let user = data.data;
+            console.log(user);
 
-          sessionStorage.setItem('userObj', JSON.stringify(user));
+            sessionStorage.setItem('userObj', JSON.stringify(user));
 
-          this.router.navigateByUrl('userFeed');
+            this.router.navigateByUrl('userFeed');
+          } else {
+            alert("Incorrect username or password");
+          }
         },
         error => {
           console.log('Login failed');
@@ -56,9 +59,11 @@ export class LoginFormComponent {
   }
 
   @Output() toggle: EventEmitter<any> = new EventEmitter();
-  toggleForm(): void {
-    this.toggle.emit("signup");
+  toggleForm(data: string): void {
+    this.toggle.emit(data);
   }
+
+  sendPasswordEmail(event: any) {}
 
   get username() { return this.loginForm.get('username') }
   get password() { return this.loginForm.get('password') }

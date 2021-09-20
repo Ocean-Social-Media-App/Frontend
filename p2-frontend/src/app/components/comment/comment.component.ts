@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
-  
+
   @Output()
   firstName: string =  "";
   username: string = "";
@@ -21,7 +21,6 @@ export class CommentComponent implements OnInit {
   userObj :any = {}
   postId:number = 0;
   userId:number = 0;
-  
 
   @Input()
   comment: Comment = {
@@ -56,15 +55,12 @@ export class CommentComponent implements OnInit {
       proPicUrl: undefined
     }
   }
-  
-
-
 
   constructor(private commentService: CommentService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.userId =  JSON.parse(sessionStorage.getItem('userObj')!).userId
- 
+
     this.userService.getUserById(this.userId).pipe(first()).subscribe(
       data =>{
         console.log(data);

@@ -27,7 +27,7 @@ describe('UserService', () => {
       expect(result).toEqual(new User);
     })
 
-    const req = httpMock.expectOne('http://localhost:9000/api/user', 'get all users');
+    const req = httpMock.expectOne('http://54.167.107.251:9000/api/user', 'get all users');
     expect(req.request.method).toBe('GET');
 
     req.flush(new User);
@@ -41,7 +41,7 @@ describe('UserService', () => {
       expect(result).toEqual(new User);
     })
 
-    const req = httpMock.expectOne('http://localhost:9000/api/user/1', 'get user by id 1');
+    const req = httpMock.expectOne('http://54.167.107.251:9000/api/user/1', 'get user by id 1');
     expect(req.request.method).toBe('GET');
 
     req.flush(new User);
@@ -54,7 +54,7 @@ describe('UserService', () => {
       expect(result).toEqual(new User());
     })
 
-    const req = httpMock.expectOne('http://localhost:9000/api/user', 'regiter new user');
+    const req = httpMock.expectOne('http://54.167.107.251:9000/api/user', 'regiter new user');
     expect(req.request.method).toBe('POST');
 
     req.flush(new User());
@@ -67,7 +67,7 @@ describe('UserService', () => {
     service.updateProfile(new User).subscribe((result: User) => {
       expect(result).toEqual(new User);
 
-      const req = httpMock.expectOne('http://localhost:9000/api/updateUser', 'update user profile');
+      const req = httpMock.expectOne('http://54.167.107.251:9000/api/updateUser', 'update user profile');
       expect(req.request.method).toBe('PUT');
 
       req.flush(new User);
@@ -80,7 +80,7 @@ describe('UserService', () => {
     service.login(new User()).subscribe((result: User) => {
       expect(result).toEqual(new User());
 
-      const req = httpMock.expectOne('http://localhost:9000/api/login', 'user login');
+      const req = httpMock.expectOne('http://54.167.107.251:9000/api/login', 'user login');
       expect(req.request.method).toBe('POST');
 
       req.flush(new User());
@@ -93,7 +93,7 @@ describe('UserService', () => {
     service.logout().subscribe((result: any) => {
       expect(result).toEqual(null);
 
-      const req = httpMock.expectOne('http://localhost:9000/api/logout', 'user logout');
+      const req = httpMock.expectOne('http://54.167.107.251:9000/api/logout', 'user logout');
       expect(req.request.method).toBe('GET');
 
       req.flush(null);

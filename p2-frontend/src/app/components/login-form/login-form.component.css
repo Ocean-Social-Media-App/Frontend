@@ -9,6 +9,7 @@
 form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2.4rem;
 }
 
@@ -18,6 +19,11 @@ label {
 
 p {
   margin-top: 1.6rem;
+}
+
+.forgot {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .left,
