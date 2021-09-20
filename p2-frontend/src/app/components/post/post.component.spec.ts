@@ -1,5 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { PostComponent } from './post.component';
 
 describe('PostComponent', () => {
@@ -8,6 +9,7 @@ describe('PostComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule, HttpClientTestingModule],
       declarations: [ PostComponent ]
     })
     .compileComponents();
@@ -22,4 +24,10 @@ describe('PostComponent', () => {
   /* it('should create', () => {
     expect(component).toBeTruthy();
   }); */
+
+  /* it('should toggle comments', () => {
+    component.toggleCommentsText == 'view'
+    component.toggleComments()
+    expect(component.toggleCommentsText).toContain('hide')
+  }) */
 });

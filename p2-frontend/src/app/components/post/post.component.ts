@@ -15,6 +15,8 @@ import { PostService } from 'src/app/services/post/post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+  component: {};
+  [x: string]: {};
 
   userLike: number = 0;
   postLike: number = 0;

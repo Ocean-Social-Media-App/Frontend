@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ViewProfileComponent } from './view-profile.component';
 
@@ -8,6 +9,7 @@ describe('ViewProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [ ViewProfileComponent ]
     })
     .compileComponents();
@@ -21,5 +23,13 @@ describe('ViewProfileComponent', () => {
 
  /*  it('should create', () => {
     expect(component).toBeTruthy();
+  }); */
+
+ /*  it('should change update button', () => {
+    component.viewOrUpdate == 'view'
+    component.updateProfile()
+    fixture.detectChanges()
+    expect(component.viewOrUpdate).toContain("update");
+    expect(component.updateLabel).toContain("View Profile")
   }); */
 });

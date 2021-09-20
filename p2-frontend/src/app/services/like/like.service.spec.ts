@@ -49,10 +49,10 @@ describe('LikeService', () => {
 
   it('should return like when likePost called', () => {
     likeService.likePost(new Like()).subscribe((result: Like) => {
-      expect(result).toBe(new Like());
+      expect(result).toEqual(new Like());
     });
 
-    const req = httpMock.expectOne('', 'call to likePost');
+    const req = httpMock.expectOne('http://localhost:9000/api/like', 'call to likePost');
     expect(req.request.method).toBe('POST');
 
     req.flush(new Like());
