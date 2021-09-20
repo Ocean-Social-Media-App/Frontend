@@ -40,12 +40,16 @@ export class LoginFormComponent {
           console.log("Login successful");
           console.log(data);
 
-          let user = data.data;
-          console.log(user);
+          if (data.success) {
+            let user = data.data;
+            console.log(user);
 
-          sessionStorage.setItem('userObj', JSON.stringify(user));
+            sessionStorage.setItem('userObj', JSON.stringify(user));
 
-          this.router.navigateByUrl('userFeed');
+            this.router.navigateByUrl('userFeed');
+          } else {
+            alert("Incorrect username or password");
+          }
         },
         error => {
           console.log('Login failed');
