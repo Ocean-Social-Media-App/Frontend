@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-index',
@@ -10,11 +12,11 @@ export class IndexComponent implements OnInit {
 
   current: string = 'login';
 
-  /* label for button this is the var that goes in quotation in html */
-/*   label: string = "button label";
-  testString : string = "you pushed the button!" */
+  forgotForm = this.fb.group({
+    username: [null, Validators.required]
+  });
 
-  constructor(private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
     if (sessionStorage.getItem('userId') != null) {
@@ -22,14 +24,31 @@ export class IndexComponent implements OnInit {
     }
   }
 
-  /* example on calling function in parent component function can be called anything */
-  /* functionCall(event: any){
-    console.log('functionCall', event)
-    alert(this.testString)
-  } */
+  sendPasswordEmail(event: any) {
+    if (this.forgotForm.invalid) {
+      return;
+    }
+
+    this.userService.forgotPassword(this.forgotForm.get('username').value)
+      .subscribe(
+        data => {
+          console.log("Forgot email password sent");
+          console.log(data);
+          alert('A new password has been sent to your email');
+          this.current = 'login';
+        },
+        error => {
+          console.log("error sending password reset");
+        }
+      );
+    }
 
   toggle(data: string) {
     this.current = data;
+  }
+
+  backToLogin() {
+    this.current = 'login';
   }
 
 }

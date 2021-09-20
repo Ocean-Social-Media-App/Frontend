@@ -6,7 +6,7 @@
     </div>
     <div class="signup">
       <p>Don't have an account?</p>
-      <a (click)="toggleForm()">register here</a>
+      <a (click)="toggleForm('signup')">register here</a>
     </div>
   </div>
   <div class="right">
@@ -64,7 +64,7 @@
         ></app-buttons>
       </div>
 
-      <a class="forgot">Forgot password?</a>
+      <a class="forgot" (click)="toggleForm('forgot')">Forgot password?</a>
     </form>
   </div>
 </div>

@@ -59,9 +59,11 @@ export class LoginFormComponent {
   }
 
   @Output() toggle: EventEmitter<any> = new EventEmitter();
-  toggleForm(): void {
-    this.toggle.emit("signup");
+  toggleForm(data: string): void {
+    this.toggle.emit(data);
   }
+
+  sendPasswordEmail(event: any) {}
 
   get username() { return this.loginForm.get('username') }
   get password() { return this.loginForm.get('password') }
