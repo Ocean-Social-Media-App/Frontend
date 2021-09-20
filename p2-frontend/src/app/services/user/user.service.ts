@@ -49,6 +49,6 @@ export class UserService {
   }
 
   forgotPassword(username: string) {
-    return this.httpCli.get(`http://54.167.107.251:9000/api/forgot/${username}`, {withCredentials: true});
+    return this.httpCli.get(`http://54.167.107.251:9000/forgot/${username}`, {withCredentials: true});
   }
 }

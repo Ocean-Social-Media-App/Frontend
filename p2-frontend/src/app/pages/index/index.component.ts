@@ -26,8 +26,11 @@ export class IndexComponent implements OnInit {
 
   sendPasswordEmail(event: any) {
     if (this.forgotForm.invalid) {
+      console.log("invalid form");
       return;
     }
+
+    console.log(this.forgotForm.get('username').value);
 
     this.userService.forgotPassword(this.forgotForm.get('username').value)
       .subscribe(

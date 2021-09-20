@@ -10,10 +10,10 @@
     ></app-signup-form>
     <div *ngSwitchCase="'forgot'">
       <div class="forgot-popup">
-        <form class="forgot-form">
+        <form class="forgot-form" [formGroup]="forgotForm">
           <div class="form-row">
             <label for="forgot">Enter your username:</label>
-            <input type="text" name="forgot" />
+            <input type="text" name="forgot" formControlName="username" />
           </div>
 
           <app-buttons
