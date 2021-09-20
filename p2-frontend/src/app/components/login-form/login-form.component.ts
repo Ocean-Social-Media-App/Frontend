@@ -35,7 +35,6 @@ export class LoginFormComponent {
     }
 
     this.userService.login(this.loginForm.value)
-      .pipe(first())
       .subscribe(
         data => {
           console.log("Login successful");
