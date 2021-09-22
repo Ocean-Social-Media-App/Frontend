@@ -48,7 +48,7 @@ export class UserService {
     return this.httpCli.post(`http://54.167.107.251:9000/api/image`, formData, {withCredentials: true});
   }
 
-  forgotPassword(username: string) {
-    return this.httpCli.get(`http://54.167.107.251:9000/api/forgot/${username}`, {withCredentials: true});
+  forgotPassword(username: string): Observable<any> {
+    return this.httpCli.get(`http://localhost:9000/api/forgot/${username}`, {withCredentials: true});
   }
 }
