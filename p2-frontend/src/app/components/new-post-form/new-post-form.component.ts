@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -62,7 +62,7 @@ export class NewPostFormComponent implements OnInit{
         data => {
           console.log("Successfully created post");
           console.log(data);
-          this.router.navigateByUrl('userFeed');
+          this.router.navigateByUrl(this.router.url);
         },
         error => {
           console.log("Failed to create post");

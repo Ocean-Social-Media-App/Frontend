@@ -1,9 +1,9 @@
-.searchList {
-    /* position: fixed;
+/* .searchList {
+    position: fixed;
     left: 100px;
-    top: 150px; */
+    top: 150px;
 
-  }
+  } */
   .searchList-cont{
     position: absolute;
     z-index: 10;
