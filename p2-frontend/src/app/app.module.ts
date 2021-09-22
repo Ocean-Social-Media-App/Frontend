@@ -17,7 +17,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedComponent } from './components/feed/feed.component';
 import { NewPostFormComponent } from './components/new-post-form/new-post-form.component';
 import { NewCommentFormComponent } from './components/new-comment-form/new-comment-form.component';
-import { ProfilePicSmComponent } from './components/profile-pic-sm/profile-pic-sm.component';
 import { NewProfileFormComponent } from './components/new-profile-form/new-profile-form.component';
 import { TestPageComponent } from './pages/test-page/test-page.component';
 import { PostComponent } from './components/post/post.component';
@@ -48,7 +47,6 @@ import { SearchComponent } from './components/search/search.component';
     FeedComponent,
     NewPostFormComponent,
     NewCommentFormComponent,
-    ProfilePicSmComponent,
     PostComponent,
     UpdatePostFormComponent,
     PostComponent,

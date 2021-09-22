@@ -11,6 +11,9 @@ export class ProfilePicComponent implements OnInit {
   profilePic: string = '';
 
   @Input()
+  passed:string;
+
+  @Input()
   imgSrc: string;
 
   constructor() { }
