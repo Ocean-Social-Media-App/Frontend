@@ -8,6 +8,8 @@ import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
 import { LikeService } from 'src/app/services/like/like.service';
 import { PostService } from 'src/app/services/post/post.service';
+import {NgbModal, ModalDismissReasons}
+      from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-post',
@@ -29,6 +31,9 @@ export class PostComponent implements OnInit {
   showComments: boolean = false;
   videoId: string = '';
   apiLoaded = false;
+  totalLikes:number;
+  likesInnerText: string = "";
+  likesOnPost: any = [];
 
   /* postList: Array<Post> = [];
   listTemp: Array<Post> = [];
@@ -75,7 +80,7 @@ export class PostComponent implements OnInit {
   display: boolean = false;
   likeId!: 0;
 
-  constructor(private postServ: PostService, private likeService: LikeService) { }
+  constructor(private postServ: PostService, private likeService: LikeService, private modalService: NgbModal,) { }
 
   ngOnInit(): void {
 
@@ -113,9 +118,24 @@ export class PostComponent implements OnInit {
         }
       )
 
+        this.getLikes();
+
     /* this.postServ.getAllPosts().subscribe(posts => {
       this.postList = posts.results;
     }) */
+  }
+
+  getLikes(){
+    this.likeService.getAllLikesByPost(this.post.postId).subscribe(
+      likeData =>{
+         if(likeData.success){
+            this.totalLikes = likeData.data.length
+            this.likesInnerText = this.totalLikes == 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
+            this.likesOnPost = likeData.data;
+            console.log(likeData);
+        } 
+      }
+    )
   }
 
 
@@ -156,6 +176,7 @@ export class PostComponent implements OnInit {
                 this.isLiked = false;
                 console.log("Successfully unliked post")
                 console.log(data)
+                this.getLikes();
               },
               error => {
                 console.log("Failed to unlike post")
@@ -175,6 +196,7 @@ export class PostComponent implements OnInit {
                   this.isLiked = true;
                   console.log("Successfully liked")
                   console.log(data)
+                  this.getLikes();
                 },
                 error => {
                   console.log("Failed to like post")
@@ -184,9 +206,32 @@ export class PostComponent implements OnInit {
           }
         }
       )
+
   }
 
   receiveCommentCount(count: number) {
     this.commentCount = count;
   }
+
+  open(content: any) {
+    
+    this.modalService.open(content,
+   {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult =
+         `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
 }

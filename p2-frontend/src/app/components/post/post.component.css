@@ -30,14 +30,14 @@
 }
 
 .user {
-  display: flex;
+  display: block;
   flex-direction: row;
   align-items: flex-end;
   gap: 1.6rem;
 }
 
 .name {
-  margin: 0;
+  margin-bottom: 10%;
   font-weight: bold;
   font-size: 2.4rem;
   color: #14142b;
@@ -56,7 +56,7 @@
 }
 
 .comment-like {
-  display: flex;
+  display: block;
   gap: 3.2rem;
   align-items: flex-end;
   justify-content: space-between;
@@ -160,4 +160,20 @@ img {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.icons{
+  display: flex;
+  gap: 3.2rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.like-count:hover{
+cursor: pointer;
+}
+
+.like-count{
+  color: #1cc8ee;
 }
