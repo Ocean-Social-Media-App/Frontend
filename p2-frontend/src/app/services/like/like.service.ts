@@ -11,6 +11,7 @@ export class LikeService {
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
   likePost(like: Like){
+
     return this.httpCli.post(`${this.utilityService.getServerDomain}/api/like`, like, {withCredentials: true});
   }
 
@@ -20,5 +21,6 @@ export class LikeService {
 
   checkLike(postId : number, userId : number){
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain}/api/like/${postId}/${userId}`, {withCredentials: true})
+
   }
 }
