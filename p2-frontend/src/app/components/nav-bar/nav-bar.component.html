@@ -1,23 +1,8 @@
 <div class="sidebar-container">
   <div class="logo">Ocean</div>
   <ul class="">
-    <!-- <li class="header">Search</li> -->
-    <li class="searchBar">
-      <div class="search">
-        <button type="submit" class="btn searchBtn">
-          <i class="fa fa-search"></i>
-        </button>
-        <input
-          type="text"
-          class="bar"
-          placeholder="Search..."
-          [(ngModel)]="searchInput"
-        />
-        <div class="searchList" *ngFor="let user of listTemp">
-          <app-user-link [user]="user"></app-user-link>
-        </div>
-      </div>
-    </li>
+    <!-- search bar component here -->
+    <app-search></app-search>
     <li>
       <a (click)="goHome()">
         <i class="fa fa-home" aria-hidden="true" (click)="goHome()"></i> Home

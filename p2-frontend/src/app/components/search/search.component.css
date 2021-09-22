@@ -1,0 +1,40 @@
+.searchList {
+    position: absolute;
+    z-index: 9999;
+  }
+
+  .search {
+    display: flex;
+  }
+  
+  .searchBar {
+    display: flex;
+  }
+  input.bar {
+    width: 20rem;
+    background-color: #eff0f6;
+    border-radius: 16px;
+    border: 2px solid transparent;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.6rem;
+    padding: 0.8rem;
+  }
+  
+  .bar:hover {
+    border: 2px solid #5f2eea;
+  }
+  
+  .bar:focus {
+    border: 2px solid #5f2eea;
+    background-color: white;
+  }
+  
+  .searchBtn {
+    color: #1a1a1a;
+    font-size: 15px;
+    background: none;
+    margin: 2px;
+    padding: 2px;
+    text-align: center;
+  }
