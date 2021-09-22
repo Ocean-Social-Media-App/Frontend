@@ -1,5 +1,6 @@
 import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/User';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-search',
@@ -21,18 +22,29 @@ export class SearchComponent implements OnInit, DoCheck{
     proPicUrl: undefined
   }
 
+  userId: number;
   searchInput:string= "";
   userList: Array<any> = []; 
   listTemp: Array<User> = [];
   
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userId = JSON.parse(sessionStorage.getItem('userObj')!).userId;
+
+    this.userService.getAllUsers().subscribe(users => {
+     console.log(users)
+      this.userList = users.data;
+      console.log(this.userList)
+    })
   }
 
   ngDoCheck(): void {
     if(this.searchInput != "" ){
       this.listTemp = this.userList.filter(user => user.username.startsWith(this.searchInput))
+      console.log(this.listTemp)
+    }else{
+      this.listTemp = []
       console.log(this.listTemp)
     }
     
