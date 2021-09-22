@@ -2,7 +2,7 @@
   <div class="top">
     <!-- POST IMAGE OR VIDEO -->
     <div class="post-media">
-      <div *ngIf="hasPic">
+      <div *ngIf="hasPic" class="image-container">
         <img class="post-image" [src]="post.postPicUrl" />
       </div>
       <div *ngIf="hasLink">

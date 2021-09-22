@@ -63,6 +63,7 @@ export class NewPostFormComponent implements OnInit{
           console.log("Successfully created post");
           console.log(data);
           this.router.navigateByUrl(this.router.url);
+          this.postText.reset();
         },
         error => {
           console.log("Failed to create post");
