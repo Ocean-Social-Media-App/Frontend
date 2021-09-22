@@ -1,10 +1,17 @@
 .searchList {
+    /* position: fixed;
+    left: 100px;
+    top: 150px; */
+
+  }
+  .searchList-cont{
     position: absolute;
-    z-index: 9999;
+    z-index: 10;
   }
 
   .search {
     display: flex;
+    flex-direction: column;
   }
   
   .searchBar {

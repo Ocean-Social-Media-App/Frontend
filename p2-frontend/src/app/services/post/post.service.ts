@@ -12,22 +12,22 @@ export class PostService {
 
   createPost(post: Post) {
     // userId is hard coded for now, needs to be replaced with userId from sessionStorage
-    return this.httpCli.post(`${this.utilityService.getServerDomain}/api/post`, post, {withCredentials: true})
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/post`, post, {withCredentials: true})
   }
 
   getAllPosts() {
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain}/api/feed/0`,  {withCredentials: true} )
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/0`,  {withCredentials: true} )
   }
 
   getPostsByUserId(userId: number){
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain}/api/post/userId/${userId}`, {withCredentials: true})
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/post/userId/${userId}`, {withCredentials: true})
   }
 
   getAllPostsForOneUser(id: number) {
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain}/api/post/userId/${id}`, {withCredentials: true})
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/post/userId/${id}`, {withCredentials: true})
   }
 
   getNextPageOfPosts(pageCount: number) {
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain}/api/feed/${pageCount}`, {withCredentials: true})
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/${pageCount}`, {withCredentials: true})
   }
 }
