@@ -2,6 +2,8 @@
   <div [ngSwitch]="current">
     <div id="profile-image-form" *ngSwitchCase="'image'">
       <h2>Upload a profile image:</h2>
+      <div class="error" *ngIf="warn">You must choose an image first.</div>
+      <img id="profile-img" [src]="displayUrl" />
       <form [formGroup]="imageForm" enctype="multipart/form-data">
         <div class="form-row">
           <button id="uploadBtn" type="button" (click)="fileInput.click()">
@@ -18,13 +20,22 @@
           </button>
         </div>
 
-        <app-buttons
-          class="submitBtn"
-          id="submitImgBtn"
-          (onClick)="switchForm($event)"
-          [label]="uploadLabel"
-        >
-        </app-buttons>
+        <div class="button-row">
+          <app-buttons
+            class="submitBtn"
+            id="submitImgBtn"
+            (onClick)="checkImageSwitchForm($event)"
+            [label]="uploadLabel"
+          >
+          </app-buttons>
+          <app-buttons
+            class="submitBtn"
+            id="submitImgBtn"
+            (onClick)="switchForm($event)"
+            label="Skip"
+          >
+          </app-buttons>
+        </div>
       </form>
     </div>
 
