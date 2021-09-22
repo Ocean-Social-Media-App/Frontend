@@ -48,4 +48,8 @@ export class UserService {
   addPostImage(formData: FormData): Observable<any> {
     return this.httpCli.post(`${this.utilityService.getServerDomain}/api/image`, formData, {withCredentials: true});
   }
+
+  forgotPassword(username: string): Observable<any> {
+    return this.httpCli.get(`http://localhost:9000/api/forgot/${username}`, {withCredentials: true});
+  }
 }
