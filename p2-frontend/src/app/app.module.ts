@@ -33,6 +33,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { SearchComponent } from './components/search/search.component';
 import { ForgotEmailComponent } from './components/forgot-email/forgot-email.component';
 import { PasswordResetFormComponent } from './components/password-reset-form/password-reset-form.component';
+import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { PasswordResetFormComponent } from './components/password-reset-form/pas
     ControlMessagesComponent,
     SearchComponent,
     ForgotEmailComponent,
-    PasswordResetFormComponent
+    PasswordResetFormComponent,
+    PasswordResetComponent
   ],
   imports: [
     BrowserModule,
