@@ -13,7 +13,18 @@
 #profile-details-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1.6rem;
+}
+
+#profile-img {
+  width: 250px;
+  border-radius: 1.6rem;
+}
+
+.error {
+  color: #ed2e7e;
+  height: 1.6rem;
 }
 
 p {
@@ -36,6 +47,11 @@ form {
 .form-row {
   display: flex;
   flex-direction: column;
+  gap: 0.8rem;
+}
+
+.button-row {
+  display: flex;
   gap: 0.8rem;
 }
 
