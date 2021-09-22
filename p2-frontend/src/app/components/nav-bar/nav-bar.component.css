@@ -1,5 +1,5 @@
 :host {
-  position: absolute;
+  position: fixed;
 }
 
 .sidebar-container {
