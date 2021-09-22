@@ -15,7 +15,8 @@ export class NewProfileFormComponent implements OnInit {
   submitLabel: string = 'Submit';
   uploadLabel: string = 'Upload';
   current: string = 'image';
-  imageUrl: string = '';
+  imageUrl: string = 'assets/default.jpg';
+
 
   // variables to be set from session storage
   userObj: any = {};
@@ -112,6 +113,7 @@ export class NewProfileFormComponent implements OnInit {
           }
         )
     } else {
+      this.userObj["proPicUrl"] = this.imageUrl;
       this.createProfile();
     }
   }
