@@ -52,8 +52,4 @@ export class UserService {
   forgotPassword(username: string) {
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/forgot/${username}`, {withCredentials: true});
   }
-
-  forgotPassword(username: string): Observable<any> {
-    return this.httpCli.get(`http://localhost:9000/api/forgot/${username}`, {withCredentials: true});
-  }
 }
