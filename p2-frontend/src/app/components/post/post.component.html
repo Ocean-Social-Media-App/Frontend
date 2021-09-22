@@ -37,8 +37,12 @@
       </youtube-player>
     </div>
 
+
+
     <!-- COMMENT & LIKE -->
     <div class="comment-like">
+      <div class = "icons">
+      <div class = "like-count" (click) = "open(content)"> {{likesInnerText}}</div>
       <a (click)="toggleComments()"
         >{{ toggleCommentsText }} {{ commentCount }} comments</a
       >
@@ -55,8 +59,10 @@
           [class.btnColor]="isLiked"
         ></i>
       </div>
+      </div>
     </div>
   </div>
+
 
   <!-- COMMENT COMPONENT -->
   <app-comment-thread
@@ -79,3 +85,23 @@
     <app-new-comment-form [post]="post.postId"></app-new-comment-form>
   </div>
 </div>
+
+
+<!-- Modal to display who liked the post -->
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Likes by:</h4>
+      <button type="button" class="btn btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">X</span>
+      </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group" *ngFor="let receivedLike of likesOnPost">
+      <div>
+        <a class="name text-decoration-none pe-auto" role="button" data-bs-toggle="button" title="View Profile">
+      {{receivedLike.user.firstName | titlecase }}</a>
+    </div>
+  </div>
+  </div>
+</ng-template>
