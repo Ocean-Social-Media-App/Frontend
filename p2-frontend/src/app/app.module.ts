@@ -32,6 +32,7 @@ import { ControlMessagesComponent } from './components/control-messages/control-
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { SearchComponent } from './components/search/search.component';
 import { ForgotEmailComponent } from './components/forgot-email/forgot-email.component';
+import { PasswordResetFormComponent } from './components/password-reset-form/password-reset-form.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { ForgotEmailComponent } from './components/forgot-email/forgot-email.com
     UserLinkComponent,
     ControlMessagesComponent,
     SearchComponent,
-    ForgotEmailComponent
+    ForgotEmailComponent,
+    PasswordResetFormComponent
   ],
   imports: [
     BrowserModule,
