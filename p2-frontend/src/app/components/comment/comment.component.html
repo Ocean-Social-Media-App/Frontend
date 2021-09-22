@@ -1,6 +1,6 @@
 <div class="comment-container">
   <div class="user-info">
-    <app-profile-pic-sm [imgSrc]="comment.user.proPicUrl"></app-profile-pic-sm>
+    <app-profile-pic [class.img2] = "true" [imgSrc]="comment.user.proPicUrl"></app-profile-pic>
     <div class="user">
       <h4 class="name">{{ comment.user.firstName }}</h4>
       <a class="username" [routerLink]="['/profile-feed', comment.user.userId]"

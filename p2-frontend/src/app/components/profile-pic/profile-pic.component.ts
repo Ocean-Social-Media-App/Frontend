@@ -8,13 +8,12 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class ProfilePicComponent implements OnInit {
 
-  fileToUpload: any;
   profilePic: string = '';
 
   @Input()
-  imgSrc: string|undefined = "";
+  imgSrc: string;
 
-  constructor(private userServ: UserService) { }
+  constructor() { }
 
   ngOnInit(): void {
     //this.getUserData()

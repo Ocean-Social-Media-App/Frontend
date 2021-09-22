@@ -14,7 +14,7 @@
   <div class="bottom">
     <!-- USER INFO -->
     <div class="user-info">
-      <app-profile-pic-sm [imgSrc]="post.user.proPicUrl"></app-profile-pic-sm>
+      <app-profile-pic [class.img2] = "true" [imgSrc]="post.user.proPicUrl"></app-profile-pic>
       <div class="user">
         <h4 class="name">{{ post.user.firstName }}</h4>
         <a class="username" [routerLink]="['/profile-feed', post.user.userId]"

@@ -32,7 +32,7 @@ export class IndexComponent implements OnInit {
 
     console.log(this.forgotForm.get('username').value);
 
-    this.userService.forgotPassword(this.forgotForm.get('username').value)
+   /*  this.userService.forgotPassword(this.forgotForm.get('username').value)
       .subscribe(
         data => {
           console.log("Forgot email password sent");
@@ -43,8 +43,8 @@ export class IndexComponent implements OnInit {
         error => {
           console.log("error sending password reset");
         }
-      );
-    }
+      ); */
+    } 
 
   toggle(data: string) {
     this.current = data;

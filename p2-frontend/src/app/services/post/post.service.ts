@@ -16,7 +16,7 @@ export class PostService {
   }
 
   getAllPosts() {
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain}/api/feed/0`,  {withCredentials: true} )
+    return this.httpCli.get<any>(UtilityService.apiUrl + `/api/feed/0`,  {withCredentials: true} )
   }
 
   getPostsByUserId(userId: number){
