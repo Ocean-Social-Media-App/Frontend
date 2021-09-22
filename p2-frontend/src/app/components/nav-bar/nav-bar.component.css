@@ -1,5 +1,5 @@
 :host {
-  position: fixed;
+  position: absolute;
 }
 
 .sidebar-container {
@@ -17,6 +17,7 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 1.6rem;
   z-index: 1;
+
 }
 
 .logo {

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class UtilityService {
 
   private _serverDomain: string = "http://localhost:9000"
-  public static apiUrl: string = "http://localhost:9000"
+
   constructor() { }
 
   getServerDomain() {
