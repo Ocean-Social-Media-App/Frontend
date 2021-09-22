@@ -17,7 +17,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedComponent } from './components/feed/feed.component';
 import { NewPostFormComponent } from './components/new-post-form/new-post-form.component';
 import { NewCommentFormComponent } from './components/new-comment-form/new-comment-form.component';
-import { ProfilePicSmComponent } from './components/profile-pic-sm/profile-pic-sm.component';
 import { NewProfileFormComponent } from './components/new-profile-form/new-profile-form.component';
 import { TestPageComponent } from './pages/test-page/test-page.component';
 import { PostComponent } from './components/post/post.component';
@@ -28,7 +27,6 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentThreadComponent } from './components/comment-thread/comment-thread.component';
 import { UserLinkComponent } from './components/user-link/user-link.component';
-import { ControlMessagesComponent } from './components/control-messages/control-messages.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { SearchComponent } from './components/search/search.component';
 import { ForgotEmailComponent } from './components/forgot-email/forgot-email.component';
@@ -51,7 +49,6 @@ import { PasswordResetComponent } from './pages/password-reset/password-reset.co
     FeedComponent,
     NewPostFormComponent,
     NewCommentFormComponent,
-    ProfilePicSmComponent,
     PostComponent,
     UpdatePostFormComponent,
     PostComponent,
@@ -63,7 +60,6 @@ import { PasswordResetComponent } from './pages/password-reset/password-reset.co
     CommentComponent,
     CommentThreadComponent,
     UserLinkComponent,
-    ControlMessagesComponent,
     SearchComponent,
     ForgotEmailComponent,
     PasswordResetFormComponent,
