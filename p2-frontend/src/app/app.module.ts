@@ -30,6 +30,7 @@ import { CommentThreadComponent } from './components/comment-thread/comment-thre
 import { UserLinkComponent } from './components/user-link/user-link.component';
 import { ControlMessagesComponent } from './components/control-messages/control-messages.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     CommentComponent,
     CommentThreadComponent,
     UserLinkComponent,
-    ControlMessagesComponent
+    ControlMessagesComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
