@@ -132,7 +132,6 @@ export class PostComponent implements OnInit {
             this.totalLikes = likeData.data.length
             this.likesInnerText = this.totalLikes == 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
             this.likesOnPost = likeData.data;
-            console.log(likeData);
         } 
       }
     )
