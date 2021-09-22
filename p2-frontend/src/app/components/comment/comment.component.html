@@ -3,7 +3,7 @@
     <app-profile-pic-sm [imgSrc]="comment.user.proPicUrl"></app-profile-pic-sm>
     <div class="user">
       <h4 class="name">{{ comment.user.firstName }}</h4>
-      <a class="username" [routerLink]="['/profile-feed', userId]"
+      <a class="username" [routerLink]="['/profile-feed', comment.user.userId]"
         >@{{ comment.user.username }}</a
       >
       <!-- <h4 class="date">Sep 10</h4> -->

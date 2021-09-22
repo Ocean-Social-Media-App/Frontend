@@ -22,4 +22,6 @@ describe('ProfilePicSmComponent', () => {
   /* it('should create', () => {
     expect(component).toBeTruthy();
   }); */
+
+  
 });

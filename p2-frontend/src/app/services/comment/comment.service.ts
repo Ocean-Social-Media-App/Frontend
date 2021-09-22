@@ -19,3 +19,4 @@ export class CommentService {
     return this.httpCli.get(`${this.utilityService.getServerDomain}/api/comment/post/${postId}`, {withCredentials: true})
   }
 }
+

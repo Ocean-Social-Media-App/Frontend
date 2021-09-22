@@ -21,6 +21,5 @@ export class LikeService {
 
   checkLike(postId : number, userId : number){
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain}/api/like/${postId}/${userId}`, {withCredentials: true})
-
   }
 }
