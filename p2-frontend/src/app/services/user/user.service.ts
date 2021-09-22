@@ -49,7 +49,7 @@ export class UserService {
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/image`, formData, {withCredentials: true});
   }
 
-  forgotPassword(username: string) {
+  forgotPassword(username: string): Observable<any> {
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/forgot/${username}`, {withCredentials: true});
   }
 }
