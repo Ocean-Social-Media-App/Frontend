@@ -1,0 +1,11 @@
+# Use official nginx image as the base image
+FROM nginx:latest
+
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy the build output to replace the default nginx contents.
+COPY  ./dist/p2-frontend /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
