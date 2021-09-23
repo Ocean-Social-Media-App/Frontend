@@ -17,7 +17,6 @@ export class CommentService {
 
   getCommentsByPostId(postId:number): Observable<any>{
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/comment/post/${postId}`, {withCredentials: true})
-
   }
 }
 
