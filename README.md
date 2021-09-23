@@ -9,7 +9,7 @@ Social Application to connect with your friends
 
 ### Resource Links:
 * (deployed link to website)
-####Repositories
+#### Repositories
  * Front End - https://github.com/Ocean-Social-Media-App/Frontend.git
  * User Microservice - https://github.com/Ocean-Social-Media-App/UserMicroService.git
  * Feed Microservice - https://github.com/Ocean-Social-Media-App/Feed-Service.git
