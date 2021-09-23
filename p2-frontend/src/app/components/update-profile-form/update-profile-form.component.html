@@ -29,6 +29,19 @@
           type="text"
           formControlName="firstName"
         />
+        <div class="warn">
+          <ng-container>
+            <div
+              class="invalid"
+              *ngIf="
+                firstName.hasError('required') &&
+                (firstName.dirty || firstName.touched)
+              "
+            >
+              Must enter first name
+            </div>
+          </ng-container>
+        </div>
       </div>
       <div class="form-row">
         <label for="lastName">Last Name:</label>
@@ -39,6 +52,19 @@
           type="text"
           formControlName="lastName"
         />
+        <div class="warn">
+          <ng-container>
+            <div
+              class="invalid"
+              *ngIf="
+                lastName.hasError('required') &&
+                (lastName.dirty || lastName.touched)
+              "
+            >
+              Must enter last name
+            </div>
+          </ng-container>
+        </div>
       </div>
     </div>
 
@@ -53,19 +79,28 @@
           type="text"
           formControlName="email"
         />
+        <div class="warn">
+          <ng-container>
+            <div
+              class="invalid"
+              *ngIf="
+                email.hasError('required') && (email.dirty || email.touched)
+              "
+            >
+              Must enter an email address
+            </div>
+            <div
+              *ngIf="email.hasError('email') && (email.dirty || email.touched)"
+            >
+              Email address must be valid
+            </div>
+            <div class="warn" *ngIf="isEmailTaken && !(email.hasError('email') && (email.dirty || email.touched)) && !(email.hasError('required') && (email.dirty || email.touched))">
+              Email already in use
+            </div>
+          </ng-container>
+        </div>
       </div>
-      <!-- USERNAME FIELD -->
-      <div class="form-row">
-        <label for="username">Username:</label>
-        <input
-          id="username"
-          class="text-field"
-          [style.width.px]="180"
-          type="text"
-          formControlName="username"
-        />
       </div>
-    </div>
     <!-- ABOUT ME FIELD -->
     <div class="form-row">
       <label for="aboutMe">Tells us about yourself:</label>
