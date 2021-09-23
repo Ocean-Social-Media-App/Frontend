@@ -2,7 +2,7 @@
   <div class="top">
     <!-- POST IMAGE OR VIDEO -->
     <div class="post-media">
-      <div *ngIf="hasPic">
+      <div *ngIf="hasPic" class="image-container">
         <img class="post-image" [src]="post.postPicUrl" />
       </div>
       <div *ngIf="hasLink">
@@ -80,9 +80,15 @@
   [style.display]="display ? 'block' : 'none'"
 >
   <!-- Modal content -->
-  <div class="modal-content">
+  <div class="mod-cont">
+  <div>
     <span class="close" (click)="exit()">&times;</span>
+  </div>
+
+  <div class="modal-content">
+    
     <app-new-comment-form [post]="post.postId"></app-new-comment-form>
+  </div>
   </div>
 </div>
 
