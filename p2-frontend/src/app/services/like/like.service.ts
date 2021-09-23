@@ -24,6 +24,5 @@ export class LikeService {
 
   getAllLikesByPost(postId: number){
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/like/${postId}`,{withCredentials: true})
-
   }
 }
