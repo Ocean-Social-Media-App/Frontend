@@ -4,5 +4,6 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  /* switch to vh eventually, and fix page styles */
   height: 100%;
 }

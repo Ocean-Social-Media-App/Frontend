@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit, DoCheck, OnChanges {
+export class NavBarComponent implements OnInit, OnChanges {
 
   userId!: number;
   _isInNav : boolean = true;
@@ -23,16 +23,9 @@ export class NavBarComponent implements OnInit, DoCheck, OnChanges {
   listTemp: Array<User> = [];
 
  
-  searchInput: string = "";
 
   constructor(private userService: UserService, private router: Router) { }
-  ngDoCheck(): void {
-    if(this.searchInput != "" ){
-      this.listTemp = this.userList.filter(user => user.username.startsWith(this.searchInput))
-      console.log(this.listTemp)
-    }
-    
-  }
+  
  
   ngOnChanges(): void {
     
@@ -42,11 +35,11 @@ export class NavBarComponent implements OnInit, DoCheck, OnChanges {
   ngOnInit(): void {
     this.userId = JSON.parse(sessionStorage.getItem('userObj')!).userId;
 
-    this.userService.getAllUsers().subscribe(users => {
+    /* this.userService.getAllUsers().subscribe(users => {
      console.log(users)
       this.userList = users.data;
       console.log(this.userList)
-    })
+    }) */
   }
 
   logout(event: any) {

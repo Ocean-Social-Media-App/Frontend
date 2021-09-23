@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ControlMessagesComponent } from './control-messages.component';
+import { ForgotEmailComponent } from './forgot-email.component';
 
-describe('ControlMessagesComponent', () => {
-  let component: ControlMessagesComponent;
-  let fixture: ComponentFixture<ControlMessagesComponent>;
+describe('ForgotEmailComponent', () => {
+  let component: ForgotEmailComponent;
+  let fixture: ComponentFixture<ForgotEmailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ControlMessagesComponent ]
+      declarations: [ ForgotEmailComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ControlMessagesComponent);
+    fixture = TestBed.createComponent(ForgotEmailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

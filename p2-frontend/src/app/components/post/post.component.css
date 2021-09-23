@@ -30,14 +30,14 @@
 }
 
 .user {
-  display: flex;
+  display: block;
   flex-direction: row;
   align-items: flex-end;
   gap: 1.6rem;
 }
 
 .name {
-  margin: 0;
+  margin-bottom: 10%;
   font-weight: bold;
   font-size: 2.4rem;
   color: #14142b;
@@ -56,7 +56,7 @@
 }
 
 .comment-like {
-  display: flex;
+  display: block;
   gap: 3.2rem;
   align-items: flex-end;
   justify-content: space-between;
@@ -136,23 +136,29 @@ img {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  
 }
 
 /* Modal Content */
 .modal-content {
-  background-color: #fefefe;
   margin: auto;
-  padding: 20px;
   border: 1px solid #888;
   width: max-content;
+  border-radius: 10px;
 }
-
+.mod-cont{
+  display:flex;
+  flex-direction: column;
+}
 /* The Close Button */
 .close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
+  color: #5f2eea;
+  float: left;
+  font-size: 35px;
   font-weight: bold;
+  padding: 20px;
+  margin-left: 70%;
+  /* background-color: transparent; */
 }
 
 .close:hover,
@@ -160,4 +166,20 @@ img {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.icons{
+  display: flex;
+  gap: 3.2rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.like-count:hover{
+cursor: pointer;
+}
+
+.like-count{
+  color: #1cc8ee;
 }
