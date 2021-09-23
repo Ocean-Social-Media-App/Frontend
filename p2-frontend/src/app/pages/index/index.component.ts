@@ -24,28 +24,6 @@ export class IndexComponent implements OnInit {
     }
   }
 
-  sendPasswordEmail(event: any) {
-    if (this.forgotForm.invalid) {
-      console.log("invalid form");
-      return;
-    }
-
-    console.log(this.forgotForm.get('username').value);
-
-    this.userService.forgotPassword(this.forgotForm.get('username').value)
-      .subscribe(
-        data => {
-          console.log("Forgot email password sent");
-          console.log(data);
-          alert('A new password has been sent to your email');
-          this.current = 'login';
-        },
-        error => {
-          console.log("error sending password reset");
-        }
-      );
-    }
-
   toggle(data: string) {
     this.current = data;
   }

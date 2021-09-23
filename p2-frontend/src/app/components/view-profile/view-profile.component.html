@@ -6,7 +6,7 @@
     <div class="view-profile" *ngSwitchCase="'view'">
       <div class="profile-body">
         <div class="profile-pic">
-          <app-profile-pic [imgSrc]="proPicUrl"></app-profile-pic>
+          <app-profile-pic [passed] = "'img'" [imgSrc]="proPicUrl"></app-profile-pic>
         </div>
         <div class="user-name">
           <h2>{{ firstName }} {{ lastName }}</h2>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { CommentService } from 'src/app/services/comment/comment.service';
 
@@ -24,7 +25,7 @@ export class NewCommentFormComponent implements OnInit {
 
   })
 
-  constructor(private fb: FormBuilder, private commentService: CommentService) { }
+  constructor(private fb: FormBuilder, private commentService: CommentService, private router: Router) { }
   ngOnInit() {
     this.user =  JSON.parse(sessionStorage.getItem('userObj')!).userId
 
@@ -50,7 +51,7 @@ export class NewCommentFormComponent implements OnInit {
         data => {
           console.log("Successfully created comment");
           console.log(data);
-          window.location.reload();
+          this.router.navigateByUrl(this.router.url)
 
         },
         error => {

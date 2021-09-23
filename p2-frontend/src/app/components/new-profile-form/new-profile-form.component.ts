@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StringNullableChain } from 'lodash';
 import { first } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user/user.service';
 import { DateValidator } from 'src/app/validators/date-validator';
@@ -16,13 +17,15 @@ export class NewProfileFormComponent implements OnInit {
   uploadLabel: string = 'Upload';
   current: string = 'image';
   imageUrl: string = 'assets/default.jpg';
-
+  addedPic: boolean = false;
+  displayUrl: any;
+  warn: boolean = false;
 
   // variables to be set from session storage
   userObj: any = {};
 
   imageForm = this.fb.group({
-    image: [null, Validators.required]
+    image: [null]
   })
 
   newProfileForm = this.fb.group({
@@ -46,6 +49,14 @@ export class NewProfileFormComponent implements OnInit {
   onFileInput(event: any) {
     if (event.currentTarget.files.length > 0) {
       const file = event.currentTarget.files[0];
+
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = (_event) => {
+        this.displayUrl = reader.result;
+      }
+
       this.imageForm.get('image')?.setValue(file, {emitModelToViewChange: false});
       console.log(file);
     }
@@ -53,6 +64,14 @@ export class NewProfileFormComponent implements OnInit {
 
   switchForm(event: any) {
     this.current = "details";
+  }
+
+  checkImageSwitchForm(event: any) {
+    if (this.imageForm.get('image').value != null) {
+      this.current = "details";
+    } else {
+      this.warn = true;
+    }
   }
 
   createProfile() {
