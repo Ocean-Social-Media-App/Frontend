@@ -29,6 +29,5 @@ export class PostService {
 
   getNextPageOfPosts(pageCount: number) {
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/${pageCount}`, {withCredentials: true})
-
   }
 }
