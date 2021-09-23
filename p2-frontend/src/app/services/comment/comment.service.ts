@@ -12,11 +12,11 @@ export class CommentService {
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
   createComment(comment: Comment) {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/comment`, comment, {withCredentials: true});
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/comment`, comment, {withCredentials: true});
   }
 
   getCommentsByPostId(postId:number): Observable<any>{
-    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/comment/post/${postId}`, {withCredentials: true})
+    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/feed/comment/post/${postId}`, {withCredentials: true})
   }
 }
 

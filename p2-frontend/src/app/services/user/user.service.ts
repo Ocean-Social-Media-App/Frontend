@@ -14,31 +14,31 @@ export class UserService {
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
   getAllUsers():Observable<any> {
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/user`, {withCredentials: true})
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/user/user`, {withCredentials: true})
   }
 
   getUserById(id: number): Observable<any> {
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/user/${id}`, {withCredentials: true})
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/user/user/${id}`, {withCredentials: true})
   }
 
   register(user: User): Observable<any> {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user`, user, {withCredentials: true});
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/user`, user, {withCredentials: true});
   }
 
   createProfile(user: User): Observable<any> {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/createProfile`, user, {withCredentials: true});
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/createProfile`, user, {withCredentials: true});
   }
 
   updateProfile(user: User): Observable<any> {
-    return this.httpCli.put(`${this.utilityService.getServerDomain()}/api/updateUser`, user);
+    return this.httpCli.put(`${this.utilityService.getServerDomain()}/api/user/updateUser`, user);
   }
 
   login(user: User): Observable<any> {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/login`, user, {withCredentials: true});
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/login`, user, {withCredentials: true});
   }
 
   logout() {
-    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/logout`, {withCredentials: true});
+    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/logout`, {withCredentials: true});
   }
 
   addProfileImage(formData: FormData): Observable<any> {
