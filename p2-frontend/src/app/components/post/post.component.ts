@@ -1,5 +1,5 @@
 import { parseHostBindings } from '@angular/compiler';
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import getVideoId from 'get-video-id';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
@@ -34,6 +34,9 @@ export class PostComponent implements OnInit {
   totalLikes:number;
   likesInnerText: string = "";
   likesOnPost: any = [];
+
+  @Output()
+  callPageRefresh: EventEmitter<string> = new EventEmitter();
 
   /* postList: Array<Post> = [];
   listTemp: Array<Post> = [];
@@ -136,6 +139,7 @@ export class PostComponent implements OnInit {
       }
     )
   }
+
 
 
   toggleComments() {

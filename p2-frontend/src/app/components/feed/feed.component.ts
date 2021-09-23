@@ -12,7 +12,7 @@ import { PostService } from 'src/app/services/post/post.service';
 export class FeedComponent implements OnInit {
 
   @Input() pageCount: number = 0;
-  userId: number = 0;
+  userId: number = this.route.snapshot.params["id"];
   postList: Array<Post> = [];
   listTemp: Array<Post> = [];
   observer: Subscription = new Subscription;
@@ -27,24 +27,10 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Call the userService getAllUsers endpoint here
     console.log(this.pageCount);
-
-    // if query parameter userId > 0 load all posts for userId, else load all posts
-    this.route.queryParams
-      .subscribe(params => {
-        if (Number(params.userId) > 0) {
-          this.postServ.getAllPostsForOneUser(Number(params.userId))
-        .subscribe(posts => {
-          this.postList = posts.data;
-        })
-        } else {
-          this.postServ.getAllPosts().subscribe(posts => {
-            this.postList = posts.data.content;
-          })
-        }
-      })
-  }
+    this.populateFeed();
+    
+      }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes.pageCount.currentValue);
@@ -55,6 +41,7 @@ export class FeedComponent implements OnInit {
           this.postList.push(post);
         });
       })
+      this.populateFeed();
   }
 
   ngOnDestroy(): void{
@@ -69,4 +56,20 @@ export class FeedComponent implements OnInit {
     //this.listTemp = this.postList.filter(post => post.postText?.startsWith(this.stringInput))
   }
 
+
+  populateFeed(){
+    console.log(this.userId)
+    if (this.userId == undefined) {
+      this.postServ.getAllPosts().subscribe(posts => {
+        this.postList = posts.data.content;
+        console.log(posts.data)
+      })
+    } else {
+      this.postServ.getAllPostsForOneUser(this.userId)
+      .subscribe(posts => {
+        this.postList = posts.data;
+        console.log(posts.data.content)
+      })
+    }
+  }
 }

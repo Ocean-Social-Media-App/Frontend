@@ -20,7 +20,7 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
     if (sessionStorage.getItem('userId') != null) {
-      this.router.navigateByUrl('userFeed');
+      this.router.navigateByUrl('userFeed/0');
     }
   }
 
