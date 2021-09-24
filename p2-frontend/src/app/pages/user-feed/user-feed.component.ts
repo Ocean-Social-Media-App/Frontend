@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user/user.service';
@@ -14,10 +14,13 @@ export class UserFeedComponent implements OnInit {
   pageCount = 0;
   userObj = {};
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.userObj = JSON.parse(sessionStorage.getItem('userObj')!);
+    if(this.userObj == null){
+      this.router.navigateByUrl('')
+    }
   }
 
   @HostListener("window:scroll", [])

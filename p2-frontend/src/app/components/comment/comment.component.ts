@@ -31,6 +31,7 @@ export class CommentComponent implements OnInit {
       postPicUrl: undefined,
       postText: undefined,
       postYouUrl: undefined,
+      userId: 0,
       user : {
         userId: undefined,
         username: "",

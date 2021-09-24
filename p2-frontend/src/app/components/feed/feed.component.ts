@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/Post';
 import { PostService } from 'src/app/services/post/post.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-feed',
