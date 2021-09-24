@@ -16,7 +16,7 @@ export class NewProfileFormComponent implements OnInit {
   submitLabel: string = 'Submit';
   uploadLabel: string = 'Upload';
   current: string = 'image';
-  imageUrl: string = '';
+  imageUrl: string = 'assets/default.jpg';
   addedPic: boolean = false;
   displayUrl: any;
   warn: boolean = false;
@@ -132,6 +132,7 @@ export class NewProfileFormComponent implements OnInit {
           }
         )
     } else {
+      this.userObj["proPicUrl"] = this.imageUrl;
       this.createProfile();
     }
   }

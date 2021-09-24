@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user/user.service';
@@ -11,10 +11,12 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UpdatePostFormComponent implements OnInit {
 
+
   // variables to be set from session storage
   userObj: any = {};
   @Output() sendOutputText: EventEmitter<string> = new EventEmitter();
   outputText: string = 'view';
+  isEmailTaken: boolean = false;
 
   imageForm = this.fb.group({
     image: [null]
@@ -22,9 +24,11 @@ export class UpdatePostFormComponent implements OnInit {
 
   updateProfileForm = this.fb.group({
     username: [''],
-    email: [''],
-    firstName: [''],
-    lastName: [''],
+    email: ['', {
+      validators: [Validators.required, Validators.email]
+    }],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
     proPicUrl: [''],
     bday: [''],
     aboutMe: ['']
@@ -54,6 +58,11 @@ export class UpdatePostFormComponent implements OnInit {
   }
 
   uploadImageAndUpdateProfile(event: any) {
+
+    if (this.updateProfileForm.invalid) {
+      return;
+    }
+
     if (this.imageForm.get('image')?.value != null) {
       console.log('inside IF');
 
@@ -72,12 +81,10 @@ export class UpdatePostFormComponent implements OnInit {
             })
 
             this.updateProfile();
-            this.sendOutputText.emit('update');
           }
         )
     } else {
       this.updateProfile();
-      this.sendOutputText.emit('update');
     }
   }
 
@@ -85,16 +92,29 @@ export class UpdatePostFormComponent implements OnInit {
     this.userService.updateProfile(this.updateProfileForm.value)
       .subscribe(
         user => {
-          console.log("Profile upadted");
+          console.log("Profile updated");
           console.log(user);
           this.userObj = user.data;
           sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
           this.router.navigateByUrl('userFeed');
+          this.sendOutputText.emit('update');
         },
         error => {
+          this.isEmailTaken = true;
           console.log("Unable to update profile");
           console.log(error);
+
         }
       )
   }
+
+  resetEmailTakenMessage(){
+    this.isEmailTaken = false;
+  }
+  
+  get firstName() { return this.updateProfileForm.get('firstName') }
+  get lastName() { return this.updateProfileForm.get('lastName') }
+  get email() { return this.updateProfileForm.get('email') }
+  get username() { return this.updateProfileForm.get('username') }
+  get password() { return this.updateProfileForm.get('password') }
 }

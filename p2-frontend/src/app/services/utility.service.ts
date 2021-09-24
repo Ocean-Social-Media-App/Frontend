@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UtilityService {
 
-  private _serverDomain: string = "http://localhost:9000"
+  private _serverDomain: string = "http://18.221.238.224:9090"
 
   constructor() { }
 
