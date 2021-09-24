@@ -5,16 +5,18 @@ import { Comment } from 'src/app/models/Comment';
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
 import { asyncData, asyncError } from 'src/testing/async-observable-helpers';
+import { UtilityService } from '../utility.service';
 
 import { CommentService } from './comment.service';
 
 describe('CommentService', () => {
   let httpClientSpy: { get: jasmine.Spy };
   let commentService: CommentService;
+  let utilityService: UtilityService;
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    commentService = new CommentService(httpClientSpy as any);
+    commentService = new CommentService(httpClientSpy as any, utilityService);
   })
 
   it('should return expected comments', (done: DoneFn) => {
