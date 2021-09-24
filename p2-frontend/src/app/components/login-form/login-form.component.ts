@@ -37,7 +37,6 @@ export class LoginFormComponent {
     this.userService.login(this.loginForm.value)
       .subscribe(
         data => {
-          console.log("Login successful");
           console.log(data);
 
           if (data.success) {
