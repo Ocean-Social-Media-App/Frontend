@@ -45,11 +45,11 @@ export class UserService {
   }
 
   addProfileImage(formData: FormData): Observable<any> {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/profile`, formData, {'headers': this.headers});
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/profile`, formData, {'headers': this.headers});
   }
 
   addPostImage(formData: FormData): Observable<any> {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/image`, formData, {'headers': this.headers});
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/image`, formData, {'headers': this.headers});
   }
 
   forgotPassword(username: string): Observable<any> {

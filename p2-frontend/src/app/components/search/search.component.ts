@@ -36,17 +36,17 @@ export class SearchComponent implements OnInit{
     this.userService.getAllUsers().subscribe(users => {
      console.log(users)
       this.userList = users.data;
-      console.log(this.userList)
+      /* console.log(this.userList) */
     })
   }
 
   ngDoCheck(): void {
     if(this.searchInput != "" ){
       this.listTemp = this.userList.filter(user => user.username.startsWith(this.searchInput))
-      console.log(this.listTemp)
+      /* console.log(this.listTemp) */
     }else{
       this.listTemp = []
-      console.log(this.listTemp)
+      /* console.log(this.listTemp) */
     }
     
   }
