@@ -45,6 +45,10 @@ export class LoginFormComponent {
 
             sessionStorage.setItem('userObj', JSON.stringify(user));
 
+            sessionStorage.setItem('JWT', data.message);
+
+            console.log(sessionStorage.getItem('JWT'));
+
             this.router.navigateByUrl('userFeed');
           } else {
             alert("Incorrect username or password");
