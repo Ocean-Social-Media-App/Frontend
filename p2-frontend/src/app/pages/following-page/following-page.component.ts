@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-following-page',
@@ -9,9 +10,16 @@ import { Router } from '@angular/router';
 export class FollowingPageComponent implements OnInit {
 
   following: any[];
-  constructor(private router: Router) { }
+  loggedInUser:number;
+  userObject:any;
+  userId: number = this.route.snapshot.params["id"];
+  constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log(this.userId)
+    this.userService.getAllFollowing(this.userId).subscribe(responseData =>{
+      console.log(responseData)
+    })
   }
 
   toUserProfile(userId:number){
