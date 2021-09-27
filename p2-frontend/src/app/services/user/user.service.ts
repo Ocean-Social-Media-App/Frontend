@@ -12,9 +12,11 @@ export class UserService {
   searchOption=[]
   public userData: User[] | undefined
 
+  jwtToken = sessionStorage.getItem('JWT');
+
   headers = new HttpHeaders().set('content-type', 'application/json')
                              .set('Access-Control-Allow-Origin', '*')
-                             .set('jwt', sessionStorage.getItem('JWT'));
+                             .set('authorization', this.jwtToken);
 
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
