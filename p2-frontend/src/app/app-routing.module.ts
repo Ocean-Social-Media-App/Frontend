@@ -12,6 +12,7 @@ const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'createProfile', component: ProfileCreateComponent},
   {path: 'userFeed', component: UserFeedComponent, runGuardsAndResolvers: 'always'},
+  {path: 'userFeed/:id', component: UserFeedComponent},
   {path: 'testPage', component: TestPageComponent},
   {path: 'profile-feed/:id', component: ProfileFeedComponent},
   {path: 'password-reset', component: PasswordResetComponent}

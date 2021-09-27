@@ -1,5 +1,5 @@
 import { parseHostBindings } from '@angular/compiler';
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnDestroy, OnChanges } from '@angular/core';
 import getVideoId from 'get-video-id';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
@@ -10,13 +10,14 @@ import { LikeService } from 'src/app/services/like/like.service';
 import { PostService } from 'src/app/services/post/post.service';
 import {NgbModal, ModalDismissReasons}
       from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, OnChanges, OnDestroy {
   component: {};
   [x: string]: {};
 
@@ -34,6 +35,10 @@ export class PostComponent implements OnInit {
   totalLikes:number;
   likesInnerText: string = "";
   likesOnPost: any = [];
+  observer: Subscription = new Subscription;
+
+  @Output()
+  callPageRefresh: EventEmitter<string> = new EventEmitter();
 
   /* postList: Array<Post> = [];
   listTemp: Array<Post> = [];
@@ -50,6 +55,7 @@ export class PostComponent implements OnInit {
     postPicUrl: "",
     postText: "",
     postYouUrl: "",
+    userId: 0,
     user: {
       userId: undefined,
       username: " ",
@@ -80,7 +86,8 @@ export class PostComponent implements OnInit {
   display: boolean = false;
   likeId!: 0;
 
-  constructor(private postServ: PostService, private likeService: LikeService, private modalService: NgbModal,) { }
+  constructor(private postServ: PostService, private userServ: UserService, private likeService: LikeService, private modalService: NgbModal,) { }
+  
 
   ngOnInit(): void {
 
@@ -125,6 +132,18 @@ export class PostComponent implements OnInit {
     }) */
   }
 
+  ngOnChanges(){
+    this.observer = this.userServ.getUserById(this.post.userId).subscribe(userData => {
+      if(userData.success){
+        this.post.user = userData.data;
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.observer.unsubscribe();
+  }
+
   getLikes(){
     this.likeService.getAllLikesByPost(this.post.postId).subscribe(
       likeData =>{
@@ -136,6 +155,7 @@ export class PostComponent implements OnInit {
       }
     )
   }
+
 
 
   toggleComments() {
@@ -234,3 +254,5 @@ export class PostComponent implements OnInit {
   }
 
 }
+
+

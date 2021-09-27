@@ -5,6 +5,7 @@ export class Post {
   postPicUrl: string|undefined;
   postText: string|undefined;
   postYouUrl: string|undefined;
+  userId: number;
   user: User  = {
     userId: undefined,
     username: "",

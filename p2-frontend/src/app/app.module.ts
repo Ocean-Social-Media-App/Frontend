@@ -22,7 +22,6 @@ import { TestPageComponent } from './pages/test-page/test-page.component';
 import { PostComponent } from './components/post/post.component';
 import { UpdatePostFormComponent } from './components/update-profile-form/update-profile-form.component';
 import { ProfileFeedComponent } from './pages/profile-feed/profile-feed.component';
-import { FeedByUserComponent } from './components/feed-by-user/feed-by-user.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentThreadComponent } from './components/comment-thread/comment-thread.component';
@@ -55,7 +54,6 @@ import { PasswordResetComponent } from './pages/password-reset/password-reset.co
     NewProfileFormComponent,
     TestPageComponent,
     ProfileFeedComponent,
-    FeedByUserComponent,
     UserInfoComponent,
     CommentComponent,
     CommentThreadComponent,

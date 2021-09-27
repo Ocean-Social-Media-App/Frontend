@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit, DoCheck{
+export class SearchComponent implements OnInit{
 
   @Input()
   user: User = {
@@ -28,6 +28,7 @@ export class SearchComponent implements OnInit, DoCheck{
   listTemp: Array<User> = [];
   
   constructor(private userService: UserService) { }
+ 
 
   ngOnInit(): void {
     this.userId = JSON.parse(sessionStorage.getItem('userObj')!).userId;
@@ -35,17 +36,17 @@ export class SearchComponent implements OnInit, DoCheck{
     this.userService.getAllUsers().subscribe(users => {
      console.log(users)
       this.userList = users.data;
-      console.log(this.userList)
+      /* console.log(this.userList) */
     })
   }
 
   ngDoCheck(): void {
     if(this.searchInput != "" ){
       this.listTemp = this.userList.filter(user => user.username.startsWith(this.searchInput))
-      console.log(this.listTemp)
+      /* console.log(this.listTemp) */
     }else{
       this.listTemp = []
-      console.log(this.listTemp)
+      /* console.log(this.listTemp) */
     }
     
   }

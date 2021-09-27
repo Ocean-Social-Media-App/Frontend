@@ -19,7 +19,7 @@ export class IndexComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('userId') != null) {
+    if (sessionStorage.getItem('userObj') != null) {
       this.router.navigateByUrl('userFeed');
     }
   }

@@ -27,7 +27,7 @@ export class NewPostFormComponent implements OnInit{
     postPicUrl: [''],
     postText: ['', [Validators.required, Validators.maxLength(250)]],
     postYouUrl: [''],
-    user: [{userId:this.userId}]
+    userId: [this.userId]
   })
   // link for testing purposes
   // https://www.youtube.com/watch?v=gc4pxTjii9c
@@ -51,9 +51,7 @@ export class NewPostFormComponent implements OnInit{
 
     this.newPostForm.patchValue({
       postPicUrl: this.imageUrl,
-      user: {
-        userId: this.userId
-      }
+      userId: this.userId
     })
 
     this.postService.createPost(this.newPostForm.value)
