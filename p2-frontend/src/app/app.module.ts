@@ -31,6 +31,8 @@ import { SearchComponent } from './components/search/search.component';
 import { ForgotEmailComponent } from './components/forgot-email/forgot-email.component';
 import { PasswordResetFormComponent } from './components/password-reset-form/password-reset-form.component';
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
+import { FollowerInfoComponent } from './components/follower-info/follower-info.component';
+import { FollowingPageComponent } from './pages/following-page/following-page.component';
 
 
 @NgModule({
@@ -61,7 +63,9 @@ import { PasswordResetComponent } from './pages/password-reset/password-reset.co
     SearchComponent,
     ForgotEmailComponent,
     PasswordResetFormComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    FollowerInfoComponent,
+    FollowingPageComponent
   ],
   imports: [
     BrowserModule,

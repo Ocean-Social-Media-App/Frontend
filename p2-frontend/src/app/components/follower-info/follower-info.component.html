@@ -1,0 +1,44 @@
+<div class="user-info-container">
+    <div class="profile-body">
+      <div class="Followers-following">
+        <h2> Following Info: </h2>
+        <app-buttons
+        class="followBtn"
+        id="followBtn"
+        (onClick)="follow()"
+        [label]="followLabel"></app-buttons>
+      </div>
+      <div class="fol-info">
+        <div class="fol-con" (click) = "open(followersModal)">
+          <p>Followers</p>
+          <h1 class="num">{{followers}}</h1>
+        </div>
+        <div class="fol-con" (click) = "openFollowingPage()">
+            <p>Following</p>
+            <h1 class="num">{{following}}</h1>
+        </div>
+    </div>
+
+    </div>
+  </div>
+
+
+<!-- NEED TO UPDATE WITH LIST OF FOLLOWERS ONCE JWT IMPLEMENTED -->
+  <ng-template #followersModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Followed By:</h4>
+        <button type="button" class="btn btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">X</span>
+        </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group" > <!-- *ngFor="let followers of totalFollowers" -->
+        <div>
+          <a class="name text-decoration-none pe-auto" role="button" data-bs-toggle="button" title="View Profile">
+     <!-- {{followers.user.firstName | titlecase }} -->
+     test
+    </a>
+      </div>
+    </div>
+    </div>
+  </ng-template>

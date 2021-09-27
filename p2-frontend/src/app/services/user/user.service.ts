@@ -55,4 +55,20 @@ export class UserService {
   forgotPassword(username: string): Observable<any> {
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/forgot/${username}`, {'headers': this.headers});
   }
+
+  getAllFollowing(loggedInUser: number): Observable<any>{
+    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers});
+  }
+
+  getAllFollowers(loggedInUser:number): Observable<any>{
+    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/followers/${loggedInUser}`, {'headers': this.headers}) //not real endpoint yet
+  }
+
+  followUser(userId: number, loggedInUser: number){
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {userId: `${userId}`}, {'headers': this.headers});
+  }
+
+   unfollowUser(userId: number, loggedInUser: number){
+    return this.httpCli.delete(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers,'body': {userId: `${userId}`}});
+  } 
 }

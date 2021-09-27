@@ -7,6 +7,7 @@ import { UserFeedComponent } from './pages/user-feed/user-feed.component';
 import { TestPageComponent } from './pages/test-page/test-page.component';
 import { ProfileFeedComponent } from './pages/profile-feed/profile-feed.component';
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
+import { FollowingPageComponent } from './pages/following-page/following-page.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'userFeed/:id', component: UserFeedComponent},
   {path: 'testPage', component: TestPageComponent},
   {path: 'profile-feed/:id', component: ProfileFeedComponent},
-  {path: 'password-reset', component: PasswordResetComponent}
+  {path: 'password-reset', component: PasswordResetComponent},
+  {path: 'following/:id', component: FollowingPageComponent}
 ]
 
 @NgModule({
