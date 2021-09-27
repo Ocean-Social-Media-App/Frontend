@@ -1,21 +1,26 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { result } from 'lodash';
+import { of } from 'rxjs';
 import { Post } from 'src/app/models/Post';
+import { UtilityService } from '../utility.service';
 
 import { PostService } from './post.service';
 
 describe('PostService', () => {
   let service: PostService;
+  let fixture: ComponentFixture<PostService>;
   let httpMock: HttpTestingController;
+  let utilityService: UtilityService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [PostService]
+      providers: [PostService, UtilityService]
     });
     service = TestBed.inject(PostService);
-    httpMock = TestBed.inject(HttpTestingController)
+    httpMock = TestBed.inject(HttpTestingController);
+    utilityService = TestBed.inject(UtilityService);
   });
 
   /* it('should be created', () => {
@@ -27,7 +32,7 @@ describe('PostService', () => {
       expect(result).toEqual(new Post)
     })
 
-    const req = httpMock.expectOne('http://54.167.107.251:9000/api/post', 'create new post');
+    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/feed/post`, 'create new post');
     expect(req.request.method).toBe('POST');
 
     req.flush(new Post);
@@ -37,31 +42,31 @@ describe('PostService', () => {
 
   it('should return allPosts when getAllPosts called', () => {
     service.getAllPosts().subscribe((result: any) => {
-      expect(result).toEqual(new Post)
+      expect(result).toEqual(jasmine.arrayContaining(typeof Post));
     })
 
-    const req = httpMock.expectOne('http://54.167.107.251:9000/api/feed/0', 'get all posts first page');
+    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/feed/0`, 'get all posts first page');
     expect(req.request.method).toBe('GET');
 
-    req.flush(new Post);
+    req.flush(jasmine.arrayContaining(typeof Post));
 
     httpMock.verify();
   })
 
-  it('should return post when getPostByUserId called', () => {
-    service.getPostsByUserId(1).subscribe((result: Post) => {
-      expect(result).toEqual(new Post)
+  it('should return posts by userId when getPostByUserId called', (userId: number = 1) => {
+    service.getPostsByUserId(userId).subscribe((result: any) => {
+      expect(result).toEqual(jasmine.arrayContaining(typeof Post));
     })
 
-    const req = httpMock.expectOne('http://54.167.107.251:9000/api/post/userId/1', 'get post by user id');
-    expect(req.request.method).toBe('GET')
+    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/post/userId/${userId}`, 'get posts by user id');
+    expect(req.request.method).toBe('GET');
 
-    req.flush(new Post)
+    req.flush(jasmine.arrayContaining(typeof Post));
 
     httpMock.verify();
   })
 
-  it('should return posts by page count', () => {
+  xit('should return posts by page count', () => {
     const pageCount = 2
     service.getNextPageOfPosts(pageCount).subscribe((result: any) => {
       expect(result).toEqual(new Post)
