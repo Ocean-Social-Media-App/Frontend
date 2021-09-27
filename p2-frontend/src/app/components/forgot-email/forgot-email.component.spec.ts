@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ForgotEmailComponent } from './forgot-email.component';
 
@@ -8,6 +10,7 @@ describe('ForgotEmailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, HttpClientTestingModule],
       declarations: [ ForgotEmailComponent ]
     })
     .compileComponents();
@@ -22,4 +25,27 @@ describe('ForgotEmailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+  it('should send an email when the button is clicked', ()=>{
+
+    spyOn(component, 'sendPasswordEmail');
+
+    const button = fixture.nativeElement.querySelector('app-buttons');
+    button.dispatchEvent(new Event('onClick'));
+ 
+    expect(component.sendPasswordEmail).toHaveBeenCalled();
+
+  })
+  
+  it('should emit to parent when hitting back to login link',()=>{
+
+    spyOn(component.sendToParent, 'emit');
+    const link = fixture.nativeElement.querySelector('a');
+    link.dispatchEvent(new Event('click'));
+ 
+    expect(component.sendToParent.emit).toHaveBeenCalled();
+
+  })
+
 });
