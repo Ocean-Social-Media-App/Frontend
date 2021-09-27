@@ -53,7 +53,7 @@ export class UserService {
   }
 
   forgotPassword(username: string): Observable<any> {
-    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/forgot/${username}`, {'headers': this.headers});
+    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/forgot/${username}`, {'headers': this.headers});
   }
 
   getAllFollowing(loggedInUser: number): Observable<any>{

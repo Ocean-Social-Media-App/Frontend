@@ -37,7 +37,6 @@ export class LoginFormComponent {
     this.userService.login(this.loginForm.value)
       .subscribe(
         data => {
-          console.log("Login successful");
           console.log(data);
 
           if (data.success) {
@@ -45,6 +44,10 @@ export class LoginFormComponent {
             console.log(user);
 
             sessionStorage.setItem('userObj', JSON.stringify(user));
+
+            sessionStorage.setItem('JWT', data.message);
+
+            console.log(sessionStorage.getItem('JWT'));
 
             this.router.navigateByUrl('userFeed');
           } else {
