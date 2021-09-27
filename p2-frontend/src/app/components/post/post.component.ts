@@ -65,7 +65,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       lastName: undefined,
       aboutMe: undefined,
       bday: undefined,
-      proPicUrl: undefined
+      proPicUrl: ""
     }
   }
 

@@ -28,10 +28,10 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.pageCount);
+    /* console.log(this.pageCount); */
     this.populateFeed();
     
-      }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes.pageCount.currentValue);
@@ -59,7 +59,7 @@ export class FeedComponent implements OnInit {
 
 
   populateFeed(){
-    console.log(this.userId)
+    /* console.log(this.userId) */
     if (this.userId == undefined) {
       this.postServ.getAllPosts().subscribe(posts => {
         this.postList = posts.data.content;

@@ -24,43 +24,17 @@ export class CommentComponent implements OnInit {
 
   @Input()
   comment: Comment = {
-    commentId: 0,
-    commText: "",
-    post : {
-      postId: 0,
-      postPicUrl: undefined,
-      postText: undefined,
-      postYouUrl: undefined,
-      userId: 0,
-      user : {
-        userId: undefined,
-        username: "",
-        password: undefined,
-        email: undefined,
-        firstName: undefined,
-        lastName: undefined,
-        aboutMe: undefined,
-        bday: undefined,
-        proPicUrl: undefined
-      }
-    },
-    user : {
-      userId: 0,
-      username: "",
-      password: undefined,
-      email: undefined,
-      firstName: undefined,
-      lastName: undefined,
-      aboutMe: undefined,
-      bday: undefined,
-      proPicUrl: undefined
-    }
+    postId: 0,
+    postText: '',
+    postTime: undefined,
+    postParentId: 0,
+    userId: 0
   }
 
   constructor(private commentService: CommentService, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userId =  JSON.parse(sessionStorage.getItem('userObj')!).userId
+    this.userId =  JSON.parse(sessionStorage.getItem('userObj')).userId
 
     this.userService.getUserById(this.userId).pipe(first()).subscribe(
       data =>{

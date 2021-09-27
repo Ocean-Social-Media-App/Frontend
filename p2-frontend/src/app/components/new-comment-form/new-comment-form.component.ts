@@ -16,19 +16,18 @@ export class NewCommentFormComponent implements OnInit {
   user:number = 0 ;
 
   @Input()
-  post:number|undefined = 0;
+  parent:number|undefined = 0;
 
   newCommentForm = this.fb.group({
-    commText: ['', [Validators.required, Validators.maxLength(150)]],
-    post: [{postId : this.post}],
-    user: [{userId : this.user}]
-
+    postText: ['', [Validators.required, Validators.maxLength(150)]],
+    postParentId:  [this.parent],
+    userId: [ this.user]
   })
 
   constructor(private fb: FormBuilder, private commentService: CommentService, private router: Router) { }
+
   ngOnInit() {
     this.user =  JSON.parse(sessionStorage.getItem('userObj')!).userId
-
   }
 
  onClick(event: any) {
@@ -40,8 +39,8 @@ export class NewCommentFormComponent implements OnInit {
     console.log("adding comment");
 
    this.newCommentForm.patchValue({
-    post: {postId: this.post},
-    user: {userId: this.user}
+    postParentId: this.parent,
+    userId: this.user
   })
   console.log(this.newCommentForm.value)
 
@@ -61,5 +60,5 @@ export class NewCommentFormComponent implements OnInit {
       )
   }
 
-  get commText() { return this.newCommentForm.get('commText') }
+  get commText() { return this.newCommentForm.get('postText') }
 }

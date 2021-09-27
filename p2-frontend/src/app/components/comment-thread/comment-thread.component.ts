@@ -15,12 +15,12 @@ export class CommentThreadComponent implements OnInit {
 
   @Output() commentCount: EventEmitter<number> = new EventEmitter<number>();
   @Input()
-  postId: number = 0;
+  parentId: number = 0;
 
   constructor(private router: Router, private commentService: CommentService) { }
 
   ngOnInit(): void {
-    this.commentService.getCommentsByPostId(this.postId).subscribe(comments => {
+    this.commentService.getCommentsByPostId(this.parentId).subscribe(comments => {
       this.commentThread = comments.data;
       this.commentCount.emit(this.commentThread.length);
     })
