@@ -36,12 +36,12 @@ describe('UserService', () => {
     httpMock.verify();
   });
 
-  it('should return user when getUserById is called', () => {
-    service.getUserById(1).subscribe((result: User) => {
+  it('should return user when getUserById is called', (userId: number = 1) => {
+    service.getUserById(userId).subscribe((result: User) => {
       expect(result).toEqual(new User());
     })
 
-    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/user/user/1`, 'get user by id 1');
+    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/user/user/${userId}`, 'get user by id 1');
     expect(req.request.method).toBe('GET');
 
     req.flush(new User);
