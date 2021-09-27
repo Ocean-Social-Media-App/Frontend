@@ -65,10 +65,10 @@ export class UserService {
   }
 
   followUser(userId: number, loggedInUser: number){
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {userId: `${userId}`}, {'headers': this.headers});
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, `${userId}`, {'headers': this.headers});
   }
 
    unfollowUser(userId: number, loggedInUser: number){
-    return this.httpCli.delete(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers,'body': {userId: `${userId}`}});
+    return this.httpCli.delete(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers,'body': `${userId}`});
   } 
 }

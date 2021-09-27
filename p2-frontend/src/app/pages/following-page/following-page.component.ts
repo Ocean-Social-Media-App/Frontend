@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-following-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FollowingPageComponent implements OnInit {
 
-  constructor() { }
+  following: any[];
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  toUserProfile(userId:number){
+    this.router.navigateByUrl(`/profile-feed/${userId}`)
   }
 
 }
