@@ -58,7 +58,7 @@ describe('PostService', () => {
       expect(result).toEqual(jasmine.arrayContaining(typeof Post));
     })
 
-    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/post/userId/${userId}`, 'get posts by user id');
+    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/feed/post/userId/${userId}`, 'get posts by user id');
     expect(req.request.method).toBe('GET');
 
     req.flush(jasmine.arrayContaining(typeof Post));
@@ -66,16 +66,16 @@ describe('PostService', () => {
     httpMock.verify();
   })
 
-  xit('should return posts by page count', () => {
+  it('should return posts by page count', () => {
     const pageCount = 2
     service.getNextPageOfPosts(pageCount).subscribe((result: any) => {
-      expect(result).toEqual(new Post)
+      expect(result).toEqual(jasmine.arrayContaining(typeof Post))
     })
 
-    const req = httpMock.expectOne(`http://54.167.107.251:9000/api/feed/${pageCount}`, 'get posts by page number');
+    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/feed/${pageCount}`, 'get posts by page number');
     expect(req.request.method).toBe('GET')
 
-    req.flush(new Post)
+    req.flush(jasmine.arrayContaining(typeof Post))
 
     httpMock.verify();
   })
