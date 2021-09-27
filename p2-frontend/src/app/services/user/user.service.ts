@@ -12,7 +12,9 @@ export class UserService {
   searchOption=[]
   public userData: User[] | undefined
 
-  headers = new HttpHeaders().set('content-type', 'application/json').set('Access-Control-Allow-Origin', '*');
+  headers = new HttpHeaders().set('content-type', 'application/json')
+                             .set('Access-Control-Allow-Origin', '*')
+                             .set('jwt', sessionStorage.getItem('JWT'));
 
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
