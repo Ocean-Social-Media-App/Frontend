@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { result } from 'lodash';
 import { User } from 'src/app/models/User';
 import { UtilityService } from '../utility.service';
 
@@ -101,4 +102,17 @@ describe('UserService', () => {
     httpMock.verify();
   }))
 
+  it('should return user email address when forgotPassword called', (() => {
+    let username = 'username';
+    service.forgotPassword(username).subscribe((result: string) => {
+      expect(result).toEqual('user@example.com');
+    })
+
+    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/user/forgot/${username}`);
+    expect(req.request.method).toBe('GET');
+
+    req.flush('user@example.com');
+
+    httpMock.verify();
+  }))
 });
