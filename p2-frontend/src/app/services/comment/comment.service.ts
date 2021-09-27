@@ -9,7 +9,11 @@ import { UtilityService } from '../utility.service';
 })
 export class CommentService {
 
-  headers = new HttpHeaders().set('content-type', 'application/json').set('Access-Control-Allow-Origin', '*');
+  jwtToken = sessionStorage.getItem('JWT');
+
+  headers = new HttpHeaders().set('content-type', 'application/json')
+                             .set('Access-Control-Allow-Origin', '*')
+                             .set('authorization', this.jwtToken);
 
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
