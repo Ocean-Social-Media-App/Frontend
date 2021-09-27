@@ -13,7 +13,15 @@ export class UserService {
   public userData: User[] | undefined
   jwtToken = sessionStorage.getItem('JWT');
 
+<<<<<<< HEAD
   headers = new HttpHeaders().set('content-type', 'application/json').set('Access-Control-Allow-Origin', '*').set('authorization', this.jwtToken);
+=======
+  jwtToken = sessionStorage.getItem('JWT');
+
+  headers = new HttpHeaders().set('content-type', 'application/json')
+                             .set('Access-Control-Allow-Origin', '*')
+                             .set('authorization', this.jwtToken);
+>>>>>>> main
 
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 

@@ -8,7 +8,11 @@ import { UtilityService } from '../utility.service';
 })
 export class PostService {
 
-  headers = new HttpHeaders().set('content-type', 'application/json').set('Access-Control-Allow-Origin', '*');
+  jwtToken = sessionStorage.getItem('JWT');
+
+  headers = new HttpHeaders().set('content-type', 'application/json')
+                             .set('Access-Control-Allow-Origin', '*')
+                             .set('authorization', this.jwtToken);
 
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
@@ -18,7 +22,7 @@ export class PostService {
   }
 
   getAllPosts() {
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/feed/0`,  {'headers': this.headers} )
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/fave/0`,  {'headers': this.headers} )
   }
 
   getPostsByUserId(userId: number){
@@ -30,6 +34,6 @@ export class PostService {
   }
 
   getNextPageOfPosts(pageCount: number) {
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/feed/${pageCount}`, {'headers': this.headers})
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/fave/${pageCount}`, {'headers': this.headers})
   }
 }
