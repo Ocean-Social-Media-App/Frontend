@@ -70,7 +70,7 @@ export class NavBarComponent implements OnInit, OnChanges {
   }
 
   onViewById() {
-    this.router.navigateByUrl(`/userFeed?userId=${this.userId}`)
+    this.router.navigateByUrl(`/userFeed/${this.userId}`)
   }
 
 }

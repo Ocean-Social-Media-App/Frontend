@@ -18,7 +18,7 @@ export class PostService {
   }
 
   getAllPosts() {
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/0`,  {'headers': this.headers} )
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/feed/0`,  {'headers': this.headers} )
   }
 
   getPostsByUserId(userId: number){
@@ -30,6 +30,6 @@ export class PostService {
   }
 
   getNextPageOfPosts(pageCount: number) {
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/${pageCount}`, {'headers': this.headers})
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/feed/${pageCount}`, {'headers': this.headers})
   }
 }
