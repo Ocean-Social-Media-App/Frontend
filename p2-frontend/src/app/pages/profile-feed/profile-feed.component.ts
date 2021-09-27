@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PostService } from 'src/app/services/post/post.service';
@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class ProfileFeedComponent implements OnInit {
 
   observer: Subscription = new Subscription();
+  pageCount = 0;
 
   constructor(private route: ActivatedRoute, private postService: PostService) { }
 
@@ -20,4 +21,10 @@ export class ProfileFeedComponent implements OnInit {
  
   }
 
+  @HostListener("window:scroll", [])
+  onScroll(): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      this.pageCount++;
+    }
+  }
 }
