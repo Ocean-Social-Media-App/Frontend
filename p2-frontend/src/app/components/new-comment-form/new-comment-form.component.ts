@@ -20,8 +20,8 @@ export class NewCommentFormComponent implements OnInit {
 
   newCommentForm = this.fb.group({
     postText: ['', [Validators.required, Validators.maxLength(150)]],
-    postParentId:  [this.parent],
-    userId: [ this.user]
+    postParentId:  [null],
+    userId: [null]
   })
 
   constructor(private fb: FormBuilder, private commentService: CommentService, private router: Router) { }
@@ -45,7 +45,6 @@ export class NewCommentFormComponent implements OnInit {
   console.log(this.newCommentForm.value)
 
     this.commentService.createComment(this.newCommentForm.value)
-      .pipe(first())
       .subscribe(
         data => {
           console.log("Successfully created comment");
@@ -60,5 +59,5 @@ export class NewCommentFormComponent implements OnInit {
       )
   }
 
-  get commText() { return this.newCommentForm.get('postText') }
+  get postText() { return this.newCommentForm.get('postText') }
 }

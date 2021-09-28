@@ -14,4 +14,35 @@
       {{ comment.postText }}
     </div>
   </div>
+
+  <!-- COMMENT & LIKE -->
+  <div class="comment-like">
+    <div class = "icons">
+      <!-- <div class = "like-count" (click) = "open(content)"> {{likesInnerText}}</div> -->
+      <a (click)="toggleComments()"
+        >{{ toggleCommentsText }} {{ commentCount }} comments</a>
+      <div class="comment-like-icons">
+        <i
+          class="fa fa-comment-o fa-2x comment"
+          aria-hidden="true"
+          (click)="displayModal()"
+        ></i>
+        <!--  <i
+          class="fa fa-heart fa-2x like"
+          aria-hidden="true"
+          (click)="like(post.postId)"
+          [class.btnColor]="isLiked"
+        ></i> -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- COMMENT COMPONENT -->
+  <app-comment-thread
+  [parentId]="comment.postId"
+  [style.display]="showComments ? 'block' : 'none'"
+  (commentCount)="receiveCommentCount($event)"
+  ></app-comment-thread>
+
 </div>

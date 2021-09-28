@@ -12,9 +12,9 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class FeedComponent implements OnInit {
 
-  @Input() pageCount: number = 0;
+  @Input() pageCount: number = 1;
   userId: number = this.route.snapshot.params["id"];
-  postList: Array<Post> = [];
+  postList: Array<any> = [];
   listTemp: Array<Post> = [];
   observer: Subscription = new Subscription;
   stringInput: string = "";
@@ -38,7 +38,7 @@ export class FeedComponent implements OnInit {
     this.postServ.getNextPageOfPosts(changes.pageCount.currentValue)
       .subscribe(posts => {
         console.log(posts);
-        posts.data.content.forEach((post: any) => {
+        posts.data.forEach((post: any) => {
           this.postList.push(post);
         });
       })
@@ -62,7 +62,7 @@ export class FeedComponent implements OnInit {
     /* console.log(this.userId) */
     if (this.userId == undefined) {
       this.postServ.getAllPosts().subscribe(posts => {
-        this.postList = posts.data.content;
+        this.postList = posts.data;
         console.log(posts.data)
       })
     } else {
