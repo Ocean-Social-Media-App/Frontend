@@ -18,6 +18,7 @@ export class FollowingPageComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.userId)
     this.userService.getAllFollowing(this.userId).subscribe(responseData =>{
+      console.log(sessionStorage.getItem('JWT'))
       console.log(responseData)
     })
   }

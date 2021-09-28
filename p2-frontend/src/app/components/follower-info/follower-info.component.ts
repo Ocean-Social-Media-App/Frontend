@@ -26,6 +26,7 @@ export class FollowerInfoComponent implements OnInit {
   ngOnInit(): void {
     this.userInSession = JSON.parse(sessionStorage.getItem('userObj')).userId;
     this.userService.getAllFollowing(this.userIdFromParam).subscribe(following => {
+      console.log(following);
       this.following = following.data.length;
     })
   }

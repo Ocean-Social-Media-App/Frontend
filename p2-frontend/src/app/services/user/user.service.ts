@@ -13,15 +13,10 @@ export class UserService {
   public userData: User[] | undefined
   jwtToken = sessionStorage.getItem('JWT');
 
-<<<<<<< HEAD
-  headers = new HttpHeaders().set('content-type', 'application/json').set('Access-Control-Allow-Origin', '*').set('authorization', this.jwtToken);
-=======
-  jwtToken = sessionStorage.getItem('JWT');
 
   headers = new HttpHeaders().set('content-type', 'application/json')
                              .set('Access-Control-Allow-Origin', '*')
                              .set('authorization', this.jwtToken);
->>>>>>> main
 
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
@@ -69,9 +64,9 @@ export class UserService {
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers});
   }
 
-  getAllFollowers(loggedInUser:number): Observable<any>{
+/*   getAllFollowers(loggedInUser:number): Observable<any>{
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/followers/${loggedInUser}`, {'headers': this.headers}) //not real endpoint yet
-  }
+  } */
 
   followUser(userId: number, loggedInUser: number){
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, `${userId}`, {'headers': this.headers});
