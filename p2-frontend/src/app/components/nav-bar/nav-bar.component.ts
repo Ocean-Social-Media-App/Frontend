@@ -18,17 +18,17 @@ export class NavBarComponent implements OnInit, OnChanges {
   logOutLabel: string = 'Logout';
   profilePosition: string = "-64rem";
   observer: Subscription = new Subscription();
- 
-  userList: Array<any> = []; 
+
+  userList: Array<any> = [];
   listTemp: Array<User> = [];
 
- 
+
 
   constructor(private userService: UserService, private router: Router) { }
-  
- 
+
+
   ngOnChanges(): void {
-    
+
   }
 
 
@@ -43,18 +43,7 @@ export class NavBarComponent implements OnInit, OnChanges {
   }
 
   logout(event: any) {
-    this.userService.logout()
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log(data);
-          sessionStorage.clear();
-          this.router.navigateByUrl('');
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    this.userService.logout();
   }
 
   goHome(){
