@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { UtilityService } from '../utility.service';
@@ -18,7 +19,7 @@ export class UserService {
                              .set('Access-Control-Allow-Origin', '*')
                              .set('authorization', this.jwtToken);
 
-  constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
+  constructor(private httpCli: HttpClient, private utilityService: UtilityService, private router: Router) { }
 
   getAllUsers():Observable<any> {
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/user/user`, {'headers': this.headers})
@@ -44,8 +45,10 @@ export class UserService {
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/login`, user, {'headers': this.headers});
   }
 
+  // we are now handling logout from the frontend, so no need to use httpClient
   logout() {
-    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/logout`, {'headers': this.headers});
+    sessionStorage.clear();
+    this.router.navigateByUrl('');
   }
 
   addProfileImage(formData: FormData): Observable<any> {

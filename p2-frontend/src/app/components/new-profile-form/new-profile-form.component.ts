@@ -93,13 +93,14 @@ export class NewProfileFormComponent implements OnInit {
     console.log(this.newProfileForm.value);
 
     this.userService.register(this.newProfileForm.value)
-    .pipe(first())
     .subscribe(
       data => {
         console.log("Profile created");
         this.userObj["userId"] = data.data.userId;
 
         sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
+        sessionStorage.setItem('JWT', data.message);
+
         this.router.navigateByUrl('userFeed');
       },
       error => {
@@ -115,7 +116,6 @@ export class NewProfileFormComponent implements OnInit {
       formData.append('file', this.imageForm.get('image')!.value);
 
         this.userService.addProfileImage(formData)
-        .pipe(first())
         .subscribe(
           data => {
             console.log("Successfully uploaded image");
