@@ -13,6 +13,8 @@ export class UserFeedComponent implements OnInit {
 
   pageCount = 0;
   userObj = {};
+  _userIsPosting: boolean = false;
+  _notificationsDisplay: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -28,6 +30,16 @@ export class UserFeedComponent implements OnInit {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.pageCount++;
     }
+  }
+
+  receivePostStatus(postCheck: boolean) {
+    this._notificationsDisplay = false;
+    this._userIsPosting = postCheck;
+  }
+
+  receiveNotificationStatus(notificationCheck: boolean) {
+    this._userIsPosting = false;
+    this._notificationsDisplay = notificationCheck;
   }
 
 }

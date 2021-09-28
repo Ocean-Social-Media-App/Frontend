@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-action-menu',
@@ -7,9 +7,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActionMenuComponent implements OnInit {
 
+  @Output()
+  eventFromActionMenu: EventEmitter<boolean> = new EventEmitter();
+
+  @Output()
+  eventFromActionNotification: EventEmitter<boolean> = new EventEmitter();
+
+  _postCheck: boolean = false;
+  _notificationCheck: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  userIsPosting() {
+    this._notificationCheck = false;
+    this._postCheck = !this._postCheck;
+    console.log(this._postCheck);
+    this.eventFromActionMenu.emit(this._postCheck);
+  }
+
+  notificationsDisplay() {
+    this._postCheck = false;
+    this._notificationCheck = !this._notificationCheck;
+    console.log(this._notificationCheck);
+    this.eventFromActionNotification.emit(this._notificationCheck);
   }
 
 }
