@@ -64,9 +64,9 @@ export class UserService {
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers});
   }
 
-/*   getAllFollowers(loggedInUser:number): Observable<any>{
-    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/followers/${loggedInUser}`, {'headers': this.headers}) //not real endpoint yet
-  } */
+   getAllFollowers(): Observable<any>{
+    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/follower`, {'headers': this.headers}) 
+  } 
 
   followUser(userId: number, loggedInUser: number){
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, `${userId}`, {'headers': this.headers});
