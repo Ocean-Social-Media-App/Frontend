@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1.6rem;
+
+}
+.fab{
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    background-color: #5F2EEA;
+    display: flex;
+   align-items: center;
+   justify-content: center;
+   color: white; 
+   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+     
+}
+
+
