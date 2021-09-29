@@ -1,7 +1,7 @@
 import { User } from "./User";
 
 export class Post {
-  postId!: number;
+  postId: number;
   postPicUrl: string|undefined;
   postText: string|undefined;
   postYouUrl: string|undefined;

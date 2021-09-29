@@ -12,8 +12,8 @@ export class UserService {
 
   searchOption=[]
   public userData: User[] | undefined
-
   jwtToken = sessionStorage.getItem('JWT');
+
 
   headers = new HttpHeaders().set('content-type', 'application/json')
                              .set('Access-Control-Allow-Origin', '*')
@@ -62,4 +62,20 @@ export class UserService {
   forgotPassword(username: string): Observable<any> {
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/forgot/${username}`, {'headers': this.headers});
   }
+
+  getAllFollowing(loggedInUser: number): Observable<any>{
+    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers});
+  }
+
+   getAllFollowers(): Observable<any>{
+    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/follower`, {'headers': this.headers}) 
+  } 
+
+  followUser(userId: number, loggedInUser: number): Observable<any>{
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, `${userId}`, {'headers': this.headers});
+  }
+
+   unfollowUser(userId: number, loggedInUser: number): Observable<any>{
+    return this.httpCli.delete(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers,'body': `${userId}`});
+  } 
 }
