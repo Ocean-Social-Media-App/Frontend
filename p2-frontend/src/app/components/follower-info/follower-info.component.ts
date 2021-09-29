@@ -26,24 +26,15 @@ export class FollowerInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.userInSession = JSON.parse(sessionStorage.getItem('userObj')).userId;
-    this.userService.getAllFollowing(this.userInSession).subscribe(following => {
-      following.data.forEach(element => {
-        if(element == this.userIdFromParam){
+    this.userService.getUserById(this.userIdFromParam).subscribe(follows =>{
+       follows.data.followers.forEach(element => {
+        if(element == this.userInSession){
           this.followLabel = "Unfollow";
           this.followed = true;
         }
-      });
-      console.log(following);
-      this.following = following.data.length;
-    })
-    this.userService.getAllFollowers().subscribe(follower => {
-      console.log(follower);
-      if(follower.success == false){
-        this.followers = 1;
-      }else{
-      console.log(follower);
-      this.followers = follower.data.length;
-      }
+      }); 
+      this.following = follows.data.user_following.length;
+      this.followers = follows.data.followers.length;
     })
   }
 
@@ -54,12 +45,12 @@ export class FollowerInfoComponent implements OnInit {
     {
       this.followLabel = "Unfollow"
      this.userService.followUser(this.userIdFromParam, this.userInSession).subscribe(response => console.log(response))
-     this.following = +this.following +  1;
+     this.followers = +this.followers +  1;
     }
     else{
       this.followLabel = "Follow"
       this.userService.unfollowUser(this.userIdFromParam, this.userInSession).subscribe(response=>console.log(response))
-      this.following = +this.following - 1;
+      this.followers = +this.followers - 1;
     }
   }
 
