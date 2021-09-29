@@ -126,6 +126,12 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
           }
         }
       )
+      this.bookmarkService.getBookmarks(this.userLike)
+      .pipe(first())
+      .subscribe(
+        data =>{
+          this.isBookmarked = (data.data.indexOf(this.post.postId) > -1)
+      });
 
         this.getLikes();
 
@@ -197,7 +203,6 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
                 this.isLiked = false;
                 console.log("Successfully unliked post")
                 console.log(data)
-                this.getLikes();
               },
               error => {
                 console.log("Failed to unlike post")
@@ -217,7 +222,6 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
                   this.isLiked = true;
                   console.log("Successfully liked")
                   console.log(data)
-                  this.getLikes();
                 },
                 error => {
                   console.log("Failed to like post")
