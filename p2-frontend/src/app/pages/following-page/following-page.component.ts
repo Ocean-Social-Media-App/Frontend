@@ -14,13 +14,15 @@ export class FollowingPageComponent implements OnInit {
   loggedInUser:number;
   userObject:any;
   userId: number;
+  profilePic: string = "";
   constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params["id"];
     console.log(this.userId)
-    this.userService.getAllFollowing(this.userId).subscribe(responseData =>{
-      this.following = responseData.data;
+    this.userService.getUserById(this.userId).subscribe(responseData => {
+      this.following = responseData.data.user_following;
+      this.profilePic = responseData.data.proPicUrl;
       console.log(responseData)
     })
     setTimeout(()=>{
