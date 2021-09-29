@@ -72,7 +72,7 @@
 
   <!-- COMMENT COMPONENT -->
   <app-comment-thread
-    [postId]="post.postId"
+    [parentId]="post.postId"
     [style.display]="showComments ? 'block' : 'none'"
     (commentCount)="receiveCommentCount($event)"
   ></app-comment-thread>
@@ -93,7 +93,7 @@
 
   <div class="modal-content">
     
-    <app-new-comment-form [post]="post.postId"></app-new-comment-form>
+    <app-new-comment-form [parent]="post.postId"></app-new-comment-form>
   </div>
   </div>
 </div>

@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UserFeedComponent implements OnInit {
 
-  pageCount = 0;
+  pageCount = 1;
   userObj = {};
   _userIsPosting: boolean = false;
   _notificationsDisplay: boolean = false;

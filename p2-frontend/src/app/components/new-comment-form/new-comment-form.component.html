@@ -2,12 +2,12 @@
   <h2>Add Comment</h2>
   <form [formGroup]="newCommentForm">
     <div class="form-row">
-      <label for="commText">Comment:</label>
+      <label for="postText">Comment:</label>
       <textarea
-        name="commText"
+        name="postText"
         id=""
         placeholder="Share a reply"
-        formControlName="commText"
+        formControlName="postText"
         cols="30"
         rows="4"
       ></textarea>
@@ -16,16 +16,16 @@
           <div
             class="invalid"
             *ngIf="
-              commText.hasError('required') &&
-              (commText.dirty || commText.touched)
+              postText.hasError('required') &&
+              (postText.dirty || postText.touched)
             "
           >
             This field must not be empty
           </div>
           <div
             *ngIf="
-              commText.hasError('maxlength') &&
-              (commText.dirty || commText.touched)
+              postText.hasError('maxlength') &&
+              (postText.dirty || postText.touched)
             "
           >
             Post must be 150 characters or less
