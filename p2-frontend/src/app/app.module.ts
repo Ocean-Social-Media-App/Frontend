@@ -34,6 +34,8 @@ import { PasswordResetComponent } from './pages/password-reset/password-reset.co
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ActionMenuComponent } from './components/action-menu/action-menu.component';
 import { SomeTimeAgoPipe } from './pipes/some-time-ago.pipe';
+import { FollowerInfoComponent } from './components/follower-info/follower-info.component';
+import { FollowingPageComponent } from './pages/following-page/following-page.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,10 @@ import { SomeTimeAgoPipe } from './pipes/some-time-ago.pipe';
     PasswordResetComponent,
     NotificationsComponent,
     ActionMenuComponent,
-    SomeTimeAgoPipe
+    SomeTimeAgoPipe,
+    FollowerInfoComponent,
+    FollowingPageComponent
+
   ],
   imports: [
     BrowserModule,

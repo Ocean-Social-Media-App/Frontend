@@ -58,6 +58,12 @@
           (click)="like(post.postId)"
           [class.btnColor]="isLiked"
         ></i>
+        <i
+          class="fa fa-bookmark fa-2x bookmark"
+          aria-hidden="true"
+          (click)="bookmark(post.postId)"
+          [class.btnColor]="isBookmarked"
+        ></i>
       </div>
       </div>
     </div>
@@ -66,7 +72,7 @@
 
   <!-- COMMENT COMPONENT -->
   <app-comment-thread
-    [postId]="post.postId"
+    [parentId]="post.postId"
     [style.display]="showComments ? 'block' : 'none'"
     (commentCount)="receiveCommentCount($event)"
   ></app-comment-thread>
@@ -87,7 +93,7 @@
 
   <div class="modal-content">
     
-    <app-new-comment-form [post]="post.postId"></app-new-comment-form>
+    <app-new-comment-form [parent]="post.postId"></app-new-comment-form>
   </div>
   </div>
 </div>
