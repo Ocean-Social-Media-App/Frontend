@@ -19,6 +19,7 @@ export class FeedComponent implements OnInit {
   observer: Subscription = new Subscription;
   stringInput: string = "";
   navigationSubscription: any;
+  userObj;
   // put object for all users here
 
   constructor(private postServ: PostService, private router: Router, private route: ActivatedRoute) {
@@ -28,6 +29,7 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
     console.log(this.pageCount);
     this.populateFeed();
     

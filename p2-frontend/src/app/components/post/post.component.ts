@@ -11,6 +11,7 @@ import { PostService } from 'src/app/services/post/post.service';
 import {NgbModal, ModalDismissReasons}
       from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/services/user/user.service';
+import { BookmarkService } from 'src/app/services/bookmark/bookmark.service';
 
 @Component({
   selector: 'app-post',
@@ -28,6 +29,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   hasPic: boolean = false;
   hasLink: boolean = false;
   isLiked:boolean = false;
+  isBookmarked: boolean = false;
   toggleCommentsText: string = 'view';
   showComments: boolean = false;
   videoId: string = '';
@@ -86,7 +88,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   display: boolean = false;
   likeId!: 0;
 
-  constructor(private postServ: PostService, private userServ: UserService, private likeService: LikeService, private modalService: NgbModal,) { }
+  constructor(private postServ: PostService, private userServ: UserService, private likeService: LikeService, private modalService: NgbModal, private bookmarkService: BookmarkService) { }
   
 
   ngOnInit(): void {
@@ -124,6 +126,12 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
           }
         }
       )
+      this.bookmarkService.getBookmarks(this.userLike)
+      .pipe(first())
+      .subscribe(
+        data =>{
+          this.isBookmarked = (data.data.indexOf(this.post.postId) > -1)
+      });
 
         this.getLikes();
 
@@ -195,7 +203,6 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
                 this.isLiked = false;
                 console.log("Successfully unliked post")
                 console.log(data)
-                this.getLikes();
               },
               error => {
                 console.log("Failed to unlike post")
@@ -215,7 +222,6 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
                   this.isLiked = true;
                   console.log("Successfully liked")
                   console.log(data)
-                  this.getLikes();
                 },
                 error => {
                   console.log("Failed to like post")
@@ -227,7 +233,49 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       )
 
   }
+  bookmark(postId:number){
+    console.log(postId)
 
+    this.bookmarkService.getBookmarks(this.userLike)
+     .pipe(first())
+     .subscribe(
+       data =>{
+         if(data.data.indexOf(postId) > -1){
+           //already bookmarked
+
+           this.bookmarkService.unBookmarkPost(postId, this.userLike)
+           .pipe(first()).subscribe(
+             data => {
+               this.isBookmarked = false;
+               console.log("Successfully unbookmarked post")
+               console.log(data)
+               //this.getLikes();
+             },
+             error => {
+               console.log("Failed to unbookmark post")
+               console.log(error);
+             }
+         )
+         }else{
+
+           this.bookmarkService.bookmarkPost(postId, this.userLike)
+             .pipe(first()).subscribe(
+               data => {
+                 this.isBookmarked = true;
+                 console.log("Successfully bookmarked")
+                 console.log(data)
+                 //this.getLikes();
+               },
+               error => {
+                 console.log("Failed to bookmark post")
+                 console.log(error);
+               }
+           )
+         }
+       }
+     )
+
+ }
   receiveCommentCount(count: number) {
     this.commentCount = count;
   }
