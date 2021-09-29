@@ -1,0 +1,38 @@
+.logo {
+  font-family: "Caveat", sans-serif;
+  font-size: 3.9rem;
+  font-weight: bold;
+  background: #624af2;
+  background: -webkit-linear-gradient(to right, #624af2 0%, #50ddc3 100%);
+  background: -moz-linear-gradient(to right, #624af2 0%, #50ddc3 100%);
+  background: linear-gradient(to right, #624af2 0%, #50ddc3 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sidebar-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  width: 265px;
+  height: max-content;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 1.6rem;
+  color: #14142b;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 1.6rem;
+  z-index: 1;
+
+}
+
+.notification-box {
+    background-color: white;
+    border-radius: 1.6rem;
+    color: #14142b;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 1.6rem;
+
+}
