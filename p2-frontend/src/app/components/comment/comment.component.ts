@@ -48,10 +48,10 @@ export class CommentComponent implements OnInit {
 
     this.userService.getUserById(this.userId).subscribe(
       data =>{
-        console.log(data.data);
-        this.firstName = data.firstName;
-        this.proPicUrl = data.proPicUrl;
-        this.username = data.username;
+        console.log(data);
+        this.firstName = data.data.firstName;
+        this.proPicUrl = data.data.proPicUrl;
+        this.username = data.data.username;
       }
     )
   }

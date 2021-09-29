@@ -46,3 +46,23 @@
   ></app-comment-thread>
 
 </div>
+
+<!-- The Modal -->
+<div
+  id="myModal"
+  class="modal"
+  *ngIf="display"
+  [style.display]="display ? 'block' : 'none'"
+>
+  <!-- Modal content -->
+  <div class="mod-cont">
+  <div>
+    <span class="close" (click)="exit()">&times;</span>
+  </div>
+
+  <div class="modal-content">
+    
+    <app-new-comment-form [parent]="comment.postId"></app-new-comment-form>
+  </div>
+  </div>
+</div>
