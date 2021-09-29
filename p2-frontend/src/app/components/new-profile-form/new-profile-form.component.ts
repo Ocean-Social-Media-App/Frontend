@@ -25,7 +25,7 @@ export class NewProfileFormComponent implements OnInit {
   userObj: any = {};
 
   imageForm = this.fb.group({
-    image: [null]
+    file: [null]
   })
 
   newProfileForm = this.fb.group({
@@ -57,7 +57,7 @@ export class NewProfileFormComponent implements OnInit {
         this.displayUrl = reader.result;
       }
 
-      this.imageForm.get('image')?.setValue(file, {emitModelToViewChange: false});
+      this.imageForm.get('file').setValue(file, {emitModelToViewChange: false});
       console.log(file);
     }
   }
@@ -67,7 +67,7 @@ export class NewProfileFormComponent implements OnInit {
   }
 
   checkImageSwitchForm(event: any) {
-    if (this.imageForm.get('image').value != null) {
+    if (this.imageForm.get('file').value != null) {
       this.current = "details";
     } else {
       this.warn = true;
@@ -111,29 +111,32 @@ export class NewProfileFormComponent implements OnInit {
   }
 
   uploadImageAndCreateProfile(event: any) {
-    if (this.imageForm.get('image')?.value != null) {
+    if (this.imageForm.get('file').value != null) {
       const formData = new FormData();
-      formData.append('file', this.imageForm.get('image')!.value);
+      formData.append('file', this.imageForm.get('file').value);
 
-        this.userService.addProfileImage(formData)
-        .subscribe(
-          data => {
-            console.log("Successfully uploaded image");
-            this.userObj["proPicUrl"] = data.data;
+      console.log(formData);
 
-            console.log(this.userObj);
+      this.userService.addProfileImage(formData)
+      .subscribe(
+        data => {
+          console.log("Successfully uploaded image");
+          this.userObj["proPicUrl"] = data.data;
 
-            this.imageUrl = data.data;
-            this.createProfile();
-          },
-          error => {
-            console.log("upload failed");
-            console.log(error);
-          }
-        )
+          console.log(this.userObj);
+
+          this.imageUrl = data.data;
+          this.createProfile();
+        },
+        error => {
+          console.log("upload failed");
+          console.log(error);
+        }
+      )
     } else {
       this.userObj["proPicUrl"] = this.imageUrl;
-      this.createProfile();
+      alert('Image upload failed');
+      //this.createProfile();
     }
   }
 

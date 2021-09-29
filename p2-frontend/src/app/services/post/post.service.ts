@@ -17,7 +17,6 @@ export class PostService {
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
   createPost(post: Post) {
-    // userId is hard coded for now, needs to be replaced with userId from sessionStorage
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/post`, post, {'headers': this.headers})
   }
 
