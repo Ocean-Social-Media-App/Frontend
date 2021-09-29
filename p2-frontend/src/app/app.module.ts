@@ -33,7 +33,7 @@ import { PasswordResetFormComponent } from './components/password-reset-form/pas
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ActionMenuComponent } from './components/action-menu/action-menu.component';
-
+import { SomeTimeAgoPipe } from './pipes/some-time-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,8 @@ import { ActionMenuComponent } from './components/action-menu/action-menu.compon
     PasswordResetFormComponent,
     PasswordResetComponent,
     NotificationsComponent,
-    ActionMenuComponent
+    ActionMenuComponent,
+    SomeTimeAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -74,7 +75,8 @@ import { ActionMenuComponent } from './components/action-menu/action-menu.compon
     BrowserAnimationsModule,
     YouTubePlayerModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
