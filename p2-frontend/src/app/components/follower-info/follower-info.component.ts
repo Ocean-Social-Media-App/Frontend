@@ -21,6 +21,8 @@ export class FollowerInfoComponent implements OnInit {
   userInSession:number;
   closeResult = '';
 
+  arrayOfFollowers: any[] = [];
+
 
   constructor(private userService: UserService, private route: ActivatedRoute, private modalService: NgbModal, private router:Router) { }
 
@@ -28,6 +30,9 @@ export class FollowerInfoComponent implements OnInit {
     this.userInSession = JSON.parse(sessionStorage.getItem('userObj')).userId;
     this.userService.getUserById(this.userIdFromParam).subscribe(follows =>{
        follows.data.followers.forEach(element => {
+         this.userService.getUserById(element).subscribe(followerUser => {
+           this.arrayOfFollowers.push(followerUser);
+         })
         if(element == this.userInSession){
           this.followLabel = "Unfollow";
           this.followed = true;
@@ -35,6 +40,7 @@ export class FollowerInfoComponent implements OnInit {
       }); 
       this.following = follows.data.user_following.length;
       this.followers = follows.data.followers.length;
+
     })
   }
 
@@ -43,15 +49,20 @@ export class FollowerInfoComponent implements OnInit {
     this.followed = !this.followed;
     if(this.followed)
     {
-      this.followLabel = "Unfollow"
-     this.userService.followUser(this.userIdFromParam, this.userInSession).subscribe(response => console.log(response))
+     this.userService.followUser(this.userIdFromParam, this.userInSession).subscribe(responseData =>{
+       if(responseData.success){ 
      this.followers = +this.followers +  1;
-    }
+     this.followLabel = "Unfollow"
+       }
+    })
+  }
     else{
-      this.followLabel = "Follow"
-      this.userService.unfollowUser(this.userIdFromParam, this.userInSession).subscribe(response=>console.log(response))
+      this.userService.unfollowUser(this.userIdFromParam, this.userInSession).subscribe(response=>{
+        if(response.success){
       this.followers = +this.followers - 1;
-    }
+      this.followLabel = "Follow"
+      }}
+      )}
   }
 
   open(content: any) {
@@ -77,6 +88,10 @@ export class FollowerInfoComponent implements OnInit {
 
   openFollowingPage(){
     this.router.navigateByUrl(`/following/${this.userIdFromParam}`)
+  }
+
+  goToProfile(followerId: number){
+    this.router.navigateByUrl(`/profile-feed/${followerId}`).then(() => window.location.reload());
   }
 
 }

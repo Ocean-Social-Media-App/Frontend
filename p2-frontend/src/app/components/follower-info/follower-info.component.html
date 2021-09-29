@@ -32,11 +32,10 @@
         </button>
     </div>
     <div class="modal-body">
-      <div class="form-group" > <!-- *ngFor="let followers of totalFollowers" -->
+      <div class="form-group"  *ngFor="let follower of arrayOfFollowers" >
         <div>
-          <a class="name text-decoration-none pe-auto" role="button" data-bs-toggle="button" title="View Profile">
-     <!-- {{followers.user.firstName | titlecase }} -->
-     test
+          <a class="name text-decoration-none pe-auto" role="button" data-bs-toggle="button" title="View Profile" (click) = "goToProfile(follower.data.userId)">
+      {{follower.data.firstName | titlecase }} {{follower.data.lastName | titlecase }}
     </a>
       </div>
     </div>

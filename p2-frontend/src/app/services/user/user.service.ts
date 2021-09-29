@@ -71,11 +71,11 @@ export class UserService {
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/follower`, {'headers': this.headers}) 
   } 
 
-  followUser(userId: number, loggedInUser: number){
+  followUser(userId: number, loggedInUser: number): Observable<any>{
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, `${userId}`, {'headers': this.headers});
   }
 
-   unfollowUser(userId: number, loggedInUser: number){
+   unfollowUser(userId: number, loggedInUser: number): Observable<any>{
     return this.httpCli.delete(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers,'body': `${userId}`});
   } 
 }
