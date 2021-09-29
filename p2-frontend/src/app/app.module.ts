@@ -33,6 +33,8 @@ import { PasswordResetFormComponent } from './components/password-reset-form/pas
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ActionMenuComponent } from './components/action-menu/action-menu.component';
+import { FollowerInfoComponent } from './components/follower-info/follower-info.component';
+import { FollowingPageComponent } from './pages/following-page/following-page.component';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { ActionMenuComponent } from './components/action-menu/action-menu.compon
     PasswordResetFormComponent,
     PasswordResetComponent,
     NotificationsComponent,
-    ActionMenuComponent
+    ActionMenuComponent,
+    FollowerInfoComponent,
+    FollowingPageComponent
   ],
   imports: [
     BrowserModule,
