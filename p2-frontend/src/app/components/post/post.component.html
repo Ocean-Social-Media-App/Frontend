@@ -58,6 +58,12 @@
           (click)="like(post.postId)"
           [class.btnColor]="isLiked"
         ></i>
+        <i
+          class="fa fa-bookmark fa-2x bookmark"
+          aria-hidden="true"
+          (click)="bookmark(post.postId)"
+          [class.btnColor]="isBookmarked"
+        ></i>
       </div>
       </div>
     </div>
