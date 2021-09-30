@@ -17,26 +17,25 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   lastNotification: number = 0;
   observer: Subscription = new Subscription();
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) {
+    this.userObj = JSON.parse(sessionStorage.getItem('userObj')!);
+    if (this.userObj == null) this.router.navigateByUrl('');
+    this.userId = this.userObj.userId;
+ }
   
   ngOnInit(): void {
-    this.userObj = JSON.parse(sessionStorage.getItem('userObj')!);
-    if(this.userObj == null) this.router.navigateByUrl('');
-    console.log(this.userObj);
-    this.userId = this.userObj.userId;
-    console.log(this.userId);
-
-    this.getAllNotifications();
+    this.getAllNotifications(this.userId);
   }
 
   ngOnDestroy(): void {
     this.observer.unsubscribe();
   }
 
-  getAllNotifications() {
+  getAllNotifications(userId: number) {
     this.observer.unsubscribe();
-    this.observer = this.userService.getUserNotifications(this.userId).subscribe(notification => {
+    this.observer = this.userService.getUserNotifications(userId).subscribe(notification => {
       this.notifications = notification.data
+      console.log(this.notifications);
     })
   }
 
