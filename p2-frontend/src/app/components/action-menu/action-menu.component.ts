@@ -15,6 +15,7 @@ export class ActionMenuComponent implements OnInit {
 
   _postCheck: boolean = false;
   _notificationCheck: boolean = false;
+  isChecked: boolean = false;
 
   constructor() { }
 
@@ -33,6 +34,16 @@ export class ActionMenuComponent implements OnInit {
     this._notificationCheck = !this._notificationCheck;
     console.log(this._notificationCheck);
     this.eventFromActionNotification.emit(this._notificationCheck);
+  }
+
+  darkMode() {
+    this.isChecked = !this.isChecked;
+    if (this.isChecked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+    console.log(this.isChecked);
   }
 
 }

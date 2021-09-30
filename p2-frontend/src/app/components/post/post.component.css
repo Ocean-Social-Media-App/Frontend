@@ -126,7 +126,8 @@ img {
 }
 
 .comment,
-.like {
+.like,
+.bookmark {
   cursor: pointer;
 }
 

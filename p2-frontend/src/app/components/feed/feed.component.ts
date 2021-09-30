@@ -22,6 +22,7 @@ export class FeedComponent implements OnInit {
   stringInput: string = "";
   navigationSubscription: any;
   userObj;
+  updateFeed: boolean;
   // put object for all users here
 
   constructor(private postServ: PostService, private bookmarkServ: BookmarkService, private router: Router, private route: ActivatedRoute) {
@@ -39,15 +40,18 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes.pageCount.currentValue);
     this.postServ.getNextPageOfPosts(changes.pageCount.currentValue)
       .subscribe(posts => {
-        console.log(posts);
+        this.updateFeed = posts.success;
+        if(posts.success){
         posts.data.forEach((post: any) => {
           this.postList.push(post);
         });
+      }
       })
+      if(this.updateFeed){
       this.populateFeed();
+      }
   }
 
   ngOnDestroy(): void{

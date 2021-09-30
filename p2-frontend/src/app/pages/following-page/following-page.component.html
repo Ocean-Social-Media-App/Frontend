@@ -3,11 +3,11 @@
 </div>
 <div *ngFor = "let user of followingUsers">
     <div class = "following-container">
-        <div class="content">
+        <div (click) = "toUserProfile(user.userId)" class="content">
             <app-profile-pic [passed] = "'img2'" [imgSrc]="profilePic"></app-profile-pic>
             <div class="user-name">
                 <h2>{{ user.firstName }} {{ user.lastName }}</h2>
-                <h4 (click) = "toUserProfile(user.userId)" class="username">@{{ user.username }}</h4>
+                <h4  class="username">@{{ user.username }}</h4>
             </div>
         </div>
     </div>

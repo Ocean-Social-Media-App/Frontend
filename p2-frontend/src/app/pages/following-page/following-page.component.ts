@@ -19,20 +19,17 @@ export class FollowingPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params["id"];
-    console.log(this.userId)
     this.userService.getUserById(this.userId).subscribe(responseData => {
       this.following = responseData.data.user_following;
       this.profilePic = responseData.data.proPicUrl;
-      console.log(responseData)
     })
     setTimeout(()=>{
     this.following.forEach(index=> {this.userService.getUserById(index).subscribe(specificUser => {
       if(specificUser.success){
-      console.log(specificUser);
        this.followingUsers.push(specificUser.data); 
       }
     })})
-    console.log(this.followingUsers)}, 500)
+    }, 500)
 
   }
 

@@ -10,7 +10,6 @@ export class ViewProfileComponent implements OnInit {
 
   updateLabel: string = "Update Profile"
   viewOrUpdate: string = 'view';
-  isChecked: boolean = false;
   firstName: string = '';
   lastName: string = '';
   username: string = '';
@@ -58,13 +57,5 @@ export class ViewProfileComponent implements OnInit {
     this.updateProfile();
   }
 
-  darkMode() {
-    this.isChecked = !this.isChecked;
-    if (this.isChecked) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-    console.log(this.isChecked);
-  }
+
 }

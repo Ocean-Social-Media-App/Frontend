@@ -56,13 +56,13 @@
           class="far fa-heart fa-2x like"
           aria-hidden="true"
           (click)="like(post.postId)"
-          [class.btnColor]="isLiked"
+          [ngStyle]="{'color':isLiked ? '#ed2e7e' : 'var(--font-color)' }"
         ></i>
         <i
           class="fa fa-bookmark fa-2x bookmark"
           aria-hidden="true"
           (click)="bookmark(post.postId)"
-          [class.btnColor]="isBookmarked"
+          [ngStyle]="{'color':isBookmarked ? '#ed2e7e' : 'var(--font-color)' }"
         ></i>
       </div>
       </div>
