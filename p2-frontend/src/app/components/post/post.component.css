@@ -4,6 +4,7 @@
   max-width: 600px;
   border-radius: 1.6rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: var(--posts);
 }
 
 .bottom {
@@ -123,6 +124,10 @@ img {
   position: absolute;
   margin: 10px;
   margin-right: 20px;
+}
+
+.comment{
+  color: var(--font-color);
 }
 
 .comment,

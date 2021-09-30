@@ -21,6 +21,7 @@
 
 .user-name {
     padding: 10px;
+    color: var(--font-color);
 }
 
 .content {

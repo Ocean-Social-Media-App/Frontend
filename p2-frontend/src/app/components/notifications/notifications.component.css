@@ -11,7 +11,7 @@
 }
 
 .sidebar-container {
-  background-color: white;
+  background-color: var(--nav-bar);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,10 +29,10 @@
 }
 
 .notification-box {
-    background-color: white;
+    background-color: var(--posts);
     border-radius: 1.6rem;
-    color: #14142b;
+    color: var(--font-color);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 1.6rem;
-
+    
 }

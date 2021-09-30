@@ -79,16 +79,18 @@ input:focus {
   --nav-bar: white;
   --profile: white;
   --bday: gray;
+  --posts: #eff0f6;
 }
 
 [data-theme="dark"] {
   /* --main-bg: rgb(44, 44, 44); */
-    --primary-color: #9A97F3;
+    --primary-color: #6FFFE9;
     --secondary-color: #818cab;
     --font-color: #e1e1ff;
-    --main-bg: #161625;
+    --main-bg: #0B132B;
     --heading-color: #818cab;
     --nav-bar: #b2b2c477;
     --profile: #3f3f4bcc;
     --bday: white;
+    --posts: #141b2e;
 }
