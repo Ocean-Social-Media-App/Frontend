@@ -14,7 +14,6 @@ export class UserService {
   public userData: User[] | undefined
   jwtToken = sessionStorage.getItem('JWT');
 
-
   headers = new HttpHeaders().set('content-type', 'application/json')
                              .set('Access-Control-Allow-Origin', '*')
                              .set('authorization', this.jwtToken);
@@ -33,6 +32,7 @@ export class UserService {
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/user`, user);
   }
 
+  // This can be deleted
   createProfile(user: User): Observable<any> {
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/createProfile`, user, {'headers': this.headers});
   }
