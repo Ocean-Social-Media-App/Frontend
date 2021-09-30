@@ -63,6 +63,10 @@ export class UserService {
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/forgot/${username}`, {'headers': this.headers});
   }
 
+  getUserNotifications(userId: number): Observable<any> {
+    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/notification/${userId}`, { 'headers': this.headers });
+  }
+
   getAllFollowing(loggedInUser: number): Observable<any>{
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers});
   }
