@@ -20,6 +20,11 @@ export class ActionMenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if (document.documentElement.getAttribute('data-theme') == 'dark') {
+      this.isChecked = true;
+    } else if (document.documentElement.getAttribute('data-theme') == 'light') {
+      this.isChecked = false;
+    }
   }
 
   userIsPosting() {
