@@ -33,7 +33,7 @@ export class FeedComponent implements OnInit {
     console.log(this.pageCount);
     /* console.log(this.pageCount); */
     this.populateFeed();
-    
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -69,7 +69,7 @@ export class FeedComponent implements OnInit {
         console.log(posts.data)
       })
     } else {
-      this.postServ.getAllPostsForOneUser(this.userId)
+      this.postServ.getAllPostsForOneUser(this.userId, this.pageCount)
       .subscribe(posts => {
         this.postList = posts.data;
         console.log(posts.data.content)
