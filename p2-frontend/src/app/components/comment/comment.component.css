@@ -14,6 +14,10 @@ img {
   border-radius: 1.6rem;
 }
 
+.comment-text {
+  color: var(--font-color);
+}
+
 .user-info {
   display: flex;
   flex-direction: row;
@@ -30,7 +34,8 @@ img {
 .name {
   margin: 0;
   font-weight: bold;
-  color: #14142b;
+  /* color: #14142b; */
+  color: var(--font-color);
 }
 
 .username {
