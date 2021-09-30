@@ -22,6 +22,7 @@ export class UpdatePostFormComponent implements OnInit {
   })
 
   updateProfileForm = this.fb.group({
+    userId: [null],
     username: [''],
     email: ['', {
       validators: [Validators.required, Validators.email]
@@ -38,6 +39,7 @@ export class UpdatePostFormComponent implements OnInit {
   ngOnInit(): void {
     this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
 
+    this.updateProfileForm.get('userId').setValue(this.userObj.userId);
     this.updateProfileForm.get('username').setValue(this.userObj.username);
     this.updateProfileForm.get('email').setValue(this.userObj.email);
     this.updateProfileForm.get('firstName').setValue(this.userObj.firstName);
@@ -87,12 +89,15 @@ export class UpdatePostFormComponent implements OnInit {
     this.userService.updateProfile(this.updateProfileForm.value)
       .subscribe(
         user => {
-          console.log("Profile updated");
           console.log(user);
           this.userObj = user.data;
-          sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
-          this.router.navigateByUrl('userFeed');
-          this.sendOutputText.emit('update');
+
+          if (user.success) {
+            sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
+            this.router.navigateByUrl('userFeed');
+            this.sendOutputText.emit('update');
+          }
+
         },
         error => {
           this.isEmailTaken = true;
