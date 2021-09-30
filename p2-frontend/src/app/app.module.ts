@@ -35,6 +35,7 @@ import { NotificationsComponent } from './components/notifications/notifications
 import { ActionMenuComponent } from './components/action-menu/action-menu.component';
 import { FollowerInfoComponent } from './components/follower-info/follower-info.component';
 import { FollowingPageComponent } from './pages/following-page/following-page.component';
+import { ExploreComponent } from './pages/explore/explore.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { FollowingPageComponent } from './pages/following-page/following-page.co
     NotificationsComponent,
     ActionMenuComponent,
     FollowerInfoComponent,
-    FollowingPageComponent
+    FollowingPageComponent,
+    ExploreComponent
   ],
   imports: [
     BrowserModule,

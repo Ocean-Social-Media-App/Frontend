@@ -1,0 +1,6 @@
+<app-nav-bar></app-nav-bar>
+<div class="list-users">
+  <div class="users-container" *ngFor = "let user of userList">
+    <app-user-link [user]="user"></app-user-link>
+  </div>
+</div>
