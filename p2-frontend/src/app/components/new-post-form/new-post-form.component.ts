@@ -72,12 +72,11 @@ export class NewPostFormComponent implements OnInit{
 
   // when you call this method check to see if imageForm has non null value first
   uploadImageAndCreatePost(event: any) {
-    if (this.imageForm.get('imageFile')?.value != null) {
+    if (this.imageForm.get('imageFile').value != null) {
       const formData = new FormData();
-      formData.append('file', this.imageForm.get('imageFile')!.value);
+      formData.append('file', this.imageForm.get('imageFile').value);
 
       this.userService.addPostImage(formData)
-        .pipe(first())
         .subscribe(
           data => {
             console.log("Successfully uploaded image");

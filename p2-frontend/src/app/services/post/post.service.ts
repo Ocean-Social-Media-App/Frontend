@@ -17,7 +17,6 @@ export class PostService {
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
   createPost(post: Post) {
-    // userId is hard coded for now, needs to be replaced with userId from sessionStorage
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/post`, post, {'headers': this.headers})
   }
 
@@ -25,12 +24,12 @@ export class PostService {
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/fave/1`,  {'headers': this.headers} )
   }
 
-  getPostsByUserId(userId: number){
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/userId/${userId}`, {'headers': this.headers})
+  getPostsByUserId(userId: number, page: number){
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/userId/${userId}/${page}`, {'headers': this.headers})
   }
 
-  getAllPostsForOneUser(id: number) {
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/userId/${id}`, {'headers': this.headers})
+  getAllPostsForOneUser(id: number, page: number) {
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/userId/${id}/${page}`, {'headers': this.headers})
   }
 
   getNextPageOfPosts(pageCount: number) {
