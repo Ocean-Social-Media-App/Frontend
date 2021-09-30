@@ -28,6 +28,10 @@ export class PostService {
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/userId/${userId}/${page}`, {'headers': this.headers})
   }
 
+  getPostByPostId(postId: number){
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/${postId}`, {'headers': this.headers})
+  }
+
   getAllPostsForOneUser(id: number, page: number) {
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/userId/${id}/${page}`, {'headers': this.headers})
   }
