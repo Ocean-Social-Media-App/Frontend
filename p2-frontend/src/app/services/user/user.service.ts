@@ -30,7 +30,7 @@ export class UserService {
   }
 
   register(user: User): Observable<any> {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/user`, user, {'headers': this.headers});
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/user`, user);
   }
 
   createProfile(user: User): Observable<any> {
@@ -42,7 +42,7 @@ export class UserService {
   }
 
   login(user: User): Observable<any> {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/login`, user, {'headers': this.headers});
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/login`, user);
   }
 
   // we are now handling logout from the frontend, so no need to use httpClient
