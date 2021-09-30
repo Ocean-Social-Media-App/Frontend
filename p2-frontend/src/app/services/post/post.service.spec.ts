@@ -53,19 +53,6 @@ describe('PostService', () => {
     httpMock.verify();
   })
 
-  it('should return posts by userId when getPostByUserId called', (userId: number = 1) => {
-    service.getPostsByUserId(userId).subscribe((result: any) => {
-      expect(result).toEqual(jasmine.arrayContaining(typeof Post));
-    })
-
-    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/post/userId/${userId}`, 'get posts by user id');
-    expect(req.request.method).toBe('GET');
-
-    req.flush(jasmine.arrayContaining(typeof Post));
-
-    httpMock.verify();
-  })
-
   xit('should return posts by page count', () => {
     const pageCount = 2
     service.getNextPageOfPosts(pageCount).subscribe((result: any) => {

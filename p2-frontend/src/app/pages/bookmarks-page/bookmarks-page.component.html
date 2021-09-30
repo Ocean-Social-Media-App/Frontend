@@ -2,7 +2,7 @@
 
 <div class="post-feed">
   <div class="feed-container">
-    <app-feed [pageCount]="pageCount"></app-feed>
+    <app-feed [pageCount]="1" [isBookmarked]="true"></app-feed>
   </div>
 </div>
 
@@ -11,7 +11,7 @@
 </div>
 
 <div *ngIf="_notificationsDisplay">
-  <app-notifications [userObj]="userObj"></app-notifications>
+  <app-notifications></app-notifications>
 </div>
 
 <div class="navbar fixed-bottom">
@@ -19,4 +19,3 @@
     <app-action-menu (eventFromActionNotification)="receiveNotificationStatus($event)" (eventFromActionMenu)="receivePostStatus($event)"></app-action-menu>
   </div>
 </div>
-    
