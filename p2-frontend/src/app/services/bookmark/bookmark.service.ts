@@ -24,7 +24,7 @@ export class BookmarkService {
   }
      
   getBookmarks(userId : number){
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/user/bookmark/${userId}`, {'headers': this.headers})
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/user/bookmark/${userId}/1`, {'headers': this.headers})
   }
 
 
