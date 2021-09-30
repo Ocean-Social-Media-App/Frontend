@@ -42,7 +42,7 @@ export class UserService {
   }
 
   login(user: User): Observable<any> {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/login`, user, {'headers': this.headers});
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/login`, user);
   }
 
   // we are now handling logout from the frontend, so no need to use httpClient
@@ -52,11 +52,11 @@ export class UserService {
   }
 
   addProfileImage(formData: FormData): Observable<any> {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/profile`, formData, {'headers': this.headers});
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/profile`, formData);
   }
 
   addPostImage(formData: FormData): Observable<any> {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/image`, formData, {'headers': this.headers});
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/image`, formData);
   }
 
   forgotPassword(username: string): Observable<any> {
@@ -72,8 +72,8 @@ export class UserService {
   }
 
    getAllFollowers(): Observable<any>{
-    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/follower`, {'headers': this.headers}) 
-  } 
+    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/follower`, {'headers': this.headers})
+  }
 
   followUser(userId: number, loggedInUser: number): Observable<any>{
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, `${userId}`, {'headers': this.headers});
@@ -81,5 +81,5 @@ export class UserService {
 
    unfollowUser(userId: number, loggedInUser: number): Observable<any>{
     return this.httpCli.delete(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers,'body': `${userId}`});
-  } 
+  }
 }

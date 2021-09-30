@@ -36,6 +36,7 @@ import { ActionMenuComponent } from './components/action-menu/action-menu.compon
 import { SomeTimeAgoPipe } from './pipes/some-time-ago.pipe';
 import { FollowerInfoComponent } from './components/follower-info/follower-info.component';
 import { FollowingPageComponent } from './pages/following-page/following-page.component';
+import { BookmarksPageComponent } from './pages/bookmarks-page/bookmarks-page.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { FollowingPageComponent } from './pages/following-page/following-page.co
     ActionMenuComponent,
     SomeTimeAgoPipe,
     FollowerInfoComponent,
-    FollowingPageComponent
+    FollowingPageComponent,
+    BookmarksPageComponent
 
   ],
   imports: [

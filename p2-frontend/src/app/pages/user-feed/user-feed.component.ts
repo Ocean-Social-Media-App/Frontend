@@ -19,7 +19,8 @@ export class UserFeedComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.userObj = JSON.parse(sessionStorage.getItem('userObj')!);
+    this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
+
     if(this.userObj == null){
       this.router.navigateByUrl('')
     }

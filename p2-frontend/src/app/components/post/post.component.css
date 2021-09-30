@@ -192,3 +192,7 @@ cursor: pointer;
 .like-count{
   color: #1cc8ee;
 }
+
+#bookmark-icon{
+  cursor: pointer;
+}
