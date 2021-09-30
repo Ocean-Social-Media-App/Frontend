@@ -135,8 +135,8 @@ export class NewProfileFormComponent implements OnInit {
       )
     } else {
       this.userObj["proPicUrl"] = this.imageUrl;
-      alert('Image upload failed');
-      //this.createProfile();
+
+      this.createProfile();
     }
   }
 
