@@ -236,15 +236,16 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   bookmark(postId:number){
     console.log(postId)
 
-    this.bookmarkService.getBookmarks(this.userLike)
-     .pipe(first())
+    //this.bookmarkService.getBookmarks(this.userLike)
+    this.userServ.getUserById(this.userLike)
      .subscribe(
        data =>{
-         if(data.data.indexOf(postId) > -1){
+         console.log(data)
+         if(data.data.bookmarks.indexOf(postId) > -1){
            //already bookmarked
 
            this.bookmarkService.unBookmarkPost(postId, this.userLike)
-           .pipe(first()).subscribe(
+           .subscribe(
              data => {
                this.isBookmarked = false;
                console.log("Successfully unbookmarked post")
@@ -253,13 +254,13 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
              },
              error => {
                console.log("Failed to unbookmark post")
-               console.log(error);
+               console.log(error);                  
              }
          )
          }else{
 
            this.bookmarkService.bookmarkPost(postId, this.userLike)
-             .pipe(first()).subscribe(
+             .subscribe(
                data => {
                  this.isBookmarked = true;
                  console.log("Successfully bookmarked")
