@@ -21,8 +21,10 @@ export class CommentThreadComponent implements OnInit {
 
   ngOnInit(): void {
     this.commentService.getCommentsByPostId(this.parentId).subscribe(comments => {
+      if(comments.data != null){
       this.commentThread = comments.data;
       this.commentCount.emit(this.commentThread.length);
+      }
     })
   }
 }

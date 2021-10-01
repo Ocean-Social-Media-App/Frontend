@@ -4,6 +4,7 @@
   max-width: 600px;
   border-radius: 1.6rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: var(--posts);
 }
 
 .bottom {
@@ -49,7 +50,8 @@
   margin-bottom: 10%;
   font-weight: bold;
   font-size: 2.4rem;
-  color: #14142b;
+  /* color: #14142b; */
+  color: var(--font-color);
 }
 
 .username {
@@ -62,6 +64,7 @@
   display: flex;
   font-size: 1.6rem;
   font-weight: medium;
+  color: var(--font-color);
 }
 
 .comment-like {
@@ -123,8 +126,13 @@ img {
   margin-right: 20px;
 }
 
+.comment{
+  color: var(--font-color);
+}
+
 .comment,
-.like {
+.like,
+.bookmark {
   cursor: pointer;
 }
 
@@ -191,4 +199,8 @@ cursor: pointer;
 
 .like-count{
   color: #1cc8ee;
+}
+
+#bookmark-icon{
+  cursor: pointer;
 }

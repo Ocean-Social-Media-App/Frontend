@@ -1,24 +1,29 @@
 <app-nav-bar></app-nav-bar>
 <div class="list-users">
     <div class="users-container" *ngFor = "let user of userList">
-        <button class="button button4" type="button"
-            [routerLink]="['/profile-feed', user.userId]">
             <div class="profile-info">
                 <div class="pic-name">
                     <app-profile-pic [passed] = "'img2'" [imgSrc]="user.proPicUrl"></app-profile-pic>
-            
-                    {{ user.firstName }}<br>
-                    <a>@{{ user.username }}</a>
+                    <div class="name">
+                        <b>{{ user.firstName }}</b>
+                        <br>
+                        <a [routerLink]="['/profile-feed', user.userId]">
+                            <i>@{{ user.username }}</i>
+                        </a>
+                    </div>
                 </div>
                 <div class="about-me">
                     {{user.aboutMe}}
                 </div>
             </div>
-            <app-buttons
-                class="followBtn"
-                id="followBtn"
-                (onClick)="follow()"
-                [label]="followLabel"></app-buttons>
-        </button>
+            <div class="followBtn">
+                <app-buttons
+                    class="followBtn"
+                    id="followBtn"
+                    (onClick)="follow(user.userId)"
+                    [label]="followLabel">
+                </app-buttons>
+            </div>
+        
    </div>
 </div>

@@ -34,7 +34,6 @@ export class SearchComponent implements OnInit{
     this.userId = JSON.parse(sessionStorage.getItem('userObj')!).userId;
 
     this.userService.getAllUsers().subscribe(users => {
-     console.log(users)
       this.userList = users.data;
       /* console.log(this.userList) */
     })

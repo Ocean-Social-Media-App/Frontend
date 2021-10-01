@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UserService } from 'src/app/services/user/user.service';
 
 import { NotificationsComponent } from './notifications.component';
 
@@ -8,7 +10,9 @@ describe('NotificationsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotificationsComponent ]
+      imports: [RouterTestingModule],
+      declarations: [ NotificationsComponent ],
+      providers: [UserService]
     })
     .compileComponents();
   });
@@ -19,7 +23,7 @@ describe('NotificationsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  xit('should get all notifications', () => {
     expect(component).toBeTruthy();
   });
 

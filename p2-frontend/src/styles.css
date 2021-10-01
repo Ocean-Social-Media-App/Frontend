@@ -23,7 +23,7 @@ body {
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  background-color: #fbfbfb;
+  background-color: var(--main-bg);
 }
 
 body {
@@ -44,7 +44,7 @@ body {
 input {
   width: 384px;
   height: 48px;
-  background-color: #eff0f6;
+  background-color: var(--main-bg-dark);
   border-radius: 16px;
   border: 2px solid transparent;
   outline: none;
@@ -66,4 +66,31 @@ input:focus {
   padding-left: 1.6rem;
   color: #ed2e7e;
   height: 1.6rem;
+}
+
+/* Variables */
+:root {
+  --main-bg-a: #fbfbfb;
+  --main-bg: #eff0f6;
+  --font-color: #14142b;
+  --primary-color: #302AE6;
+  --secondary-color: #536390;
+  --heading-color: #292922;
+  --nav-bar: white;
+  --profile: white;
+  --bday: gray;
+  --posts: #eff0f6;
+}
+
+[data-theme="dark"] {
+  /* --main-bg: rgb(44, 44, 44); */
+    --primary-color: #6FFFE9;
+    --secondary-color: #818cab;
+    --font-color: #e1e1ff;
+    --main-bg: #0B132B;
+    --heading-color: #818cab;
+    --nav-bar: #b2b2c477;
+    --profile: #3f3f4bcc;
+    --bday: white;
+    --posts: #141b2e;
 }

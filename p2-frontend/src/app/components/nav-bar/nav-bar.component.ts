@@ -58,6 +58,10 @@ export class NavBarComponent implements OnInit, OnChanges {
     }
   }
 
+  gotoBookmarks(){
+    this.router.navigateByUrl(`/bookmarks`)
+  }
+
   onViewById() {
     this.router.navigateByUrl(`/userFeed/${this.userId}`)
   }

@@ -8,31 +8,31 @@
   background: linear-gradient(to right, #624af2 0%, #50ddc3 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: flex;
+  justify-content: center;
 }
 
 .sidebar-container {
-  background-color: white;
+  background-color: var(--nav-bar);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.8rem;
-  width: 265px;
-  height: max-content;
-  overflow-x: hidden;
-  overflow-y: auto;
+  width: 30%;
   border-radius: 1.6rem;
   color: #14142b;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  padding: 1.6rem;
+  padding: 0.8rem;
   z-index: 1;
-
+  position: fixed;
+  right: 1.6rem;
 }
 
 .notification-box {
-    background-color: white;
+    background-color: var(--posts);
     border-radius: 1.6rem;
-    color: #14142b;
+    color: var(--font-color);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 1.6rem;
+    margin: 1.2rem;
 
 }

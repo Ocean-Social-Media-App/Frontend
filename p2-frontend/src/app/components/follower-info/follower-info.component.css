@@ -11,6 +11,7 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 2.4rem;
     top:50%;
+    background-color: var(--profile);
   }
   
   .profile-body {
@@ -36,7 +37,7 @@
   }
   
   .user-birthday {
-    color: gray;
+    color: var(--bday);
     display: flex;
     justify-content: center;
     font-weight: lighter;
@@ -49,7 +50,7 @@
   }
   
   div {
-    color: black;
+    color: var(--font-color);
   }
 
   .fol-info {

@@ -37,6 +37,7 @@ import { SomeTimeAgoPipe } from './pipes/some-time-ago.pipe';
 import { FollowerInfoComponent } from './components/follower-info/follower-info.component';
 import { FollowingPageComponent } from './pages/following-page/following-page.component';
 import { ExploreComponent } from './pages/explore/explore.component';
+import { BookmarksPageComponent } from './pages/bookmarks-page/bookmarks-page.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,9 @@ import { ExploreComponent } from './pages/explore/explore.component';
     SomeTimeAgoPipe,
     FollowerInfoComponent,
     FollowingPageComponent,
-    ExploreComponent
+    ExploreComponent,
+    BookmarksPageComponent
+
   ],
   imports: [
     BrowserModule,

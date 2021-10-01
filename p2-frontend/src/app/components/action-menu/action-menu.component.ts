@@ -15,10 +15,16 @@ export class ActionMenuComponent implements OnInit {
 
   _postCheck: boolean = false;
   _notificationCheck: boolean = false;
+  isChecked: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+    if (document.documentElement.getAttribute('data-theme') == 'dark') {
+      this.isChecked = true;
+    } else if (document.documentElement.getAttribute('data-theme') == 'light') {
+      this.isChecked = false;
+    }
   }
 
   userIsPosting() {
@@ -33,6 +39,16 @@ export class ActionMenuComponent implements OnInit {
     this._notificationCheck = !this._notificationCheck;
     console.log(this._notificationCheck);
     this.eventFromActionNotification.emit(this._notificationCheck);
+  }
+
+  darkMode() {
+    this.isChecked = !this.isChecked;
+    if (this.isChecked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+    console.log(this.isChecked);
   }
 
 }

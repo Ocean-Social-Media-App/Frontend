@@ -6,17 +6,27 @@
         <span *ngIf="notification.timestamp > notification.userBelongTo.lastNotification">(new)</span>
         
         <div class="notification-box">
-            <span>{{notification.userFrom.firstName}} {{notification.userFrom.lastName}} {{notification.type | lowercase}}ed </span>
-            <span *ngIf="notification.type == 'comment'">on a post!</span>
-            <span *ngIf="notification.type == 'follow'">you!</span>
-            &nbsp;
-            <div class="d-inline-flex">{{notification.timestamp | someTimeAgo}}</div>
+            <a routerLink='/profile-feed/{{notification.userFrom.userId}}'>
+                {{notification.userFrom.firstName}} {{notification.userFrom.lastName}} 
+            </a>
+
+            <span *ngIf="notification.type == 'comment'">
+                {{notification.type | lowercase}}ed on a post {{notification.timestamp | someTimeAgo}}!
+            </span>            
+            <!-- TO BE CHANGED  -->
+            <a *ngIf="notification.type == 'comment'" routerLink="/userFeed/{{notification.userBelongTo.userId">Click here to view your feed</a>
+            
+            <span *ngIf="notification.type == 'like'">
+                {{notification.type | lowercase}}d on a post {{notification.timestamp | someTimeAgo}}!
+            </span>
+            <span *ngIf="notification.type == 'follow'">
+                started {{notification.type | lowercase}}ing you {{notification.timestamp | someTimeAgo}}!
+            </span>
+            <span *ngIf="notification.type == 'unfollow'">
+                {{notification.type | lowercase}}ed you {{notification.timestamp | someTimeAgo}}...
+            </span>
         </div>
-        
-        <!-- TO BE EVALUATED LATER -->
-        <!-- <a routerLink="/profile/{{notification.userResponse.id}}">{{notification.userResponse.name}}</a>
-        {{notification.type}} your
-        <a routerLink="/feed/{{notification.feedID}}">Feed</a> -->
+
     </div>
 
 </div>
