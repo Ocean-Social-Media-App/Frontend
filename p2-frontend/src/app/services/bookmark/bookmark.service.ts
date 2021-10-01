@@ -16,16 +16,25 @@ export class BookmarkService {
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
   bookmarkPost(postId : number, userId : number){
+    this.setHeaders();
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/bookmark/${userId}`, postId, {'headers': this.headers})
   }
 
   unBookmarkPost(postId : number, userId : number){
+    this.setHeaders();
     return this.httpCli.delete(`${this.utilityService.getServerDomain()}/api/user/bookmark/${userId}/${postId}`, {'headers': this.headers})
   }
-     
+
   getBookmarks(userId : number){
+    this.setHeaders();
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/user/bookmark/${userId}/1`, {'headers': this.headers})
   }
 
+  setHeaders(): void {
+    this.jwtToken = sessionStorage.getItem('JWT');
+
+    this.headers = new HttpHeaders().set('Content-type', 'application/json')
+                             .set('authorization', this.jwtToken);
+  }
 
 }

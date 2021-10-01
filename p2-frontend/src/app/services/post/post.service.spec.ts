@@ -41,11 +41,12 @@ describe('PostService', () => {
   })
 
   it('should return allPosts when getAllPosts called', () => {
-    service.getAllPosts().subscribe((result: any) => {
+    let pageNumber = 1;
+    service.getAllPosts(pageNumber).subscribe((result: any) => {
       expect(result).toEqual(jasmine.arrayContaining(typeof Post));
     })
 
-    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/feed/0`, 'get all posts first page');
+    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/feed/post/fave/${pageNumber}`, 'get all posts first page');
     expect(req.request.method).toBe('GET');
 
     req.flush(jasmine.arrayContaining(typeof Post));

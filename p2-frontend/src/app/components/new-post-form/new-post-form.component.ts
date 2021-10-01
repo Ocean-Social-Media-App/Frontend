@@ -29,8 +29,8 @@ export class NewPostFormComponent implements OnInit{
     postYouUrl: [''],
     userId: [this.userId]
   })
-  // link for testing purposes
-  // https://www.youtube.com/watch?v=gc4pxTjii9c
+    
+  
   constructor(private fb: FormBuilder, private userService: UserService, private postService: PostService, private router: Router) { }
   ngOnInit(): void {
     this.userId =  JSON.parse(sessionStorage.getItem('userObj')!).userId
@@ -40,7 +40,7 @@ export class NewPostFormComponent implements OnInit{
     if (event.currentTarget.files.length > 0) {
       const file = event.currentTarget.files[0];
       this.imageForm.get('imageFile')?.setValue(file, {emitModelToViewChange: false});
-      console.log(file);
+      
     }
   }
 
@@ -57,20 +57,17 @@ export class NewPostFormComponent implements OnInit{
     this.postService.createPost(this.newPostForm.value)
       .pipe(first())
       .subscribe(
-        data => {
-          console.log("Successfully created post");
-          console.log(data);
+        data => {          
+          
           this.router.navigateByUrl(this.router.url);
           this.postText.reset();
         },
-        error => {
-          console.log("Failed to create post");
-          console.log(error);
+        error => {          
+          
         }
       )
   }
-
-  // when you call this method check to see if imageForm has non null value first
+  
   uploadImageAndCreatePost(event: any) {
     if (this.imageForm.get('imageFile').value != null) {
       const formData = new FormData();
@@ -78,16 +75,14 @@ export class NewPostFormComponent implements OnInit{
 
       this.userService.addPostImage(formData)
         .subscribe(
-          data => {
-            console.log("Successfully uploaded image");
+          data => {            
             this.imageUrl = data.data;
 
             this.createPost();
-            console.log(this.newPostForm.value)
+            
           },
-          error => {
-            console.log("upload failed");
-            console.log(error);
+          error => {            
+            
           }
         )
     } else {
