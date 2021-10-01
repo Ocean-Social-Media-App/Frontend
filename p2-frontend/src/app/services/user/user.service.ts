@@ -14,15 +14,17 @@ export class UserService {
   public userData: User[] | undefined
   jwtToken = sessionStorage.getItem('JWT');
 
-  headers = new HttpHeaders().set('authorization', this.jwtToken);
+  headers = new HttpHeaders().set('Content-type', 'application/json')
+                             .set('authorization', this.jwtToken);
 
-  constructor(private httpCli: HttpClient, private utilityService: UtilityService, private router: Router) { }
+  constructor(private httpCli: HttpClient, private utilityService: UtilityService, private router: Router) {}
 
   getAllUsers():Observable<any> {
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/user/user`);
   }
 
   getUserById(id: number): Observable<any> {
+    this.setHeaders();
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/user/user/${id}`, {'headers': this.headers})
   }
 
@@ -32,10 +34,12 @@ export class UserService {
 
   // This can be deleted
   createProfile(user: User): Observable<any> {
+    this.setHeaders();
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/createProfile`, user, {'headers': this.headers});
   }
 
   updateProfile(user: User): Observable<any> {
+    this.setHeaders();
     return this.httpCli.put(`${this.utilityService.getServerDomain()}/api/user/updateUser`, user, {'headers': this.headers});
   }
 
@@ -58,26 +62,39 @@ export class UserService {
   }
 
   forgotPassword(username: string): Observable<any> {
+    this.setHeaders();
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/forgot/${username}`, {'headers': this.headers});
   }
 
   getUserNotifications(userId: number): Observable<any> {
+    this.setHeaders();
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/notification/${userId}`, { 'headers': this.headers });
   }
 
   getAllFollowing(loggedInUser: number): Observable<any>{
+    this.setHeaders();
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers});
   }
 
    getAllFollowers(): Observable<any>{
+    this.setHeaders();
     return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/follower`, {'headers': this.headers})
   }
 
   followUser(userId: number, loggedInUser: number): Observable<any>{
+    this.setHeaders();
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, `${userId}`, {'headers': this.headers});
   }
 
    unfollowUser(userId: number, loggedInUser: number): Observable<any>{
+    this.setHeaders();
     return this.httpCli.delete(`${this.utilityService.getServerDomain()}/api/user/follow/${loggedInUser}`, {'headers': this.headers,'body': `${userId}`});
+  }
+
+  setHeaders(): void {
+    this.jwtToken = sessionStorage.getItem('JWT');
+
+    this.headers = new HttpHeaders().set('Content-type', 'application/json')
+                             .set('authorization', this.jwtToken);
   }
 }
