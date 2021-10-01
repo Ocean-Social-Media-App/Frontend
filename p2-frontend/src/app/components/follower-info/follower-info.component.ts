@@ -24,9 +24,16 @@ export class FollowerInfoComponent implements OnInit {
   arrayOfFollowers: any[] = [];
 
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private modalService: NgbModal, private router:Router) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private modalService: NgbModal, private router:Router) {
+
+    console.log(this.followed);
+
+  }
 
   ngOnInit(): void {
+
+    this.followed = false;
+
     this.userInSession = JSON.parse(sessionStorage.getItem('userObj')).userId;
     this.userService.getUserById(this.userIdFromParam).subscribe(follows =>{
        follows.data.followers.forEach(element => {
@@ -37,7 +44,7 @@ export class FollowerInfoComponent implements OnInit {
           this.followLabel = "Unfollow";
           this.followed = true;
         }
-      }); 
+      });
       this.following = follows.data.user_following.length;
       this.followers = follows.data.followers.length;
 
@@ -45,28 +52,36 @@ export class FollowerInfoComponent implements OnInit {
   }
 
   follow(){
+    console.log("Button clicked");
+
     this.userIdFromParam = this.route.snapshot.params["id"];
-    this.followed = !this.followed;
-    if(this.followed)
+
+    if(!this.followed)
     {
      this.userService.followUser(this.userIdFromParam, this.userInSession).subscribe(responseData =>{
-       if(responseData.success){ 
-     this.followers = +this.followers +  1;
-     this.followLabel = "Unfollow"
+       console.log(responseData);
+
+       if(responseData.success){
+        this.followers = +this.followers +  1;
+        this.followLabel = "Unfollow"
+        this.followed = !this.followed;
        }
     })
   }
     else{
       this.userService.unfollowUser(this.userIdFromParam, this.userInSession).subscribe(response=>{
+        console.log(response);
+
         if(response.success){
       this.followers = +this.followers - 1;
       this.followLabel = "Follow"
+      this.followed = !this.followed;
       }}
       )}
   }
 
   open(content: any) {
-    
+
     this.modalService.open(content,
    {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
