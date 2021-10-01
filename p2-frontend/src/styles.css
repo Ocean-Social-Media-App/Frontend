@@ -44,7 +44,7 @@ body {
 input {
   width: 384px;
   height: 48px;
-  background-color: var(--main-bg-dark);
+  background-color: var(--input-bg);
   border-radius: 16px;
   border: 2px solid transparent;
   outline: none;
@@ -73,24 +73,25 @@ input:focus {
   --main-bg-a: #fbfbfb;
   --main-bg: #eff0f6;
   --font-color: #14142b;
-  --primary-color: #302AE6;
+  --primary-color: #302ae6;
   --secondary-color: #536390;
   --heading-color: #292922;
   --nav-bar: white;
   --profile: white;
   --bday: gray;
   --posts: #eff0f6;
+  --input-bg: #eff0f7;
 }
 
 [data-theme="dark"] {
   /* --main-bg: rgb(44, 44, 44); */
-    --primary-color: #6FFFE9;
-    --secondary-color: #818cab;
-    --font-color: #e1e1ff;
-    --main-bg: #0B132B;
-    --heading-color: #818cab;
-    --nav-bar: #b2b2c477;
-    --profile: #3f3f4bcc;
-    --bday: white;
-    --posts: #141b2e;
+  --primary-color: #6fffe9;
+  --secondary-color: #818cab;
+  --font-color: #e1e1ff;
+  --main-bg: #0b132b;
+  --heading-color: #818cab;
+  --nav-bar: #b2b2c477;
+  --profile: #3f3f4bcc;
+  --bday: white;
+  --posts: #141b2e;
 }
