@@ -48,7 +48,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   stringInput: string = ""; */
   likeObj = {
     post: {postId: this.postLike},
-    user: {userId: this.userLike}
+    userId: this.userLike
   }
 
   @Input()
@@ -89,7 +89,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   likeId!: 0;
 
   constructor(private postServ: PostService, private userServ: UserService, private likeService: LikeService, private modalService: NgbModal, private bookmarkService: BookmarkService) { }
-  
+
 
   ngOnInit(): void {
 
@@ -159,7 +159,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
             this.totalLikes = likeData.data.length
             this.likesInnerText = this.totalLikes == 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
             this.likesOnPost = likeData.data;
-        } 
+        }
       }
     )
   }
@@ -210,7 +210,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
               }
           )
           }else{
-            this.likeObj.user.userId =  this.userLike
+            this.likeObj.userId =  this.userLike
             this.likeObj.post.postId = postId
             /* this.likeObj.patchValue({
 
@@ -254,7 +254,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
              },
              error => {
                console.log("Failed to unbookmark post")
-               console.log(error);                  
+               console.log(error);
              }
          )
          }else{
@@ -282,7 +282,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   open(content: any) {
-    
+
     this.modalService.open(content,
    {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
