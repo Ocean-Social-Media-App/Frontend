@@ -1,0 +1,51 @@
+:host {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.6rem;
+}
+  
+.list-users {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.users-container{
+    display: flex;
+    padding: 10px;
+}
+
+.profile-info{
+    display: flex;
+    align-items: center;
+}
+.about-me{
+    width:100%;
+    text-align: center;
+}
+.button {
+    width: 500px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button4 {
+    background-color: white;
+    color: black;
+    border: 2px solid #e7e7e7;
+}
+  
+.button4:hover {
+    background-color: #e7e7e7;
+}  

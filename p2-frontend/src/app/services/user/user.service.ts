@@ -52,7 +52,7 @@ export class UserService {
   }
 
   addProfileImage(formData: FormData): Observable<any> {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/profile`, formData);
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/user/profile`, formData);
   }
 
   addPostImage(formData: FormData): Observable<any> {
