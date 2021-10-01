@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user/user.service';
@@ -22,7 +22,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     if (this.userObj == null) this.router.navigateByUrl('');
     this.userId = this.userObj.userId;
  }
-  
+    
   ngOnInit(): void {
     this.getAllNotifications(this.userId);
   }
@@ -34,8 +34,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   getAllNotifications(userId: number) {
     this.observer.unsubscribe();
     this.observer = this.userService.getUserNotifications(userId).subscribe(notification => {
-      this.notifications = notification.data
-      console.log(this.notifications);
+      this.notifications = notification.data;
     })
   }
 
