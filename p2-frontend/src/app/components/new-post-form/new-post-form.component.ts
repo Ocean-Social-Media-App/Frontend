@@ -79,7 +79,7 @@ export class NewPostFormComponent implements OnInit{
             this.imageUrl = data.data;
 
             this.createPost();
-            console.log(this.newPostForm.value)
+            
           },
           error => {            
             

@@ -70,8 +70,7 @@ export class UpdatePostFormComponent implements OnInit {
       this.userService.addProfileImage(formData)
         .subscribe(
           data => {
-            console.log("Successfully uploaded image");
-            console.log(data);
+            
 
             this.updateProfileForm.patchValue({
               proPicUrl: data.data
@@ -89,7 +88,7 @@ export class UpdatePostFormComponent implements OnInit {
     this.userService.updateProfile(this.updateProfileForm.value)
       .subscribe(
         user => {
-          console.log(user);
+          
           this.userObj = user.data;
 
           if (user.success) {
@@ -101,9 +100,7 @@ export class UpdatePostFormComponent implements OnInit {
         },
         error => {
           this.isEmailTaken = true;
-          console.log("Unable to update profile");
-          console.log(error);
-        }
+        }          
       )
   }
 
