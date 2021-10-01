@@ -41,11 +41,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output()
   callPageRefresh: EventEmitter<string> = new EventEmitter();
-
-  /* postList: Array<Post> = [];
-  listTemp: Array<Post> = [];
-  observer: Subscription = new Subscription;
-  stringInput: string = ""; */
+  
   likeObj = {
     post: {postId: this.postLike},
     user: {userId: this.userLike}
@@ -117,8 +113,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
     this.likeService.checkLike(this.post.postId, this.userLike)
       .pipe(first())
       .subscribe(
-        data =>{
-          /* console.log(data); */
+        data =>{          
           if(data.success == true){
             this.isLiked=true;
           }else{
@@ -134,10 +129,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       });
 
         this.getLikes();
-
-    /* this.postServ.getAllPosts().subscribe(posts => {
-      this.postList = posts.results;
-    }) */
+    
   }
 
   ngOnChanges(){
@@ -164,8 +156,6 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
     )
   }
 
-
-
   toggleComments() {
     if (this.toggleCommentsText == 'view') {
       this.toggleCommentsText = 'hide';
@@ -178,8 +168,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   exit(){
-    this.display = false;
-    /* this.modal.style.display = 'none'; */
+    this.display = false;    
   }
 
   displayModal(){
@@ -194,38 +183,31 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       .pipe(first())
       .subscribe(
         data =>{
-          if(data.success == true){
-            //already liked
+          if(data.success == true){            
             this.likeId = data.data
             this.likeService.unLikePost(this.likeId)
             .pipe(first()).subscribe(
               data => {
-                this.isLiked = false;
-                console.log("Successfully unliked post")
-                console.log(data)
+                this.isLiked = false;                
+                
               },
-              error => {
-                console.log("Failed to unlike post")
-                console.log(error);
+              error => {                
+                
               }
           )
           }else{
             this.likeObj.user.userId =  this.userLike
             this.likeObj.post.postId = postId
-            /* this.likeObj.patchValue({
-
-            }) */
+            
             console.log(this.likeObj)
             this.likeService.likePost(this.likeObj)
               .pipe(first()).subscribe(
                 data => {
-                  this.isLiked = true;
-                  console.log("Successfully liked")
-                  console.log(data)
+                  this.isLiked = true;                  
+                  
                 },
-                error => {
-                  console.log("Failed to like post")
-                  console.log(error);
+                error => {                  
+                  
                 }
             )
           }
@@ -233,28 +215,23 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       )
 
   }
-  bookmark(postId:number){
-    console.log(postId)
-
-    //this.bookmarkService.getBookmarks(this.userLike)
+  bookmark(postId:number){    
+    
     this.userServ.getUserById(this.userLike)
      .subscribe(
-       data =>{
-         console.log(data)
+       data =>{         
          if(data.data.bookmarks.indexOf(postId) > -1){
-           //already bookmarked
+           
 
            this.bookmarkService.unBookmarkPost(postId, this.userLike)
            .subscribe(
              data => {
-               this.isBookmarked = false;
-               console.log("Successfully unbookmarked post")
-               console.log(data)
-               //this.getLikes();
+               this.isBookmarked = false;           
+               
+               
              },
-             error => {
-               console.log("Failed to unbookmark post")
-               console.log(error);                  
+             error => {               
+                                 
              }
          )
          }else{
@@ -262,14 +239,11 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
            this.bookmarkService.bookmarkPost(postId, this.userLike)
              .subscribe(
                data => {
-                 this.isBookmarked = true;
-                 console.log("Successfully bookmarked")
-                 console.log(data)
-                 //this.getLikes();
+                 this.isBookmarked = true;                                  
+                 
                },
-               error => {
-                 console.log("Failed to bookmark post")
-                 console.log(error);
+               error => {                 
+                 
                }
            )
          }

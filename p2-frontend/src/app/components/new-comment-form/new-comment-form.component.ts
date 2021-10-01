@@ -31,30 +31,25 @@ export class NewCommentFormComponent implements OnInit {
   }
 
  onClick(event: any) {
-    if (this.newCommentForm.invalid) {
-      console.log("invalid");
+    if (this.newCommentForm.invalid) {      
       return;
     }
-
-    console.log("adding comment");
+    
 
    this.newCommentForm.patchValue({
     postParentId: this.parent,
     userId: this.user
-  })
-  console.log(this.newCommentForm.value)
+  })  
 
     this.commentService.createComment(this.newCommentForm.value)
       .subscribe(
         data => {
-          console.log("Successfully created comment");
-          console.log(data);
+                   
           this.router.navigateByUrl(this.router.url)
 
         },
-        error => {
-          console.log("Failed to create comment");
-          console.log(error);
+        error => {          
+          
         }
       )
   }

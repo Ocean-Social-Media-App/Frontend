@@ -34,14 +34,14 @@ export class UserInfoComponent implements OnInit {
     this.userService.getUserById(userId).subscribe(user1 => {
       this.userObj = user1.data;
 
-      console.log(this.userObj)
+      
 
       this.username = this.userObj.username;
       this.firstName = this.userObj.firstName;
       this.lastName = this.userObj.lastName;
       this.bday = this.userObj.bday;
       this.proPicUrl = this.userObj.proPicUrl;
-      console.log(this.proPicUrl)
+      
       this.aboutMe = this.userObj.aboutMe;
     })
 

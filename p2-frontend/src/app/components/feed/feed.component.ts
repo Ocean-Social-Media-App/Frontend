@@ -32,9 +32,7 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
-    console.log(this.pageCount);
-    /* console.log(this.pageCount); */
+    this.userObj = JSON.parse(sessionStorage.getItem('userObj'));       
     this.populateFeed();
 
   }
@@ -82,13 +80,13 @@ export class FeedComponent implements OnInit {
   else if (this.userId == undefined) {
       this.postServ.getAllPosts().subscribe(posts => {
         this.postList = posts.data;
-        console.log(posts.data)
+        
       })
     } else {
       this.postServ.getAllPostsForOneUser(this.userId, this.pageCount)
       .subscribe(posts => {
         this.postList = posts.data;
-        console.log(posts.data.content)
+        
       })
     }
   }
