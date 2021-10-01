@@ -1,4 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscriber } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user/user.service';
@@ -33,10 +34,14 @@ export class ExploreComponent implements OnInit {
   following: any[];
   observer: Subscriber<any> = new Subscriber;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userId = JSON.parse(sessionStorage.getItem('userObj')).userId;
+
+    if (this.userId == null) {
+      this.router.navigateByUrl('')
+    }
 
     this.userService.getAllUsers().subscribe(users => {
       this.wholeList = users.data;
