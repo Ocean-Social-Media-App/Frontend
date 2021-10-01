@@ -34,7 +34,7 @@ export class CommentComponent implements OnInit {
     postParentId: 0,
     userId: 0
   }
-  toggleCommentsText: string;
+  toggleCommentsText: string = "view";
   showComments: boolean;
   display: boolean;
   commentCount: number;

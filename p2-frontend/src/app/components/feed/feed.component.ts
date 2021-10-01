@@ -80,7 +80,8 @@ export class FeedComponent implements OnInit {
           })
         });
       })
-    } else if (this.userId == undefined) {
+    } else{ 
+      if (this.userId == undefined) {
       this.postServ.getNextPageOfPosts(this.pageCount).subscribe(posts => {
         this.postList = posts.data;
 
@@ -94,4 +95,5 @@ export class FeedComponent implements OnInit {
       })
     }
   }
+}
 }

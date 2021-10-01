@@ -113,7 +113,7 @@
     <div class="form-group" *ngFor="let receivedLike of likesOnPost">
       <div>
         <a class="name text-decoration-none pe-auto" role="button" data-bs-toggle="button" title="View Profile">
-      {{receivedLike.user.firstName | titlecase }}</a>
+      {{receivedLike.firstName | titlecase }} {{receivedLike.lastName | titlecase }}</a>
     </div>
   </div>
   </div>
