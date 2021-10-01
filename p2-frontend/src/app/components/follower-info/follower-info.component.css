@@ -10,7 +10,8 @@
     color: #14142b;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 2.4rem;
-    top:50%;
+    margin-top:2%;
+    right: 1%;
     background-color: var(--profile);
   }
   
