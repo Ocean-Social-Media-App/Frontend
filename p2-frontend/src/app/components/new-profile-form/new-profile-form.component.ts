@@ -20,7 +20,8 @@ export class NewProfileFormComponent implements OnInit {
   addedPic: boolean = false;
   displayUrl: any;
   warn: boolean = false;
-  
+  isLoading: boolean = false;
+
   // variables to be set from session storage
   userObj: any = {};
 
@@ -74,7 +75,9 @@ export class NewProfileFormComponent implements OnInit {
     }
   }
 
-  createProfile() {    
+  createProfile() {
+    this.isLoading = true;
+    
     this.newProfileForm.patchValue({
       username: this.userObj.username,
       email: this.userObj.email,
@@ -94,6 +97,7 @@ export class NewProfileFormComponent implements OnInit {
     this.userService.register(this.newProfileForm.value)
     .subscribe(
       data => {
+        this.isLoading = false;
         
         this.userObj["userId"] = data.data.userId;
 
