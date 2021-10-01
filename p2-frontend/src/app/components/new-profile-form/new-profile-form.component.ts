@@ -92,7 +92,7 @@ export class NewProfileFormComponent implements OnInit {
 
     sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
 
-    console.log(this.newProfileForm.value);
+    
 
     this.userService.register(this.newProfileForm.value)
     .subscribe(

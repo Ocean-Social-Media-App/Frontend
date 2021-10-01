@@ -104,9 +104,9 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
 
     if(this.post.postYouUrl !== ''){
       this.hasLink = true;
-      console.log(this.post.postYouUrl);
+
       this.videoId = getVideoId(this.post.postYouUrl).id;
-      console.log(this.videoId);
+
 
     }
 
@@ -177,7 +177,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   like(postId:number){
-     console.log(postId)
+
 
      this.likeService.checkLike(postId, this.userLike)
       .pipe(first())
@@ -199,7 +199,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
             this.likeObj.userId =  this.userLike
             this.likeObj.post.postId = postId
 
-            console.log(this.likeObj)
+
             this.likeService.likePost(this.likeObj)
               .pipe(first()).subscribe(
                 data => {

@@ -29,7 +29,7 @@ export class LoginFormComponent {
   /* example on calling function in parent component function can be called anything */
   logIn(event: any){
     if (this.loginForm.invalid) {
-      console.log(this.isValid);
+      
 
       return;
     }
