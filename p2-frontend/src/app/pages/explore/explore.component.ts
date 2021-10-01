@@ -64,11 +64,13 @@ export class ExploreComponent implements OnInit {
   follow(userIdFollow: number){
     console.log(this.userId)
     console.log(userIdFollow)
-    this.followed = !this.followed;
-    if(this.followed){
+    
+    if(!this.followed){
       console.log("trying to follow")
      this.userService.followUser(userIdFollow, this.userId).subscribe(responseData =>{
-       if(responseData.success){
+      console.log(responseData) 
+      if(responseData.success){
+        console.log("trying to unfollow")
          this.followLabel = "Unfollow"
          console.log("followed user")
        }else{
