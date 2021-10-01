@@ -41,10 +41,10 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output()
   callPageRefresh: EventEmitter<string> = new EventEmitter();
-  
+
   likeObj = {
     post: {postId: this.postLike},
-    user: {userId: this.userLike}
+    userId: this.userLike
   }
 
   @Input()
@@ -85,7 +85,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   likeId!: 0;
 
   constructor(private postServ: PostService, private userServ: UserService, private likeService: LikeService, private modalService: NgbModal, private bookmarkService: BookmarkService) { }
-  
+
 
   ngOnInit(): void {
 
@@ -113,7 +113,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
     this.likeService.checkLike(this.post.postId, this.userLike)
       .pipe(first())
       .subscribe(
-        data =>{          
+        data =>{
           if(data.success == true){
             this.isLiked=true;
           }else{
@@ -129,7 +129,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       });
 
         this.getLikes();
-    
+
   }
 
   ngOnChanges(){
@@ -151,7 +151,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
             this.totalLikes = likeData.data.length
             this.likesInnerText = this.totalLikes == 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
             this.likesOnPost = likeData.data;
-        } 
+        }
       }
     )
   }
@@ -168,7 +168,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   exit(){
-    this.display = false;    
+    this.display = false;
   }
 
   displayModal(){
@@ -183,31 +183,31 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       .pipe(first())
       .subscribe(
         data =>{
-          if(data.success == true){            
+          if(data.success == true){
             this.likeId = data.data
             this.likeService.unLikePost(this.likeId)
             .pipe(first()).subscribe(
               data => {
-                this.isLiked = false;                
-                
+                this.isLiked = false;
+
               },
-              error => {                
-                
+              error => {
+
               }
           )
           }else{
-            this.likeObj.user.userId =  this.userLike
+            this.likeObj.userId =  this.userLike
             this.likeObj.post.postId = postId
-            
+
             console.log(this.likeObj)
             this.likeService.likePost(this.likeObj)
               .pipe(first()).subscribe(
                 data => {
-                  this.isLiked = true;                  
-                  
+                  this.isLiked = true;
+
                 },
-                error => {                  
-                  
+                error => {
+
                 }
             )
           }
@@ -215,23 +215,23 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       )
 
   }
-  bookmark(postId:number){    
-    
+  bookmark(postId:number){
+
     this.userServ.getUserById(this.userLike)
      .subscribe(
-       data =>{         
+       data =>{
          if(data.data.bookmarks.indexOf(postId) > -1){
-           
+
 
            this.bookmarkService.unBookmarkPost(postId, this.userLike)
            .subscribe(
              data => {
-               this.isBookmarked = false;           
-               
-               
+               this.isBookmarked = false;
+
+
              },
-             error => {               
-                                 
+             error => {
+
              }
          )
          }else{
@@ -239,11 +239,11 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
            this.bookmarkService.bookmarkPost(postId, this.userLike)
              .subscribe(
                data => {
-                 this.isBookmarked = true;                                  
-                 
+                 this.isBookmarked = true;
+
                },
-               error => {                 
-                 
+               error => {
+
                }
            )
          }
@@ -256,7 +256,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   open(content: any) {
-    
+
     this.modalService.open(content,
    {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;

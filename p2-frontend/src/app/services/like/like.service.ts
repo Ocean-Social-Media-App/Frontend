@@ -16,7 +16,7 @@ export class LikeService {
 
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
-  likePost(like: Like){
+  likePost(like: any){
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/like`, like, {'headers': this.headers})
   }
 
