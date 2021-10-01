@@ -193,7 +193,8 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
             .pipe(first()).subscribe(
               data => {
                 this.isLiked = false;
-
+                this.totalLikes -= 1;
+                this.likesInnerText = this.totalLikes == 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
               },
               error => {
 
@@ -208,7 +209,8 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
               .pipe(first()).subscribe(
                 data => {
                   this.isLiked = true;
-
+                  this.totalLikes += 1;
+                  this.likesInnerText = this.totalLikes == 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
                 },
                 error => {
 
@@ -261,6 +263,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
 
 
   open(content: any) {
+    this.getLikes()
     this.modalService.open(content,
    {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -268,6 +271,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       this.closeResult =
          `Dismissed ${this.getDismissReason(reason)}`;
     });
+    this.likesOnPost = [];
   }
 
   private getDismissReason(reason: any): string {
