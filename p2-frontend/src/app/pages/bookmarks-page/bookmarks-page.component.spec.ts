@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { BookmarksPageComponent } from './bookmarks-page.component';
 
@@ -8,7 +9,8 @@ describe('BookmarksPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookmarksPageComponent ]
+      declarations: [ BookmarksPageComponent],
+      imports: [RouterTestingModule]
     })
     .compileComponents();
   });
