@@ -1,0 +1,81 @@
+:host {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.6rem;
+}
+  
+.list-users {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.users-container{
+    width: 500px;
+    margin-bottom: 10px;
+    max-width: 800px;
+    display: flex;
+  flex-direction: column;
+  border-radius: 1.6rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: var(--posts);
+}
+
+.profile-info{
+    display: flex;
+    align-items: center;
+}
+.pic-name{
+    display: flex;
+    justify-content: space-evenly;
+    width: fit-content;
+    padding: 10px
+}
+.name{
+    width: fit-content;
+    padding: 10px;
+    font-size: medium;
+}
+.about-me{
+    width:200px;
+    text-align: center;
+    display: flex;
+    padding: 25px;
+}
+/* .button {
+    width: 500px;
+    background-color: #4CAF50; Green
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-bottom: 10px;
+    max-width: 800px;
+  border-radius: 1.6rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: var(--posts);
+}
+
+.button4 {
+    background-color: transparent;
+    color: black;
+    border: none;
+}
+  
+.button4:hover {
+    background-color: #e7e7e7;
+}  
+ */
+.followBtn{
+    text-align: center;
+    display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}

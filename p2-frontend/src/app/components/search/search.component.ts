@@ -37,7 +37,6 @@ export class SearchComponent implements OnInit{
 
 
     this.userService.getAllUsers().subscribe(users => {
-      console.log(users)
       this.userList = users.data;
     })
   }

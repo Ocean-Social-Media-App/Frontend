@@ -104,7 +104,7 @@ export class NewProfileFormComponent implements OnInit {
         sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
         sessionStorage.setItem('JWT', data.message);
 
-        this.router.navigateByUrl('userFeed');
+        this.router.navigateByUrl('explore');
       },
       error => {        
         
