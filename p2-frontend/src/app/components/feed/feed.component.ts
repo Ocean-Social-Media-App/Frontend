@@ -63,28 +63,28 @@ export class FeedComponent implements OnInit {
   populateFeed(){
     if(this.isBookmarked){
       this.postList = [];
-      this.bookmarkObs = this.bookmarkServ.getBookmarks(this.userObj.userId, this.pageCount).subscribe((response)=>{
-        console.log(response);
 
+      this.bookmarkObs = this.bookmarkServ.getBookmarks(this.userObj.userId, this.pageCount).subscribe((response)=>{
         response.data.forEach(bookmarkId => {
           this.postObs = this.postServ.getPostByPostId(bookmarkId).subscribe((postResponse)=>{
-            console.log(postResponse);
-
             this.postList.push(postResponse.data);
           })
         });
       })
+
     } else if (this.userId == undefined) {
+
       this.postObs = this.postServ.getNextPageOfPosts(this.pageCount).subscribe(posts => {
         this.postList = posts.data;
-
-        console.log(posts)
       })
+
     } else {
+
       this.postObs = this.postServ.getAllPostsForOneUser(this.userId, this.pageCount)
       .subscribe(posts => {
         this.postList = posts.data;
       })
+
     }
   }
 }
