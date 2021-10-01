@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Comment } from 'src/app/models/Comment';
 import { Post } from 'src/app/models/Post';
@@ -13,9 +14,6 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
-
-  
-
 
   @Output()
   firstName: string =  "";
@@ -39,20 +37,25 @@ export class CommentComponent implements OnInit {
   display: boolean;
   commentCount: number;
   closeResult: string;
+  userObs: Subscription;
 
   constructor(private commentService: CommentService, private userService: UserService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.userId =  JSON.parse(sessionStorage.getItem('userObj')).userId
-    
 
-    this.userService.getUserById(this.userId).subscribe(
-      data =>{        
+
+    this.userObs = this.userService.getUserById(this.userId).subscribe(
+      data =>{
         this.firstName = data.data.firstName;
         this.proPicUrl = data.data.proPicUrl;
         this.username = data.data.username;
       }
     )
+  }
+
+  ngOnDestroy(): void {
+    this.userObs.unsubscribe();
   }
 
   toggleComments() {
@@ -68,7 +71,7 @@ export class CommentComponent implements OnInit {
 
   exit(){
     this.display = false;
-    
+
   }
 
   displayModal(){
@@ -76,13 +79,12 @@ export class CommentComponent implements OnInit {
 
   }
 
-
   receiveCommentCount(count: number) {
     this.commentCount = count;
   }
 
   open(content: any) {
-    
+
     this.modalService.open(content,
    {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;

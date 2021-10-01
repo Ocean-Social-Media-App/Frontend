@@ -16,7 +16,7 @@ export class NewProfileFormComponent implements OnInit {
   submitLabel: string = 'Submit';
   uploadLabel: string = 'Upload';
   current: string = 'image';
-  imageUrl: string = 'assets/default.jpg';
+  imageUrl: string = 'https://s3.amazonaws.com/test.zimi.li/default.jpg';
   addedPic: boolean = false;
   displayUrl: any;
   warn: boolean = false;
@@ -59,7 +59,7 @@ export class NewProfileFormComponent implements OnInit {
       }
 
       this.imageForm.get('file').setValue(file, {emitModelToViewChange: false});
-      
+
     }
   }
 
@@ -77,7 +77,7 @@ export class NewProfileFormComponent implements OnInit {
 
   createProfile() {
     this.isLoading = true;
-    
+
     this.newProfileForm.patchValue({
       username: this.userObj.username,
       email: this.userObj.email,
@@ -92,13 +92,13 @@ export class NewProfileFormComponent implements OnInit {
 
     sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
 
-    
+
 
     this.userService.register(this.newProfileForm.value)
     .subscribe(
       data => {
         this.isLoading = false;
-        
+
         this.userObj["userId"] = data.data.userId;
 
         sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
@@ -106,8 +106,8 @@ export class NewProfileFormComponent implements OnInit {
 
         this.router.navigateByUrl('userFeed');
       },
-      error => {        
-        
+      error => {
+
       }
     )
   }
@@ -115,18 +115,18 @@ export class NewProfileFormComponent implements OnInit {
   uploadImageAndCreateProfile(event: any) {
     if (this.imageForm.get('file').value != null) {
       const formData = new FormData();
-      formData.append('file', this.imageForm.get('file').value);      
+      formData.append('file', this.imageForm.get('file').value);
 
       this.userService.addProfileImage(formData)
       .subscribe(
-        data => {          
-          this.userObj["proPicUrl"] = data.data;          
+        data => {
+          this.userObj["proPicUrl"] = data.data;
 
           this.imageUrl = data.data;
           this.createProfile();
         },
-        error => {          
-          
+        error => {
+
         }
       )
     } else {
