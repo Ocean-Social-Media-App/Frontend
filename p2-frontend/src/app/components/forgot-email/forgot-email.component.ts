@@ -24,8 +24,7 @@ export class ForgotEmailComponent {
   }
 
   sendPasswordEmail(event: any) {
-    if (this.forgotForm.invalid) {
-      console.log("invalid form");
+    if (this.forgotForm.invalid) {      
       return;
     }
 
@@ -41,7 +40,7 @@ export class ForgotEmailComponent {
           }
         },
         error => {
-          console.log("error sending password reset");
+                    
         }
       );
     }

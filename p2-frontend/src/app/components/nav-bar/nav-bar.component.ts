@@ -34,12 +34,7 @@ export class NavBarComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.userId = JSON.parse(sessionStorage.getItem('userObj')!).userId;
-
-    /* this.userService.getAllUsers().subscribe(users => {
-     console.log(users)
-      this.userList = users.data;
-      console.log(this.userList)
-    }) */
+    
   }
 
   logout(event: any) {

@@ -33,10 +33,7 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
-    console.log(this.pageCount);
-    /* console.log(this.pageCount); */
     this.populateFeed();
-
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -49,9 +46,10 @@ export class FeedComponent implements OnInit {
         });
       }
       })
-      if(this.updateFeed){
-      this.populateFeed();
-      }
+
+      /* if(this.updateFeed){
+        this.populateFeed();
+      } */
   }
 
   ngOnDestroy(): void{
@@ -71,24 +69,28 @@ export class FeedComponent implements OnInit {
     if(this.isBookmarked){
       let tempList = [];
       this.bookmarkServ.getBookmarks(this.userObj.userId).subscribe((response)=>{
+        console.log(response);
+
         response.data.forEach(bookmarkId => {
           this.postServ.getPostByPostId(bookmarkId).subscribe((postResponse)=>{
+            console.log(postResponse);
+
             tempList.push(postResponse.data);
-            this.postList = tempList;
+              this.postList = tempList;
           })
         });
       })
-  }
-  else if (this.userId == undefined) {
-      this.postServ.getAllPosts().subscribe(posts => {
+    } else if (this.userId == undefined) {
+      this.postServ.getNextPageOfPosts(this.pageCount).subscribe(posts => {
         this.postList = posts.data;
-        console.log(posts.data)
+
+        console.log(posts)
       })
     } else {
       this.postServ.getAllPostsForOneUser(this.userId, this.pageCount)
       .subscribe(posts => {
         this.postList = posts.data;
-        console.log(posts.data.content)
+
       })
     }
   }

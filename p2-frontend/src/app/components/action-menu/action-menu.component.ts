@@ -29,15 +29,13 @@ export class ActionMenuComponent implements OnInit {
 
   userIsPosting() {
     this._notificationCheck = false;
-    this._postCheck = !this._postCheck;
-    console.log(this._postCheck);
+    this._postCheck = !this._postCheck;    
     this.eventFromActionMenu.emit(this._postCheck);
   }
 
   notificationsDisplay() {
     this._postCheck = false;
-    this._notificationCheck = !this._notificationCheck;
-    console.log(this._notificationCheck);
+    this._notificationCheck = !this._notificationCheck;    
     this.eventFromActionNotification.emit(this._notificationCheck);
   }
 
@@ -47,8 +45,7 @@ export class ActionMenuComponent implements OnInit {
       document.documentElement.setAttribute('data-theme', 'dark');
     } else {
       document.documentElement.setAttribute('data-theme', 'light');
-    }
-    console.log(this.isChecked);
+    }    
   }
 
 }

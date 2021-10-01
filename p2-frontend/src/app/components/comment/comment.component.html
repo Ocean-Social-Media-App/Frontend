@@ -6,7 +6,7 @@
       <a class="username" [routerLink]="['/profile-feed', comment.userId]"
         >@{{ username }}</a
       >
-      <!-- <h4 class="date">Sep 10</h4> -->
+     
     </div>
   </div>
   <div class="comment-text">
@@ -18,7 +18,7 @@
   <!-- COMMENT & LIKE -->
   <div class="comment-like">
     <div class = "icons">
-      <!-- <div class = "like-count" (click) = "open(content)"> {{likesInnerText}}</div> -->
+      
       <a (click)="toggleComments()"
         >{{ toggleCommentsText }} {{ commentCount }} comments</a>
       <div class="comment-like-icons">
@@ -27,12 +27,7 @@
           aria-hidden="true"
           (click)="displayModal()"
         ></i>
-        <!--  <i
-          class="fa fa-heart fa-2x like"
-          aria-hidden="true"
-          (click)="like(post.postId)"
-          [class.btnColor]="isLiked"
-        ></i> -->
+       
       </div>
     </div>
   </div>

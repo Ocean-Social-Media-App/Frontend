@@ -24,30 +24,32 @@ export class SearchComponent implements OnInit{
 
   userId: number;
   searchInput:string= "";
-  userList: Array<any> = []; 
+  userList: Array<any> = [];
   listTemp: Array<User> = [];
-  
+
   constructor(private userService: UserService) { }
- 
+
 
   ngOnInit(): void {
-    this.userId = JSON.parse(sessionStorage.getItem('userObj')!).userId;
+    this.userId = JSON.parse(sessionStorage.getItem('userObj')).userId;
+
+    console.log('onInit Called');
+
 
     this.userService.getAllUsers().subscribe(users => {
       this.userList = users.data;
-      /* console.log(this.userList) */
     })
   }
 
   ngDoCheck(): void {
     if(this.searchInput != "" ){
       this.listTemp = this.userList.filter(user => user.username.startsWith(this.searchInput))
-      /* console.log(this.listTemp) */
+
     }else{
       this.listTemp = []
-      /* console.log(this.listTemp) */
+
     }
-    
+
   }
 
 }

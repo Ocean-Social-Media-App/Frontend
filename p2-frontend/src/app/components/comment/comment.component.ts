@@ -44,11 +44,10 @@ export class CommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId =  JSON.parse(sessionStorage.getItem('userObj')).userId
-    /* console.log(this.userId) */
+    
 
     this.userService.getUserById(this.userId).subscribe(
-      data =>{
-        console.log(data);
+      data =>{        
         this.firstName = data.data.firstName;
         this.proPicUrl = data.data.proPicUrl;
         this.username = data.data.username;
@@ -69,7 +68,7 @@ export class CommentComponent implements OnInit {
 
   exit(){
     this.display = false;
-    /* this.modal.style.display = 'none'; */
+    
   }
 
   displayModal(){

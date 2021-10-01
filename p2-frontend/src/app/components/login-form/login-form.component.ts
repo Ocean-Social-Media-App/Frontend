@@ -15,7 +15,7 @@ export class LoginFormComponent {
   signUpLabel: string = "Sign Up";
   logInLabel: string = "Log In"
   isValid: boolean|null = null;
-
+    
   // variables to be set from session storage
   userObj: any = {};
 
@@ -25,11 +25,11 @@ export class LoginFormComponent {
   })
 
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
-
+  
   /* example on calling function in parent component function can be called anything */
   logIn(event: any){
     if (this.loginForm.invalid) {
-      console.log(this.isValid);
+      
 
       return;
     }
@@ -37,26 +37,21 @@ export class LoginFormComponent {
     this.userService.login(this.loginForm.value)
       .subscribe(
         data => {
-          console.log(data);
-
+          
           if (data.success) {
             let user = data.data;
-            console.log(user);
-
+            
             sessionStorage.setItem('userObj', JSON.stringify(user));
 
-            sessionStorage.setItem('JWT', data.message);
-
-            console.log(sessionStorage.getItem('JWT'));
+            sessionStorage.setItem('JWT', data.message);            
 
             this.router.navigateByUrl('userFeed');
           } else {
             alert("Incorrect username or password");
           }
         },
-        error => {
-          console.log('Login failed');
-          console.log(error);
+        error => {          
+          
         }
       )
   }

@@ -44,7 +44,7 @@ export class NewProfileFormComponent implements OnInit {
 
   ngOnInit() {
     this.userObj = JSON.parse(sessionStorage.getItem('userObj')!);
-    console.log(this.userObj);
+
   }
 
   onFileInput(event: any) {
@@ -59,7 +59,7 @@ export class NewProfileFormComponent implements OnInit {
       }
 
       this.imageForm.get('file').setValue(file, {emitModelToViewChange: false});
-      console.log(file);
+      
     }
   }
 
@@ -77,7 +77,7 @@ export class NewProfileFormComponent implements OnInit {
 
   createProfile() {
     this.isLoading = true;
-    //this.userId = Number(sessionStorage.getItem('userId'));
+    
     this.newProfileForm.patchValue({
       username: this.userObj.username,
       email: this.userObj.email,
@@ -92,13 +92,13 @@ export class NewProfileFormComponent implements OnInit {
 
     sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
 
-    console.log(this.newProfileForm.value);
+    
 
     this.userService.register(this.newProfileForm.value)
     .subscribe(
       data => {
         this.isLoading = false;
-        console.log("Profile created");
+        
         this.userObj["userId"] = data.data.userId;
 
         sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
@@ -106,9 +106,8 @@ export class NewProfileFormComponent implements OnInit {
 
         this.router.navigateByUrl('explore');
       },
-      error => {
-        console.log("Unable to create profile");
-        console.log(error);
+      error => {        
+        
       }
     )
   }
@@ -116,24 +115,18 @@ export class NewProfileFormComponent implements OnInit {
   uploadImageAndCreateProfile(event: any) {
     if (this.imageForm.get('file').value != null) {
       const formData = new FormData();
-      formData.append('file', this.imageForm.get('file').value);
-
-      console.log(formData);
+      formData.append('file', this.imageForm.get('file').value);      
 
       this.userService.addProfileImage(formData)
       .subscribe(
-        data => {
-          console.log("Successfully uploaded image");
-          this.userObj["proPicUrl"] = data.data;
-
-          console.log(this.userObj);
+        data => {          
+          this.userObj["proPicUrl"] = data.data;          
 
           this.imageUrl = data.data;
           this.createProfile();
         },
-        error => {
-          console.log("upload failed");
-          console.log(error);
+        error => {          
+          
         }
       )
     } else {
