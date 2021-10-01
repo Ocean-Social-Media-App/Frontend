@@ -26,16 +26,12 @@ export class ExploreComponent implements OnInit {
   }
 
   userId: number;
-  userIdFollow: number;
   userList: Array<any> = []; 
   wholeList: Array<any> = []; 
   listNum: number = 5;
-  followLabel : string = "Follow";
-  followed: boolean = false;
-  followers: number = 0;
+  
   following: any[];
-  followingUsers: any[] = [];
-  allFollowing: Subscriber<any> = new Subscriber;
+  observer: Subscriber<any> = new Subscriber;
 
   constructor(private userService: UserService) { }
 
@@ -44,45 +40,42 @@ export class ExploreComponent implements OnInit {
 
     this.userService.getAllUsers().subscribe(users => {
       this.wholeList = users.data;
-      this.userList = this.wholeList.slice(0, this.listNum)
-      console.log(this.userList)
-    })
-
-    this.userService.getUserById(this.userId).subscribe(responseData => {
-      this.following = responseData.data.user_following;
-    })
-    setTimeout(()=>{
-    this.following.forEach(index=> {this.userService.getUserById(index).subscribe(specificUser => {
-      if(specificUser.success){
-       this.followingUsers.push(specificUser.data); 
+      for(let item in this.wholeList) {
+        this.wholeList[item].followLabel = "Follow";
       }
-    })})
-    }, 500)
+      
+      this.userList = this.wholeList.slice(0, this.listNum)
+      for (let user of this.wholeList) {
+        
+        this.userService.getUserById(this.userId).subscribe(responseData => {
+          this.following = responseData.data.user_following;
+          for (let followee of this.following) {
+            if(user.userId == followee) {
+              user.followLabel = "Unfollow";
+            }
+          }
+        })}
+    })   
   }
 
   
-  follow(userIdFollow: number){
-    console.log(this.userId)
-    console.log(userIdFollow)
-    
-    if(!this.followed){
+  follow(userFollow: any){
+        
+    if(userFollow.followLabel == "Follow"){
       console.log("trying to follow")
-     this.userService.followUser(userIdFollow, this.userId).subscribe(responseData =>{
-      console.log(responseData) 
+      this.userService.followUser(userFollow.userId, this.userId).subscribe(responseData =>{
+      
       if(responseData.success){
-        console.log("trying to unfollow")
-         this.followLabel = "Unfollow"
+         userFollow.followLabel = "Unfollow"
          console.log("followed user")
-       }else{
-         console.log(responseData);
-
+       }else {
+         
        }
     })
-  }
-    else{
-      this.userService.unfollowUser(userIdFollow, this.userId).subscribe(response=>{
+  }else {
+    this.userService.unfollowUser(userFollow.userId, this.userId).subscribe(response=>{
         if(response.success){
-          this.followLabel = "Follow"
+          userFollow.followLabel = "Follow"
           console.log("unfollowed user")
         }}
     )}
