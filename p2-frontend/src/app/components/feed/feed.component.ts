@@ -14,19 +14,19 @@ import { UserService } from 'src/app/services/user/user.service';
 export class FeedComponent implements OnInit {
 
   @Input() pageCount: number = 1;
-  @Input() isBookmarked: boolean = false;
-  userId: number = this.route.snapshot.params["id"];
   postList: Array<any> = [];
-  listTemp: Array<Post> = [];
   postObs: Subscription = new Subscription();
   bookmarkObs: Subscription = new Subscription();
   stringInput: string = "";
   navigationSubscription: any;
-  userObj;
+  userObj: any;
   updateFeed: boolean;
-  // put object for all users here
+  hasReachedLastPage: boolean = false;
 
   constructor(private postServ: PostService, private bookmarkServ: BookmarkService, private router: Router, private route: ActivatedRoute) {
+
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) this.ngOnInit();
     })
@@ -38,17 +38,17 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!this.isBookmarked) {
+    /* if (!this.isBookmarked) {
       this.postObs = this.postServ.getNextPageOfPosts(changes.pageCount.currentValue)
       .subscribe(posts => {
         this.updateFeed = posts.success;
         if(posts.success){
-        posts.data.forEach((post: any) => {
-          this.postList.push(post);
-        });
+          posts.data.forEach((post: any) => {
+            this.postList.push(post);
+          });
       }
       })
-    }
+    } */
   }
 
   ngOnDestroy(): void{
@@ -61,30 +61,41 @@ export class FeedComponent implements OnInit {
   }
 
   populateFeed(){
-    if(this.isBookmarked){
-      this.postList = [];
 
-      this.bookmarkObs = this.bookmarkServ.getBookmarks(this.userObj.userId, this.pageCount).subscribe((response)=>{
-        response.data.forEach(bookmarkId => {
-          this.postObs = this.postServ.getPostByPostId(bookmarkId).subscribe((postResponse)=>{
-            this.postList.push(postResponse.data);
-          })
-        });
-      })
-
-    } else if (this.userId == undefined) {
-
-      this.postObs = this.postServ.getNextPageOfPosts(this.pageCount).subscribe(posts => {
-        this.postList = posts.data;
-      })
-
+    if (this.route.snapshot.params["id"]) {
+      this.getOneUsersPosts();
+    } else if (this.router.url == '/bookmarks') {
+      this.getBookmarkedPosts();
     } else {
-
-      this.postObs = this.postServ.getAllPostsForOneUser(this.userId, this.pageCount)
-      .subscribe(posts => {
-        this.postList = posts.data;
-      })
-
+      this.getAllFollowedPosts();
     }
+
+  }
+
+  getBookmarkedPosts() {
+    this.bookmarkObs = this.bookmarkServ.getBookmarks(this.userObj.userId, this.pageCount).subscribe((response)=>{
+      response.data.forEach(bookmarkId => {
+        this.postObs = this.postServ.getPostByPostId(bookmarkId).subscribe((postResponse)=>{
+          this.postList.push(postResponse.data);
+        })
+      });
+    })
+  }
+
+  getAllFollowedPosts() {
+    this.postObs = this.postServ.getNextPageOfPosts(this.pageCount).subscribe(posts => {
+      if (!posts.success) {
+        this.hasReachedLastPage = true;
+      } else {
+        this.postList = posts.data;
+      }
+    })
+  }
+
+  getOneUsersPosts() {
+    this.postObs = this.postServ.getAllPostsForOneUser(this.route.snapshot.params["id"], this.pageCount)
+    .subscribe(posts => {
+        this.postList = posts.data;
+    })
   }
 }
