@@ -11,7 +11,7 @@ import { CommentService } from 'src/app/services/comment/comment.service';
 export class CommentThreadComponent implements OnInit {
 
   commentThread: Array<any> = [];
-  observer: Subscription = new Subscription;
+  commentObs: Subscription = new Subscription();
 
   @Output() commentCount: EventEmitter<number> = new EventEmitter<number>();
   @Input()
@@ -20,11 +20,15 @@ export class CommentThreadComponent implements OnInit {
   constructor(private router: Router, private commentService: CommentService) { }
 
   ngOnInit(): void {
-    this.commentService.getCommentsByPostId(this.parentId).subscribe(comments => {
+    this.commentObs = this.commentService.getCommentsByPostId(this.parentId).subscribe(comments => {
       if(comments.data != null){
       this.commentThread = comments.data;
       this.commentCount.emit(this.commentThread.length);
       }
     })
+  }
+
+  ngOnDestroy() {
+    this.commentObs.unsubscribe();
   }
 }
