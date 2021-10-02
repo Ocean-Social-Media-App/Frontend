@@ -17,18 +17,29 @@ export class LikeService {
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
   likePost(like: any){
+    this.setHeaders();
     return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/like`, like, {'headers': this.headers})
   }
 
   unLikePost(likeId: number){
+    this.setHeaders();
     return this.httpCli.delete(`${this.utilityService.getServerDomain()}/api/feed/like/${likeId}`, {'headers': this.headers})
   }
 
   checkLike(postId : number, userId : number){
+    this.setHeaders();
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/like/${postId}/${userId}`, {'headers': this.headers})
   }
 
   getAllLikesByPost(postId: number){
+    this.setHeaders();
     return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/like/${postId}`, {'headers': this.headers})
+  }
+
+  setHeaders(): void {
+    this.jwtToken = sessionStorage.getItem('JWT');
+
+    this.headers = new HttpHeaders().set('Content-type', 'application/json')
+                             .set('authorization', this.jwtToken);
   }
 }

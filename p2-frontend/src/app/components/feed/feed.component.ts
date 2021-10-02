@@ -18,7 +18,8 @@ export class FeedComponent implements OnInit {
   userId: number = this.route.snapshot.params["id"];
   postList: Array<any> = [];
   listTemp: Array<Post> = [];
-  observer: Subscription = new Subscription;
+  postObs: Subscription = new Subscription();
+  bookmarkObs: Subscription = new Subscription();
   stringInput: string = "";
   navigationSubscription: any;
   userObj;
@@ -37,7 +38,8 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.postServ.getNextPageOfPosts(changes.pageCount.currentValue)
+    if (!this.isBookmarked) {
+      this.postObs = this.postServ.getNextPageOfPosts(changes.pageCount.currentValue)
       .subscribe(posts => {
         this.updateFeed = posts.success;
         if(posts.success){
@@ -46,52 +48,43 @@ export class FeedComponent implements OnInit {
         });
       }
       })
-
-      /* if(this.updateFeed){
-        this.populateFeed();
-      } */
+    }
   }
 
   ngOnDestroy(): void{
-    this.observer.unsubscribe();
+    this.postObs.unsubscribe();
+    this.bookmarkObs.unsubscribe();
 
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
     }
   }
 
-  ngDoCheck(): void{
-    //this.listTemp = this.postList.filter(post => post.postText?.startsWith(this.stringInput))
-  }
-
-
   populateFeed(){
     if(this.isBookmarked){
-      let tempList = [];
-      this.bookmarkServ.getBookmarks(this.userObj.userId).subscribe((response)=>{
-        console.log(response);
+      this.postList = [];
 
+      this.bookmarkObs = this.bookmarkServ.getBookmarks(this.userObj.userId, this.pageCount).subscribe((response)=>{
         response.data.forEach(bookmarkId => {
-          this.postServ.getPostByPostId(bookmarkId).subscribe((postResponse)=>{
-            console.log(postResponse);
-
-            tempList.push(postResponse.data);
-              this.postList = tempList;
+          this.postObs = this.postServ.getPostByPostId(bookmarkId).subscribe((postResponse)=>{
+            this.postList.push(postResponse.data);
           })
         });
       })
-    } else if (this.userId == undefined) {
-      this.postServ.getNextPageOfPosts(this.pageCount).subscribe(posts => {
-        this.postList = posts.data;
 
-        console.log(posts)
+    } else if (this.userId == undefined) {
+
+      this.postObs = this.postServ.getNextPageOfPosts(this.pageCount).subscribe(posts => {
+        this.postList = posts.data;
       })
+
     } else {
-      this.postServ.getAllPostsForOneUser(this.userId, this.pageCount)
+
+      this.postObs = this.postServ.getAllPostsForOneUser(this.userId, this.pageCount)
       .subscribe(posts => {
         this.postList = posts.data;
-
       })
+
     }
   }
 }

@@ -121,15 +121,14 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
           }
         }
       )
-      this.bookmarkService.getBookmarks(this.userLike)
+      this.userServ.getUserById(this.post.userId)
       .pipe(first())
       .subscribe(
         data =>{
-          this.isBookmarked = (data.data.indexOf(this.post.postId) > -1)
+          this.isBookmarked = (data.data.bookmarks.indexOf(this.post.postId) > -1)
       });
 
-        this.getLikes();
-
+      this.getLikes();
   }
 
   ngOnChanges(){

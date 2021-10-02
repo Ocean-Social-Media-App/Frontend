@@ -33,9 +33,6 @@ export class SearchComponent implements OnInit{
   ngOnInit(): void {
     this.userId = JSON.parse(sessionStorage.getItem('userObj')).userId;
 
-    console.log('onInit Called');
-
-
     this.userService.getAllUsers().subscribe(users => {
       this.userList = users.data;
     })
