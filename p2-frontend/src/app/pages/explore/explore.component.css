@@ -43,6 +43,7 @@
     text-align: center;
     display: flex;
     padding: 25px;
+    color: var(--font-color);
 }
 /* .button {
     width: 500px;

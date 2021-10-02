@@ -17,7 +17,7 @@
             <a *ngIf="notification.type == 'comment'" routerLink="/userFeed/{{notification.userBelongTo.userId">Click here to view your feed</a>
             
             <span *ngIf="notification.type == 'like'">
-                {{notification.type | lowercase}}d on a post {{notification.timestamp | someTimeAgo}}!
+                {{notification.type | lowercase}}d a post {{notification.timestamp | someTimeAgo}}!
             </span>
             <span *ngIf="notification.type == 'follow'">
                 started {{notification.type | lowercase}}ing you {{notification.timestamp | someTimeAgo}}!

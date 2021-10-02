@@ -14,8 +14,7 @@ export class UserService {
   public userData: User[] | undefined
   jwtToken = sessionStorage.getItem('JWT');
 
-  headers = new HttpHeaders().set('content-type', 'application/json')
-                             .set('Access-Control-Allow-Origin', '*')
+  headers = new HttpHeaders().set('Content-type', 'application/json')
                              .set('authorization', this.jwtToken);
 
   constructor(private httpCli: HttpClient, private utilityService: UtilityService, private router: Router) {}
