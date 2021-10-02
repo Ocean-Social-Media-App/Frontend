@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { shareReplay } from 'rxjs/operators';
 import { Post } from 'src/app/models/Post';
 import { UtilityService } from '../utility.service';
 
@@ -28,7 +29,7 @@ export class PostService {
 
   getPostsByUserId(userId: number, page: number){
     this.setHeaders();
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/userId/${userId}/${page}`, {'headers': this.headers})
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/feed/post/userId/${userId}/${page}`, {'headers': this.headers});
   }
 
   getPostByPostId(postId: number){

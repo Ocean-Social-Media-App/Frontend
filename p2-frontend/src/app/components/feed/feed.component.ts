@@ -1,10 +1,8 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Post } from 'src/app/models/Post';
 import { BookmarkService } from 'src/app/services/bookmark/bookmark.service';
 import { PostService } from 'src/app/services/post/post.service';
-import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-feed',
@@ -14,9 +12,11 @@ import { UserService } from 'src/app/services/user/user.service';
 export class FeedComponent implements OnInit {
 
   @Input() pageCount: number = 1;
+  previousPage: number;
   postList: Array<any> = [];
   postObs: Subscription = new Subscription();
   bookmarkObs: Subscription = new Subscription();
+  hasLoadedPosts: boolean = false;
   stringInput: string = "";
   navigationSubscription: any;
   userObj: any;
@@ -34,21 +34,19 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
+  }
+
+  ngAfterViewInit() {
     this.populateFeed();
+    this.hasLoadedPosts = true;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    /* if (!this.isBookmarked) {
-      this.postObs = this.postServ.getNextPageOfPosts(changes.pageCount.currentValue)
-      .subscribe(posts => {
-        this.updateFeed = posts.success;
-        if(posts.success){
-          posts.data.forEach((post: any) => {
-            this.postList.push(post);
-          });
-      }
-      })
-    } */
+
+    if (this.hasLoadedPosts && !this.hasReachedLastPage) {
+      this.populateFeed();
+    }
+
   }
 
   ngOnDestroy(): void{
@@ -86,8 +84,13 @@ export class FeedComponent implements OnInit {
     this.postObs = this.postServ.getNextPageOfPosts(this.pageCount).subscribe(posts => {
       if (!posts.success) {
         this.hasReachedLastPage = true;
+        console.log('LAST PAGE REACHED');
+
       } else {
-        this.postList = posts.data;
+        posts.data.forEach(post => {
+          this.postList.push(post);
+        });
+        /* this.postList = posts.data; */
       }
     })
   }
