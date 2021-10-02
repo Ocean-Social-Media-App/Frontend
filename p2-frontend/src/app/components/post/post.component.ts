@@ -85,6 +85,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private postServ: PostService, private userServ: UserService, private likeService: LikeService, private modalService: NgbModal, private bookmarkService: BookmarkService) { }
 
 
+
   ngOnInit(): void {
     this.userLike = JSON.parse(sessionStorage.getItem('userObj')).userId
 
@@ -220,6 +221,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   open(content: any) {
+
     this.modalService.open(content,
    {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
