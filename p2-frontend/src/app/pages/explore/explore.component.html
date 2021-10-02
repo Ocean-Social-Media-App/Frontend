@@ -21,7 +21,7 @@
                     class="followBtn"
                     id="followBtn"
                     (onClick)="follow(user.userId)"
-                    [label]="followLabel">
+                    [label]='followed == true ? "Unfollow" : "Follow"'>
                 </app-buttons>
             </div>
         
