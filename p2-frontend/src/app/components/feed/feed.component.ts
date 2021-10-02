@@ -72,11 +72,17 @@ export class FeedComponent implements OnInit {
 
   getBookmarkedPosts() {
     this.bookmarkObs = this.bookmarkServ.getBookmarks(this.userObj.userId, this.pageCount).subscribe((response)=>{
-      response.data.forEach(bookmarkId => {
-        this.postObs = this.postServ.getPostByPostId(bookmarkId).subscribe((postResponse)=>{
-          this.postList.push(postResponse.data);
-        })
-      });
+
+      if (!response.success) {
+        this.hasReachedLastPage = true;
+        console.log('LAST PAGE REACHED');
+      } else {
+        response.data.forEach(bookmarkId => {
+          this.postObs = this.postServ.getPostByPostId(bookmarkId).subscribe((postResponse)=>{
+            this.postList.push(postResponse.data);
+          })
+        });
+      }
     })
   }
 
@@ -90,7 +96,6 @@ export class FeedComponent implements OnInit {
         posts.data.forEach(post => {
           this.postList.push(post);
         });
-        /* this.postList = posts.data; */
       }
     })
   }
@@ -98,7 +103,15 @@ export class FeedComponent implements OnInit {
   getOneUsersPosts() {
     this.postObs = this.postServ.getAllPostsForOneUser(this.route.snapshot.params["id"], this.pageCount)
     .subscribe(posts => {
-        this.postList = posts.data;
+
+      if (!posts.success) {
+        this.hasReachedLastPage = true;
+        console.log('LAST PAGE REACHED');
+      } else {
+        posts.data.forEach(post => {
+          this.postList.push(post);
+        });
+      }
     })
   }
 }
