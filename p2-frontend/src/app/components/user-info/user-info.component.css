@@ -10,7 +10,7 @@
   color: #14142b;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 2.4rem;
-  background-color: var(--profile);
+  background-color: var(--component-bg);
 }
 
 .profile-body {

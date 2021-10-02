@@ -5,9 +5,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  background-color: var(--component-bg);
   border-radius: 0px 1.6rem 1.6rem 0px;
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   width: 64rem;
   height: 100vh;
   overflow-x: hidden;
@@ -45,13 +45,14 @@
   left: 3.2rem;
   cursor: pointer;
   font-size: 3.2rem;
+  color: var(--icons);
 }
 
 .view-profile {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: var(--profile);
+  background-color: var(--component-bg);
   height: 100%;
   padding: 3.2rem;
   font-family: "Poppins", sans-serif;
@@ -77,6 +78,10 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.user-name h4 {
+  color: var(--links);
 }
 
 .user-birthday {

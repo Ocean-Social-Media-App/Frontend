@@ -23,7 +23,6 @@
         <a class="username" [routerLink]="['/profile-feed', post.user.userId]"
           >@{{ post.user.username }}</a
         >
-        
       </div>
     </div>
     <div class="post-text">{{ post.postText }}</div>
@@ -91,11 +90,8 @@
 >
   <!-- Modal content -->
   <div class="mod-cont">
-    <div>
-      <span class="close" (click)="exit()">&times;</span>
-    </div>
-
     <div class="modal-content">
+      <span class="close" (click)="exit()">&times;</span>
       <app-new-comment-form [parent]="post.postId"></app-new-comment-form>
     </div>
   </div>
