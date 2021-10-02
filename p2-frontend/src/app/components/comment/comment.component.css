@@ -1,11 +1,14 @@
+
 .comment-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.8rem;
-  padding: 3.2rem;
+  padding: 2.8rem;
   padding-top: 0;
-  justify-content: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-right: 0px;
 }
 
 img {
@@ -48,6 +51,9 @@ img {
   position: absolute;
   margin: 10px;
   margin-right: 20px;
+}
+.comment{
+  color: var(--font-color);
 }
 
 .comment,

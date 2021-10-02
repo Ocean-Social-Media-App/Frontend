@@ -37,6 +37,9 @@ export class ExploreComponent implements OnInit {
   following: any[];
   observer: Subscriber<any> = new Subscriber;
 
+  _userIsPosting: boolean = false;
+  _notificationsDisplay: boolean = false;
+
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -63,7 +66,9 @@ export class ExploreComponent implements OnInit {
             }
           }
         })}
-    })   
+    }) 
+    
+ 
   }
 
   
@@ -99,4 +104,17 @@ export class ExploreComponent implements OnInit {
     }
   }
 
+
+  receivePostStatus(postCheck: boolean) {
+    this._notificationsDisplay = false;
+    this._userIsPosting = postCheck;
+  }
+
+  receiveNotificationStatus(notificationCheck: boolean) {
+    this._userIsPosting = false;
+    this._notificationsDisplay = notificationCheck;
+  }
+  
 }
+
+

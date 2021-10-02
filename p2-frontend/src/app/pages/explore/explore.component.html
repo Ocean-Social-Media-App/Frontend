@@ -27,3 +27,9 @@
         
    </div>
 </div>
+
+<div class="navbar fixed-bottom">
+    <div class="position-absolute bottom-0 end-0 m-5">
+      <app-action-menu (eventFromActionNotification)="receiveNotificationStatus($event)" (eventFromActionMenu)="receivePostStatus($event)"></app-action-menu>
+    </div>
+  </div>

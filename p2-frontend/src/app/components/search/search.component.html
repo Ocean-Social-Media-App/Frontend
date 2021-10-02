@@ -12,7 +12,7 @@
             [(ngModel)]="searchInput"
         />
         </div>
-        <div class="searchList-cont">
+        <div class="searchList-cont" *ngIf = "isTyping" >
       <div class="searchList" *ngFor="let user of listTemp">
         <app-user-link [user]="user"></app-user-link>
       </div>

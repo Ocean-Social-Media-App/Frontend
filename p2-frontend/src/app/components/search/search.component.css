@@ -6,6 +6,8 @@
   } */
   .searchList-cont{
     z-index: 10;
+    height: 170px;
+    overflow:scroll;
   }
 
   .search {
