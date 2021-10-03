@@ -1,9 +1,7 @@
-import { parseHostBindings } from '@angular/compiler';
 import { Component, Input, OnInit, Output, EventEmitter, OnDestroy, OnChanges } from '@angular/core';
 import getVideoId from 'get-video-id';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { Like } from 'src/app/models/Like';
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
 import { LikeService } from 'src/app/services/like/like.service';
@@ -11,6 +9,8 @@ import { PostService } from 'src/app/services/post/post.service';
 import {NgbModal, ModalDismissReasons}
       from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/services/user/user.service';
+import { BookmarkService } from 'src/app/services/bookmark/bookmark.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -28,6 +28,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   hasPic: boolean = false;
   hasLink: boolean = false;
   isLiked:boolean = false;
+  isBookmarked: boolean = false;
   toggleCommentsText: string = 'view';
   showComments: boolean = false;
   videoId: string = '';
@@ -35,18 +36,17 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   totalLikes:number;
   likesInnerText: string = "";
   likesOnPost: any = [];
-  observer: Subscription = new Subscription;
+
+  userObs: Subscription = new Subscription();
+  likeObs: Subscription = new Subscription();
+  bookmarkObs: Subscription = new Subscription();
 
   @Output()
   callPageRefresh: EventEmitter<string> = new EventEmitter();
 
-  /* postList: Array<Post> = [];
-  listTemp: Array<Post> = [];
-  observer: Subscription = new Subscription;
-  stringInput: string = ""; */
   likeObj = {
     post: {postId: this.postLike},
-    user: {userId: this.userLike}
+    userId: this.userLike
   }
 
   @Input()
@@ -65,7 +65,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       lastName: undefined,
       aboutMe: undefined,
       bday: undefined,
-      proPicUrl: undefined
+      proPicUrl: ""
     }
   }
 
@@ -86,12 +86,12 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   display: boolean = false;
   likeId!: 0;
 
-  constructor(private postServ: PostService, private userServ: UserService, private likeService: LikeService, private modalService: NgbModal,) { }
-  
+  constructor(private router: Router, private userServ: UserService, private likeService: LikeService, private modalService: NgbModal, private bookmarkService: BookmarkService) { }
 
   ngOnInit(): void {
+    this.userLike = JSON.parse(sessionStorage.getItem('userObj')).userId
 
-    this.userLike = JSON.parse(sessionStorage.getItem('userObj')!).userId
+    this.isBookmarked = this.router.url == '/bookmarks' ? true : false;
 
     if(this.post.postPicUrl != null){
       this.hasPic = true;
@@ -106,34 +106,25 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
 
     if(this.post.postYouUrl !== ''){
       this.hasLink = true;
-      console.log(this.post.postYouUrl);
       this.videoId = getVideoId(this.post.postYouUrl).id;
-      console.log(this.videoId);
-
     }
 
-    this.likeService.checkLike(this.post.postId, this.userLike)
-      .pipe(first())
+    this.likeObs = this.likeService.checkLike(this.post.postId, this.userLike)
       .subscribe(
         data =>{
-          /* console.log(data); */
-          if(data.success == true){
+          if (data.success == true) {
             this.isLiked=true;
-          }else{
+          } else {
             this.isLiked=false;
           }
         }
       )
 
-        this.getLikes();
-
-    /* this.postServ.getAllPosts().subscribe(posts => {
-      this.postList = posts.results;
-    }) */
+      this.getLikes();
   }
 
   ngOnChanges(){
-    this.observer = this.userServ.getUserById(this.post.userId).subscribe(userData => {
+    this.userObs = this.userServ.getUserById(this.post.userId).subscribe(userData => {
       if(userData.success){
         this.post.user = userData.data;
       }
@@ -141,7 +132,9 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.observer.unsubscribe();
+    this.userObs.unsubscribe();
+    this.likeObs.unsubscribe();
+    this.bookmarkObs.unsubscribe();
   }
 
   getLikes(){
@@ -151,12 +144,10 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
             this.totalLikes = likeData.data.length
             this.likesInnerText = this.totalLikes == 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
             this.likesOnPost = likeData.data;
-        } 
+        }
       }
     )
   }
-
-
 
   toggleComments() {
     if (this.toggleCommentsText == 'view') {
@@ -171,61 +162,59 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
 
   exit(){
     this.display = false;
-    /* this.modal.style.display = 'none'; */
   }
 
   displayModal(){
     this.display = true;
-
   }
 
   like(postId:number){
-     console.log(postId)
-
      this.likeService.checkLike(postId, this.userLike)
-      .pipe(first())
       .subscribe(
         data =>{
           if(data.success == true){
-            //already liked
             this.likeId = data.data
             this.likeService.unLikePost(this.likeId)
-            .pipe(first()).subscribe(
+            .subscribe(
               data => {
                 this.isLiked = false;
-                console.log("Successfully unliked post")
-                console.log(data)
-                this.getLikes();
-              },
-              error => {
-                console.log("Failed to unlike post")
-                console.log(error);
+
               }
           )
           }else{
-            this.likeObj.user.userId =  this.userLike
+            this.likeObj.userId =  this.userLike
             this.likeObj.post.postId = postId
-            /* this.likeObj.patchValue({
 
-            }) */
-            console.log(this.likeObj)
             this.likeService.likePost(this.likeObj)
-              .pipe(first()).subscribe(
+              .subscribe(
                 data => {
                   this.isLiked = true;
-                  console.log("Successfully liked")
-                  console.log(data)
-                  this.getLikes();
-                },
-                error => {
-                  console.log("Failed to like post")
-                  console.log(error);
                 }
             )
           }
         }
       )
+  }
 
+  bookmark(postId:number) {
+    this.userServ.getUserById(this.userLike)
+    .subscribe(
+      data => {
+        if(data.data.bookmarks.indexOf(postId) > -1) {
+          this.bookmarkService.unBookmarkPost(postId, this.userLike)
+          .subscribe(
+            data => {
+              this.isBookmarked = false;
+            })
+        } else {
+          this.bookmarkService.bookmarkPost(postId, this.userLike)
+          .subscribe(
+            data => {
+              this.isBookmarked = true;
+           })
+        }
+      }
+    )
   }
 
   receiveCommentCount(count: number) {
@@ -233,7 +222,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   open(content: any) {
-    
+
     this.modalService.open(content,
    {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -252,7 +241,6 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       return `with: ${reason}`;
     }
   }
-
 }
 
 

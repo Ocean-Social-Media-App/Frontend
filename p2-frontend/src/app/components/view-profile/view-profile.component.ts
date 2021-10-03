@@ -10,7 +10,6 @@ export class ViewProfileComponent implements OnInit {
 
   updateLabel: string = "Update Profile"
   viewOrUpdate: string = 'view';
-
   firstName: string = '';
   lastName: string = '';
   username: string = '';
@@ -57,4 +56,6 @@ export class ViewProfileComponent implements OnInit {
     this.viewOrUpdate = text;
     this.updateProfile();
   }
+
+
 }

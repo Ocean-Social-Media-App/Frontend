@@ -1,15 +1,13 @@
-
 .form-container {
-  background-color: rgb(255, 255, 255, 0.5);
+  background-color: var(--component-bg);
   height: fit-content;
-  width:fit-content;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.6rem;
   border-radius: 1.6rem;
   padding: 1.8rem;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   display: block;
 }
 
@@ -19,11 +17,10 @@
   gap: 1.4rem;
   align-items: center;
 }
- .block2{
+.block2 {
   justify-content: space-around;
   align-items: center;
-  
-} 
+}
 
 .form-row {
   display: flex;
@@ -43,67 +40,74 @@ form {
 h2 {
   font-weight: bold;
   font-style: italic;
-  color: #14142b;
-  font-family:"Poppins", sans-serif;
+  color: var(--font-color);
+  font-family: "Poppins", sans-serif;
   margin-bottom: 0;
 }
 
 label {
-  color: #6e7191;
+  color: var(--links);
 }
 
 textarea {
   width: 300px;
-  background-color: #eff0f7;
+  background-color: var(--input-bg);
   border: 2px solid transparent;
   border-radius: 1.6rem;
   padding: 2rem 2.4rem;
   font-size: 1.6rem;
   font-family: "Poppins", sans-serif;
   outline: none;
+  color: var(--font-color);
 }
 
 textarea:focus,
 textarea:hover {
-  border: 2px solid #5f2eea;
+  border: 2px solid var(--input-border);
 }
 
 .text-field {
   width: 300px;
   height: 50px;
-  background-color: #eff0f6;
+  background-color: var(--input-bg);
   border-radius: 16px;
   border: 2px solid transparent;
   outline: none;
   font-family: "Poppins", sans-serif;
   font-size: 1.6rem;
   padding: 0 2rem;
+  color: var(--font-color);
 }
 
 .text-field:hover {
-  border: 2px solid #5f2eea;
+  border: 2px solid var(--input-border);
 }
 
 .text-field:focus {
-  border: 2px solid #5f2eea;
-  background-color: white;
+  border: 2px solid var(--input-border);
+  background-color: var(--input-bg);
 }
-span{
+span {
   font-size: 16px;
+}
+
+#profile-img {
+  width: 250px;
+  border-radius: 1.6rem;
 }
 
 #uploadBtn {
   height: 4rem;
   width: 100%;
-  background-color: white;
-  border: 2px solid #5f2eea;
+  background-color: var(--btn-bg);
+  border: 2px solid var(--btn-border);
   border-radius: 1.6rem;
-  color: #5f2eea;
+  color: var(--btn-text);
   font-weight: bold;
   padding: 10px;
 }
 
 #uploadBtn:hover {
-  background-color: #5f2eea;
-  color: white;
+  background-color: var(--btn-bg-hover);
+  color: var(--btn-text-hover);
 }

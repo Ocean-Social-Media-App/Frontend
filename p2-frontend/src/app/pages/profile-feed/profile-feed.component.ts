@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class ProfileFeedComponent implements OnInit {
 
   observer: Subscription = new Subscription();
-  pageCount = 0;
+  pageCount = 1;
 
   constructor(private route: ActivatedRoute, private postService: PostService) { }
 

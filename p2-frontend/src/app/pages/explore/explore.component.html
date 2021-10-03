@@ -1,0 +1,35 @@
+<app-nav-bar></app-nav-bar>
+<div class="list-users">
+    <div class="users-container" *ngFor = "let user of userList">
+            <div class="profile-info">
+                <div class="pic-name">
+                    <app-profile-pic [passed] = "'img2'" [imgSrc]="user.proPicUrl"></app-profile-pic>
+                    <div class="name">
+                        <b>{{ user.firstName }}</b>
+                        <br>
+                        <a [routerLink]="['/profile-feed', user.userId]">
+                            <i>@{{ user.username }}</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="about-me">
+                    {{user.aboutMe}}
+                </div>
+            </div>
+            <div class="followBtn">
+                <app-buttons
+                    class="followBtn"
+                    id="followBtn"
+                    (onClick)="follow(user)"
+                    [label]="user.followLabel">
+                </app-buttons>
+            </div>
+        
+   </div>
+</div>
+
+<div class="navbar fixed-bottom">
+    <div class="position-absolute bottom-0 end-0 m-5">
+      <app-action-menu (eventFromActionNotification)="receiveNotificationStatus($event)" (eventFromActionMenu)="receivePostStatus($event)"></app-action-menu>
+    </div>
+  </div>

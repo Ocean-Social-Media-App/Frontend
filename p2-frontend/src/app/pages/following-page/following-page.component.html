@@ -1,0 +1,14 @@
+<div class="nav-container">
+    <app-nav-bar></app-nav-bar>
+</div>
+<div *ngFor = "let user of followingUsers">
+    <div class = "following-container">
+        <div (click) = "toUserProfile(user.userId)" class="content">
+            <app-profile-pic [passed] = "'img2'" [imgSrc]="user.proPicUrl"></app-profile-pic>
+            <div class="user-name">
+                <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+                <h4  class="username">@{{ user.username }}</h4>
+            </div>
+        </div>
+    </div>
+</div>

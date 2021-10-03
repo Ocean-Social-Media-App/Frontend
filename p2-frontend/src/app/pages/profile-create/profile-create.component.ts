@@ -12,7 +12,7 @@ export class ProfileCreateComponent implements OnInit {
 
   ngOnInit(): void {
     if (sessionStorage.getItem('userId') != null) {
-      this.router.navigateByUrl('userFeed');
+      this.router.navigateByUrl('explore');
     }
   }
 

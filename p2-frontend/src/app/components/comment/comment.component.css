@@ -1,16 +1,24 @@
+
 .comment-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.8rem;
-  padding: 3.2rem;
+  padding: 2.8rem;
   padding-top: 0;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-right: 0px;
 }
 
 img {
   width: 6.4rem;
   height: 6.4rem;
   border-radius: 1.6rem;
+}
+
+.comment-text {
+  color: var(--font-color);
 }
 
 .user-info {
@@ -29,10 +37,98 @@ img {
 .name {
   margin: 0;
   font-weight: bold;
-  color: #14142b;
+  color: var(--font-color);
 }
 
 .username {
   text-decoration: none;
-  color: #1cc8ee;
+  color: var(--links);
+}
+
+.date {
+  right: 0;
+  position: absolute;
+  margin: 10px;
+  margin-right: 20px;
+}
+.comment{
+  color: var(--font-color);
+}
+
+.comment,
+.like {
+  cursor: pointer;
+}
+
+.comment-like {
+  display: block;
+  gap: 3.2rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.comment-like a {
+  color: var(--links);
+}
+
+.comment-like-icons {
+  display: flex;
+  gap: 1.6rem;
+  align-items: flex-end;
+}
+
+a {
+  cursor: pointer;
+}
+
+.icons {
+  display: flex;
+  gap: 3.2rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 999; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  margin: auto;
+  width: max-content;
+  border-radius: 1.6rem;
+}
+.mod-cont {
+  display: flex;
+  flex-direction: column;
+}
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 0;
+  right: 1.6rem;
+  color: var(--icons);
+  font-size: 35px;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+  cursor: pointer;
 }

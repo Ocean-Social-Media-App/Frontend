@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { result } from 'lodash';
 import { User } from 'src/app/models/User';
 import { UtilityService } from '../utility.service';
@@ -14,7 +15,7 @@ describe('UserService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [UserService, UtilityService]
     });
 
@@ -37,6 +38,7 @@ describe('UserService', () => {
   });
 
   it('should return user when getUserById is called', (userId: number = 1) => {
+
     service.getUserById(userId).subscribe((result: User) => {
       expect(result).toEqual(new User());
     })
@@ -85,19 +87,6 @@ describe('UserService', () => {
     expect(req.request.method).toBe('POST');
 
     req.flush(new User());
-
-    httpMock.verify();
-  }))
-
-  it('should return null when logout called', (() => {
-    service.logout().subscribe((result: any) => {
-      expect(result).toEqual(null);
-    })
-
-    const req = httpMock.expectOne(`${utilityService.getServerDomain()}/api/user/logout`, 'user logout');
-    expect(req.request.method).toBe('GET');
-
-    req.flush(null);
 
     httpMock.verify();
   }))

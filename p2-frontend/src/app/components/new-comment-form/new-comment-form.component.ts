@@ -16,50 +16,43 @@ export class NewCommentFormComponent implements OnInit {
   user:number = 0 ;
 
   @Input()
-  post:number|undefined = 0;
+  parent:number|undefined = 0;
 
   newCommentForm = this.fb.group({
-    commText: ['', [Validators.required, Validators.maxLength(150)]],
-    post: [{postId : this.post}],
-    user: [{userId : this.user}]
-
+    postText: ['', [Validators.required, Validators.maxLength(150)]],
+    postParentId:  [null],
+    userId: [null]
   })
 
   constructor(private fb: FormBuilder, private commentService: CommentService, private router: Router) { }
+
   ngOnInit() {
     this.user =  JSON.parse(sessionStorage.getItem('userObj')!).userId
-
   }
 
  onClick(event: any) {
-    if (this.newCommentForm.invalid) {
-      console.log("invalid");
+    if (this.newCommentForm.invalid) {      
       return;
     }
-
-    console.log("adding comment");
+    
 
    this.newCommentForm.patchValue({
-    post: {postId: this.post},
-    user: {userId: this.user}
-  })
-  console.log(this.newCommentForm.value)
+    postParentId: this.parent,
+    userId: this.user
+  })  
 
     this.commentService.createComment(this.newCommentForm.value)
-      .pipe(first())
       .subscribe(
         data => {
-          console.log("Successfully created comment");
-          console.log(data);
+                   
           this.router.navigateByUrl(this.router.url)
 
         },
-        error => {
-          console.log("Failed to create comment");
-          console.log(error);
+        error => {          
+          
         }
       )
   }
 
-  get commText() { return this.newCommentForm.get('commText') }
+  get postText() { return this.newCommentForm.get('postText') }
 }

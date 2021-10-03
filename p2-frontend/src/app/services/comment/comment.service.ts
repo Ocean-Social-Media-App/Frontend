@@ -18,11 +18,20 @@ export class CommentService {
   constructor(private httpCli: HttpClient, private utilityService: UtilityService) { }
 
   createComment(comment: Comment) {
-    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/comment`, comment, {'headers': this.headers});
+    this.setHeaders();
+    return this.httpCli.post(`${this.utilityService.getServerDomain()}/api/feed/post`, comment, {'headers': this.headers});
   }
 
   getCommentsByPostId(postId:number): Observable<any>{
-    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/feed/comment/post/${postId}`, {'headers': this.headers})
+    this.setHeaders();
+    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/feed/post/comment/${postId}`, {'headers': this.headers})
+  }
+
+  setHeaders(): void {
+    this.jwtToken = sessionStorage.getItem('JWT');
+
+    this.headers = new HttpHeaders().set('Content-type', 'application/json')
+                             .set('authorization', this.jwtToken);
   }
 }
 

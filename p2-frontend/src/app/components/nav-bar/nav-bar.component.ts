@@ -18,43 +18,27 @@ export class NavBarComponent implements OnInit, OnChanges {
   logOutLabel: string = 'Logout';
   profilePosition: string = "-64rem";
   observer: Subscription = new Subscription();
- 
-  userList: Array<any> = []; 
+
+  userList: Array<any> = [];
   listTemp: Array<User> = [];
 
- 
+
 
   constructor(private userService: UserService, private router: Router) { }
-  
- 
+
+
   ngOnChanges(): void {
-    
+
   }
 
 
   ngOnInit(): void {
     this.userId = JSON.parse(sessionStorage.getItem('userObj')!).userId;
-
-    /* this.userService.getAllUsers().subscribe(users => {
-     console.log(users)
-      this.userList = users.data;
-      console.log(this.userList)
-    }) */
+    
   }
 
   logout(event: any) {
-    this.userService.logout()
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log(data);
-          sessionStorage.clear();
-          this.router.navigateByUrl('');
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    this.userService.logout();
   }
 
   goHome(){
@@ -69,8 +53,16 @@ export class NavBarComponent implements OnInit, OnChanges {
     }
   }
 
+  gotoBookmarks(){
+    this.router.navigateByUrl(`/bookmarks`)
+  }
+
   onViewById() {
     this.router.navigateByUrl(`/userFeed/${this.userId}`)
+  }
+
+  explore(){
+    this.router.navigateByUrl(`/explore`)
   }
 
 }

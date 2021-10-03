@@ -1,0 +1,32 @@
+
+<div class="sidebar-container">
+    <h2 class="logo">Notifications</h2>
+    
+    <div *ngFor="let notification of notifications">
+        <span *ngIf="notification.timestamp > notification.userBelongTo.lastNotification">(new)</span>
+        
+        <div class="notification-box">
+            <a routerLink='/profile-feed/{{notification.userFrom.userId}}'>
+                {{notification.userFrom.firstName}} {{notification.userFrom.lastName}} 
+            </a>
+
+            <span *ngIf="notification.type == 'comment'">
+                {{notification.type | lowercase}}ed on a post {{notification.timestamp | someTimeAgo}}!
+            </span>            
+            <!-- TO BE CHANGED  -->
+            <a *ngIf="notification.type == 'comment'" routerLink="/userFeed/{{notification.userBelongTo.userId">Click here to view your feed</a>
+            
+            <span *ngIf="notification.type == 'like'">
+                {{notification.type | lowercase}}d a post {{notification.timestamp | someTimeAgo}}!
+            </span>
+            <span *ngIf="notification.type == 'follow'">
+                started {{notification.type | lowercase}}ing you {{notification.timestamp | someTimeAgo}}!
+            </span>
+            <span *ngIf="notification.type == 'unfollow'">
+                {{notification.type | lowercase}}ed you {{notification.timestamp | someTimeAgo}}...
+            </span>
+        </div>
+
+    </div>
+
+</div>

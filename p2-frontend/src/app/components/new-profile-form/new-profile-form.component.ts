@@ -16,16 +16,17 @@ export class NewProfileFormComponent implements OnInit {
   submitLabel: string = 'Submit';
   uploadLabel: string = 'Upload';
   current: string = 'image';
-  imageUrl: string = 'assets/default.jpg';
+  imageUrl: string = 'https://s3.amazonaws.com/test.zimi.li/default.jpg';
   addedPic: boolean = false;
   displayUrl: any;
   warn: boolean = false;
+  isLoading: boolean = false;
 
   // variables to be set from session storage
   userObj: any = {};
 
   imageForm = this.fb.group({
-    image: [null]
+    file: [null]
   })
 
   newProfileForm = this.fb.group({
@@ -43,7 +44,7 @@ export class NewProfileFormComponent implements OnInit {
 
   ngOnInit() {
     this.userObj = JSON.parse(sessionStorage.getItem('userObj')!);
-    console.log(this.userObj);
+
   }
 
   onFileInput(event: any) {
@@ -57,8 +58,8 @@ export class NewProfileFormComponent implements OnInit {
         this.displayUrl = reader.result;
       }
 
-      this.imageForm.get('image')?.setValue(file, {emitModelToViewChange: false});
-      console.log(file);
+      this.imageForm.get('file').setValue(file, {emitModelToViewChange: false});
+
     }
   }
 
@@ -67,7 +68,7 @@ export class NewProfileFormComponent implements OnInit {
   }
 
   checkImageSwitchForm(event: any) {
-    if (this.imageForm.get('image').value != null) {
+    if (this.imageForm.get('file').value != null) {
       this.current = "details";
     } else {
       this.warn = true;
@@ -75,7 +76,8 @@ export class NewProfileFormComponent implements OnInit {
   }
 
   createProfile() {
-    //this.userId = Number(sessionStorage.getItem('userId'));
+    this.isLoading = true;
+
     this.newProfileForm.patchValue({
       username: this.userObj.username,
       email: this.userObj.email,
@@ -90,49 +92,46 @@ export class NewProfileFormComponent implements OnInit {
 
     sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
 
-    console.log(this.newProfileForm.value);
+
 
     this.userService.register(this.newProfileForm.value)
-    .pipe(first())
     .subscribe(
       data => {
-        console.log("Profile created");
+        this.isLoading = false;
+
         this.userObj["userId"] = data.data.userId;
 
         sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
-        this.router.navigateByUrl('userFeed');
+        sessionStorage.setItem('JWT', data.message);
+
+        this.router.navigateByUrl('explore');
       },
       error => {
-        console.log("Unable to create profile");
-        console.log(error);
+
       }
     )
   }
 
   uploadImageAndCreateProfile(event: any) {
-    if (this.imageForm.get('image')?.value != null) {
+    if (this.imageForm.get('file').value != null) {
       const formData = new FormData();
-      formData.append('file', this.imageForm.get('image')!.value);
+      formData.append('file', this.imageForm.get('file').value);
 
-        this.userService.addProfileImage(formData)
-        .pipe(first())
-        .subscribe(
-          data => {
-            console.log("Successfully uploaded image");
-            this.userObj["proPicUrl"] = data.data;
+      this.userService.addProfileImage(formData)
+      .subscribe(
+        data => {
+          this.userObj["proPicUrl"] = data.data;
 
-            console.log(this.userObj);
+          this.imageUrl = data.data;
+          this.createProfile();
+        },
+        error => {
 
-            this.imageUrl = data.data;
-            this.createProfile();
-          },
-          error => {
-            console.log("upload failed");
-            console.log(error);
-          }
-        )
+        }
+      )
     } else {
       this.userObj["proPicUrl"] = this.imageUrl;
+
       this.createProfile();
     }
   }

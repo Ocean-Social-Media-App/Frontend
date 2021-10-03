@@ -14,7 +14,7 @@
               type="file"
               (change)="onFileInput($event)"
               style="display: none"
-              formControlName="image"
+              formControlName="file"
               accept="image/png, image/jpeg"
             />
           </button>
@@ -102,6 +102,11 @@
           (onClick)="uploadImageAndCreateProfile($event)"
           [label]="submitLabel"
         ></app-buttons>
+        <div *ngIf="isLoading">
+          <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
       </form>
     </div>
   </div>
