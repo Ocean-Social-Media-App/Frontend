@@ -61,4 +61,8 @@ export class NavBarComponent implements OnInit, OnChanges {
     this.router.navigateByUrl(`/userFeed/${this.userId}`)
   }
 
+  explore(){
+    this.router.navigateByUrl(`/explore`)
+  }
+
 }

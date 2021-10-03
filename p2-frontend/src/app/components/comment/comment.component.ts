@@ -28,7 +28,7 @@ export class CommentComponent implements OnInit {
   userObj :any = {}
   postId:number = 0;
   userId:number = 0;
-  toggleCommentsText: string;
+  toggleCommentsText: string = "view";
   showComments: boolean;
   display: boolean;
   commentCount: number;

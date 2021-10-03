@@ -3,10 +3,21 @@
   font-size: 3.9rem;
   font-weight: bold;
   background: #624af2;
-  background: -webkit-linear-gradient(to right, #624af2 0%, #50ddc3 100%);
-  background: -moz-linear-gradient(to right, #624af2 0%, #50ddc3 100%);
-  background: linear-gradient(to right, #624af2 0%, #50ddc3 100%);
-  background-clip: text;
+  background: -webkit-linear-gradient(
+    to right,
+    var(--gradient-left) 0%,
+    var(--gradient-right) 100%
+  );
+  background: -moz-linear-gradient(
+    to right,
+    var(--gradient-left) 0%,
+    var(--gradient-right) 100%
+  );
+  background: linear-gradient(
+    to right,
+    var(--gradient-left) 0%,
+    var(--gradient-right) 100%
+  ); background-clip: text;
   -webkit-text-fill-color: transparent;
   display: flex;
   justify-content: center;
@@ -25,6 +36,12 @@
   z-index: 1;
   position: fixed;
   right: 1.6rem;
+  overflow: scroll;
+  max-height: 75rem;
+}
+
+.sidebar-container::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }
 
 .notification-box {
@@ -34,6 +51,7 @@
   /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
   padding: 1.6rem;
   margin: 1.2rem;
+  
 }
 
 .notification-box a {

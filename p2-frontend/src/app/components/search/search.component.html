@@ -4,14 +4,14 @@
       <button type="submit" class="btn searchBtn">
         <i class="fa fa-search"></i>
       </button>
-      <input
-        type="text"
-        class="bar"
-        placeholder="Search..."
-        [(ngModel)]="searchInput"
-      />
-    </div>
-    <div class="searchList-cont">
+        <input
+            type="text"
+            class="bar"
+            placeholder="Search..."
+            [(ngModel)]="searchInput"
+        />
+        </div>
+        <div class="searchList-cont" *ngIf = "isTyping" >
       <div class="searchList" *ngFor="let user of listTemp">
         <app-user-link [user]="user"></app-user-link>
       </div>

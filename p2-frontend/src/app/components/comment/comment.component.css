@@ -1,11 +1,14 @@
+
 .comment-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.8rem;
-  padding: 3.2rem;
+  padding: 2.8rem;
   padding-top: 0;
-  justify-content: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-right: 0px;
 }
 
 img {
@@ -47,6 +50,9 @@ img {
   position: absolute;
   margin: 10px;
   margin-right: 20px;
+}
+.comment{
+  color: var(--font-color);
 }
 
 .comment,
@@ -101,9 +107,10 @@ a {
 
 /* Modal Content */
 .modal-content {
+  position: relative;
   margin: auto;
   width: max-content;
-  border-radius: 10px;
+  border-radius: 1.6rem;
 }
 .mod-cont {
   display: flex;
@@ -111,13 +118,13 @@ a {
 }
 /* The Close Button */
 .close {
-  color: #5f2eea;
-  float: left;
+  position: absolute;
+  top: 0;
+  right: 1.6rem;
+  color: var(--icons);
   font-size: 35px;
   font-weight: bold;
   padding: 20px;
-  margin-left: 70%;
-  /* background-color: transparent; */
 }
 
 .close:hover,

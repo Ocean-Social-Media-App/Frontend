@@ -9,13 +9,22 @@
       </a>
     </li>
     <li>
+      <a (click)="explore()"> 
+        <i class="fa fa-hashtag" aria-hidden="true"></i> Explore
+      </a>
+    </li>
+    <li>
       <a (click)="onViewById()"> My Feed </a>
     </li>
     <li>
-      <a (click)="toggleProfile($event)"> My Profile </a>
+      <a (click)="toggleProfile($event)">
+        <i class="fa fa-id-card-o" aria-hidden="true"></i> My Profile 
+      </a>
     </li>
     <li>
-      <a (click)="gotoBookmarks()"> My Bookmarks </a>
+      <a (click)="gotoBookmarks()"> 
+        <i class="fa fa-bookmark-o" aria-hidden="true"></i> My Bookmarks
+       </a>
     </li>
   </ul>
   <app-buttons

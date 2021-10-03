@@ -20,11 +20,12 @@ describe('FollowerInfoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FollowerInfoComponent);
     component = fixture.componentInstance;
+    window.sessionStorage.setItem('userObj', JSON.stringify(new User()))
     fixture.detectChanges();
+
   });
 
   it('should create', () => {
-    window.sessionStorage.setItem('userObj', JSON.stringify(new User()))
     expect(component).toBeTruthy();
   });
 });

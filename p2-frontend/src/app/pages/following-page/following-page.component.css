@@ -13,6 +13,7 @@
     min-width: 300px;
     border-radius: 1.6rem;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: var(--component-bg);
 }
 
 .user-name :hover {

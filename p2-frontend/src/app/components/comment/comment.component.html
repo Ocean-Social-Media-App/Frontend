@@ -1,3 +1,4 @@
+<div class="width">
 <div class="comment-container">
   <div class="user-info">
     <app-profile-pic [passed] = "'img2'" [imgSrc]="proPicUrl"></app-profile-pic>
@@ -51,13 +52,10 @@
 >
   <!-- Modal content -->
   <div class="mod-cont">
-  <div>
-    <span class="close" (click)="exit()">&times;</span>
+    <div class="modal-content">
+      <span class="close" (click)="exit()">&times;</span>
+      <app-new-comment-form [parent]="comment.postId"></app-new-comment-form>
+    </div>
   </div>
-
-  <div class="modal-content">
-    
-    <app-new-comment-form [parent]="comment.postId"></app-new-comment-form>
-  </div>
-  </div>
+</div>
 </div>

@@ -41,7 +41,7 @@ p {
   background-color: rgb(80, 221, 195);
   background: url("../../../assets/ocean.jpg");
   background-size: cover;
-  box-shadow: inset 0 0 0 2000px rgba(0, 0, 69, 0.3);
+  box-shadow: inset 0 0 0 2000px rgba(14, 74, 184, 0.392);
   border-radius: 1.6rem 0 0 1.6rem;
   justify-content: center;
   gap: 6.4rem;

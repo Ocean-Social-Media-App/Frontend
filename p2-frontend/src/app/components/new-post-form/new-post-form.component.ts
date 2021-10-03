@@ -14,6 +14,7 @@ import { YouTubeValidator } from 'src/app/validators/youtube-validator';
 })
 export class NewPostFormComponent implements OnInit{
 
+  displayUrl: any;
   submitLabel: string = "Submit";
   imageUrl: string = "";
   userId: number = 0;
@@ -39,6 +40,14 @@ export class NewPostFormComponent implements OnInit{
   onFileInput(event: any) {
     if (event.currentTarget.files.length > 0) {
       const file = event.currentTarget.files[0];
+      
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = (_event) => {
+        this.displayUrl = reader.result;
+      }
+
       this.imageForm.get('imageFile')?.setValue(file, {emitModelToViewChange: false});
       
     }

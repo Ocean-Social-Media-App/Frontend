@@ -16,6 +16,7 @@ export class UpdatePostFormComponent implements OnInit {
   @Output() sendOutputText: EventEmitter<string> = new EventEmitter();
   outputText: string = 'view';
   isEmailTaken: boolean = false;
+  displayUrl: any;
 
   imageForm = this.fb.group({
     image: [null]
@@ -52,6 +53,14 @@ export class UpdatePostFormComponent implements OnInit {
   onFileInput(event: any) {
     if (event.currentTarget.files.length > 0) {
       const file = event.currentTarget.files[0];
+
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = (_event) => {
+        this.displayUrl = reader.result;
+      }
+
       this.imageForm.get('image').setValue(file, {emitModelToViewChange: false});
     }
   }
