@@ -79,7 +79,6 @@ export class UpdatePostFormComponent implements OnInit {
         .subscribe(
           data => {
 
-
             this.updateProfileForm.patchValue({
               proPicUrl: data.data
             })
@@ -88,16 +87,24 @@ export class UpdatePostFormComponent implements OnInit {
           }
         )
     } else {
+      this.updateProfileForm.patchValue({
+        proPicUrl: this.userObj.proPicUrl
+      })
+
       this.updateProfile();
     }
   }
 
   updateProfile() {
+
     this.userService.updateProfile(this.updateProfileForm.value)
       .subscribe(
         user => {
 
           this.userObj = user.data;
+
+          console.log(user);
+
 
           if (user.success) {
             sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
