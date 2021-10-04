@@ -50,12 +50,13 @@ img {
   margin: 10px;
   margin-right: 20px;
 }
-.comment {
+.comment-text {
   color: var(--font-color);
 }
 
 .comment,
 .like {
+  color: var(--font-color);
   cursor: pointer;
 }
 

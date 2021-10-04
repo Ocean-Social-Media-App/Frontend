@@ -185,3 +185,7 @@ img {
 #bookmark-icon {
   cursor: pointer;
 }
+
+.post-timestamp {
+  color: var(--font-color);
+}
