@@ -62,8 +62,7 @@ export class UserService {
   }
 
   forgotPassword(username: string): Observable<any> {
-    this.setHeaders();
-    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/forgot/${username}`, {'headers': this.headers});
+    return this.httpCli.get(`${this.utilityService.getServerDomain()}/api/user/forgot/${username}`);
   }
 
   getUserNotifications(userId: number): Observable<any> {
