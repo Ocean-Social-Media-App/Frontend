@@ -3,9 +3,7 @@
   align-items: stretch;
   width: 100%;
   border-radius: 1.6rem;
-  background-color: white;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  background-color: white;
+  background-color: var(--component-bg);
 }
 
 form {
@@ -16,7 +14,7 @@ form {
 }
 
 label {
-  color: #6e7191;
+  color: var(--font-color);
 }
 
 p {
@@ -26,6 +24,7 @@ p {
 .forgot {
   text-decoration: underline;
   cursor: pointer;
+  color: var(--links);
 }
 
 .left,
@@ -89,25 +88,4 @@ p {
 .loginPgBtn {
   display: flex;
   justify-content: space-evenly;
-}
-#signupBtn ::ng-deep .btn {
-  border: none;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  border-radius: 8px;
-  background-color: #5f2eea;
-  color: white;
-  border-radius: 8px;
-}
-#signupBtn:hover ::ng-deep .btn {
-  background-color: white;
-  color: #5f2eea;
-  border: 2px solid #5f2eea;
 }

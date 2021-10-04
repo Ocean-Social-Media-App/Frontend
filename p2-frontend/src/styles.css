@@ -61,7 +61,7 @@ input:hover {
 
 input:focus {
   border: 2px solid var(--input-border);
-  background-color: white;
+  background-color: var(--input-bg-focus);
 }
 
 .warn {
@@ -77,6 +77,7 @@ input:focus {
   --component-bg: white;
   --bday: #0096b7;
   --input-bg: #eff0f7;
+  --input-bg-focus: white;
   --input-border: #5f2eea;
   --links: #0096b7;
   --icons: #14142b;
@@ -101,6 +102,7 @@ input:focus {
   --component-bg: #1d2025;
   --bday: #1ddeca;
   --input-bg: #3e444e;
+  --input-bg-focus: #eff0f6;
   --input-border: #a5e695;
   --links: #1ddeca;
   --icons: #a5e695;

@@ -3,8 +3,7 @@
   align-items: stretch;
   width: 100%;
   border-radius: 1.6rem;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  background-color: white;
+  background-color: var(--component-bg);
 }
 
 form {
@@ -15,7 +14,7 @@ form {
 }
 
 label {
-  color: #6e7191;
+  color: var(--font-color);
 }
 
 p {
@@ -37,11 +36,6 @@ p {
   background-position: center;
   background-size: cover;
   box-shadow: inset 0 0 0 2000px rgba(14, 74, 184, 0.392);
-  /* linear-gradient(
-    315deg,
-    rgb(80, 221, 195),
-    rgb(98, 74, 242)
-  ); */
   border-radius: 1.6rem 0 0 1.6rem;
   justify-content: center;
   gap: 6.4rem;
