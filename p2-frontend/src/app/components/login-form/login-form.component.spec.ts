@@ -25,8 +25,22 @@ describe('LoginFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  //To be tested later, component is undergoing changes
+  xit('should return null if loginForm is invalid', () => {
     expect(component).toBeTruthy();
+  })
+
+  it('should emit the data as signup when toggleForm is called', () => {
+    let data: string = "signup";
+    spyOn(component.toggle, 'emit');
+
+    const nativeElement = fixture.nativeElement;
+    const button = nativeElement.querySelector('a');
+    button.dispatchEvent(new Event('click'));
+
+    fixture.detectChanges();
+
+    expect(component.toggle.emit).toHaveBeenCalledWith('signup');
   });
 
 });

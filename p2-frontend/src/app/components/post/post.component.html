@@ -1,5 +1,8 @@
 <div class="post-container">
   <div class="top">
+    <div class="d-flex justify-content-end">
+      {{post.postTime | someTimeAgo}}
+    </div>
     <!-- POST IMAGE OR VIDEO -->
     <div class="post-media">
       <div *ngIf="hasPic" class="image-container">
