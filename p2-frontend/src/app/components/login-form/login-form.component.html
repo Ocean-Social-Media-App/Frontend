@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="right">
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" (ngSubmit)="logIn($event)">
       <div class="form-row">
         <label for="username">Username:</label>
         <input

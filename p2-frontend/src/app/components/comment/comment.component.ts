@@ -13,13 +13,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class CommentComponent implements OnInit {
 
   @Input()
-  comment: Comment = {
-    postId: 0,
-    postText: '',
-    postTime: undefined,
-    postParentId: 0,
-    userId: 0
-  }
+  comment: any;
   @Output()
   firstName: string =  "";
 
