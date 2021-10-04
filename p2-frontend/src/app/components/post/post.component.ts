@@ -109,6 +109,26 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       this.videoId = getVideoId(this.post.postYouUrl).id;
     }
 
+      this.userServ.getUserById(this.userLike)
+      .subscribe(
+        data => {
+          if(data.data.bookmarks.indexOf(this.post.postId) > -1) {
+            this.bookmarkService.unBookmarkPost(this.post.postId, this.userLike)
+            .subscribe(
+              data => {
+                this.isBookmarked = false;
+              })
+          } else {
+            this.bookmarkService.bookmarkPost(this.post.postId, this.userLike)
+            .subscribe(
+              data => {
+                this.isBookmarked = true;
+             })
+          }
+        }
+      )
+    
+
     this.likeObs = this.likeService.checkLike(this.post.postId, this.userLike)
       .subscribe(
         data =>{
