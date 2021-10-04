@@ -9,8 +9,6 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./update-profile-form.component.css']
 })
 export class UpdatePostFormComponent implements OnInit {
-
-
   // variables to be set from session storage
   userObj: any = {};
   @Output() sendOutputText: EventEmitter<string> = new EventEmitter();
@@ -28,6 +26,7 @@ export class UpdatePostFormComponent implements OnInit {
     email: ['', {
       validators: [Validators.required, Validators.email]
     }],
+    password: [null, Validators.minLength(8)],
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     proPicUrl: [''],
