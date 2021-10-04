@@ -34,7 +34,6 @@ export class CommentComponent implements OnInit {
   ngOnInit(): void {
     this.userObs = this.userService.getUserById(this.comment.userId).subscribe(
       data =>{
-        console.log(this.comment);
         this.firstName = data.data.firstName;
         this.proPicUrl = data.data.proPicUrl;
         this.username = data.data.username;
