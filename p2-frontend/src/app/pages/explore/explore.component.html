@@ -20,10 +20,16 @@
                 <app-buttons
                     class="followBtn"
                     id="followBtn"
-                    (onClick)="follow(user.userId)"
-                    [label]="followLabel">
+                    (onClick)="follow(user)"
+                    [label]="user.followLabel">
                 </app-buttons>
             </div>
         
    </div>
 </div>
+
+<div class="navbar fixed-bottom">
+    <div class="position-absolute bottom-0 end-0 m-5">
+      <app-action-menu (eventFromActionNotification)="receiveNotificationStatus($event)" (eventFromActionMenu)="receivePostStatus($event)"></app-action-menu>
+    </div>
+  </div>

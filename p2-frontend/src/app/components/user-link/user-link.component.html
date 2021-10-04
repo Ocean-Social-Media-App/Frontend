@@ -1,10 +1,6 @@
 <div class="user-link">
-  <button
-    class="button button4"
-    type="button"
-    [routerLink]="['/profile-feed', user.userId]"
-  >
+  <a [routerLink]="['/profile-feed', user.userId]">
     {{ user.firstName }}
-    <a>@{{ user.username }}</a>
-  </button>
+    @{{ user.username }}
+  </a>
 </div>

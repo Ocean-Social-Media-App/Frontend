@@ -25,9 +25,9 @@ export class BookmarkService {
     return this.httpCli.delete(`${this.utilityService.getServerDomain()}/api/user/bookmark/${userId}/${postId}`, {'headers': this.headers})
   }
 
-  getBookmarks(userId : number){
+  getBookmarks(userId : number, pageNumber: number){
     this.setHeaders();
-    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/user/bookmark/${userId}/1`, {'headers': this.headers})
+    return this.httpCli.get<any>(`${this.utilityService.getServerDomain()}/api/user/bookmark/${userId}/${pageNumber}`, {'headers': this.headers})
   }
 
   setHeaders(): void {

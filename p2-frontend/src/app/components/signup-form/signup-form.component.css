@@ -36,7 +36,7 @@ p {
   background: url("../../../assets/ocean.jpg");
   background-position: center;
   background-size: cover;
-  box-shadow: inset 0 0 0 2000px rgba(0, 150, 183, 0.3);
+  box-shadow: inset 0 0 0 2000px rgba(14, 74, 184, 0.392);
   /* linear-gradient(
     315deg,
     rgb(80, 221, 195),

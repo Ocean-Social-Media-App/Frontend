@@ -2,7 +2,7 @@
 
 <div class="post-feed">
   <div class="feed-container">
-    <app-feed [pageCount]="1" [isBookmarked]="true"></app-feed>
+    <app-feed [pageCount]="1"></app-feed>
   </div>
 </div>
 
@@ -16,6 +16,9 @@
 
 <div class="navbar fixed-bottom">
   <div class="position-absolute bottom-0 end-0 m-5">
-    <app-action-menu (eventFromActionNotification)="receiveNotificationStatus($event)" (eventFromActionMenu)="receivePostStatus($event)"></app-action-menu>
+    <app-action-menu
+      (eventFromActionNotification)="receiveNotificationStatus($event)"
+      (eventFromActionMenu)="receivePostStatus($event)"
+    ></app-action-menu>
   </div>
 </div>

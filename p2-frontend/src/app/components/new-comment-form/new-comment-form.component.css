@@ -5,9 +5,9 @@
   justify-content: center;
   gap: 1rem;
   border-radius: 1.6rem;
-  padding: .5rem;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 0.5rem;
   width: 500px;
+  background-color: var(--component-bg);
 }
 
 .form-row {
@@ -26,25 +26,26 @@ form {
 
 h2 {
   font-weight: bold;
-  color: #14142b;
+  color: var(--font-color);
 }
 
 label {
-  color: #6e7191;
+  color: var(--font-color);
 }
 
 textarea {
   width: 250px;
-  background-color: #eff0f7;
+  background-color: var(--input-bg);
   border: 2px solid transparent;
   border-radius: 1.6rem;
   padding: 1rem 1.4rem;
   font-size: 1.2rem;
   font-family: "Poppins", sans-serif;
   outline: none;
+  color: var(--font-color);
 }
 
 textarea:focus,
 textarea:hover {
-  border: 2px solid #5f2eea;
+  border: 2px solid var(--input-border);
 }

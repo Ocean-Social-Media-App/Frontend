@@ -1,9 +1,7 @@
-import { parseHostBindings } from '@angular/compiler';
 import { Component, Input, OnInit, Output, EventEmitter, OnDestroy, OnChanges } from '@angular/core';
 import getVideoId from 'get-video-id';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { Like } from 'src/app/models/Like';
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
 import { LikeService } from 'src/app/services/like/like.service';
@@ -12,6 +10,7 @@ import {NgbModal, ModalDismissReasons}
       from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/services/user/user.service';
 import { BookmarkService } from 'src/app/services/bookmark/bookmark.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -37,7 +36,10 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   totalLikes:number;
   likesInnerText: string = "";
   likesOnPost: any = [];
-  observer: Subscription = new Subscription;
+
+  userObs: Subscription = new Subscription();
+  likeObs: Subscription = new Subscription();
+  bookmarkObs: Subscription = new Subscription();
 
   @Output()
   callPageRefresh: EventEmitter<string> = new EventEmitter();
@@ -84,12 +86,12 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   display: boolean = false;
   likeId!: 0;
 
-  constructor(private postServ: PostService, private userServ: UserService, private likeService: LikeService, private modalService: NgbModal, private bookmarkService: BookmarkService) { }
-
+  constructor(private router: Router, private userServ: UserService, private likeService: LikeService, private modalService: NgbModal, private bookmarkService: BookmarkService) { }
 
   ngOnInit(): void {
+    this.userLike = JSON.parse(sessionStorage.getItem('userObj')).userId
 
-    this.userLike = JSON.parse(sessionStorage.getItem('userObj')!).userId
+    this.isBookmarked = this.router.url == '/bookmarks' ? true : false;
 
     if(this.post.postPicUrl != null){
       this.hasPic = true;
@@ -104,36 +106,25 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
 
     if(this.post.postYouUrl !== ''){
       this.hasLink = true;
-
       this.videoId = getVideoId(this.post.postYouUrl).id;
-
-
     }
 
-    this.likeService.checkLike(this.post.postId, this.userLike)
-      .pipe(first())
+    this.likeObs = this.likeService.checkLike(this.post.postId, this.userLike)
       .subscribe(
         data =>{
-          if(data.success == true){
+          if (data.success == true) {
             this.isLiked=true;
-          }else{
+          } else {
             this.isLiked=false;
           }
         }
       )
-      this.bookmarkService.getBookmarks(this.userLike)
-      .pipe(first())
-      .subscribe(
-        data =>{
-          this.isBookmarked = (data.data.indexOf(this.post.postId) > -1)
-      });
 
-        this.getLikes();
-
+      this.getLikes();
   }
 
   ngOnChanges(){
-    this.observer = this.userServ.getUserById(this.post.userId).subscribe(userData => {
+    this.userObs = this.userServ.getUserById(this.post.userId).subscribe(userData => {
       if(userData.success){
         this.post.user = userData.data;
       }
@@ -141,7 +132,9 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.observer.unsubscribe();
+    this.userObs.unsubscribe();
+    this.likeObs.unsubscribe();
+    this.bookmarkObs.unsubscribe();
   }
 
   getLikes(){
@@ -177,86 +170,61 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
 
   displayModal(){
     this.display = true;
-
   }
 
   like(postId:number){
-
-
      this.likeService.checkLike(postId, this.userLike)
-      .pipe(first())
       .subscribe(
         data =>{
           if(data.success == true){
             this.likeId = data.data
             this.likeService.unLikePost(this.likeId)
-            .pipe(first()).subscribe(
+            .subscribe(
               data => {
                 this.isLiked = false;
                 this.totalLikes -= 1;
                 this.likesInnerText = this.totalLikes == 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
-              },
-              error => {
-
               }
           )
           }else{
             this.likeObj.userId =  this.userLike
             this.likeObj.post.postId = postId
 
-
             this.likeService.likePost(this.likeObj)
-              .pipe(first()).subscribe(
+              .subscribe(
                 data => {
                   this.isLiked = true;
                   this.totalLikes += 1;
                   this.likesInnerText = this.totalLikes == 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
-                },
-                error => {
 
                 }
             )
           }
         }
       )
-
   }
-  bookmark(postId:number){
 
+  bookmark(postId:number) {
     this.userServ.getUserById(this.userLike)
-     .subscribe(
-       data =>{
-         if(data.data.bookmarks.indexOf(postId) > -1){
+    .subscribe(
+      data => {
+        if(data.data.bookmarks.indexOf(postId) > -1) {
+          this.bookmarkService.unBookmarkPost(postId, this.userLike)
+          .subscribe(
+            data => {
+              this.isBookmarked = false;
+            })
+        } else {
+          this.bookmarkService.bookmarkPost(postId, this.userLike)
+          .subscribe(
+            data => {
+              this.isBookmarked = true;
+           })
+        }
+      }
+    )
+  }
 
-
-           this.bookmarkService.unBookmarkPost(postId, this.userLike)
-           .subscribe(
-             data => {
-               this.isBookmarked = false;
-
-
-             },
-             error => {
-
-             }
-         )
-         }else{
-
-           this.bookmarkService.bookmarkPost(postId, this.userLike)
-             .subscribe(
-               data => {
-                 this.isBookmarked = true;
-
-               },
-               error => {
-
-               }
-           )
-         }
-       }
-     )
-
- }
   receiveCommentCount(count: number) {
     this.commentCount = count;
   }
@@ -283,7 +251,6 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       return `with: ${reason}`;
     }
   }
-
 }
 
 

@@ -3,8 +3,7 @@
   flex-direction: column;
   max-width: 600px;
   border-radius: 1.6rem;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  background-color: var(--posts);
+  background-color: var(--component-bg);
 }
 
 .bottom {
@@ -26,7 +25,7 @@
   min-width: 350px;
 }
 
-.image-container{
+.image-container {
   width: 600px;
 }
 
@@ -35,8 +34,8 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  border-radius: .8rem;
- margin-top: 25px;
+  border-radius: 0.8rem;
+  margin-top: 25px;
 }
 
 .user {
@@ -50,12 +49,11 @@
   margin-bottom: 10%;
   font-weight: bold;
   font-size: 2.4rem;
-  /* color: #14142b; */
   color: var(--font-color);
 }
 
 .username {
-  color: #1cc8ee;
+  color: var(--links);
   text-decoration: none;
   font-size: 1.6rem;
 }
@@ -76,7 +74,7 @@
 }
 
 .comment-like a {
-  color: #1cc8ee;
+  color: var(--links);
 }
 
 .comment-like-icons {
@@ -92,23 +90,8 @@ a {
 img {
   width: 100%;
   border-radius: 1.6rem 1.6rem 0 0;
-  /* object-fit: cover; */
 }
 
-/* .button {
-  width: 670px;
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-} */
 .button4 {
   background-color: white;
   color: black;
@@ -126,7 +109,7 @@ img {
   margin-right: 20px;
 }
 
-.comment{
+.comment {
   color: var(--font-color);
 }
 
@@ -153,39 +136,37 @@ img {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-  
 }
 
 /* Modal Content */
 .modal-content {
+  position: relative;
   margin: auto;
-  border: 1px solid #888;
   width: max-content;
-  border-radius: 10px;
+  border-radius: 1.6rem;
 }
-.mod-cont{
-  display:flex;
+.mod-cont {
+  display: flex;
   flex-direction: column;
 }
 /* The Close Button */
 .close {
-  color: #5f2eea;
-  float: left;
+  position: absolute;
+  top: 0;
+  right: 1.6rem;
+  color: var(--icons);
   font-size: 35px;
   font-weight: bold;
   padding: 20px;
-  margin-left: 70%;
-  /* background-color: transparent; */
 }
 
 .close:hover,
 .close:focus {
-  color: #000;
   text-decoration: none;
   cursor: pointer;
 }
 
-.icons{
+.icons {
   display: flex;
   gap: 3.2rem;
   align-items: flex-end;
@@ -193,14 +174,14 @@ img {
   width: 100%;
 }
 
-.like-count:hover{
-cursor: pointer;
+.like-count:hover {
+  cursor: pointer;
 }
 
-.like-count{
-  color: #1cc8ee;
+.like-count {
+  color: var(--links);
 }
 
-#bookmark-icon{
+#bookmark-icon {
   cursor: pointer;
 }

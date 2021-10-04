@@ -8,10 +8,12 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 3.2rem;
   background-color: white;
+  margin-top: 5rem;
 }
 
 #profile-image-form,
 #profile-details-form {
+  
   display: flex;
   flex-direction: column;
   align-items: center;

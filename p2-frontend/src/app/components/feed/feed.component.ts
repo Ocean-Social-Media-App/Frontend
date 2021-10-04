@@ -1,10 +1,8 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Post } from 'src/app/models/Post';
 import { BookmarkService } from 'src/app/services/bookmark/bookmark.service';
 import { PostService } from 'src/app/services/post/post.service';
-import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-feed',
@@ -14,18 +12,21 @@ import { UserService } from 'src/app/services/user/user.service';
 export class FeedComponent implements OnInit {
 
   @Input() pageCount: number = 1;
-  @Input() isBookmarked: boolean = false;
-  userId: number = this.route.snapshot.params["id"];
+  previousPage: number;
   postList: Array<any> = [];
-  listTemp: Array<Post> = [];
-  observer: Subscription = new Subscription;
+  postObs: Subscription = new Subscription();
+  bookmarkObs: Subscription = new Subscription();
+  hasLoadedPosts: boolean = false;
   stringInput: string = "";
   navigationSubscription: any;
-  userObj;
+  userObj: any;
   updateFeed: boolean;
-  // put object for all users here
+  hasReachedLastPage: boolean = false;
 
   constructor(private postServ: PostService, private bookmarkServ: BookmarkService, private router: Router, private route: ActivatedRoute) {
+
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) this.ngOnInit();
     })
@@ -33,67 +34,85 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
+  }
+
+  ngAfterViewInit() {
     this.populateFeed();
+    this.hasLoadedPosts = true;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.postServ.getNextPageOfPosts(changes.pageCount.currentValue)
-      .subscribe(posts => {
-        this.updateFeed = posts.success;
-        if(posts.success){
-        posts.data.forEach((post: any) => {
-          this.postList.push(post);
-        });
-      }
-      })
 
-      /* if(this.updateFeed){
-        this.populateFeed();
-      } */
+    if (this.hasLoadedPosts && !this.hasReachedLastPage) {
+      this.populateFeed();
+    }
+
   }
 
   ngOnDestroy(): void{
-    this.observer.unsubscribe();
+    this.postObs.unsubscribe();
+    this.bookmarkObs.unsubscribe();
 
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
     }
   }
 
-  ngDoCheck(): void{
-    //this.listTemp = this.postList.filter(post => post.postText?.startsWith(this.stringInput))
+  populateFeed(){
+
+    if (this.route.snapshot.params["id"]) {
+      this.getOneUsersPosts();
+    } else if (this.router.url == '/bookmarks') {
+      this.getBookmarkedPosts();
+    } else {
+      this.getAllFollowedPosts();
+    }
+
   }
 
+  getBookmarkedPosts() {
+    this.bookmarkObs = this.bookmarkServ.getBookmarks(this.userObj.userId, this.pageCount).subscribe((response)=>{
 
-  populateFeed(){
-    if(this.isBookmarked){
-      let tempList = [];
-      this.bookmarkServ.getBookmarks(this.userObj.userId).subscribe((response)=>{
-        console.log(response);
-
+      if (!response.success) {
+        this.hasReachedLastPage = true;
+        console.log('LAST PAGE REACHED');
+      } else {
         response.data.forEach(bookmarkId => {
-          this.postServ.getPostByPostId(bookmarkId).subscribe((postResponse)=>{
-            console.log(postResponse);
-
-            tempList.push(postResponse.data);
-              this.postList = tempList;
+          this.postObs = this.postServ.getPostByPostId(bookmarkId).subscribe((postResponse)=>{
+            this.postList.push(postResponse.data);
           })
         });
-      })
-    } else{ 
-      if (this.userId == undefined) {
-      this.postServ.getNextPageOfPosts(this.pageCount).subscribe(posts => {
-        this.postList = posts.data;
+      }
+    })
+  }
 
-        console.log(posts)
-      })
-    } else {
-      this.postServ.getAllPostsForOneUser(this.userId, this.pageCount)
-      .subscribe(posts => {
-        this.postList = posts.data;
+  getAllFollowedPosts() {
+    this.postObs = this.postServ.getNextPageOfPosts(this.pageCount).subscribe(posts => {
+      if (!posts.success) {
+        this.hasReachedLastPage = true;
+        console.log('LAST PAGE REACHED');
 
-      })
-    }
+      } else {
+        posts.data.forEach(post => {
+          this.postList.push(post);
+        });
+      }
+    })
+  }
+
+  getOneUsersPosts() {
+    this.postObs = this.postServ.getAllPostsForOneUser(this.route.snapshot.params["id"], this.pageCount)
+    .subscribe(posts => {
+
+      if (!posts.success) {
+        this.hasReachedLastPage = true;
+        console.log('LAST PAGE REACHED');
+      } else {
+        posts.data.forEach(post => {
+          this.postList.push(post);
+        });
+      }
+    })
   }
 }
-}
+
