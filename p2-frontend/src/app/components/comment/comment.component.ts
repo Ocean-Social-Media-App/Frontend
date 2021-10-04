@@ -13,13 +13,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class CommentComponent implements OnInit {
 
   @Input()
-  comment: Comment = {
-    postId: 0,
-    postText: '',
-    postTime: undefined,
-    postParentId: 0,
-    userId: 0
-  }
+  comment: any;
   @Output()
   firstName: string =  "";
 
@@ -40,6 +34,7 @@ export class CommentComponent implements OnInit {
   ngOnInit(): void {
     this.userObs = this.userService.getUserById(this.comment.userId).subscribe(
       data =>{
+        console.log(this.comment);
         this.firstName = data.data.firstName;
         this.proPicUrl = data.data.proPicUrl;
         this.username = data.data.username;

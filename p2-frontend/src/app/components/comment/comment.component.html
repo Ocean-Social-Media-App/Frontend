@@ -1,20 +1,26 @@
 <div class="width">
-<div class="comment-container">
+<div class="comment-container p-3">
   <div class="user-info">
     <app-profile-pic [passed] = "'img2'" [imgSrc]="proPicUrl"></app-profile-pic>
     <div class="user">
       <h4 class="name">{{ firstName }}</h4>
-      <a class="username" [routerLink]="['/profile-feed', comment.userId]"
-        >@{{ username }}</a
-      >
+      <a class="username" [routerLink]="['/profile-feed', comment.userId]">
+        @{{ username }}
+      </a>
      
     </div>
   </div>
-  <div class="comment-text">
-    <div class="comment">
-      {{ comment.postText }}
+  <div class="container">
+    <div class="comment-text row">
+      <div class="col-8">
+        {{ comment.postText }}
+      </div>
+      <div class="col-4">
+        {{comment.postTime | someTimeAgo}}
+      </div>
     </div>
   </div>
+  
 
   <!-- COMMENT & LIKE -->
   <div class="comment-like">
