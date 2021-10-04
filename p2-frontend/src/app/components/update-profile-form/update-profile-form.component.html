@@ -3,19 +3,19 @@
     <!-- PROFILE IMAGE FIELD -->
     <div class="form-row">
       <div class="new-profile">
-      <button id="uploadBtn" type="button" (click)="fileInput.click()">
-        <span>Upload New Profile Image</span>
-        <input
-          #fileInput
-          id="profileImage"
-          type="file"
-          (change)="onFileInput($event)"
-          style="display: none"
-          formControlName="image"
-          accept="image/png, image/jpeg"
-        />
-      </button>
-      <img id="profile-img" [src]="displayUrl" />
+        <button id="uploadBtn" type="button" (click)="fileInput.click()">
+          <span>Upload New Profile Image</span>
+          <input
+            #fileInput
+            id="profileImage"
+            type="file"
+            (change)="onFileInput($event)"
+            style="display: none"
+            formControlName="image"
+            accept="image/png, image/jpeg"
+          />
+        </button>
+        <img id="profile-img" [src]="displayUrl" />
       </div>
     </div>
   </form>
@@ -107,6 +107,31 @@
               "
             >
               Email already in use
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <!-- PASSWORD FIELD -->
+      <div class="form-row">
+        <label for="password">Password:</label>
+        <input
+          id="password"
+          class="text-field"
+          type="password"
+          [style.width.px]="180"
+          formControlName="password"
+          minlength="8"
+        />
+        <div class="warn">
+          <ng-container>
+            <div
+              class="invalid"
+              *ngIf="
+                password.hasError('minlength') &&
+                (password.dirty || password.touched)
+              "
+            >
+              Password must be 8 or more characters
             </div>
           </ng-container>
         </div>
