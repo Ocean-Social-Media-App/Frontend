@@ -50,25 +50,8 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   @Input()
-  post: Post = {
-    postId: 0,
-    postPicUrl: "",
-    postText: "",
-    postYouUrl: "",
-    userId: 0,
-    user: {
-      userId: undefined,
-      username: " ",
-      password: undefined,
-      email: undefined,
-      firstName: undefined,
-      lastName: undefined,
-      aboutMe: undefined,
-      bday: undefined,
-      proPicUrl: ""
-    }
-  }
-
+  post: any;
+  
   user: User = {
     userId: 0,
     firstName: "",
