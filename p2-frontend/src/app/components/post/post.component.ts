@@ -143,7 +143,11 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
          if(likeData.success){
             this.totalLikes = likeData.data.length
             this.likesInnerText = this.totalLikes == 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
-            this.likesOnPost = likeData.data;
+            likeData.data.forEach(element => {
+              this.userServ.getUserById(element.userId).subscribe(user =>{
+                 this.likesOnPost.push(user.data)
+              })
+            })
         }
       }
     )
@@ -178,7 +182,8 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
             .subscribe(
               data => {
                 this.isLiked = false;
-
+                this.totalLikes -= 1;
+                this.likesInnerText = this.totalLikes == 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
               }
           )
           }else{
@@ -189,6 +194,9 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
               .subscribe(
                 data => {
                   this.isLiked = true;
+                  this.totalLikes += 1;
+                  this.likesInnerText = this.totalLikes == 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
+
                 }
             )
           }
@@ -221,8 +229,9 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
     this.commentCount = count;
   }
 
-  open(content: any) {
 
+  open(content: any) {
+    this.getLikes()
     this.modalService.open(content,
    {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -230,6 +239,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       this.closeResult =
          `Dismissed ${this.getDismissReason(reason)}`;
     });
+    this.likesOnPost = [];
   }
 
   private getDismissReason(reason: any): string {
