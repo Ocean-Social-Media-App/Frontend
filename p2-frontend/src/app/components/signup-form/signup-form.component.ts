@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-signup-form',

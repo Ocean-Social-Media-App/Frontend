@@ -75,7 +75,6 @@ export class FeedComponent implements OnInit {
 
       if (!response.success) {
         this.hasReachedLastPage = true;
-        console.log('LAST PAGE REACHED');
       } else {
         response.data.forEach(bookmarkId => {
           this.postObs = this.postServ.getPostByPostId(bookmarkId).subscribe((postResponse)=>{
@@ -90,8 +89,6 @@ export class FeedComponent implements OnInit {
     this.postObs = this.postServ.getNextPageOfPosts(this.pageCount).subscribe(posts => {
       if (!posts.success) {
         this.hasReachedLastPage = true;
-        console.log('LAST PAGE REACHED');
-
       } else {
         posts.data.forEach(post => {
           this.postList.push(post);
@@ -106,7 +103,6 @@ export class FeedComponent implements OnInit {
 
       if (!posts.success) {
         this.hasReachedLastPage = true;
-        console.log('LAST PAGE REACHED');
       } else {
         posts.data.forEach(post => {
           this.postList.push(post);

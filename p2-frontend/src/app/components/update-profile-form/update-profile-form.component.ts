@@ -103,9 +103,6 @@ export class UpdatePostFormComponent implements OnInit {
 
           this.userObj = user.data;
 
-          console.log(user);
-
-
           if (user.success) {
             sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
             this.router.navigateByUrl('userFeed');

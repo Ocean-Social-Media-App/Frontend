@@ -14,7 +14,6 @@
   overflow-y: auto;
   border-radius: 1.6rem;
   color: var(--font-color);
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
   padding: 1.6rem;
   z-index: 1;
 }
@@ -58,7 +57,7 @@ li {
 }
 
 li:hover {
-  color: var(--icons);
+  color: var(--links);
   cursor: pointer;
 }
 

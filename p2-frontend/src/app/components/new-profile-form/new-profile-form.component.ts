@@ -124,9 +124,6 @@ export class NewProfileFormComponent implements OnInit {
 
           this.imageUrl = data.data;
           this.createProfile();
-        },
-        error => {
-
         }
       )
     } else {

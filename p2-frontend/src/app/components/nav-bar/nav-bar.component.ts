@@ -11,30 +11,21 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit, OnChanges {
+export class NavBarComponent implements OnInit {
 
   userId!: number;
   _isInNav : boolean = true;
   logOutLabel: string = 'Logout';
   profilePosition: string = "-64rem";
   observer: Subscription = new Subscription();
-
   userList: Array<any> = [];
   listTemp: Array<User> = [];
 
-
-
   constructor(private userService: UserService, private router: Router) { }
-
-
-  ngOnChanges(): void {
-
-  }
-
 
   ngOnInit(): void {
     this.userId = JSON.parse(sessionStorage.getItem('userObj')!).userId;
-    
+
   }
 
   logout(event: any) {

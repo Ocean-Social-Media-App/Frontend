@@ -1,11 +1,9 @@
-import { Component, ComponentFactoryResolver, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { User } from 'src/app/models/User';
 import { PostService } from 'src/app/services/post/post.service';
 import { UserService } from 'src/app/services/user/user.service';
-import { YouTubeValidator } from 'src/app/validators/youtube-validator';
 
 @Component({
   selector: 'app-new-post-form',
@@ -30,8 +28,8 @@ export class NewPostFormComponent implements OnInit{
     postYouUrl: [''],
     userId: [this.userId]
   })
-    
-  
+
+
   constructor(private fb: FormBuilder, private userService: UserService, private postService: PostService, private router: Router) { }
   ngOnInit(): void {
     this.userId =  JSON.parse(sessionStorage.getItem('userObj')!).userId
@@ -40,7 +38,7 @@ export class NewPostFormComponent implements OnInit{
   onFileInput(event: any) {
     if (event.currentTarget.files.length > 0) {
       const file = event.currentTarget.files[0];
-      
+
       let reader = new FileReader();
       reader.readAsDataURL(file);
 
@@ -49,7 +47,7 @@ export class NewPostFormComponent implements OnInit{
       }
 
       this.imageForm.get('imageFile')?.setValue(file, {emitModelToViewChange: false});
-      
+
     }
   }
 
@@ -66,17 +64,13 @@ export class NewPostFormComponent implements OnInit{
     this.postService.createPost(this.newPostForm.value)
       .pipe(first())
       .subscribe(
-        data => {          
-          
+        data => {
           this.router.navigateByUrl(this.router.url);
           this.postText.reset();
-        },
-        error => {          
-          
         }
       )
   }
-  
+
   uploadImageAndCreatePost(event: any) {
     if (this.imageForm.get('imageFile').value != null) {
       const formData = new FormData();
@@ -84,14 +78,11 @@ export class NewPostFormComponent implements OnInit{
 
       this.userService.addPostImage(formData)
         .subscribe(
-          data => {            
+          data => {
             this.imageUrl = data.data;
 
             this.createPost();
-            
-          },
-          error => {            
-            
+
           }
         )
     } else {

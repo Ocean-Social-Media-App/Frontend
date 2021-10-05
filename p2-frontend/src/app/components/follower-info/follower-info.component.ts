@@ -24,11 +24,7 @@ export class FollowerInfoComponent implements OnInit {
   arrayOfFollowers: any[] = [];
 
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private modalService: NgbModal, private router:Router) {
-
-    console.log(this.followed);
-
-  }
+  constructor(private userService: UserService, private route: ActivatedRoute, private modalService: NgbModal, private router:Router) {}
 
   ngOnInit(): void {
 
@@ -52,14 +48,11 @@ export class FollowerInfoComponent implements OnInit {
   }
 
   follow(){
-    console.log("Button clicked");
-
     this.userIdFromParam = this.route.snapshot.params["id"];
 
     if(!this.followed)
     {
      this.userService.followUser(this.userIdFromParam, this.userInSession).subscribe(responseData =>{
-       console.log(responseData);
 
        if(responseData.success){
         this.followers = +this.followers +  1;
@@ -70,12 +63,10 @@ export class FollowerInfoComponent implements OnInit {
   }
     else{
       this.userService.unfollowUser(this.userIdFromParam, this.userInSession).subscribe(response=>{
-        console.log(response);
-
         if(response.success){
-      this.followers = +this.followers - 1;
-      this.followLabel = "Follow"
-      this.followed = !this.followed;
+        this.followers = +this.followers - 1;
+        this.followLabel = "Follow"
+        this.followed = !this.followed;
       }}
       )}
   }

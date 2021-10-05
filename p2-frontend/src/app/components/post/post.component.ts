@@ -51,7 +51,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input()
   post: any;
-  
+
   user: User = {
     userId: 0,
     firstName: "",
@@ -74,18 +74,11 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit(): void {
     this.userLike = JSON.parse(sessionStorage.getItem('userObj')).userId
     this.userBook = JSON.parse(sessionStorage.getItem('userObj')).bookmarks
-    
+
     //this.isBookmarked = this.router.url == '/bookmarks' ? true : false;
 
     if(this.post.postPicUrl != null){
       this.hasPic = true;
-    }
-
-    if (!this.apiLoaded) {
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      document.body.appendChild(tag);
-      this.apiLoaded = true;
     }
 
     if(this.post.postYouUrl !== ''){

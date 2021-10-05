@@ -79,3 +79,19 @@ div {
 .num:hover {
   cursor: pointer;
 }
+
+.modal-header {
+  background-color: var(--component-bg);
+  color: var(--font-color);
+  border: none;
+}
+
+.modal-body {
+  background-color: var(--component-bg);
+  color: var(--font-color);
+  border: none;
+}
+
+.modal-body a {
+  color: var(--links);
+}

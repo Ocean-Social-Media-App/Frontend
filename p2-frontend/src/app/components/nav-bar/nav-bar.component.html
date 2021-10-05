@@ -1,7 +1,7 @@
 <div class="sidebar-container">
   <div class="logo">Ocean</div>
   <ul class="">
-    <!-- search bar component here -->
+    <!-- search bar component -->
     <app-search></app-search>
     <li>
       <a (click)="goHome()">
@@ -9,7 +9,7 @@
       </a>
     </li>
     <li>
-      <a (click)="explore()"> 
+      <a (click)="explore()">
         <i class="fa fa-hashtag" aria-hidden="true"></i> Explore
       </a>
     </li>
@@ -18,13 +18,13 @@
     </li>
     <li>
       <a (click)="toggleProfile($event)">
-        <i class="fa fa-id-card-o" aria-hidden="true"></i> My Profile 
+        <i class="fa fa-id-card-o" aria-hidden="true"></i> My Profile
       </a>
     </li>
     <li>
-      <a (click)="gotoBookmarks()"> 
+      <a (click)="gotoBookmarks()">
         <i class="fa fa-bookmark-o" aria-hidden="true"></i> My Bookmarks
-       </a>
+      </a>
     </li>
   </ul>
   <app-buttons
