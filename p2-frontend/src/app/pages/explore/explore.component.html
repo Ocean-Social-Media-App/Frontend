@@ -1,5 +1,9 @@
 <app-nav-bar></app-nav-bar>
+
 <div class="list-users">
+    <header class = "title">
+        <app-title [title] = "title"></app-title>
+      </header>
     <div class="users-container" *ngFor = "let user of userList">
             <div class="profile-info">
                 <div class="pic-name">

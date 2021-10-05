@@ -38,6 +38,7 @@ import { FollowerInfoComponent } from './components/follower-info/follower-info.
 import { FollowingPageComponent } from './pages/following-page/following-page.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { BookmarksPageComponent } from './pages/bookmarks-page/bookmarks-page.component';
+import { TitleComponent } from './components/title/title.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { BookmarksPageComponent } from './pages/bookmarks-page/bookmarks-page.co
     FollowerInfoComponent,
     FollowingPageComponent,
     ExploreComponent,
-    BookmarksPageComponent
+    BookmarksPageComponent,
+    TitleComponent
 
   ],
   imports: [

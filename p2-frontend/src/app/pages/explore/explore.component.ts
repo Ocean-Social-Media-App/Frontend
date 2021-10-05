@@ -15,6 +15,8 @@ export class ExploreComponent implements OnInit {
   aUser= {
     user: {userId : this.userview }
   }
+
+  title: string = "Find a Friend!";
   
   @Input()
   user: User = {
