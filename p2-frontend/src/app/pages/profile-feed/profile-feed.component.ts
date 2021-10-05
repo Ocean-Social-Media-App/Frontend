@@ -14,6 +14,10 @@ export class ProfileFeedComponent implements OnInit {
   observer: Subscription = new Subscription();
   pageCount = 1;
 
+  userObj = {};
+  _userIsPosting: boolean = false;
+  _notificationsDisplay: boolean = false;
+
   constructor(private route: ActivatedRoute, private postService: PostService) { }
 
   ngOnInit(): void {
@@ -26,5 +30,15 @@ export class ProfileFeedComponent implements OnInit {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.pageCount++;
     }
+  }
+
+  receivePostStatus(postCheck: boolean) {
+    this._notificationsDisplay = false;
+    this._userIsPosting = postCheck;
+  }
+
+  receiveNotificationStatus(notificationCheck: boolean) {
+    this._userIsPosting = false;
+    this._notificationsDisplay = notificationCheck;
   }
 }
