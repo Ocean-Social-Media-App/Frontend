@@ -30,7 +30,6 @@ header {
 }
 .feed-container {
   top: 11rem;
-  position: absolute;
   overflow: auto;
   /* bottom: 0;
   left: 0;
