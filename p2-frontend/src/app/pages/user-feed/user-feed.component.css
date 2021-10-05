@@ -4,12 +4,16 @@
   width: 100%;
   padding: 1.6rem;
 }
-header{
+
+.title {
+  z-index: -1;
+}
+
+header {
   top: 2rem;
   padding: 1.2rem;
   border-radius: 1.5rem;
-  background-color: rgba(255,255,255,0.3);
-  position:fixed;
+  background-color: var(--component-bg);
   height: 9rem;
 }
 
@@ -24,7 +28,7 @@ header{
   position: fixed;
   right: 1.6rem;
 }
-.feed-container{
+.feed-container {
   top: 11rem;
   position: absolute;
   overflow: auto;
