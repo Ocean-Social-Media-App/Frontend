@@ -189,6 +189,7 @@ img {
 
 .post-timestamp {
   color: var(--font-color);
+  font-weight: bolder;
 }
 
 .modal-header {

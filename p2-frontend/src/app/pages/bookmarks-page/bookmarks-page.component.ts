@@ -10,6 +10,7 @@ export class BookmarksPageComponent implements OnInit {
 
   pageCount = 1;
   userObj = {};
+  title : string = "Bookmarked Posts"
   _userIsPosting: boolean = false;
   _notificationsDisplay: boolean = false;
 

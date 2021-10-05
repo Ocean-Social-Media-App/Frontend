@@ -34,3 +34,8 @@
   font-size: 1.6rem;
   margin-top: -10%;
 }
+
+.post-form {
+  position: fixed;
+  right: 1.6rem;
+}

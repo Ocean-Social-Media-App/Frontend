@@ -1,5 +1,9 @@
 <app-nav-bar></app-nav-bar>
+
 <div class="list-users">
+    <header class = "title">
+        <app-title [title] = "title"></app-title>
+      </header>
     <div class="users-container" *ngFor = "let user of userList">
             <div class="profile-info">
                 <div class="pic-name">
@@ -26,6 +30,14 @@
             </div>
         
    </div>
+</div>
+
+<div *ngIf="_userIsPosting" class="post-form">
+    <app-new-post-form [userObj]="userObj"></app-new-post-form>
+</div>
+
+<div *ngIf="_notificationsDisplay">
+    <app-notifications [userObj]="userObj"></app-notifications>
 </div>
 
 <div class="navbar fixed-bottom">

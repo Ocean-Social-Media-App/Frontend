@@ -12,12 +12,15 @@ export class FollowingPageComponent implements OnInit {
   following: any[];
   followingUsers: any[] = [];
   loggedInUser:number;
-  userObject:any;
+  userObj = {};
+  _userIsPosting: boolean = false;
+  _notificationsDisplay: boolean = false;
   userId: number;
   profilePic: string = "";
   constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
     this.userId = this.route.snapshot.params["id"];
     this.userService.getUserById(this.userId).subscribe(responseData => {
       this.following = responseData.data.user_following;
@@ -35,6 +38,16 @@ export class FollowingPageComponent implements OnInit {
 
   toUserProfile(userId:number){
     this.router.navigateByUrl(`/profile-feed/${userId}`)
+  }
+
+  receivePostStatus(postCheck: boolean) {
+    this._notificationsDisplay = false;
+    this._userIsPosting = postCheck;
+  }
+
+  receiveNotificationStatus(notificationCheck: boolean) {
+    this._userIsPosting = false;
+    this._notificationsDisplay = notificationCheck;
   }
 
 }

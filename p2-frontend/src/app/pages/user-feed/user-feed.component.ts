@@ -13,6 +13,7 @@ export class UserFeedComponent implements OnInit {
 
   pageCount = 1;
   userObj = {};
+  title : string = "Your Current"
   _userIsPosting: boolean = false;
   _notificationsDisplay: boolean = false;
 

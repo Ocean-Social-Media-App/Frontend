@@ -5,8 +5,21 @@
   padding: 1.6rem;
 }
 
+.title {
+  z-index: -1;
+}
+
+header {
+  top: 2rem;
+  padding: 1.2rem;
+  border-radius: 1.5rem;
+  background-color: var(--component-bg);
+  height: 9rem;
+}
+
 .post-feed {
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin: 0 auto;
 }
@@ -14,4 +27,12 @@
 .post-form {
   position: fixed;
   right: 1.6rem;
+}
+.feed-container {
+  top: 11rem;
+  position: absolute;
+  overflow: auto;
+  /* bottom: 0;
+  left: 0;
+  right: 0; */
 }
