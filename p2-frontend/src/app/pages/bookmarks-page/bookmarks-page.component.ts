@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class BookmarksPageComponent implements OnInit {
 
+  pageCount = 1;
   userObj = {};
   _userIsPosting: boolean = false;
   _notificationsDisplay: boolean = false;
@@ -21,12 +22,12 @@ export class BookmarksPageComponent implements OnInit {
     }
   }
 
-  // @HostListener("window:scroll", [])
-  // onScroll(): void {
-  //   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-  //     this.pageCount++;
-  //   }
-  // }
+  @HostListener("window:scroll", [])
+  onScroll(): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      this.pageCount++;
+    }
+  }
 
   receivePostStatus(postCheck: boolean) {
     this._notificationsDisplay = false;
