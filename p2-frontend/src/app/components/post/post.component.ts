@@ -93,25 +93,18 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
       this.videoId = getVideoId(this.post.postYouUrl).id;
     }
 
-      this.userServ.getUserById(this.userLike)
-      .subscribe(
-        data => {
-          if(data.data.bookmarks.indexOf(this.post.postId) > -1) {
-            this.bookmarkService.unBookmarkPost(this.post.postId, this.userLike)
-            .subscribe(
-              data => {
-                this.isBookmarked = false;
-              })
+    this.userServ.getUserById(this.userLike)
+    .subscribe(
+      data => {
+        data.data.bookmarks.forEach(element => {
+          if(element == this.post.postId) {
+            this.isBookmarked = true;
           } else {
-            this.bookmarkService.bookmarkPost(this.post.postId, this.userLike)
-            .subscribe(
-              data => {
-                this.isBookmarked = true;
-             })
+            this.isBookmarked = false;
           }
-        }
-      )
-    
+        })
+      })
+      
 
     this.likeObs = this.likeService.checkLike(this.post.postId, this.userLike)
       .subscribe(
@@ -123,16 +116,6 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
           }
         }
       )
-      this.userServ.getUserById(this.userLike)
-    .subscribe(
-      data => {
-        if(data.data.bookmarks.indexOf(this.post.postId) > -1) {
-              this.isBookmarked = true;
-        } else {
-              this.isBookmarked = false;
-        }
-      }
-    )
 
       this.getLikes();
   }

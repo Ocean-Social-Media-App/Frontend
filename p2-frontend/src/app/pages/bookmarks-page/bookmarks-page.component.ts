@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class BookmarksPageComponent implements OnInit {
 
   userObj = {};
+  title : string = "Bookmarked Posts"
   _userIsPosting: boolean = false;
   _notificationsDisplay: boolean = false;
 

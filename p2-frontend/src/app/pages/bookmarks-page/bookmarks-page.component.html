@@ -1,6 +1,9 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="post-feed">
+  <header class = "title">
+    <app-title [title] = "title"></app-title>
+  </header>
   <div class="feed-container">
     <app-feed [pageCount]="1"></app-feed>
   </div>

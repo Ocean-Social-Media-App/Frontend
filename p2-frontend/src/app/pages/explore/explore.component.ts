@@ -15,6 +15,8 @@ export class ExploreComponent implements OnInit {
   aUser= {
     user: {userId : this.userview }
   }
+
+  title: string = "Find a Friend!";
   
   @Input()
   user: User = {
@@ -29,6 +31,7 @@ export class ExploreComponent implements OnInit {
     proPicUrl: undefined
   }
 
+  userObj: any;
   userId: number;
   userList: Array<any> = []; 
   wholeList: Array<any> = []; 
@@ -43,6 +46,7 @@ export class ExploreComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
     this.userId = JSON.parse(sessionStorage.getItem('userObj')).userId;
 
     if (this.userId == null) {
