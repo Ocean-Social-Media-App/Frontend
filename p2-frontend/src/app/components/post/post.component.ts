@@ -89,15 +89,14 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
     this.userServ.getUserById(this.userLike)
     .subscribe(
       data => {
-        data.data.bookmarks.forEach(element => {
-          if(element == this.post.postId) {
-            this.isBookmarked = true;
-          } else {
-            this.isBookmarked = false;
-          }
-        })
-      })
-      
+        if(data.data.bookmarks.indexOf(this.post.postId) > -1) {
+              this.isBookmarked = true;
+        } else {
+              this.isBookmarked = false;
+        }
+      }
+    )
+
 
     this.likeObs = this.likeService.checkLike(this.post.postId, this.userLike)
       .subscribe(

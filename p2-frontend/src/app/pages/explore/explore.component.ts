@@ -79,12 +79,12 @@ export class ExploreComponent implements OnInit {
   follow(userFollow: any){
         
     if(userFollow.followLabel == "Follow"){
-      console.log("trying to follow")
+      
       this.userService.followUser(userFollow.userId, this.userId).subscribe(responseData =>{
       
       if(responseData.success){
          userFollow.followLabel = "Unfollow"
-         console.log("followed user")
+         
        }else {
          
        }
@@ -93,7 +93,7 @@ export class ExploreComponent implements OnInit {
     this.userService.unfollowUser(userFollow.userId, this.userId).subscribe(response=>{
         if(response.success){
           userFollow.followLabel = "Follow"
-          console.log("unfollowed user")
+          
         }}
     )}
   }
@@ -101,10 +101,10 @@ export class ExploreComponent implements OnInit {
   @HostListener("window:scroll", [])
   onScroll(): void {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      console.log("bottom hit")
+      
       this.listNum = this.listNum + 5;
       this.userList = this.wholeList.slice(0, this.listNum);
-      console.log(this.userList)
+      
     }
   }
 

@@ -4,15 +4,12 @@
   width: 100%;
   padding: 1.6rem;
 }
-.title {
-  z-index: -1;
-}
-
 header {
   top: 2rem;
   padding: 1.2rem;
   border-radius: 1.5rem;
   background-color: var(--component-bg);
+  position: fixed;
   height: 9rem;
 }
 .post-feed {
@@ -28,5 +25,7 @@ header {
 }
 
 .feed-container {
+  top: 11rem;
+  position: absolute;
   overflow: auto;
 }
