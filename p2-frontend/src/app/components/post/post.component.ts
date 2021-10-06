@@ -51,7 +51,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input()
   post: any;
-  
+
   user: User = {
     userId: 0,
     firstName: "",
@@ -74,7 +74,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit(): void {
     this.userLike = JSON.parse(sessionStorage.getItem('userObj')).userId
     this.userBook = JSON.parse(sessionStorage.getItem('userObj')).bookmarks
-    
+
     //this.isBookmarked = this.router.url == '/bookmarks' ? true : false;
 
     if(this.post.postPicUrl != null){
@@ -96,15 +96,14 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
     this.userServ.getUserById(this.userLike)
     .subscribe(
       data => {
-        data.data.bookmarks.forEach(element => {
-          if(element == this.post.postId) {
-            this.isBookmarked = true;
-          } else {
-            this.isBookmarked = false;
-          }
-        })
-      })
-      
+        if(data.data.bookmarks.indexOf(this.post.postId) > -1) {
+              this.isBookmarked = true;
+        } else {
+              this.isBookmarked = false;
+        }
+      }
+    )
+
 
     this.likeObs = this.likeService.checkLike(this.post.postId, this.userLike)
       .subscribe(
