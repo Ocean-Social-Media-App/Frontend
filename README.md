@@ -6,9 +6,10 @@ Revature social network application to connect and interact with friends
 * Angel Walker
 * Bhavani Yelagala
 * Cameron Trumbo
+* Gabriel Gil
 * Garrett St. Amand
 * Jack Gildea
-* Gabriel Gil
+
 
 ### Resource Links:
 * http://3.139.90.29:8080/
@@ -114,25 +115,25 @@ Revature social network application to connect and interact with friends
 
 ### Backend endpoints
 
-|         Action          |           Endpoint            |
-| :---------------------: | :---------------------------: |
-|        **Login**        |    `POST /api/user/login`     |
-|       **Logout**        |    POST /api/user/loogout`    |
-|       **Session**       | `GET /api/user/check-session` |
-|       **Sign Up**       |     `POST /api/user/user`     |
-|       **Forgot**        |`POST /api/user/forgot/{username}`|
-|   **Update Profile**    |  `PUT /api/user/updateUser`   |
-|    **Get Following**    |   `GET /api/follow/{userId}`  |
-|    **Follow Someone**   |   `POST /api/follow/{userId}` |
-|   **Unfollow Someone**  | `DELETE /api/follow/{userId}` |
-|     **Create Post**     |    `POST /api/feed/post`      |
-|     **Delete Post**     |`DELETE /api/feed/post/{postId}`|
+|         Action          |           Endpoint                  |
+| :---------------------: | :---------------------------:       |
+|        **Login**        |    `POST /api/user/login`           |
+|       **Logout**        |    POST /api/user/loogout`          |
+|       **Session**       | `GET /api/user/check-session`       |
+|       **Sign Up**       |     `POST /api/user/user`           |
+|       **Forgot**        |`POST /api/user/forgot/{username}`   |
+|   **Update Profile**    |  `PUT /api/user/updateUser`         |
+|    **Get Following**    |   `GET /api/follow/{userId}`        |
+|    **Follow Someone**   |   `POST /api/follow/{userId}`       |
+|   **Unfollow Someone**  | `DELETE /api/follow/{userId}`       |
+|     **Create Post**     |    `POST /api/feed/post`            |
+|     **Delete Post**     |`DELETE /api/feed/post/{postId}`     |
 |**Get Post by Favorites**|`GET /api/feed/post/comment/{postId}`|
-|   **Posts By PostId**   | `GET /api/feed/post/{postId}` |
-|   **Posts By UserId**   |`GET /api/feed/post/userId/{userId}`|
-|     **Like a Post**     |     `POST /api/feed/like`     |
-| **Get Likes by PostId** | `GET /api/feed/like/{postId}` |
-|     **Delete Like**     |`DELETE /api/feed/like/{likeId}`|
+|   **Posts By PostId**   | `GET /api/feed/post/{postId}`       |
+|   **Posts By UserId**   |`GET /api/feed/post/userId/{userId}` |
+|     **Like a Post**     |     `POST /api/feed/like`           |
+| **Get Likes by PostId** | `GET /api/feed/like/{postId}`       |
+|     **Delete Like**     |`DELETE /api/feed/like/{likeId}`     |
 
 
 ### Models 
