@@ -1,14 +1,18 @@
 # Ocean Social Media App
-Social Application to connect with your friends
-
-
+Revature social network application to connect and interact with friends
 
 ### Members:
-
-
+* Trevor Drury
+* Angel Walker
+* Bhavani Yelagala
+* Cameron Trumbo
+* Garrett St. Amand
+* Jack Gildea
+* Gabriel Gil
 
 ### Resource Links:
-* (deployed link to website)
+* http://3.139.90.29:8080/
+
 #### Repositories
  * Front End - https://github.com/Ocean-Social-Media-App/Frontend.git
  * User Microservice - https://github.com/Ocean-Social-Media-App/UserMicroService.git
@@ -23,31 +27,31 @@ Social Application to connect with your friends
 ### Users Can :
 
 * Register
-  * Email with a welcome email.
+  * Receive welcome email.
 * Login/Logout.
 * Reset their password.
-  * Email new password if they forgot password.
+  * Receive email with new password
 * Modify their information.
 * Upload a profile picture (using AWS: S3).
 * Search other people.
 * Create a post.
   *  Image(s) can be added to these posts (using AWS: S3).
-* View his own profile.
-  *  Including posts.
-* View others’ profile.
-  *  Including posts.
-* See their feed.
+  *  Youtube links can be added to these posts
+* View his own profile (including posts)
+* View others’ profile (including posts)
+* See their main feed.
   *  Posts of everyone should show here.
   *  Pagination should be implemented (only fetching 20 posts at a
      time).
-* Like someone’s post.
-  *  Old school Facebook, only one type of like.
-
+* Like/unlike someone’s post.
+* Bookmark/unbookmark favorite posts
+* Follow other peoples accounts
+* Reveive notifications when they are followed by another user (using RabbitMQ)
 
 
 ### Roles:
 
-**Fill In Member Roles**
+* Trevor Drury - Scrum Master
 
 
 ### Programs/Libraries used:
@@ -70,15 +74,15 @@ Social Application to connect with your friends
 1) Angular
 2) TypeScript
 3) JavaScript
-4) Jasmine
+4) HTML
+5) CSS
+6) Jasmine
 
 **Deployment :**
 
 1) AWS EC2
 2) Docker
 3) Jenkins
-
-
 
 
 ## Backend Requirements
@@ -98,8 +102,8 @@ Social Application to connect with your friends
 **Register, Models and database**
 
 * Sessions 
-* register- email password
-* forgot password will email them their temp pass
+* Register- email password
+* Forgot password will email them their temp password
 * Modify info
 
 - Dummy email
@@ -112,20 +116,23 @@ Social Application to connect with your friends
 
 |         Action          |           Endpoint            |
 | :---------------------: | :---------------------------: |
-|        **Login**        |    `POST /api/getOneUser`     |
-|       **Logout**        |      `POST /api/Logout`       |
-|       **Session**       |   `POST /api/CheckSession`    |
-|       **Sign Up**       |    `POST /api/CreateUser`     |
-|       **Forgot**        | `POST /api/getUserByUsername` |
-|   **Submit Profile**    |   `POST /api/CreateProfile`   |
-|   **Update Profile**    |  `PATCH /api/UpdateProfile`   |
-|    **Show Profile**     |    `GET /api/getUserById`     |
-|      **Add Post**       |    `POST /api/CreatePost`     |
-|     **Delete Post**     |    `POST /api/DeletePost`     |
-|     **Add Comment**     |    `POST /api/PostComment`    |
-|   **Show All Posts**    |     `GET /api/feed`           |
-|   **Posts By PostId**   |   `GET /api/post/{postId}`    |
-|   **Posts By UserId**   |`GET /api/post/userId/{userId}`|
+|        **Login**        |    `POST /api/user/login`     |
+|       **Logout**        |    POST /api/user/loogout`    |
+|       **Session**       | `GET /api/user/check-session` |
+|       **Sign Up**       |     `POST /api/user/user`     |
+|       **Forgot**        |`POST /api/user/forgot/{username}`|
+|   **Update Profile**    |  `PUT /api/user/updateUser`   |
+|    **Get Following**    |   `GET /api/follow/{userId}`  |
+|    **Follow Someone**   |   `POST /api/follow/{userId}` |
+|   **Unfollow Someone**  | `DELETE /api/follow/{userId}` |
+|     **Create Post**     |    `POST /api/feed/post`      |
+|     **Delete Post**     |`DELETE /api/feed/post/{postId}`|
+|**Get Post by Favorites**|`GET /api/feed/post/comment/{postId}`|
+|   **Posts By PostId**   | `GET /api/feed/post/{postId}` |
+|   **Posts By UserId**   |`GET /api/feed/post/userId/{userId}`|
+|     **Like a Post**     |     `POST /api/feed/like`     |
+| **Get Likes by PostId** | `GET /api/feed/like/{postId}` |
+|     **Delete Like**     |`DELETE /api/feed/like/{likeId}`|
 
 
 ### Models (Need to finalize this list, (this may need to be added to))
