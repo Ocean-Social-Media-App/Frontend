@@ -112,7 +112,7 @@ Revature social network application to connect and interact with friends
 
 
 
-### Backend endpoints (Need to finalize this list, (this may need to be added to))
+### Backend endpoints
 
 |         Action          |           Endpoint            |
 | :---------------------: | :---------------------------: |
@@ -135,48 +135,77 @@ Revature social network application to connect and interact with friends
 |     **Delete Like**     |`DELETE /api/feed/like/{likeId}`|
 
 
-### Models (Need to finalize this list, (this may need to be added to))
+### Models 
 
 **User Model**
 
-* Integer Id: serial
-* String firstname not null
-* String lastname not null
-* String username Unique not null
-* String password not null
-* String email Unique not null
-* String aboutMe char(250) not null
-* Date Birthday int 
-* String picUrl not null
+    Integer Id: serial
+    String firstname not null
+    String lastname not null
+    String username Unique not null
+    String password not null
+    String email Unique not null
+    String aboutMe char(250)
+    Date bday int
+    String proPicUrl
+    Long lastNotification
+    Set<Integer> bookmarks
+    Set<Integer> user_following
+    Set<Integer> followers
+
 
 **Post Model**
 
-* Integer postId: serial
-* String picUrl not null
-* String PostText char(250) not null
-* Date postTime
-* Integer UserFK reference User id
+    Integer postId: serial
+    Integer postParentId
+    String postPicUrl
+    String postText not null
+    Date postTime
+    String postYouUrl
+    Integer userId not null
 
-**Comment Model**
+**Response Model**
 
-* Integer Id: serial
-* String CommText char(250) not null
-* Integer PostIdFK:
-* Integer UserIdFK:			
+   Boolean success
+   String message
+   Object data
+   
+**User Response Model**
+
+    Integer id
+    String name
+    String profileImage
+    Long lastNotification
+    
+ **Notification Model**
+
+    Integer id: serial
+    String type
+    Long timestamp
+    User user (@ManyToOne(cascade = CascadeType.ALL))
+    Response response (@Transient)
+    UserResponse userResponse (@Transient)
+
   	
 **Like Composite Model**
+    
+    Integer likeId
+    Integer userId not null
+    Post post not null
 
-* Integer likeId: serial
-* Integer PostIdFK:
-* Integer UserIdFK:	
+**RabbitMessage Model**
+
+    Integer userIdFrom
+    Integer postId
+    Integer userIdTo
+
+		
 
 ## Frontend Requirements
 
-----Link to Diagram of Frontend end result
-
 ### Angular (component = comp)
 
-**Views to Display : (this may need to be added to)**
+**Views to Display : **
 
 - **Login**
   - Nav Bar comp
@@ -192,11 +221,25 @@ Revature social network application to connect and interact with friends
   - Nav Bar comp
   - Filter by person
   - (Reuse Create Post Comp to display post?)
-  - main Feed (Shows everyone's post)
+  - main Feed (Shows friends post)
     - Only show 20 post and load more as needed
 - **Create Post**
-  - Nav Bar comp??
   - Add image
-   - Text- when we create the post
-  - Like it
-  - comment on (Optional)
+  - Add youtube url
+  - Like post
+  - Comment
+    - users can reply to comments
+
+- **Follow User/ Following Information**
+  - Follow button on explore page and user page
+  - Can view users following info on profile page
+
+- **Bookmarks Page**
+  - Users can bookmark posts
+  - Users can view their bookmarked posts on Bookmarks page
+
+- **Notifications**
+  - Users can view their notification
+  - These are loaded any time the toggle buttons are hit
+
+
